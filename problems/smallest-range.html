@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="You have k lists of sorted integers in ascending order. Find the smallest range that includes at least one number from each of the k lists. 
+We define the range [a,b] is smaller than range [c,d] if b-a &lt; d-c or a &lt; c if b-a == d-c.
+Example 1:
+Input:[[4,10,15,24,26], [0,9,12,20], [5,18,22,30]]
+Output: [20,24]
+Explanation: 
+List 1: [4, 10, 15, 24,26], 24 is in range [20,24].
+List 2: [0, 9, 12, 20], 20 is in range [20,24].
+List 3: [5, 18, 22, 30], 22 is in range [20,24].
+
+
+
+Note:
+
+The given list may contain duplicates, so ascending order means &gt;= here.
+1 &lt;= k &lt;= 3500
+ -105 &lt;= value of elements &lt;= 105.
+For Java users, please note that the input type has been changed to List&lt;List&lt;Integer&gt;&gt;. And after you reset the code template, you&#39;ll see this point.">
+  <meta name="keywords"
+        content="Smallest Range, LC 632, leetcode 632, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>632. Smallest Range</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>You have <code>k</code> lists of sorted integers in ascending order. Find the <b>smallest</b> range that includes at least one number from each of the <code>k</code> lists. </p>
+
+<p>We define the range [a,b] is smaller than range [c,d] if <code>b-a < d-c</code> or <code>a < c</code> if <code>b-a == d-c</code>.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b>[[4,10,15,24,26], [0,9,12,20], [5,18,22,30]]
+<b>Output:</b> [20,24]
+<b>Explanation:</b> 
+List 1: [4, 10, 15, 24,26], 24 is in range [20,24].
+List 2: [0, 9, 12, 20], 20 is in range [20,24].
+List 3: [5, 18, 22, 30], 22 is in range [20,24].
+</pre>
+</p>
+
+<p>
+<b>Note:</b><br/>
+<ol>
+<li>The given list may contain duplicates, so ascending order means >= here.</li>
+<li>1 <= <code>k</code> <= 3500</li>
+<li> -10<sup>5</sup> <= <code>value of elements</code> <= 10<sup>5</sup>.</li>
+<li><b>For Java users, please note that the input type has been changed to List&lt;List&lt;Integer&gt;&gt;. And after you reset the code template, you'll see this point.</b></li>
+</ol>
+<br/>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-using-pointers-time-limit-exceeded">Approach #3  Using Pointers [Time Limit Exceeded]</a></li>
+<li><a href="#approach-4-using-priority-queue-accepted">Approach #4 Using Priority Queue [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>The naive approach is to consider every pair of elements, <script type="math/tex; mode=display">nums[i][j]</script> and <script type="math/tex; mode=display">nums[k][l]</script> from amongst the given 
+lists and consider the range formed by these elements. For every range currently considered, we can traverse over all the 
+lists to find if atleast one element from these lists can be included in the current range. If so, we store the end-points of the current range 
+and compare it with the previous minimum range found, if any, satisfying the required criteria, to find the smaller range from among them.</p>
+<p>Once all the element pairs have been considered as the ranges, we can obtain the required minimum range.</p>
+<iframe frameborder="0" height="515" name="SMprvqVp" src="https://leetcode.com/playground/SMprvqVp/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. Considering every possible range(element pair) requires <script type="math/tex; mode=display">O(n^2)</script> time. For each range considered, 
+we need to traverse over all the elements of the given lists in the worst case requiring another <script type="math/tex; mode=display">O(n)</script> time. Here, <script type="math/tex; mode=display">n</script> refers to the 
+total number of elements in the given lists.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, we consider every possible range and then traverse over every list to check if atleast one of the 
+elements from these lists lies in the required range. Instead of doing this traversal for every range, we can make use 
+of Binary Search to find the index of the element just larger than(or equal to) the lower limit of the range currently 
+considered. </p>
+<p>If all the elements in the current list are lesser than this lower limit, we'll get the index as <script type="math/tex; mode=display">nums[k].length</script>
+ for the <script type="math/tex; mode=display">k^{th}</script> list being currently checked. In this case, none of the elements of the current list lies in the
+current range.</p>
+<p>On the other hand, if all the elements in this list are larger than this lower limit, we'll get the index of the first element(minimum) in the current list. If this element happens to be larger than the upper limit  of the range currently considered, then also, none of the elements of the current list lies within the current range.</p>
+<p>Whenever a range is found which satisfies the required criteria, we can compare it with the minimum range found so far 
+ to determine the required minimum range.</p>
+<iframe frameborder="0" height="515" name="uXxKqhkz" src="https://leetcode.com/playground/uXxKqhkz/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(n^2log(k)\big)</script>. The time required to consider every possible range is <script type="math/tex; mode=display">O(n^2)</script>. For every range currently considered, 
+a Binary Search requiring <script type="math/tex; mode=display">O\big(log(k)\big)</script> time is required. Here, <script type="math/tex; mode=display">n</script> refers to the total number of elements in the given 
+lists and <script type="math/tex; mode=display">k</script> refers to the average length of each list.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-pointers-time-limit-exceeded">Approach #3  Using Pointers [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We'll discuss about the implementation used in the current approach along with the idea behind it. </p>
+<p>This approach makes use of an array of pointers, <script type="math/tex; mode=display">next</script>, whose length is equal to the number of given lists. In this 
+array, <script type="math/tex; mode=display">next[i]</script> refers to the element which needs to be considered next in the <script type="math/tex; mode=display">(i-1)^{th}</script> list. The meaning of this will become 
+more clearer when we look at the process.</p>
+<p>We start by initializing all the elements of <script type="math/tex; mode=display">next</script> to 0. Thus, currently, we are considering the first(minimum) element 
+among all the lists. Now, we find out the index of the list containing the maximum(<script type="math/tex; mode=display">max_i</script>) and minimum(<script type="math/tex; mode=display">min_i</script>) 
+elements from amongst the elements currently pointed by <script type="math/tex; mode=display">next</script>. The range formed by these maximum and minimum elements surely<br/>
+contains atleast one element from each list. </p>
+<p>But, now our objective is to minimize this range. To do so, there are two options: Either decrease the maximum value or increase the 
+minimum value. </p>
+<p>Now, the maximum value can't be reduced any further, since it already corresponds to the minimum value in one of the lists. 
+Reducing it any further will lead to the exclusion of all the elements of this list(containing the last maximum value) 
+from the new range. </p>
+<p>Thus, the only option left in our hand is to try to increase the minimum value. To do so, we now need to consider the
+ next element in the list containing the last minimum value. Thus, we increment the entry at the corresponding index
+  in <script type="math/tex; mode=display">next</script>, to indicate that the next element in this list now needs to be considered. </p>
+<p>Thus, at every step, we find the maximum and minimum values being pointed currently, update the <script type="math/tex; mode=display">next</script> values 
+  appropriately, and also find out the range formed by these maximum and minimum values to find out the smallest range 
+ satisfying the given criteria. </p>
+<p>While doing this process, if any of the lists gets completely exhausted, it means that the minimum value being increased for 
+ minimizing the range being considered can't be increased any further, without causing the exclusion of all the elements in atleast 
+ one of the lists. Thus, we can stop the search process whenever any list gets completely exhausted.</p>
+<p>We can also stop the process, when all the elements of the given lists have been exhausted.</p>
+<p>Summarizing the statements above, the process becomes:</p>
+<ol>
+<li>
+<p>Initialize <script type="math/tex; mode=display">next</script> array(pointers) with all 0's.</p>
+</li>
+<li>
+<p>Find the indices of the lists containing the minimum(<script type="math/tex; mode=display">min_i</script>) and the maximum(<script type="math/tex; mode=display">max_i</script>) elements amongst the elements pointed by the <script type="math/tex; mode=display">next</script> array.</p>
+</li>
+<li>
+<p>If the range formed by the maximum and minimum elements found above is larger than the previous maximum range, update the boundary values used for the maximum range.</p>
+</li>
+<li>
+<p>Increment the pointer <script type="math/tex; mode=display">nums[min_i]</script>.</p>
+</li>
+<li>
+<p>Repeat steps 2 to 4 till any of the lists gets exhausted.</p>
+</li>
+</ol>
+<p>The animation below illustrates the process for a visual understanding of the process.</p>
+<p>!?!../Documents/632_Smallest_Range.json:1000,563!?!</p>
+<iframe frameborder="0" height="513" name="rnPo3vGZ" src="https://leetcode.com/playground/rnPo3vGZ/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n*m)</script>. In the worst case, we need to traverse over <script type="math/tex; mode=display">next</script> array(of length <script type="math/tex; mode=display">m</script>) for all the elements of the given lists.
+Here, <script type="math/tex; mode=display">n</script> refers to the total number of elements in all the lists. <script type="math/tex; mode=display">m</script> refers to the total number of lists.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m)</script>. <script type="math/tex; mode=display">next</script> array of size <script type="math/tex; mode=display">m</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-priority-queue-accepted">Approach #4 Using Priority Queue [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, at each step, we update the pointer corresponding to the current minimum element and traverse over the whole
+<script type="math/tex; mode=display">next</script> array to determine the new maximum and minimum values. We can do some optimization here, by making use of a simple observation.</p>
+<p>Whenever we update a single entry of <script type="math/tex; mode=display">next</script> to consider the new maximum and minimum values(if we already know the last maximum 
+and minimum values), all the elements to be considered for finding the maximum and minimum values remain the same except the new element 
+being pointed by a single updated entry in <script type="math/tex; mode=display">next</script>.  This new entry is certainly larger than the last minimum value(since that was the 
+reasoning behind the updation). </p>
+<p>Thus, we can't be sure whether this is the new minimum element or not. But, since it is larger than the last 
+value being considered, it could be a potential competitor for the new maximum value. Thus, we can directly compare it with the last 
+maximum value to determine the current maximum value.</p>
+<p>Now, we're left with finding the minimum value iteratively at every step. To avoid this iterative process, a better idea 
+is to make use of a Min-Heap, which stores the values being pointed currently by the <script type="math/tex; mode=display">next</script> array. Thus, the minimum value always 
+lies at the top of this heap, and we need not do the iterative search process. </p>
+<p>At every step, we remove the minimum element from this heap and find out the range formed by the current maximum and minimum values, and 
+compare it with the minimum range found so far to determine the required minimum range. We also update the increment the index in <script type="math/tex; mode=display">next</script> 
+corresponding to the list containing this minimum entry and add this element to the heap as well.</p>
+<p>The rest of the process remains the same as the last approach.</p>
+<iframe frameborder="0" height="515" name="kBqfu7ju" src="https://leetcode.com/playground/kBqfu7ju/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(n*log(m)\big)</script>. Heapification of <script type="math/tex; mode=display">m</script> elements requires <script type="math/tex; mode=display">O\big(log(m)\big)</script> time. This step could be done 
+for all the elements of the given lists in the worst case. Here, <script type="math/tex; mode=display">n</script> refers to the total number of elements in 
+all the lists. <script type="math/tex; mode=display">m</script> refers to the total number of lists.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m)</script>. <script type="math/tex; mode=display">next</script> array of size <script type="math/tex; mode=display">m</script> is used. A Min-Heap with <script type="math/tex; mode=display">m</script> elements is also used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">6478</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">15401</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              47%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/lyft.html">Lyft</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

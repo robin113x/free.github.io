@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
+Example 1:
+Input:nums = [1,1,1], k = 2
+Output: 2
+
+
+Note:
+
+The length of the array is in range [1, 20,000].
+The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].">
+  <meta name="keywords"
+        content="Subarray Sum Equals K, LC 560, leetcode 560, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>560. Subarray Sum Equals K</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given an array of integers and an integer <b>k</b>, you need to find the total number of continuous subarrays whose sum equals to <b>k</b>.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b>nums = [1,1,1], k = 2
+<b>Output:</b> 2
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The length of the array is in range [1, 20,000].</li>
+<li>The range of numbers in the array is [-1000, 1000] and the range of the integer <b>k</b> is [-1e7, 1e7].</li>
+</ol>
+</p>
+
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-cummulative-sum-accepted">Approach #2 Using Cummulative sum [Accepted]</a></li>
+<li><a href="#approach-3-without-space-accepted">Approach #3 Without space [Accepted]</a></li>
+<li><a href="#approach-4-using-hashmap-accepted">Approach #4 Using hashmap [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The simplest method is to consider every possible subarray of the given <script type="math/tex; mode=display">nums</script> array, find the sum of the elements of each of those subarrays and check for the equality of the sum obtained with the given <script type="math/tex; mode=display">k</script>. Whenver the sum equals <script type="math/tex; mode=display">k</script>, we can increment the <script type="math/tex; mode=display">count</script> used to store the required result.</p>
+<iframe frameborder="0" height="309" name="uzdLhWrz" src="https://leetcode.com/playground/uzdLhWrz/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. Considering every possible subarray takes <script type="math/tex; mode=display">O(n^2)</script> time. For each of the subarray we calculate the sum taking <script type="math/tex; mode=display">O(n)</script> time in the worst case, taking a total of <script type="math/tex; mode=display">O(n^3)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-cummulative-sum-accepted">Approach #2 Using Cummulative sum [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Instead of determining the sum of elements everytime for every new subarray considered, we can make use of a cumulative sum array , <script type="math/tex; mode=display">sum</script>. Then, in order to calculate the sum of elements lying between two indices, we can subtract the cumulative sum corresponding to the two indices to obtain the sum directly, instead of iterating over the subarray to obtain the sum.</p>
+<p>In this implementation, we make use of a cumulative sum array, <script type="math/tex; mode=display">sum</script>, such that <script type="math/tex; mode=display">sum[i]</script> is used to store the cumulative sum of <script type="math/tex; mode=display">nums</script> array upto the element corresponding to the <script type="math/tex; mode=display">(i-1)^{th}</script> index. Thus, to determine the sum of elements for the subarray <script type="math/tex; mode=display">nums[i:j]</script>, we can directly use <script type="math/tex; mode=display">sum[j+1] - sum[i]</script>.</p>
+<iframe frameborder="0" height="326" name="YnknRnC6" src="https://leetcode.com/playground/YnknRnC6/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. Considering every possible subarray takes <script type="math/tex; mode=display">O(n^2)</script> time. Finding out the sum of any subarray takes <script type="math/tex; mode=display">O(1)</script> time after the initial processing of <script type="math/tex; mode=display">O(n)</script> for creating the cumulative sum array.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Cumulative sum array <script type="math/tex; mode=display">sum</script> of size <script type="math/tex; mode=display">n+1</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-without-space-accepted">Approach #3 Without space [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Instead of considering all the <script type="math/tex; mode=display">start</script> and <script type="math/tex; mode=display">end</script> points and then finding the sum for each subarray corresponding to those points, we can directly find the sum on the go while considering different <script type="math/tex; mode=display">end</script> points. i.e. We can choose a particular <script type="math/tex; mode=display">start</script> point and while iterating over the <script type="math/tex; mode=display">end</script> points, we can add the element corresponding to the <script type="math/tex; mode=display">end</script> point to the sum formed till now. Whenver the <script type="math/tex; mode=display">sum</script> equals the required <script type="math/tex; mode=display">k</script> value, we can update the <script type="math/tex; mode=display">count</script> value. We do so while iterating over all the <script type="math/tex; mode=display">end</script> indices possible for every <script type="math/tex; mode=display">start</script> index. Whenver, we update the <script type="math/tex; mode=display">start</script> index, we need to reset the <script type="math/tex; mode=display">sum</script> value to 0.</p>
+<iframe frameborder="0" height="292" name="MGuUEEUy" src="https://leetcode.com/playground/MGuUEEUy/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. We need to consider every subarray possible.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-hashmap-accepted">Approach #4 Using hashmap [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The idea behind this approach is as follows: If the cumulative sum(repreesnted by <script type="math/tex; mode=display">sum[i]</script> for sum upto <script type="math/tex; mode=display">i^{th}</script> index) upto two indices is the same, the sum of the elements lying in between those indices is zero. Extending the same thought further, if the cumulative sum upto two indices, say <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script> is at a difference of <script type="math/tex; mode=display">k</script> i.e. if <script type="math/tex; mode=display">sum[i] - sum[j] = k</script>, the sum of elements lying between indices <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script> is <script type="math/tex; mode=display">k</script>.</p>
+<p>Based on these thoughts, we make use of a hashmap <script type="math/tex; mode=display">map</script> which is used to store the cumulative sum upto all the indices possible along with the number of times the same sum occurs. We store the data in the form: <script type="math/tex; mode=display">(sum_i, no. of occurences of sum_i)</script>. We traverse over the array <script type="math/tex; mode=display">nums</script> and keep on finding the cumulative sum. Every time we encounter a new sum, we make a new entry in the hashmap corresponding to that sum. If the same sum occurs again, we increment the count corresponding to that sum in the hashmap. Further, for every sum encountered, we also determine the number of times the sum <script type="math/tex; mode=display">sum-k</script> has occured already, since it will determine the number of times a subarray with sum <script type="math/tex; mode=display">k</script> has occured upto the current index. We increment the <script type="math/tex; mode=display">count</script> by the same amount. </p>
+<p>After the complete array has been traversed, the <script type="math/tex; mode=display">count</script> gives the required result.</p>
+<p>The animation below depicts the process.</p>
+<p>!?!../Documents/560_Subarray.json:1000,563!?!</p>
+<iframe frameborder="0" height="292" name="S6xciAtN" src="https://leetcode.com/playground/S6xciAtN/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. The entire <script type="math/tex; mode=display">nums</script> array is traversed only once.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Hashmap <script type="math/tex; mode=display">map</script> can contain upto <script type="math/tex; mode=display">n</script> distinct entries in the worst case.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">23986</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">59055</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              45%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

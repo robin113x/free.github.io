@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Solve a given equation and return the value of x in the form of string &#34;x=#value&#34;. The equation contains only &#39;+&#39;, &#39;-&#39; operation, the variable x and its coefficient.
+
+
+If there is no solution for the equation, return &#34;No solution&#34;.
+
+
+If there are infinite solutions for the equation, return &#34;Infinite solutions&#34;.
+
+
+If there is exactly one solution for the equation, we ensure that the value of x is an integer.
+
+Example 1:
+Input: &#34;x+5-3+x=6+x-2&#34;
+Output: &#34;x=2&#34;
+
+
+Example 2:
+Input: &#34;x=x&#34;
+Output: &#34;Infinite solutions&#34;
+
+
+Example 3:
+Input: &#34;2x=x&#34;
+Output: &#34;x=0&#34;
+
+
+Example 4:
+Input: &#34;2x+3x-6x=x+2&#34;
+Output: &#34;x=-1&#34;
+
+
+Example 5:
+Input: &#34;x=x+2&#34;
+Output: &#34;No solution&#34;">
+  <meta name="keywords"
+        content="Solve the Equation, LC 640, leetcode 640, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>640. Solve the Equation</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Solve a given equation and return the value of <code>x</code> in the form of string "x=#value". The equation contains only '+', '-' operation, the variable <code>x</code> and its coefficient.
+</p>
+
+<p>
+If there is no solution for the equation, return "No solution".
+</p>
+<p>
+If there are infinite solutions for the equation, return "Infinite solutions".
+</p>
+<p>
+If there is exactly one solution for the equation, we ensure that the value of <code>x</code> is an integer.
+</p>
+
+<p><b>Example 1:</b><br/>
+<pre>
+<b>Input:</b> "x+5-3+x=6+x-2"
+<b>Output:</b> "x=2"
+</pre>
+</p>
+
+<p><b>Example 2:</b><br/>
+<pre>
+<b>Input:</b> "x=x"
+<b>Output:</b> "Infinite solutions"
+</pre>
+</p>
+
+<p><b>Example 3:</b><br/>
+<pre>
+<b>Input:</b> "2x=x"
+<b>Output:</b> "x=0"
+</pre>
+</p>
+
+<p><b>Example 4:</b><br/>
+<pre>
+<b>Input:</b> "2x+3x-6x=x+2"
+<b>Output:</b> "x=-1"
+</pre>
+</p>
+
+<p><b>Example 5:</b><br/>
+<pre>
+<b>Input:</b> "x=x+2"
+<b>Output:</b> "No solution"
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-partioning-coefficients-accepted">Approach #1 Partioning Coefficients [Accepted]</a></li>
+<li><a href="#approach-2-using-regex-for-spliting-accepted">Approach #2 Using regex for spliting [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-partioning-coefficients-accepted">Approach #1 Partioning Coefficients [Accepted]</h4>
+<p>In the current approach, we start by splitting the given <script type="math/tex; mode=display">equation</script> based on <code>=</code> sign. This way, we've separated the left and right hand side of this equation. Once this is done, we need to extract the individual elements(i.e. <code>x</code>'s and the numbers) from both sides of the equation. To do so, we make use of <code>breakIt</code> function, in which we traverse over the given equation(either left hand side or right hand side), and put the separated parts into an array. </p>
+<p>Now, the idea is as follows. We treat the given equation as if we're bringing all the <code>x</code>'s on the left hand side and all the rest of the numbers on the right hand side as done below for an example.</p>
+<p><code>x+5-3+x=6+x-2</code></p>
+<p><code>x+x-x=6-2-5+3</code></p>
+<p>Thus, every <code>x</code> in the left hand side of the given equation is treated as positive, while that on the right hand side is treated as negative, in the current implementation. </p>
+<p>Likewise, every number on the left hand side is treated as negative, while that on the right hand side is treated as positive. Thus, by doing so, we obtain all the <code>x</code>'s in the new <script type="math/tex; mode=display">lhs</script> and all the numbers in the new <script type="math/tex; mode=display">rhs</script> of the original equation. </p>
+<p>Further, in case of an <code>x</code>, we also need to find its corresponding coefficients in order to evaluate the final effective coefficient of <code>x</code> on the left hand side. We also evaluate the final effective number on the right hand side as well.</p>
+<p>Now, in case of a unique solution, the ratio of the effective <script type="math/tex; mode=display">rhs</script> and <script type="math/tex; mode=display">lhs</script> gives the required result. In case of infinite solutions, both the effective <script type="math/tex; mode=display">lhs</script> and <script type="math/tex; mode=display">rhs</script> turns out to be zero e.g. <code>x+1=x+1</code>. In case of no solution, the coefficient of <code>x</code>(<script type="math/tex; mode=display">lhs</script>) turns out to be zero, but the effective number on the <script type="math/tex; mode=display">rhs</script> is non-zero.</p>
+<iframe frameborder="0" height="515" name="5qsPscf9" src="https://leetcode.com/playground/5qsPscf9/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Generating coefficients and findinn <script type="math/tex; mode=display">lhs</script> and <script type="math/tex; mode=display">rhs</script> will take <script type="math/tex; mode=display">O(n)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. ArrayList <script type="math/tex; mode=display">res</script> size can grow upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-regex-for-spliting-accepted">Approach #2 Using regex for spliting [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, we made use of a new function <code>breakIt</code> to obtain the individual components of either the left hand side or the right hand side. Instead of doing so, we can also make use of splitting based on <code>+</code> or <code>-</code> sign, to obtain the individual elements. The rest of the process remains the same as in the last approach. </p>
+<p>In order to do the splitting, we make use of an expression derived from regular expressions(regex). Simply speaking, regex is a functionality used to match a target string based on some given criteria. The ?=n quantifier, in regex, matches any string that is followed by a specific string <script type="math/tex; mode=display">n</script>. What it's saying is that the captured match must be followed by <script type="math/tex; mode=display">n</script> but the <script type="math/tex; mode=display">n</script> itself isn't captured.</p>
+<p>By making use of this kind of expression in the <code>split</code> functionality, we make sure that the partitions are obtained such that the <code>+</code> or <code>-</code> sign remains along with the parts(numbers or coefficients) even after the splitting.</p>
+<iframe frameborder="0" height="515" name="9JbHjYgz" src="https://leetcode.com/playground/9JbHjYgz/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Generating coefficients and finding <script type="math/tex; mode=display">lhs</script> and <script type="math/tex; mode=display">rhs</script> will take <script type="math/tex; mode=display">O(n)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. ArrayList <script type="math/tex; mode=display">res</script> size can grow upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">7122</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">18298</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              15%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/amazon.html">Amazon</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

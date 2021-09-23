@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a non-negative integer c, your task is to decide whether there&#39;re two integers a and b such that a2 + b2 = c.
+
+Example 1:
+Input: 5
+Output: True
+Explanation: 1 * 1 + 2 * 2 = 5
+
+
+Example 2:
+Input: 3
+Output: False">
+  <meta name="keywords"
+        content="Sum of Square Numbers, LC 633, leetcode 633, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>633. Sum of Square Numbers</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given a non-negative integer <code>c</code>, your task is to decide whether there're two integers <code>a</code> and <code>b</code> such that a<sup>2</sup> + b<sup>2</sup> = c.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 5
+<b>Output:</b> True
+<b>Explanation:</b> 1 * 1 + 2 * 2 = 5
+</pre>
+</p>
+
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> 3
+<b>Output:</b> False
+</pre>
+</p>
+
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-using-sqrt-function-accepted">Approach #3 Using sqrt function [Accepted]</a></li>
+<li><a href="#approach-4-using-binary-search-accepted">Approach #4 Using Binary Search [Accepted]</a></li>
+<li><a href="#approach-5-fermat-theorem-accepted">Approach #5 Fermat Theorem [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>The simplest solution would be to consider every possible combination of integers <script type="math/tex; mode=display">a</script> and <script type="math/tex; mode=display">b</script> and check if the sum of their squares equals <script type="math/tex; mode=display">c</script>. Now, both <script type="math/tex; mode=display">a</script> and <script type="math/tex; mode=display">b</script> can lie within the range <script type="math/tex; mode=display">(0,\sqrt{c})</script>. Thus, we need to check for the values of <script type="math/tex; mode=display">a</script> and <script type="math/tex; mode=display">b</script> in this range only.</p>
+<iframe frameborder="0" height="241" name="KJqxJTpS" src="https://leetcode.com/playground/KJqxJTpS/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(c)</script>. Two loops upto <script type="math/tex; mode=display">\sqrt{c}</script>. Here, <script type="math/tex; mode=display">c</script> refers to the given integer(sum of squares).</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</h4>
+<p>We can improve the last solution, if we make the following observation. For any particular <script type="math/tex; mode=display">a</script> chosen, the value of <script type="math/tex; mode=display">b</script> required to satisfy the equation <script type="math/tex; mode=display">a^2 + b^2 = c</script> will be such that <script type="math/tex; mode=display">b^2 = c - a^2</script>. Thus, we need to traverse over the range <script type="math/tex; mode=display">(0, \sqrt{c})</script> only for considering the various values of <script type="math/tex; mode=display">a</script>. For every current value of <script type="math/tex; mode=display">a</script> chosen, we can determine the corresponding <script type="math/tex; mode=display">b^2</script> value and check if it is a perfect square or not. If it happens to be a perfect square, <script type="math/tex; mode=display">c</script> is a sum of squares of two integers, otherwise not.</p>
+<p>Now, to determine, if the number <script type="math/tex; mode=display">c - a^2</script> is a perfect square or not, we can make use of the following theorem: "The square of <script type="math/tex; mode=display">n^{th}</script> positive integer can be represented as a sum of first <script type="math/tex; mode=display">n</script> odd positive integers." Or in mathematical terms:</p>
+<p>
+<script type="math/tex; mode=display">n^2 = 1 + 3 + 5 + ... + (2*n-1) = \sum_{1}^{n} (2*i - 1)</script>.</p>
+<p>To look at the proof of this statement, look at the L.H.S. of the above statement.</p>
+<p>
+<script type="math/tex; mode=display">1 + 3 + 5 + ... + (2*n-1)=</script>
+</p>
+<p>
+<script type="math/tex; mode=display">(2*1-1) + (2*2-1) + (2*3-1) + ... + (2*n-1)=</script>
+</p>
+<p>
+<script type="math/tex; mode=display">2*(1+2+3+....+n) - (1+1+...n times)=</script>
+</p>
+<p>
+<script type="math/tex; mode=display">2*n*(n+1)/2 - n=</script>
+</p>
+<p>
+<script type="math/tex; mode=display">n*(n+1) - n=</script>
+</p>
+<p>
+<script type="math/tex; mode=display">n^2 + n - n = n^2</script>
+</p>
+<p>This completes the proof of the above statement.</p>
+<iframe frameborder="0" height="309" name="ToQxLr6g" src="https://leetcode.com/playground/ToQxLr6g/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(c)</script>. The total number of times the <script type="math/tex; mode=display">sum</script> is updated is: <script type="math/tex; mode=display">1+2+3+...(\sqrt{c} times) = \sqrt{c}(\sqrt{c}+1)/2 = O(c)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-sqrt-function-accepted">Approach #3 Using sqrt function [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Instead of finding if <script type="math/tex; mode=display">c - a^2</script> is a perfect square using sum of odd numbers, as done in the last approach, we can make use of the inbuilt <script type="math/tex; mode=display">sqrt</script> function and check if <script type="math/tex; mode=display">\sqrt{c - a^2}</script> turns out to be an integer. If it happens for any value of <script type="math/tex; mode=display">a</script> in the range <script type="math/tex; mode=display">[0, \sqrt{c}]</script>, we can return a True value immediately.</p>
+<iframe frameborder="0" height="241" name="PfDSwKKi" src="https://leetcode.com/playground/PfDSwKKi/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(\sqrt{c}log(c)\big)</script>. We iterate over <script type="math/tex; mode=display">\sqrt{c}</script> values for choosing <script type="math/tex; mode=display">a</script>. For every <script type="math/tex; mode=display">a</script> chosen, finding square root of <script type="math/tex; mode=display">c - a^2</script> takes <script type="math/tex; mode=display">O\big(log(c)\big)</script> time in the worst case.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-binary-search-accepted">Approach #4 Using Binary Search [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Another method to check if <script type="math/tex; mode=display">c - a^2</script> is a perfect square, is by making use of Binary Search. The method remains same as that of a typical Binary Search to find a number.
+The only difference lies in that we need to find an integer, <script type="math/tex; mode=display">mid</script> in the range <script type="math/tex; mode=display">[0, c - a^2]</script>, such that this number is the square root of <script type="math/tex; mode=display">c - a^2</script>.
+Or in other words, we need to find an integer, <script type="math/tex; mode=display">mid</script>, in the range <script type="math/tex; mode=display">[0, c - a^2]</script>, such that <script type="math/tex; mode=display">mid</script>x<script type="math/tex; mode=display">mid = c - a^2</script>.</p>
+<p>The following animation illustrates the search process for a particular value of <script type="math/tex; mode=display">c - a^2 = 36</script>.</p>
+<p>!?!../Documents/633_Sum_of_Squares.json:1000,563!?!</p>
+<iframe frameborder="0" height="394" name="Eo33FrYc" src="https://leetcode.com/playground/Eo33FrYc/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(\sqrt{c}log(c)\big)</script>. Binary search taking <script type="math/tex; mode=display">O\big(log(c)\big)</script> in the worst case is done for <script type="math/tex; mode=display">\sqrt{c}</script> values of <script type="math/tex; mode=display">a</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(log(c))</script>. Binary Search will take <script type="math/tex; mode=display">O(log(c))</script> space.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-fermat-theorem-accepted">Approach #5 Fermat Theorem [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>This approach is based on the following statement, which is based on Fermat's Theorem:</p>
+<p>"Any positive number <script type="math/tex; mode=display">n</script> is expressible as a sum of two squares if and only if the prime factorization of <script type="math/tex; mode=display">n</script>, every prime of the form <script type="math/tex; mode=display">(4k+3)</script> occurs an even number of times."</p>
+<p>By making use of the above theorem, we can directly find out if the given number <script type="math/tex; mode=display">c</script> can be expressed as a sum of two squares.</p>
+<p>To do so we simply find all the prime factors of the given number <script type="math/tex; mode=display">c</script>, which could range from <script type="math/tex; mode=display">[2,\sqrt{c}]</script> along with the count of those factors, by repeated division. 
+If at any step, we find out that the number of occurences of any prime factor of the form <script type="math/tex; mode=display">(4k+3)</script> occurs an odd number of times, we can return a False value.</p>
+<p>In case, <script type="math/tex; mode=display">c</script> itself is a prime number, it won't be divisible by any of the primes in the <script type="math/tex; mode=display">[2,\sqrt{c}]</script>. Thus, we need to check if <script type="math/tex; mode=display">c</script> can be expressed in the form of
+<script type="math/tex; mode=display">4k+3</script>. If so, we need to return a False value, indicating that this prime occurs an odd number(1) of times. </p>
+<p>Otherwise, we can return a True value.</p>
+<p>The proof of this theorem includes the knowledge of advanced mathematics and is beyond the scope of this article. However, interested reader can refer to <a href="http://wstein.org/edu/124/lectures/lecture21/lecture21/node2.html">this</a> documentation.</p>
+<iframe frameborder="0" height="326" name="f9Fgne3m" src="https://leetcode.com/playground/f9Fgne3m/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(\sqrt{c}log(c)\big)</script>. We find the factors of <script type="math/tex; mode=display">c</script> and their count using repeated division. We check for the factors in the range <script type="math/tex; mode=display">[0, \sqrt{c}]</script>.
+The maximum number of times a factor can occur(repeated division can be done) is <script type="math/tex; mode=display">log(n)</script>(considering 2 as the only factor, <script type="math/tex; mode=display">c=2^x</script>. Thus, <script type="math/tex; mode=display">x=log(c)</script>).</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">16736</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">51842</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              33%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/linkedin.html">LinkedIn</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

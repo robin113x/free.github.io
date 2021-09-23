@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Shuffle a set of numbers without duplicates.
+
+Example:
+
+// Init an array with set 1, 2, and 3.
+int[] nums = {1,2,3};
+Solution solution = new Solution(nums);
+
+// Shuffle the array [1,2,3] and return its result. Any permutation of [1,2,3] must equally likely to be returned.
+solution.shuffle();
+
+// Resets the array back to its original configuration [1,2,3].
+solution.reset();
+
+// Returns the random shuffling of array [1,2,3].
+solution.shuffle();">
+  <meta name="keywords"
+        content="Shuffle an Array, LC 384, leetcode 384, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>384. Shuffle an Array</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Shuffle a set of numbers without duplicates.
+</p>
+
+<p><b>Example:</b>
+<pre>
+// Init an array with set 1, 2, and 3.
+int[] nums = {1,2,3};
+Solution solution = new Solution(nums);
+
+// Shuffle the array [1,2,3] and return its result. Any permutation of [1,2,3] must equally likely to be returned.
+solution.shuffle();
+
+// Resets the array back to its original configuration [1,2,3].
+solution.reset();
+
+// Returns the random shuffling of array [1,2,3].
+solution.shuffle();
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#initial-thoughts">Initial Thoughts</a></li>
+<li><a href="#approach-1-brute-force-accepted">Approach #1 Brute Force [Accepted]</a></li>
+<li><a href="#approach-2-fisher-yates-algorithm-accepted">Approach #2 Fisher-Yates Algorithm [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="initial-thoughts">Initial Thoughts</h4>
+<p>Normally I would display more than two approaches, but shuffling is
+deceptively easy to do <em>almost</em> properly, and the Fisher-Yates algorithm is
+both the canonical solution and asymptotically optimal.</p>
+<p>A few notes on randomness are necessary before beginning - both approaches
+displayed below assume that the languages' pseudorandom number generators
+(PRNGs) are sufficiently random. The sample code uses the simplest techniques
+available for getting pseudorandom numbers, but for each possible permutation
+of the array to be truly equally likely, more care must be taken. For
+example, an array of length <script type="math/tex; mode=display">n</script> has <script type="math/tex; mode=display">n!</script> distinct permutations. Therefore, in
+order to encode all permutations in an integer space, <script type="math/tex; mode=display">\lceil lg(n!)\rceil</script>
+bits are necessary, which may not be guaranteed by the default PRNG.</p>
+<h4 id="approach-1-brute-force-accepted">Approach #1 Brute Force [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If we put each number in a "hat" and draw them out at random, the order in
+which we draw them will define a random ordering.</p>
+<p><strong>Algorithm</strong></p>
+<p>The brute force algorithm essentially puts each number in the aforementioned
+"hat", and draws them at random (without replacement) until there are none
+left. Mechanically, this is performed by copying the contents of <code>array</code> into
+a second auxiliary array named <code>aux</code> before overwriting each element of
+<code>array</code> with a randomly selected one from <code>aux</code>. After selecting each random
+element, it is removed from <code>aux</code> to prevent duplicate draws. The
+implementation of <code>reset</code> is simple, as we just store the original state of
+<code>nums</code> on construction.</p>
+<p>The correctness of the algorithm follows from the fact that an element
+(without loss of generality) is equally likely to be selected during all
+iterations of the <code>for</code> loop. To prove this, observe that the probability of a
+particular element <script type="math/tex; mode=display">e</script> being chosen on the <script type="math/tex; mode=display">k</script>th iteration (indexed from 0)
+is simply <script type="math/tex; mode=display">P(e</script> being chosen during the <script type="math/tex; mode=display">k</script>th iteration<script type="math/tex; mode=display">)\cdot P(e</script> not being
+chosen before the <script type="math/tex; mode=display">k</script>th iteration<script type="math/tex; mode=display">)</script>. Given that the array to be shuffled has
+<script type="math/tex; mode=display">n</script> elements, this probability is more concretely stated as the following:</p>
+<p>
+<script type="math/tex; mode=display">
+   \frac{1}{n-k} \cdot \prod_{i=1}^{k} \frac{n-i}{n-i+1}
+</script>
+</p>
+<p>When expanded (and rearranged), it looks like this (for sufficiently large
+<script type="math/tex; mode=display">k</script>):</p>
+<p>
+<script type="math/tex; mode=display">
+   (\frac{n-1}{n}
+   \cdot \frac{n-2}{n-1}
+   \cdot (\ldots)
+   \cdot \frac{n-k+1}{n-k+2}
+   \cdot \frac{n-k}{n-k+1})
+   \cdot \frac{1}{n-k}
+</script>
+</p>
+<p>For the base case (<script type="math/tex; mode=display">k = 0</script>), it is trivial to see that
+<script type="math/tex; mode=display">\frac{1}{n-k} = \frac{1}{n}</script>. For <script type="math/tex; mode=display">k > 0</script>, the numerator of each fraction
+can be cancelled with the denominator of the next, leaving the <script type="math/tex; mode=display">n</script> from the
+0th draw as the only uncancelled denominator. Therefore, no matter on which
+draw an element is drawn, it is drawn with a <script type="math/tex; mode=display">\frac{1}{n}</script> chance, so each
+array permutation is equally likely to arise.</p>
+<iframe frameborder="0" height="500" name="FWMsaXQ7" src="https://leetcode.com/playground/FWMsaXQ7/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>
+</p>
+<p>The quadratic time complexity arises from the calls to <code>list.remove</code> (or
+<code>list.pop</code>), which run in linear time. <script type="math/tex; mode=display">n</script> linear list removals occur,
+which results in a fairly easy quadratic analysis.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>Because the problem also asks us to implement <code>reset</code>, we must use linear
+additional space to store the original array. Otherwise, it would be lost
+upon the first call to <code>shuffle</code>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-fisher-yates-algorithm-accepted">Approach #2 Fisher-Yates Algorithm [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>We can cut down the time and space complexities of <code>shuffle</code> with a bit of
+cleverness - namely, by swapping elements around within the array itself, we
+can avoid the linear space cost of the auxiliary array and the linear time
+cost of list modification.</p>
+<p><strong>Algorithm</strong></p>
+<p>The Fisher-Yates algorithm is remarkably similar to the brute force solution.
+On each iteration of the algorithm, we generate a random integer between the
+current index and the last index of the array. Then, we swap the elements at
+the current index and the chosen index - this simulates drawing (and
+removing) the element from the hat, as the next range from which we select a
+random index will not include the most recently processed one. One small, yet important
+detail is that it is possible to swap an element with itself - otherwise, some
+array permutations would be more likely than others. To see this illustrated more
+clearly, consider the animation below:</p>
+<p>!?!../Documents/384_Shuffle_an_Array.json:697,161!?!</p>
+<iframe frameborder="0" height="500" name="ftmztsv8" src="https://leetcode.com/playground/ftmztsv8/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>The Fisher-Yates algorithm runs in linear time, as generating a random
+index and swapping two values can be done in constant time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>Although we managed to avoid using linear space on the auxiliary array
+from the brute force approach, we still need it for <code>reset</code>, so we're
+stuck with linear space complexity.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/emptyset">@emptyset</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">34531</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">73225</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              82%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

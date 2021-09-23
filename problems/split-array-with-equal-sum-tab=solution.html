@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array with n integers, you need to find if there are triplets  (i, j, k) which satisfies following conditions:
+
+ 0 &lt; i, i + 1 &lt; j, j + 1 &lt; k &lt; n - 1 
+ Sum of subarrays (0, i - 1), (i + 1, j - 1), (j + 1, k - 1) and (k + 1, n - 1) should be equal. 
+
+where we define that subarray (L, R) represents a slice of the original array starting from the element indexed L to the element indexed R.
+
+Example:
+Input: [1,2,1,2,1,2,1]
+Output: True
+Explanation:
+i = 1, j = 3, k = 5. 
+sum(0, i - 1) = sum(0, 0) = 1
+sum(i + 1, j - 1) = sum(2, 2) = 1
+sum(j + 1, k - 1) = sum(4, 4) = 1
+sum(k + 1, n - 1) = sum(6, 6) = 1
+
+
+Note:
+
+ 1 &lt;= n &lt;= 2000. 
+ Elements in the given array will be in range [-1,000,000, 1,000,000].">
+  <meta name="keywords"
+        content="Split Array with Equal Sum, LC 548, leetcode 548, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>548. Split Array with Equal Sum</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given an array with n integers, you need to find if there are triplets  (i, j, k) which satisfies following conditions:
+<ol>
+<li> 0 < i, i + 1 < j, j + 1 < k < n - 1 </li>
+<li> Sum of subarrays (0, i - 1), (i + 1, j - 1), (j + 1, k - 1) and (k + 1, n - 1) should be equal. </li>
+</ol>
+where we define that subarray (L, R) represents a slice of the original array starting from the element indexed L to the element indexed R.
+</p>
+
+<p><b>Example:</b><br />
+<pre>
+<b>Input:</b> [1,2,1,2,1,2,1]
+<b>Output:</b> True
+<b>Explanation:</b>
+i = 1, j = 3, k = 5. 
+sum(0, i - 1) = sum(0, 0) = 1
+sum(i + 1, j - 1) = sum(2, 2) = 1
+sum(j + 1, k - 1) = sum(4, 4) = 1
+sum(k + 1, n - 1) = sum(6, 6) = 1
+</pre>
+</p>
+
+<b>Note:</b>
+<ol>
+<li> 1 <= n <= 2000. </li>
+<li> Elements in the given array will be in range [-1,000,000, 1,000,000]. </li>
+</ol>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-cumulative-sum-time-limit-exceeded">Approach #2 Cumulative Sum [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-slightly-better-approach-time-limit-exceeded">Approach #3 Slightly Better Approach [Time Limit Exceeded]</a></li>
+<li><a href="#approach-4-using-hashmap-time-limit-exceeded">Approach #4 Using HashMap [Time limit Exceeded]</a></li>
+<li><a href="#approach-5-using-cumulative-sum-and-hashset-accepted">Approach #5 Using Cumulative Sum and HashSet [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Before we start looking at any of the approaches for solving this problem, firstly we need to look at the limits imposed on <script type="math/tex; mode=display">i</script>, <script type="math/tex; mode=display">j</script> and <script type="math/tex; mode=display">k</script> by the given set of constraints. The figure below shows the maximum and minimum values that <script type="math/tex; mode=display">i</script>, <script type="math/tex; mode=display">j</script> and <script type="math/tex; mode=display">k</script> can assume.</p>
+<p><img alt="Split_Array" src="https://leetcode.com/articles/Figures/638_Split_Array.PNG"/></p>
+<p>Thus, the limits based on the length of the array <script type="math/tex; mode=display">n</script> can now be rewritten as:</p>
+<p>
+<script type="math/tex; mode=display">1 &le; i &le; n-6</script>
+</p>
+<p>
+<script type="math/tex; mode=display">i+2 &le; j &le; n-4</script>
+</p>
+<p>
+<script type="math/tex; mode=display">j+2 &le; k &le; n-2</script>
+</p>
+<p>Having discussed the limits imposed on the cuts <script type="math/tex; mode=display">i</script>, <script type="math/tex; mode=display">j</script>, <script type="math/tex; mode=display">k</script> that we will apply on the given array <script type="math/tex; mode=display">nums</script>, let's look at the first solution that comes to our mind.</p>
+<p>We simply traverse over all the elements of the array. We consider all the possible subarrays taking care of the constraints imposed on the cuts, and check if any such cuts exist which satisfy the given equal sum quadruples criteria.</p>
+<iframe frameborder="0" height="515" name="VVnTPo9k" src="https://leetcode.com/playground/VVnTPo9k/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n^4)</script>. Four for loops inside each other each with a worst case run of length <script type="math/tex; mode=display">n</script>.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant Space required.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-cumulative-sum-time-limit-exceeded">Approach #2 Cumulative Sum [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the brute force approach, we traversed over the subarrays for every triplet of cuts considered. Rather than doing this, we can save some calculation effort if we make use of a cumulative sum array <script type="math/tex; mode=display">sum</script>, where <script type="math/tex; mode=display">sum[i]</script> stores the cumulative sum of the array <script type="math/tex; mode=display">nums</script> upto the <script type="math/tex; mode=display">i^{th}</script> element. Thus, now in order to find the <script type="math/tex; mode=display">sum\big(subarray(i:j)\big)</script>, we can simply use <script type="math/tex; mode=display">sum[j]-sum[i]</script>. Rest of the process remains the same.</p>
+<iframe frameborder="0" height="462" name="rnHnJfu2" src="https://leetcode.com/playground/rnHnJfu2/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. Three for loops are there, one within the other.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">sum</script> array of size <script type="math/tex; mode=display">n</script> is used for storing cumulative sum.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-slightly-better-approach-time-limit-exceeded">Approach #3 Slightly Better Approach [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can improve the previous implementation to some extent if we stop checking for further quadruples if the first and second parts formed till now don't have equal sums. This idea is used in the current implementation.</p>
+<iframe frameborder="0" height="513" name="4ou9KNuS" src="https://leetcode.com/playground/4ou9KNuS/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. Three loops are there.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">sum</script> array of size <script type="math/tex; mode=display">n</script> is used for storing the cumulative sum.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-hashmap-time-limit-exceeded">Approach #4 Using HashMap [Time limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, we create a data structure called <script type="math/tex; mode=display">map</script> which is simply a HashMap, with data arranged in the format:</p>
+<p>
+<script type="math/tex; mode=display">\big\{csum(i):[i_1,i_2,i_3,....]\big\}</script>, here <script type="math/tex; mode=display">csum(i)</script> represents the cumulative sum in the given array <script type="math/tex; mode=display">nums</script> upto the <script type="math/tex; mode=display">i^{th}</script> index and its corresponding value represents indices upto which cumulative sum=csum(i).</p>
+<p>Once we create this <script type="math/tex; mode=display">map</script>, the solutions gets simplified a lot. Consider only the first two cuts formed by <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script>. Then, the cumulative sum upto the <script type="math/tex; mode=display">(j-1)^{th}</script> index will be given by: <script type="math/tex; mode=display">csum(j-1)=sum(part1) + nums[i] + sum(part2)</script>. Now, if we want the first two parts to have the same sum, the same cumulative sum can be rewritten as:</p>
+<p>
+<script type="math/tex; mode=display">csum'(j-1) = csum(i-1) + nums[i] + csum(i-1) = 2csum(i-1) + nums[i]</script>.</p>
+<p>Thus, we traverse over the given array, changing the value of the index <script type="math/tex; mode=display">i</script> forming the first cut, and look if the <script type="math/tex; mode=display">map</script> formed initially contains a cumulative sum equal to <script type="math/tex; mode=display">csum'(j-1)</script>. If <script type="math/tex; mode=display">map</script> contains such a cumulative sum, we consider every possible index <script type="math/tex; mode=display">j</script> satisfying the given constraints and look for the equalities of the first cumulative sum with the third and the fourth parts.</p>
+<p>Following the similar lines as the discussion above, the cumulative sum upto the third cut by <script type="math/tex; mode=display">k^{th}</script> index is given by </p>
+<p>
+<script type="math/tex; mode=display">csum(k-1) = sum(part1) + nums[i] + sum(part2) + nums[j] + sum(part3)</script>. </p>
+<p>For equality of sum, the condition becomes: </p>
+<p>
+<script type="math/tex; mode=display">csum'(k-1) = 3*csum(i-1) + nums[i] + nums[j]</script>. </p>
+<p>Similarly, the cumulative sum upto the last index becomes:</p>
+<p>
+<script type="math/tex; mode=display">csum(end) = sum(part1) + nums[i] + sum(part2) + nums[j] + sum(part3) + nums[k] + sum(part4)</script>. </p>
+<p>Again, for equality, the condition becomes:</p>
+<p>
+<script type="math/tex; mode=display">csum'(end) = 4*csum(i-1) + nums[i] + nums[j] + nums[k]</script>.</p>
+<p>For every cut chosen, we look if the required cumulative sum exists in <script type="math/tex; mode=display">map</script>. Thus, we need not calculate sums again and again or traverse over the array for all the triplets <script type="math/tex; mode=display">(i, j, k)</script> possible. Rather, now, we directly know, what cumulative sum to look for in the <script type="math/tex; mode=display">map</script>, which reduces a lot of computations.</p>
+<iframe frameborder="0" height="515" name="bnMtNeme" src="https://leetcode.com/playground/bnMtNeme/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. Three nested loops are there and every loop runs <script type="math/tex; mode=display">n</script> times in the worst case. Consider the worstcase [0,0,0....,1,1,1,1,1,1,1].</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. HashMap size can go upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-using-cumulative-sum-and-hashset-accepted">Approach #5 Using Cumulative Sum and HashSet [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, firstly we form a cumulative sum array <script type="math/tex; mode=display">sum</script>, where <script type="math/tex; mode=display">sum[i]</script> stores the cumulative sum of the array <script type="math/tex; mode=display">nums</script> upto the <script type="math/tex; mode=display">i^{th}</script> index. Then, we start by traversing over the possible positions for the middle cut formed by <script type="math/tex; mode=display">j</script>. For every <script type="math/tex; mode=display">j</script>, firstly, we find all the left cut's positions, <script type="math/tex; mode=display">i</script>,  that lead to equalizing the sum of the first and the second part (i.e. <script type="math/tex; mode=display">sum[i-1] = sum [j-1] - sum[i]</script>) and store such sums in the <script type="math/tex; mode=display">set</script> (a new HashSet is formed for every <script type="math/tex; mode=display">j</script> chosen). Thus, the presence of a sum in <script type="math/tex; mode=display">set</script> implies that such a sum is possible for having equal sum of the first and second part for the current position of the middle cut(<script type="math/tex; mode=display">j</script>).</p>
+<p>Then, we go for the right cut and find the position of the right cut that leads to equal sum of the third and the fourth part (<script type="math/tex; mode=display">sum[n-1]-sum[k]=sum[k-1] - sum[j]</script>), for the same middle cut as chosen earlier. We also, look if the same sum exists in the <script type="math/tex; mode=display">set</script>. If so, such a triplet <script type="math/tex; mode=display">(i, j, k)</script> exists which satisfies the required criteria, otherwise not.</p>
+<p>Look at the animation below for a visual representation of the process:</p>
+<!--![Split_Array](https://leetcode.com/articles/Figures/638_Split_Array.gif)-->
+<p>!?!../Documents/548_Split_Array.json:1000,563!?!</p>
+<iframe frameborder="0" height="445" name="rBcQvyon" src="https://leetcode.com/playground/rBcQvyon/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. One outer loop and two inner loops are used.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. HashSet size can go upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">3320</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">8814</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              9%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/alibaba.html">Alibaba</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

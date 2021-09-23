@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="An image is represented by a binary matrix with 0 as a white pixel and 1 as a black pixel. The black pixels are connected, i.e., there is only one black region. Pixels are connected horizontally and vertically. Given the location (x, y) of one of the black pixels, return the area of the smallest (axis-aligned) rectangle that encloses all black pixels.
+
+For example, given the following image:
+
+[
+  &#34;0010&#34;,
+  &#34;0110&#34;,
+  &#34;0100&#34;
+]
+
+and x = 0, y = 2,
+
+
+Return 6.">
+  <meta name="keywords"
+        content="Smallest Rectangle Enclosing Black Pixels, LC 302, leetcode 302, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>302. Smallest Rectangle Enclosing Black Pixels</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>An image is represented by a binary matrix with <code>0</code> as a white pixel and <code>1</code> as a black pixel. The black pixels are connected, i.e., there is only one black region. Pixels are connected horizontally and vertically. Given the location <code>(x, y)</code> of one of the black pixels, return the area of the smallest (axis-aligned) rectangle that encloses all black pixels.</p>
+
+<p>
+For example, given the following image:
+<pre>
+[
+  "0010",
+  "0110",
+  "0100"
+]
+</pre>
+and <code>x = 0</code>, <code>y = 2</code>,
+</p>
+
+<p>
+Return <code>6</code>.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-naive-linear-search-accepted">Approach #1 (Naive Linear Search) [Accepted]</a></li>
+<li><a href="#approach-2-dfs-or-bfs-accepted">Approach #2 (DFS or BFS) [Accepted]</a></li>
+<li><a href="#approach-3-binary-search-accepted">Approach #3 (Binary Search) [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>This article is for intermediate readers. It introduces the following ideas:
+Depth First Search (DFS), Breadth First Search (BFS) and Binary Search</p>
+<h2 id="solution">Solution</h2>
+<h4 id="approach-1-naive-linear-search-accepted">Approach #1 (Naive Linear Search) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Traversal all the pixels. Keep the maximum and minimum values of black pixels coordinates.</p>
+<p><strong>Algorithm</strong></p>
+<p>We keep four boundaries, <code>left</code>, <code>right</code>, <code>top</code> and <code>bottom</code> of the rectangle.
+Note that <code>left</code> and <code>top</code> are inclusive while <code>right</code> and <code>bottom</code> are exclusive.
+We then traversal all the pixels and update the four boundaries accordingly.</p>
+<p>The recipe is following:</p>
+<ul>
+<li>Initialize left, right, top and bottom</li>
+<li>Loop through all <code>(x, y)</code> coordinates</li>
+<li>if <code>image[x][y]</code> is black<ul>
+<li><code>left = min(left, x)</code></li>
+<li><code>right = max(right, x + 1)</code></li>
+<li><code>top = min(top, y)</code></li>
+<li><code>bottom = max(bottom, y + 1)</code></li>
+</ul>
+</li>
+<li>Return <code>(right - left) * (bottom - top)</code></li>
+</ul>
+<iframe frameborder="0" height="343" name="fn66ntdb" src="https://leetcode.com/playground/fn66ntdb/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(mn)</script>. <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> are the height and width of the image.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. All we need to store are the four boundaries.</p>
+</li>
+</ul>
+<p><strong>Comment</strong>
+<em> One may optimize this algorithm to stop early. But it doesn't change the asymptotic performance.
+</em> This naive approach is certainly not the best answer to this problem. However, it gives you a good entry point to tackle the problem. Most of the time the good algorithms come from identifying the repeat calculation a naive approach. And it also sets up a baseline of the time and space complexity, so that one can see whether or not other approaches are better than it.</p>
+<hr/>
+<h4 id="approach-2-dfs-or-bfs-accepted">Approach #2 (DFS or BFS) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Explore all the connected black pixel from the given pixel and update the boundaries.</p>
+<p><strong>Algorithm</strong></p>
+<p>The naive approach did not use the condition that all the black pixels are connected and that one of the black pixels is given.</p>
+<p>A simple way to use these facts is to do an exhaustive search starting from the given pixel. Since all the black pixels are connected, DFS or BFS will visit all of them starting from the given black pixel. The idea is similar to what we did for <a href="https://leetcode.com/problems/number-of-islands/">200. Number of Island</a>. Instead of many islands, we have only one island here, and we know one pixel of it.</p>
+<iframe frameborder="0" height="462" name="2Teg4TBb" src="https://leetcode.com/playground/2Teg4TBb/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(E) = O(B) = O(mn)</script>.</li>
+</ul>
+<p>Here <script type="math/tex; mode=display">E</script> is the number of edges in the traversed graph. <script type="math/tex; mode=display">B</script> is the total number of black pixels. Since each pixel have four edges at most, <script type="math/tex; mode=display">O(E) = O(B)</script>. In the worst case, <script type="math/tex; mode=display">O(B) = O(mn)</script>.</p>
+<ul>
+<li>Space complexity : <script type="math/tex; mode=display">O(V) = O(B) = O(mn)</script>.</li>
+</ul>
+<p>The space complexity is <script type="math/tex; mode=display">O(V)</script> where <script type="math/tex; mode=display">V</script> is the number of vertices in the traversed graph. In this problem <script type="math/tex; mode=display">O(V) = O(B)</script>. Again, in the worst case, <script type="math/tex; mode=display">O(B) = O(mn)</script>.</p>
+<p><strong>Comment</strong></p>
+<p>Although this approach is better than naive approach when <script type="math/tex; mode=display">B</script> is much smaller than <script type="math/tex; mode=display">mn</script>, it is asymptotically the same as approach #1 when <script type="math/tex; mode=display">B</script> is comparable to <script type="math/tex; mode=display">mn</script>. And it costs a lot more auxiliary space.</p>
+<hr/>
+<h4 id="approach-3-binary-search-accepted">Approach #3 (Binary Search) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Project the 2D image into a 1D array and use binary search to find the boundaries.</p>
+<p><strong>Algorithm</strong></p>
+<p align="center"><img alt="matrix projection" src="https://leetcode.com/articles/Figures/302_matrix_projection.svg" width="539px"/></p>
+<p align="center">*Figure 1. Illustration of image projection.</p>
+<p>Suppose we have a <script type="math/tex; mode=display">10 \times 11</script> image as shown in figure 1, if we project each column of the image into an entry of row vector <code>v</code> with the following rule:</p>
+<ul>
+<li><code>v[i] = 1</code>   if exists <code>x</code> such that <code>image[x][i] = 1</code></li>
+<li><code>v[i] = 0</code>   otherwise</li>
+</ul>
+<p>That is</p>
+<blockquote>
+<p>If a column has any black pixel it's projection is black otherwise white.</p>
+</blockquote>
+<p>Similarly, we can do the same for the rows, and project the image into a 1D column vector. The two projected vectors are shown in figure 1.</p>
+<p>Now, we claim the following lemma:</p>
+<p><em>Lemma</em></p>
+<blockquote>
+<p>If there are only one black pixel region, then in a projected 1D array all the black pixels are connected.</p>
+</blockquote>
+<p><em>Proof by contradiction</em></p>
+<blockquote>
+<p>Assume to the contrary that there are disconnected black pixels at <code>i</code> and <code>j</code> where <code>i &lt; j</code> in the 1D projection array. Thus, there exists one column <code>k</code>, <code>k</code> in <code>(i, j)</code> and the column <code>k</code> in the 2D array has no black pixel. Therefore, in the 2D array there exist at least two black pixel regions separated by column <code>k</code> which contradicting the condition of "only one black pixel region".
+Therefore, we conclude that all the black pixels in the 1D projection array are connected.</p>
+</blockquote>
+<p>With this lemma, we have the following algorithm:</p>
+<ul>
+<li>Project the 2D array into a column array and a row array</li>
+<li>Binary search to find <code>left</code> in the row array within <code>[0, y)</code></li>
+<li>Binary search to find <code>right</code> in the row array within <code>[y + 1, n)</code></li>
+<li>Binary search to find <code>top</code> in the column array within <code>[0, x)</code></li>
+<li>Binary search to find <code>bottom</code> in the column array within <code>[x + 1, m)</code></li>
+<li>Return <code>(right - left) * (bottom - top)</code></li>
+</ul>
+<p>However, the projection step cost <script type="math/tex; mode=display">O(mn)</script> time which dominates the entire algorithm.If so, we gain nothing comparing with previous approaches.</p>
+<p>The trick is that we do not need to do the projection step as a preprocess. We can do it on the fly, i.e. "don't project the column/row unless needed".</p>
+<p>Recall the binary search algorithm in a 1D array, each time we only check one element, the pivot, to decide which half we go next.</p>
+<p>In a 2D array, we can do something similar. The only difference here is that the element is not a number but a vector. For example, a <code>m</code> by <code>n</code> matrix can be seen as <code>n</code> column vectors.</p>
+<p>In these <code>n</code> elements/vectors, we do a binary search to find <code>left</code> or <code>right</code>. Each time we only check one element/vector, the pivot, to decide which half we go next.
+In total it checks <script type="math/tex; mode=display">O(\log n)</script> vectors, and each check is <script type="math/tex; mode=display">O(m)</script> (we simply traverse all the <code>m</code> entries of the pivot vector).</p>
+<p>So it costs <script type="math/tex; mode=display">O(m \log n)</script> to find <code>left</code> and <code>right</code>.
+Similarly it costs <script type="math/tex; mode=display">O(n \log m)</script> to find <code>top</code> and <code>bottom</code>. The entire algorithm has a time complexity of <script type="math/tex; mode=display">O(m \log n + n \log m)</script>
+</p>
+<iframe frameborder="0" height="515" name="LqsadPsh" src="https://leetcode.com/playground/LqsadPsh/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(m \log n + n \log m)</script>.</li>
+</ul>
+<p>Here, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> are the height and width of the image. We embedded a linear search for every iteration of binary search. See previous sections for details.</p>
+<ul>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>.</li>
+</ul>
+<p>Both binary search and linear search used only constant extra space.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">15890</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">34424</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              14%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

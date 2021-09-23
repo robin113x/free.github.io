@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array of integers, every element appears twice except for one. Find that single one.
+
+Note:
+Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?">
+  <meta name="keywords"
+        content="Single Number, LC 136, leetcode 136, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>136. Single Number</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given an array of integers, every element appears <i>twice</i> except for one. Find that single one.</p>
+
+<p>
+<b>Note:</b><br>
+Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-list-operation-time-limit-exceeded">Approach #1 List operation [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-hash-table-accepted">Approach #2 Hash Table [Accepted]</a></li>
+<li><a href="#approach-3-math-accepted">Approach #3 Math [Accepted]</a></li>
+<li><a href="#approach-4-bit-manipulation-accepted">Approach #4 Bit Manipulation [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-list-operation-time-limit-exceeded">Approach #1 List operation [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<ol>
+<li>Iterate over all the elements in <script type="math/tex; mode=display">\text{nums}</script>
+</li>
+<li>If some number in <script type="math/tex; mode=display">\text{nums}</script> is new to array, append it</li>
+<li>If some number is already in the array, remove it</li>
+</ol>
+<iframe frameborder="0" height="275" name="JpNhRkPe" src="https://leetcode.com/playground/JpNhRkPe/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. We iterate through <script type="math/tex; mode=display">\text{nums}</script>, taking <script type="math/tex; mode=display">O(n)</script> time. We search the whole list to find whether there is duplicate number, taking <script type="math/tex; mode=display">O(n)</script> time. Because search is in the <code>for</code> loop, so we have to multiply both time complexities which is <script type="math/tex; mode=display">O(n^2)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>.  We need a list of size <script type="math/tex; mode=display">n</script> to contain elements in <script type="math/tex; mode=display">\text{nums}</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-hash-table-accepted">Approach #2 Hash Table [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We use hash table to avoid the <script type="math/tex; mode=display">O(n)</script> time required for searching the elements.</p>
+<ol>
+<li>Iterate through all elements in <script type="math/tex; mode=display">\text{nums}</script>
+</li>
+<li>Try if <script type="math/tex; mode=display">hash\_table</script> has the key for <code>pop</code></li>
+<li>If not, set up key/value pair</li>
+<li>In the end, there is only one element in <script type="math/tex; mode=display">hash\_table</script>, so use <code>popitem</code> to get it</li>
+</ol>
+<iframe frameborder="0" height="275" name="pSAMxcjw" src="https://leetcode.com/playground/pSAMxcjw/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n * 1) = O(n)</script>.  Time complexity of <code>for</code> loop is <script type="math/tex; mode=display">O(n)</script>. Time complexity of hash table(dictionary in python) operation <code>pop</code> is <script type="math/tex; mode=display">O(1)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The space required by <script type="math/tex; mode=display">hash\_table</script> is equal to the number of elements in <script type="math/tex; mode=display">\text{nums}</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-math-accepted">Approach #3 Math [Accepted]</h4>
+<p><strong>Concept</strong></p>
+<p>
+<script type="math/tex; mode=display">2 * (a + b + c) - (a + a + b + b + c) = c</script>
+</p>
+<iframe frameborder="0" height="173" name="NXeUS9V2" src="https://leetcode.com/playground/NXeUS9V2/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n + n) = O(n)</script>. <code>sum</code> will call <code>next</code> to iterate through <script type="math/tex; mode=display">\text{nums}</script>.
+We can see it as <code>sum(list(i, for i in nums))</code> which means the time complexity is <script type="math/tex; mode=display">O(n)</script> because of the number of elements(<script type="math/tex; mode=display">n</script>) in <script type="math/tex; mode=display">\text{nums}</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n + n) = O(n)</script>. <code>set</code> needs space for the elements in <code>nums</code></p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-bit-manipulation-accepted">Approach #4 Bit Manipulation [Accepted]</h4>
+<p><strong>Concept</strong></p>
+<ul>
+<li>If we take XOR of zero and some bit, it will return that bit<ul>
+<li>
+<script type="math/tex; mode=display">a \oplus 0 = a</script>
+</li>
+</ul>
+</li>
+<li>If we take XOR of two same bits, it will return 0<ul>
+<li>
+<script type="math/tex; mode=display">a \oplus a = 0</script>
+</li>
+</ul>
+</li>
+<li>
+<script type="math/tex; mode=display">a \oplus b \oplus a = (a \oplus a) \oplus b = 0 \oplus b = b</script>
+</li>
+</ul>
+<p>So we can XOR all bits together to find the unique number.</p>
+<iframe frameborder="0" height="224" name="tVAd2noE" src="https://leetcode.com/playground/tVAd2noE/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>.  We only iterate through <script type="math/tex; mode=display">\text{nums}</script>, so the time complexity is the number of elements in <script type="math/tex; mode=display">\text{nums}</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/Ambition_Wang">@Ambition_Wang</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">258646</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">470155</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              98%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/airbnb.html">Airbnb</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/palantir.html">Palantir</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

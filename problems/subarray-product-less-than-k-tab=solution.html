@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Your are given an array of positive integers nums.
+Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.
+Example 1:
+Input: nums = [10, 5, 2, 6], k = 100
+Output: 8
+Explanation: The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6].
+Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
+
+
+Note:
+0 &lt; nums.length &lt;= 50000.
+0 &lt; nums[i] &lt; 1000.
+0 &lt;= k &lt; 10^6.">
+  <meta name="keywords"
+        content="Subarray Product Less Than K, LC 713, leetcode 713, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>713. Subarray Product Less Than K</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Your are given an array of positive integers <code>nums</code>.</p>
+<p>Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than <code>k</code>.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> nums = [10, 5, 2, 6], k = 100
+<b>Output:</b> 8
+<b>Explanation:</b> The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6].
+Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
+</pre>
+</p>
+
+<p><b>Note:</b>
+<li><code>0 < nums.length <= 50000</code>.</li>
+<li><code>0 < nums[i] < 1000</code>.</li>
+<li><code>0 <= k < 10^6</code>.</li>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-binary-search-on-logarithms-accepted">Approach #1: Binary Search on Logarithms [Accepted]</a></li>
+<li><a href="#approach-2-sliding-window-accepted">Approach #2: Sliding Window [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-binary-search-on-logarithms-accepted">Approach #1: Binary Search on Logarithms [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Because <script type="math/tex; mode=display">\log(\prod_i x_i) = \sum_i \log x_i</script>, we can reduce the problem to subarray <em>sums</em> instead of subarray products.  The motivation for this is that the product of some arbitrary subarray may be way too large (potentially <code>1000^50000</code>), and also dealing with sums gives us some more familiarity as it becomes similar to other problems we may have solved before.</p>
+<p><strong>Algorithm</strong></p>
+<p>After this transformation where every value <code>x</code> becomes <code>log(x)</code>, let us take prefix sums <code>prefix[i+1] = nums[0] + nums[1] + ... + nums[i]</code>.  Now we are left with the problem of finding, for each <code>i</code>, the largest <code>j</code> so that <code>nums[i] + ... + nums[j] = prefix[j] - prefix[i] &lt; k</code>.</p>
+<p>Because <code>prefix</code> is a monotone increasing array, this can be solved with binary search.  We add the width of the interval <code>[i, j]</code> to our answer, which counts all subarrays <code>[i, k]</code> with <code>k &lt;= j</code>.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">numSubarrayProductLessThanK</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+        <span class="n">prefix</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="n">prefix</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prefix</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">bisect</span><span class="o">.</span><span class="n">bisect</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">k</span> <span class="o">-</span> <span class="mf">1e-9</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">j</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">numSubarrayProductLessThanK</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">logk</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+        <span class="kt">double</span><span class="o">[]</span> <span class="n">prefix</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">prefix</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">prefix</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="o">}</span>
+
+        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">prefix</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">prefix</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">mi</span> <span class="o">=</span> <span class="n">lo</span> <span class="o">+</span> <span class="o">(</span><span class="n">hi</span> <span class="o">-</span> <span class="n">lo</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">prefix</span><span class="o">[</span><span class="n">mi</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">prefix</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">logk</span> <span class="o">-</span> <span class="mf">1e-9</span><span class="o">)</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">mi</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+                <span class="k">else</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mi</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">lo</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N\log N)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>nums</code>.  Inside our for loop, each binary search operation takes <script type="math/tex; mode=display">O(\log N)</script> time.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>, the space used by <code>prefix</code>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-sliding-window-accepted">Approach #2: Sliding Window [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>For each <code>right</code>, call <code>opt(right)</code> the smallest <code>left</code> so that the product of the subarray <code>nums[left] * nums[left + 1] * ... * nums[right]</code> is less than <code>k</code>.  <code>opt</code> is a monotone increasing function, so we can use a sliding window.</p>
+<p><strong>Algorithm</strong></p>
+<p>Our loop invariant is that <code>left</code> is the smallest value so that the product in the window <code>prod = nums[left] * nums[left + 1] * ... * nums[right]</code> is less than <code>k</code>.</p>
+<p>For every right, we update <code>left</code> and <code>prod</code> to maintain this invariant.  Then, the number of intervals with subarray product less than <code>k</code> and with right-most coordinate <code>right</code>, is <code>right - left + 1</code>.  We'll count all of these for each value of <code>right</code>.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">numSubarrayProductLessThanK</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+        <span class="n">prod</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">right</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+            <span class="n">prod</span> <span class="o">*=</span> <span class="n">val</span>
+            <span class="k">while</span> <span class="n">prod</span> <span class="o">&gt;=</span> <span class="n">k</span><span class="p">:</span>
+                <span class="n">prod</span> <span class="o">/=</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span>
+                <span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">numSubarrayProductLessThanK</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">prod</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">right</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">prod</span> <span class="o">*=</span> <span class="n">nums</span><span class="o">[</span><span class="n">right</span><span class="o">];</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">prod</span> <span class="o">&gt;=</span> <span class="n">k</span><span class="o">)</span> <span class="n">prod</span> <span class="o">/=</span> <span class="n">nums</span><span class="o">[</span><span class="n">left</span><span class="o">++];</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>nums</code>.  <code>left</code> can only be incremented at most <code>N</code> times.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(1)</script>, the space used by <code>prod</code>, <code>left</code>, and <code>ans</code>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">5298</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">16040</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              15%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/yatra.html">Yatra</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

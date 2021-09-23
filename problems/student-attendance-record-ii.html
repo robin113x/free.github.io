@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a positive integer n, return the number of all possible attendance records with length n, which will be regarded as rewardable. The answer may be very large, return it after mod 109 + 7.
+A student attendance record is a string that only contains the following three characters:
+
+
+&#39;A&#39; : Absent. 
+&#39;L&#39; : Late.
+ &#39;P&#39; : Present. 
+
+
+
+A record is regarded as rewardable if it doesn&#39;t contain more than one &#39;A&#39; (absent) or more than two continuous &#39;L&#39; (late).
+Example 1:
+Input: n = 2
+Output: 8 
+Explanation:
+There are 8 records with length 2 will be regarded as rewardable:
+&#34;PP&#34; , &#34;AP&#34;, &#34;PA&#34;, &#34;LP&#34;, &#34;PL&#34;, &#34;AL&#34;, &#34;LA&#34;, &#34;LL&#34;
+Only &#34;AA&#34; won&#39;t be regarded as rewardable owing to more than one absent times. 
+
+
+Note:
+The value of n won&#39;t exceed 100,000.">
+  <meta name="keywords"
+        content="Student Attendance Record II, LC 552, leetcode 552, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>552. Student Attendance Record II</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a positive integer <b>n</b>, return the number of all possible attendance records with length n, which will be regarded as rewardable. The answer may be very large, return it after mod 10<sup>9</sup> + 7.</p>
+
+<p>A student attendance record is a string that only contains the following three characters:</p>
+
+<p>
+<ol>
+<li><b>'A'</b> : Absent. </li>
+<li><b>'L'</b> : Late.</li>
+<li> <b>'P'</b> : Present. </li>
+</ol>
+</p>
+
+<p>
+A record is regarded as rewardable if it doesn't contain <b>more than one 'A' (absent)</b> or <b>more than two continuous 'L' (late)</b>.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> n = 2
+<b>Output:</b> 8 
+<b>Explanation:</b>
+There are 8 records with length 2 will be regarded as rewardable:
+"PP" , "AP", "PA", "LP", "PL", "AL", "LA", "LL"
+Only "AA" won't be regarded as rewardable owing to more than one absent times. 
+</pre>
+</p>
+
+<p><b>Note:</b>
+The value of <b>n</b> won't exceed 100,000.
+</p>
+
+
+
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-recursive-formulae-time-limit-exceeded">Approach #2 Using Recursive formulae [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-using-dynamic-programming-accepted">Approach #3 Using Dynamic Programming [Accepted]</a></li>
+<li><a href="#approach-4-dynamic-programming-with-constant-space-accepted">Approach #4 Dynamic Programming with Constant Space [Accepted]</a></li>
+<li><a href="#approach-5-using-less-variables-accepted">Approach #5 Using less variables [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>In the brute force approach, we actually form every possible string comprising of the letters "A", "P", "L" and check if the string is rewardable by checking it against the given criterias. In order to form every possible string, we make use of a recursive <code>gen(string, n)</code> function. At every call of this function, we append the letters "A", "P" and "L" to the input string, reduce the required length by 1 and call the same function again for all the three newly generated strings.</p>
+<p>!?!../Documents/552_Student_Attendance_Record_II.json:1000,563!?!</p>
+<iframe frameborder="0" height="479" name="8H9pueM6" src="https://leetcode.com/playground/8H9pueM6/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(3^n)</script>. Exploring <script type="math/tex; mode=display">3^n</script> combinations.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(n^n)</script>. Recursion tree can grow upto depth <script type="math/tex; mode=display">n</script> and each node contains string of length <script type="math/tex; mode=display">O(n)</script>.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-recursive-formulae-time-limit-exceeded">Approach #2 Using Recursive formulae [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The given problem can be solved easily if we can develop a recurring relation for it.</p>
+<p>Firstly, assume the problem to be considering only the characters <script type="math/tex; mode=display">L</script> and <script type="math/tex; mode=display">P</script> in the strings. i.e. The strings can contain only <script type="math/tex; mode=display">L</script> and <script type="math/tex; mode=display">P</script>. The effect of <script type="math/tex; mode=display">A</script> will be taken into account later on.</p>
+<p>In order to develop the relation, let's assume that <script type="math/tex; mode=display">f[n]</script> represents the number of possible rewardable strings(with <script type="math/tex; mode=display">L</script> and <script type="math/tex; mode=display">P</script> as the only characters) of length <script type="math/tex; mode=display">n</script>. Then, we can easily determine the value of <script type="math/tex; mode=display">f[n]</script> if we know the values of the counts for smaller values of <script type="math/tex; mode=display">n</script>. To see how it works, let's examine the figure below:</p>
+<p><img alt="Recurrence" src="https://leetcode.com/articles/Figures/552_Student_Attendence_II.PNG"/></p>
+<p>The above figure depicts the division of the rewardable string of length <script type="math/tex; mode=display">n</script> into two strings of length <script type="math/tex; mode=display">n-1</script> and ending with <script type="math/tex; mode=display">L</script> or <script type="math/tex; mode=display">P</script>. The string ending with <script type="math/tex; mode=display">P</script> of length <script type="math/tex; mode=display">n</script> is always rewardable provided the string of length <script type="math/tex; mode=display">n-1</script> is rewardable. Thus, this string accounts for a factor of <script type="math/tex; mode=display">f[n-1]</script> to <script type="math/tex; mode=display">f[n]</script>.</p>
+<p>For the first string ending with <script type="math/tex; mode=display">L</script>, the rewardability is dependent on the further strings of length <script type="math/tex; mode=display">n-3</script>. Thus, we consider all the rewardable strings of length <script type="math/tex; mode=display">n-3</script> now. Out of the four combinations possible at the end, the fourth combination, ending with a <script type="math/tex; mode=display">LL</script> at the end leads to an unawardable string. But, since we've considered only rewardable strings of length <script type="math/tex; mode=display">n-3</script>, for the last string to be rewardable at length <script type="math/tex; mode=display">n-3</script> and unawardable at length <script type="math/tex; mode=display">n-1</script>, it must be preceded by a <script type="math/tex; mode=display">P</script> before the <script type="math/tex; mode=display">LL</script>.</p>
+<p>Thus, accounting for the first string again, all the rewardable strings of length <script type="math/tex; mode=display">n-1</script>, except the strings of length <script type="math/tex; mode=display">n-4</script> followed by <script type="math/tex; mode=display">PLL</script>, can contribute to a rewardable string of length <script type="math/tex; mode=display">n</script>. Thus, this string accounts for a factor of <script type="math/tex; mode=display">f[n-1] - f[n-4]</script> to <script type="math/tex; mode=display">f[n]</script>.</p>
+<p>Thus, the recurring relation becomes:</p>
+<p>
+<script type="math/tex; mode=display">f[n] = 2f[n-1] - f[n-4]</script>
+</p>
+<p>We store all the <script type="math/tex; mode=display">f[i]</script> values in an array. In order to compute <script type="math/tex; mode=display">f[i]</script>, we make use of a recursive function <code>func(n)</code> which makes use of the above recurrence relation.</p>
+<p>Now, we need to put the factor of character <script type="math/tex; mode=display">A</script> being present in the given string. We know, atmost one <script type="math/tex; mode=display">A</script> is allowed to be presnet in a rewardable string. Now, consider the two cases.</p>
+<ol>
+<li>
+<p>No <script type="math/tex; mode=display">A</script> is present: In this case, the number of rewardable strings is the same as <script type="math/tex; mode=display">f[n]</script>.</p>
+</li>
+<li>
+<p>A single <script type="math/tex; mode=display">A</script> is present: Now, the single <script type="math/tex; mode=display">A</script> can be present at any of the <script type="math/tex; mode=display">n</script> positions. If the <script type="math/tex; mode=display">A</script> is present at the <script type="math/tex; mode=display">i^{th}</script> position in the given string, in the form: "&lt;(i-1) characters&gt;, A, &lt;(n-i) characters&gt;", the total number of rewardable strings is given by: <script type="math/tex; mode=display">f[i-1] * f[n-i]</script>. Thus, the total number of such substrings is given by: <script type="math/tex; mode=display">\sum_{i=1}^{n} (f[i-1] * f[n-i])</script>.</p>
+</li>
+</ol>
+<iframe frameborder="0" height="496" name="5oz4CZCn" src="https://leetcode.com/playground/5oz4CZCn/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(2^n)</script>. method <script type="math/tex; mode=display">func</script> will take <script type="math/tex; mode=display">2^n</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">f</script> array is used of size <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-dynamic-programming-accepted">Approach #3 Using Dynamic Programming [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, we calculated the values of <script type="math/tex; mode=display">f[i]</script> everytime using the recursive function, which goes till its root depth everytime. But, we can reduce a large number of redundant calculations, if we use the results obtained for previous <script type="math/tex; mode=display">f[j]</script> values directly to obtain <script type="math/tex; mode=display">f[i]</script> as  <script type="math/tex; mode=display">f[i] = 2f[i-1] + f[i-4]</script>.</p>
+<iframe frameborder="0" height="343" name="mPZsFUjT" src="https://leetcode.com/playground/mPZsFUjT/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. One loop to fill <script type="math/tex; mode=display">f</script> array and one to calculate <script type="math/tex; mode=display">sum</script>
+</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">f</script> array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-dynamic-programming-with-constant-space-accepted">Approach #4 Dynamic Programming with Constant Space [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can observe that the number and position of <script type="math/tex; mode=display">P</script>'s in the given string is irrelevant. Keeping into account this fact, we can obtain a state diagram that represents the transitions between the possible states as shown in the figure below:</p>
+<p><img alt="State_Diagram" src="https://leetcode.com/articles/Figures/552_State_Diagram.PNG"/></p>
+<p>This state diagram contains the states based only upon whether an <script type="math/tex; mode=display">A</script> is present in the string or not, and on the number of <script type="math/tex; mode=display">L</script>'s that occur at the trailing edge of the string formed till now. The state transition occurs whenver we try to append a new character to the end of the current string.</p>
+<p>Based on the above state diagram, we keep a track of the number of unique transitions from which a rewardable state can be achieved. We start off with a string of length 0 and keep on adding a new character to the end of the string till we achieve a length of <script type="math/tex; mode=display">n</script>. At the end, we sum up the number of transitions possible to reach each rewardable state to obtain the required result.</p>
+<p>We can use variables corresponding to the states. <script type="math/tex; mode=display">axly</script> represents the number of strings of length <script type="math/tex; mode=display">i</script> containing <script type="math/tex; mode=display">x</script>
+<script type="math/tex; mode=display">a's</script> and ending with <script type="math/tex; mode=display">y</script>
+<script type="math/tex; mode=display">l's</script>.</p>
+<p>Below code is inspired by <a href="http://leetcode.com/stefanpochmann">@stefanpochmann</a>.</p>
+<iframe frameborder="0" height="428" name="3Eeni8XC" src="https://leetcode.com/playground/3Eeni8XC/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Single loop to update the states.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant Extra Space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-using-less-variables-accepted">Approach #5 Using less variables [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach discussed, we've made use of six extra temporary variables just to keep a track of the change in the current state. The same result can be obtained by using a lesser number of temporary variables too.</p>
+<iframe frameborder="0" height="343" name="3GPeuNgd" src="https://leetcode.com/playground/3GPeuNgd/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Single loop to update the states.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant Extra Space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">5775</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">18343</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              8%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="There is a strange printer with the following two special requirements:
+
+
+The printer can only print a sequence of the same character each time.
+At each turn, the printer can print new characters starting from and ending at any places, and will cover the original existing characters.
+
+
+
+Given a string consists of lower English letters only, your job is to count the minimum number of turns the printer needed in order to print it.
+
+Example 1:
+Input: &#34;aaabbb&#34;
+Output: 2
+Explanation: Print &#34;aaa&#34; first and then print &#34;bbb&#34;.
+
+
+Example 2:
+Input: &#34;aba&#34;
+Output: 2
+Explanation: Print &#34;aaa&#34; first and then print &#34;b&#34; from the second place of the string, which will cover the existing character &#39;a&#39;.
+
+
+Hint: Length of the given string will not exceed 100.">
+  <meta name="keywords"
+        content="Strange Printer, LC 664, leetcode 664, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>664. Strange Printer</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+There is a strange printer with the following two special requirements:
+
+<ol>
+<li>The printer can only print a sequence of the same character each time.</li>
+<li>At each turn, the printer can print new characters starting from and ending at any places, and will cover the original existing characters.</li>
+</ol>
+
+</p>
+
+<p>
+Given a string consists of lower English letters only, your job is to count the minimum number of turns the printer needed in order to print it.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> "aaabbb"
+<b>Output:</b> 2
+<b>Explanation:</b> Print "aaa" first and then print "bbb".
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> "aba"
+<b>Output:</b> 2
+<b>Explanation:</b> Print "aaa" first and then print "b" from the second place of the string, which will cover the existing character 'a'.
+</pre>
+</p>
+
+<p><b>Hint</b>: Length of the given string will not exceed 100.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-dynamic-programming-accepted">Approach #1: Dynamic Programming [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-dynamic-programming-accepted">Approach #1: Dynamic Programming [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>It is natural to consider letting <code>dp(i, j)</code> be the answer for printing <code>S[i], S[i+1], ..., S[j]</code>, but proceeding from here is difficult.  We need the following sequence of deductions:</p>
+<ul>
+<li>
+<p>Whatever turn creates the final print of <code>S[i]</code> might as well be the first turn, and also there might as well only be one print, since any later prints on interval <code>[i, k]</code> could just be on <code>[i+1, k]</code>.</p>
+</li>
+<li>
+<p>Say the first print is on <code>[i, k]</code>.  We can assume <code>S[i] == S[k]</code>, because if it wasn't, we could print up to the last occurrence of <code>S[i]</code> in <code>[i, k]</code> for the same result.</p>
+</li>
+<li>
+<p>When correctly printing everything in <code>[i, k]</code> (with <code>S[i] == S[k]</code>), it will take the same amount of steps as correctly printing everything in <code>[i, k-1]</code>.  This is because if <code>S[i]</code> and <code>S[k]</code> get completed in separate steps, we might as well print them first in one step instead.</p>
+</li>
+</ul>
+<p><strong>Algorithm</strong></p>
+<p>With the above deductions, the algorithm is straightforward.</p>
+<p>To compute a recursion for <code>dp(i, j)</code>, for every <code>i &lt;= k &lt;= j</code> with <code>S[i] == S[k]</code>, we have some candidate answer <code>dp(i, k-1) + dp(k+1, j)</code>, and we take the minimum of these candidates.  Of course, when <code>k = i</code>, the candidate is just <code>1 + dp(i+1, j)</code>.</p>
+<p>To avoid repeating work, we memoize our intermediate answers <code>dp(i, j)</code>.</p>
+<iframe frameborder="0" height="378" name="L3mAUr9w" src="https://leetcode.com/playground/L3mAUr9w/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N^3)</script> where <script type="math/tex; mode=display">N</script> is the length of <code>s</code>.  For each of <script type="math/tex; mode=display">O(N^2)</script> possible states representing a subarray of <code>s</code>, we perform <script type="math/tex; mode=display">O(N)</script> work iterating through <code>k</code>.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N^2)</script>, the size of our <code>memo</code>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">3709</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">11244</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              33%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/netease.html">NetEase</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

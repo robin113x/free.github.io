@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="You are given a string representing an attendance record for a student. The record only contains the following three characters:
+
+
+
+&#39;A&#39; : Absent. 
+&#39;L&#39; : Late.
+ &#39;P&#39; : Present. 
+
+
+
+A student could be rewarded if his attendance record doesn&#39;t contain more than one &#39;A&#39; (absent) or more than two continuous &#39;L&#39; (late).    
+You need to return whether the student could be rewarded according to his attendance record.
+Example 1:
+Input: &#34;PPALLP&#34;
+Output: True
+
+
+Example 2:
+Input: &#34;PPALLL&#34;
+Output: False">
+  <meta name="keywords"
+        content="Student Attendance Record I, LC 551, leetcode 551, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>551. Student Attendance Record I</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            You are given a string representing an attendance record for a student. The record only contains the following three characters:
+
+<p>
+<ol>
+<li><b>'A'</b> : Absent. </li>
+<li><b>'L'</b> : Late.</li>
+<li> <b>'P'</b> : Present. </li>
+</ol>
+</p>
+
+<p>
+A student could be rewarded if his attendance record doesn't contain <b>more than one 'A' (absent)</b> or <b>more than two continuous 'L' (late)</b>.    </p>
+
+<p>You need to return whether the student could be rewarded according to his attendance record.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> "PPALLP"
+<b>Output:</b> True
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> "PPALLL"
+<b>Output:</b> False
+</pre>
+</p>
+
+
+
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-simple-solution-accepted">Approach #1 Simple Solution [Accepted]</a></li>
+<li><a href="#approach-2-better-solution-accepted">Approach #2 Better Solution [Accepted]</a></li>
+<li><a href="#approach-3-single-pass-solution-without-indexof-method-accepted">Approach #3 Single pass Solution (Without indexOf method) [Accepted]</a></li>
+<li><a href="#approach-4-using-regex-accepted">Approach #4 Using Regex [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-simple-solution-accepted">Approach #1 Simple Solution [Accepted]</h4>
+<p>One simple way of solving this problem is to count number of <script type="math/tex; mode=display">A's</script> in the string and check whether the string <script type="math/tex; mode=display">LLL</script> is a substring of a given string. If number of <script type="math/tex; mode=display">A's</script> is less than <script type="math/tex; mode=display">2</script> and <script type="math/tex; mode=display">LLL</script> is not a subtring of a given string then return <script type="math/tex; mode=display">true</script>, otherwise return <script type="math/tex; mode=display">false</script>.</p>
+<p>
+<script type="math/tex; mode=display">indexOf</script> method can be used to check substring in a string. It return the index within this string of the first occurrence of the specified character or -1, if the character does not occur.</p>
+<iframe frameborder="0" height="241" name="KwRnWGmW" src="https://leetcode.com/playground/KwRnWGmW/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Single loop and indexOf method takes <script type="math/tex; mode=display">O(n)</script> time.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-solution-accepted">Approach #2 Better Solution [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>One optimization of above method is to break the loop when count of <script type="math/tex; mode=display">A's</script> becomes <script type="math/tex; mode=display">2</script>.</p>
+<iframe frameborder="0" height="224" name="Eh3SunKt" src="https://leetcode.com/playground/Eh3SunKt/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Single loop and indexOf method takes <script type="math/tex; mode=display">O(n)</script> time.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-3-single-pass-solution-without-indexof-method-accepted">Approach #3 Single pass Solution (Without indexOf method) [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can solve this problem in a single pass without using indexOf method. In a single loop we can count number of <script type="math/tex; mode=display">A's</script> and also check the substring <script type="math/tex; mode=display">LLL</script> in a given string.</p>
+<iframe frameborder="0" height="275" name="sZFGNHqX" src="https://leetcode.com/playground/sZFGNHqX/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Single loop upto string length is used.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-regex-accepted">Approach #4 Using Regex [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>One interesting solution is to use regex to match the string. Java provides the java.util.regex package for pattern matching with regular expressions. A regular expression is a special sequence of characters that helps you match or find other strings or sets of strings, using a specialized syntax held in a pattern.</p>
+<p>Following are the regex's used in this solution:</p>
+<div class="codehilite"><pre><span></span>. : Matches any single character except newline.
+
+* : Matches 0 or more occurrences of the preceding expression.
+
+.* : Matches any string
+
+a|b : Matches either a or b
+</pre></div>
+<p>
+<script type="math/tex; mode=display">matches</script> method is used to check whether or not the string matches the given regular expression.</p>
+<p>Regular Expression of the string containing two or more than two <script type="math/tex; mode=display">A's</script> will be <script type="math/tex; mode=display">.*A.*A.*</script> and the regular expression of the string containing substring <script type="math/tex; mode=display">LLL</script> will be <script type="math/tex; mode=display">.*LLL.*</script>. We can merge this two regex using <script type="math/tex; mode=display">|</script> and form a regex of string containing either more than one <script type="math/tex; mode=display">A</script> or containing substring <script type="math/tex; mode=display">LLL</script>. Then regex will look like:  <script type="math/tex; mode=display">.*(A.*A|LLL).*</script>. We will return true only when the string doesn't matches this regex.</p>
+<iframe frameborder="0" height="156" name="5J2tfTuD" src="https://leetcode.com/playground/5J2tfTuD/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">matches</script> method takes <script type="math/tex; mode=display">O(n)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No Extra Space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">24939</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">56342</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              20%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

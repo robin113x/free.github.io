@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a (singly) linked list with head node root, write a function to split the linked list into k consecutive linked list &#34;parts&#34;.
+
+The length of each part should be as equal as possible: no two parts should have a size differing by more than 1.  This may lead to some parts being null.
+
+The parts should be in order of occurrence in the input list, and parts occurring earlier should always have a size greater than or equal parts occurring later.
+
+Return a List of ListNode&#39;s representing the linked list parts that are formed.
+
+
+Examples
+1-&gt;2-&gt;3-&gt;4, k = 5 // 5 equal parts
+[ [1], 
+[2],
+[3],
+[4],
+null ]
+
+Example 1:
+Input: 
+root = [1, 2, 3], k = 5
+Output: [[1],[2],[3],[],[]]
+Explanation:
+The input and each element of the output are ListNodes, not arrays.
+For example, the input root has root.val = 1, root.next.val = 2, \root.next.next.val = 3, and root.next.next.next = null.
+The first element output[0] has output[0].val = 1, output[0].next = null.
+The last element output[4] is null, but it&#39;s string representation as a ListNode is [].
+
+
+Example 2:
+Input: 
+root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], k = 3
+Output: [[1, 2, 3, 4], [5, 6, 7], [8, 9, 10]]
+Explanation:
+The input has been split into consecutive parts with size difference at most 1, and earlier parts are a larger size than the later parts.
+
+
+Note:
+The length of root will be in the range [0, 1000].
+Each value of a node in the input will be an integer in the range [0, 999].
+k will be an integer in the range [1, 50].">
+  <meta name="keywords"
+        content="Split Linked List in Parts, LC 725, leetcode 725, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>725. Split Linked List in Parts</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a (singly) linked list with head node <code>root</code>, write a function to split the linked list into <code>k</code> consecutive linked list "parts".
+</p><p>
+The length of each part should be as equal as possible: no two parts should have a size differing by more than 1.  This may lead to some parts being null.
+</p><p>
+The parts should be in order of occurrence in the input list, and parts occurring earlier should always have a size greater than or equal parts occurring later.
+</p><p>
+Return a List of ListNode's representing the linked list parts that are formed.
+</p>
+
+Examples
+1->2->3->4, k = 5 // 5 equal parts
+[ [1], 
+[2],
+[3],
+[4],
+null ]
+
+<p><b>Example 1:</b><br />
+<pre style="white-space: pre-line">
+<b>Input:</b> 
+root = [1, 2, 3], k = 5
+<b>Output:</b> [[1],[2],[3],[],[]]
+<b>Explanation:</b>
+The input and each element of the output are ListNodes, not arrays.
+For example, the input root has root.val = 1, root.next.val = 2, \root.next.next.val = 3, and root.next.next.next = null.
+The first element output[0] has output[0].val = 1, output[0].next = null.
+The last element output[4] is null, but it's string representation as a ListNode is [].
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> 
+root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], k = 3
+<b>Output:</b> [[1, 2, 3, 4], [5, 6, 7], [8, 9, 10]]
+<b>Explanation:</b>
+The input has been split into consecutive parts with size difference at most 1, and earlier parts are a larger size than the later parts.
+</pre>
+</p>
+
+<p><b>Note:</b>
+<li>The length of <code>root</code> will be in the range <code>[0, 1000]</code>.</li>
+<li>Each value of a node in the input will be an integer in the range <code>[0, 999]</code>.</li>
+<li><code>k</code> will be an integer in the range <code>[1, 50]</code>.</li>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-create-new-lists-accepted">Approach #1: Create New Lists [Accepted]</a></li>
+<li><a href="#approach-2-split-input-list-accepted">Approach #2: Split Input List [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-create-new-lists-accepted">Approach #1: Create New Lists [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>If there are <script type="math/tex; mode=display">N</script> nodes in the linked list <code>root</code>, then there are <script type="math/tex; mode=display">N / k</script> items in each part, plus the first <script type="math/tex; mode=display">N \% k</script> parts have an extra item.  We can count <script type="math/tex; mode=display">N</script> with a simple loop.</p>
+<p>Now for each part, we have calculated how many nodes that part will have: <code>width + (i &lt; remainder ? 1 : 0)</code>.  We create a new list and write the part to that list.</p>
+<p>Our solution showcases constructs of the form <code>a = b = c</code>.  Note that this syntax behaves differently for different languages.</p>
+<iframe frameborder="0" height="463" name="mPv7qf7R" src="https://leetcode.com/playground/mPv7qf7R/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N + k)</script>, where <script type="math/tex; mode=display">N</script> is the number of nodes in the given list.  If <script type="math/tex; mode=display">k</script> is large, it could still require creating many new empty lists.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(max(N, k))</script>, the space used in writing the answer.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-split-input-list-accepted">Approach #2: Split Input List [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>As in <em>Approach #1</em>, we know the size of each part.  Instead of creating new lists, we will split the input list directly and return a list of pointers to nodes in the original list as appropriate.</p>
+<p>Our solution proceeds similarly.  For a part of size <code>L = width + (i &lt; remainder ? 1 : 0)</code>, instead of stepping <code>L</code> times, we will step <code>L-1</code> times, and our final time will also sever the link between the last node from the previous part and the first node from the next part.</p>
+<iframe frameborder="0" height="500" name="RmD7xooU" src="https://leetcode.com/playground/RmD7xooU/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N + k)</script>, where <script type="math/tex; mode=display">N</script> is the number of nodes in the given list.  If <script type="math/tex; mode=display">k</script> is large, it could still require creating many new empty lists.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(k)</script>, the additional space used in writing the answer.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">4541</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">9133</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              13%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/amazon.html">Amazon</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

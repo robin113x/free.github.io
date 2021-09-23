@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="We are given N different types of stickers.  Each sticker has a lowercase English word on it.
+
+You would like to spell out the given target string by cutting individual letters from your collection of stickers and rearranging them.
+
+You can use each sticker more than once if you want, and you have infinite quantities of each sticker.
+
+What is the minimum number of stickers that you need to spell out the target?  If the task is impossible, return -1.
+
+Example 1:
+Input:
+[&#34;with&#34;, &#34;example&#34;, &#34;science&#34;], &#34;thehat&#34;
+
+Output:
+3
+
+Explanation:
+We can use 2 &#34;with&#34; stickers, and 1 &#34;example&#34; sticker.
+After cutting and rearrange the letters of those stickers, we can form the target &#34;thehat&#34;.
+Also, this is the minimum number of stickers necessary to form the target string.
+
+Example 2:
+Input:
+[&#34;notice&#34;, &#34;possible&#34;], &#34;basicbasic&#34;
+
+Output:
+-1
+
+Explanation:
+We can&#39;t form the target &#34;basicbasic&#34; from cutting letters from the given stickers.
+
+Note:
+stickers has length in the range [1, 50].
+stickers consists of lowercase English words (without apostrophes).
+target has length in the range [1, 15], and consists of lowercase English letters.
+In all test cases, all words were chosen randomly from the 1000 most common US English words, and the target was chosen as a concatenation of two random words.
+The time limit may be more challenging than usual.  It is expected that a 50 sticker test case can be solved within 35ms on average.">
+  <meta name="keywords"
+        content="Stickers to Spell Word, LC 691, leetcode 691, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>691. Stickers to Spell Word</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+We are given N different types of stickers.  Each sticker has a lowercase English word on it.
+</p><p>
+You would like to spell out the given <code>target</code> string by cutting individual letters from your collection of stickers and rearranging them.
+</p><p>
+You can use each sticker more than once if you want, and you have infinite quantities of each sticker.
+</p><p>
+What is the minimum number of stickers that you need to spell out the <code>target</code>?  If the task is impossible, return -1.
+</p>
+
+<p><b>Example 1:</b></p>
+<p>Input:<pre>
+["with", "example", "science"], "thehat"
+</pre></p>
+
+<p>Output:<pre>
+3
+</pre></p>
+
+<p>Explanation:<pre>
+We can use 2 "with" stickers, and 1 "example" sticker.
+After cutting and rearrange the letters of those stickers, we can form the target "thehat".
+Also, this is the minimum number of stickers necessary to form the target string.
+</pre></p>
+
+<p><b>Example 2:</b></p>
+<p>Input:<pre>
+["notice", "possible"], "basicbasic"
+</pre></p>
+
+<p>Output:<pre>
+-1
+</pre></p>
+
+<p>Explanation:<pre>
+We can't form the target "basicbasic" from cutting letters from the given stickers.
+</pre></p>
+
+<p><b>Note:</b>
+<li><code>stickers</code> has length in the range <code>[1, 50]</code>.</li>
+<li><code>stickers</code> consists of lowercase English words (without apostrophes).</li>
+<li><code>target</code> has length in the range <code>[1, 15]</code>, and consists of lowercase English letters.</li>
+<li>In all test cases, all words were chosen <u>randomly</u> from the 1000 most common US English words, and the target was chosen as a concatenation of two random words.</li>
+<li>The time limit may be more challenging than usual.  It is expected that a 50 sticker test case can be solved within 35ms on average.</li>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-optimized-exhaustive-search">Approach 1: Optimized Exhaustive Search</a></li>
+<li><a href="#approach-2-dynamic-programming">Approach 2: Dynamic Programming</a></li>
+</ul>
+</div>
+<h4 id="approach-1-optimized-exhaustive-search">Approach 1: Optimized Exhaustive Search</h4>
+<p><br/></p>
+<p><strong>Intuition</strong></p>
+<p>A natural answer is to exhaustively search combinations of stickers.  Because the data is randomized, there are many heuristics available to us that will make this faster.</p>
+<ul>
+<li>
+<p>For all stickers, we can ignore any letters that are not in the target word.</p>
+</li>
+<li>
+<p>When our candidate answer won't be smaller than an answer we have already found, we can stop searching this path.</p>
+</li>
+<li>
+<p>We should try to have our exhaustive search bound the answer as soon as possible, so the effect described in the above point happens more often.</p>
+</li>
+<li>
+<p>When a sticker dominates another, we shouldn't include the dominated sticker in our sticker collection.  [Here, we say a sticker <code>A</code> dominates <code>B</code> if <code>A.count(letter) &gt;= B.count(letter)</code> for all letters.]</p>
+</li>
+</ul>
+<p><br/></p>
+<p><strong>Algorithm</strong></p>
+<p>Firstly, for each sticker, let's create a count of that sticker (a mapping <code>letter -&gt; sticker.count(letter)</code>) that does not consider letters not in the target word.  Let <code>A</code> be an array of these counts.  Also, let's create <code>t_count</code>, a count of our <code>target</code> word.</p>
+<p>Secondly, let's remove dominated stickers.  Because dominance is a transitive relation, we only need to check if a sticker is not dominated by any other sticker once - the ones that aren't dominated are included in our collection.</p>
+<p>We are now ready to begin our exhaustive search.  A call to <code>search(ans)</code> denotes that we want to decide the minimum number of stickers we can used in <code>A</code> to satisfy the target count <code>t_count</code>.  <code>ans</code> will store the currently formed answer, and <code>best</code> will store the current best answer.</p>
+<p>If our current answer can't beat our current best answer, we should stop searching.  Also, if there are no stickers left and our target is satisfied, we should update our answer.</p>
+<p>Otherwise, we want to know the maximum number of this sticker we can use.  For example, if this sticker is <code>'abb'</code> and our target is <code>'aaabbbbccccc'</code>, then we could use a maximum of 3 stickers.  This is the maximum of <code>math.ceil(target.count(letter) / sticker.count(letter))</code>, taken over all <code>letter</code>s in <code>sticker</code>.  Let's call this quantity <code>used</code>.</p>
+<p>After, for the sticker we are currently considering, we try to use <code>used</code> of them, then <code>used - 1</code>, <code>used - 2</code> and so on.  The reason we do it in this order is so that we can arrive at a value for <code>best</code> more quickly, which will stop other branches of our exhaustive search from continuing.</p>
+<p>The Python version of this solution showcases using <code>collections.Counter</code> as a way to simplify some code sections, whereas the Java solution sticks to arrays.</p>
+<iframe frameborder="0" height="515" name="KP3fS7G3" src="https://leetcode.com/playground/KP3fS7G3/shared" width="100%"></iframe>
+<p><br/></p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: Let <script type="math/tex; mode=display">N</script> be the number of stickers, and <script type="math/tex; mode=display">T</script> be the number of letters in the target word.  A bound for time complexity is <script type="math/tex; mode=display">O(N^{T+1} T^2)</script>: for each sticker, we'll have to try using it up to <script type="math/tex; mode=display">T+1</script> times, and updating our target count costs <script type="math/tex; mode=display">O(T)</script>, which we do up to <script type="math/tex; mode=display">T</script> times.  Alternatively, since the answer is bounded at <script type="math/tex; mode=display">T</script>, we can prove that we can only search up to <script type="math/tex; mode=display">\binom{N+T-1}{T-1}</script> times.  This would be <script type="math/tex; mode=display">O(\binom{N+T-1}{T-1} T^2)</script>.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N+T)</script>, to store <code>stickersCount</code>, <code>targetCount</code>, and handle the recursive callstack when calling <code>search</code>.</p>
+</li>
+</ul>
+<p><br/></p>
+<hr/>
+<h4 id="approach-2-dynamic-programming">Approach 2: Dynamic Programming</h4>
+<p><br/></p>
+<p><strong>Intuition</strong></p>
+<p>Suppose we need <code>dp[state]</code> stickers to satisfy all <code>target[i]</code>'s for which the <code>i</code>-th bit of <code>state</code> is set.  We would like to know <code>dp[(1 &lt;&lt; len(target)) - 1]</code>.</p>
+<p><br/></p>
+<p><strong>Algorithm</strong></p>
+<p>For each <code>state</code>, let's work with it as <code>now</code> and look at what happens to it after applying a sticker.  For each letter in the sticker that can satisfy an unset bit of <code>state</code>, we set the bit (<code>now |= 1 &lt;&lt; i</code>).  At the end, we know <code>now</code> is the result of applying that sticker to <code>state</code>, and we update our <code>dp</code> appropriately.</p>
+<p>When using Python, we will need some extra techniques from <em>Approach #1</em> to pass in time.</p>
+<iframe frameborder="0" height="515" name="JTZ2SYco" src="https://leetcode.com/playground/JTZ2SYco/shared" width="100%"></iframe>
+<p><br/></p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(2^T * S * T)</script> where <script type="math/tex; mode=display">S</script> be the total number of letters in all stickers, and <script type="math/tex; mode=display">T</script> be the number of letters in the target word.  We can examine each loop carefully to arrive at this conclusion.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(2^T)</script>, the space used by <code>dp</code>.</p>
+</li>
+</ul>
+<p><br/></p>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.  <a href="https://leetcode.com/contest/leetcode-weekly-contest-53/ranking">Approach #2</a> inspired by <a href="https://leetcode.com/dreamoon">@dreamoon</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">2675</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">7880</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              9%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/ixl.html">IXL</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

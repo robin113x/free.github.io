@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a list of strings, you could concatenate these strings together into a loop, where for each string you could choose to reverse it or not. Among all the possible loops, you need to find the lexicographically biggest string after cutting the loop, which will make the looped string into a regular one.
+Specifically, to find the lexicographically biggest string, you need to experience two phases: 
+
+Concatenate all the strings into a loop, where you can reverse some strings or not and connect them in the same order as given.
+Cut and make one breakpoint in any place of the loop, which will make the looped string into a regular one starting from the character at the cutpoint. 
+
+
+And your job is to find the lexicographically biggest one among all the possible regular strings.
+Example:
+Input: &#34;abc&#34;, &#34;xyz&#34;
+Output: &#34;zyxcba&#34;
+Explanation: You can get the looped string &#34;-abcxyz-&#34;, &#34;-abczyx-&#34;, &#34;-cbaxyz-&#34;, &#34;-cbazyx-&#34;, where &#39;-&#39; represents the looped status. The answer string came from the fourth looped one, where you could cut from the middle character &#39;a&#39; and get &#34;zyxcba&#34;.
+
+
+Note:
+
+The input strings will only contain lowercase letters.
+The total length of all the strings will not over 1,000.">
+  <meta name="keywords"
+        content="Split Concatenated Strings, LC 555, leetcode 555, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>555. Split Concatenated Strings</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a list of strings, you could concatenate these strings together into a loop, where for each string you could choose to reverse it or not. Among all the possible loops, you need to find the lexicographically biggest string after cutting the loop, which will make the looped string into a regular one.</p>
+
+<p>Specifically, to find the lexicographically biggest string, you need to experience two phases: 
+<ol>
+<li>Concatenate all the strings into a loop, where you can reverse some strings or not and connect them in the same order as given.</li>
+<li>Cut and make one breakpoint in any place of the loop, which will make the looped string into a regular one starting from the character at the cutpoint. </li>
+</ol>
+</p>
+
+<p>And your job is to find the lexicographically biggest one among all the possible regular strings.</p>
+
+
+<p><b>Example:</b><br />
+<pre>
+<b>Input:</b> "abc", "xyz"
+<b>Output:</b> "zyxcba"
+<b>Explanation:</b> You can get the looped string "-abcxyz-", "-abczyx-", "-cbaxyz-", "-cbazyx-", <br/>where '-' represents the looped status. <br/>The answer string came from the fourth looped one, <br/>where you could cut from the middle character 'a' and get "zyxcba".
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The input strings will only contain lowercase letters.</li>
+<li>The total length of all the strings will not over 1,000.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-depth-first-search-time-limit-exceeded">Approach #1 Depth First Search [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-breadth-first-search-memory-limit-exceeded">Approach #2 Breadth First Search [Memory Limit Exceeded]</a></li>
+<li><a href="#approach-3-optimized-solution-accepted">Approach #3 Optimized Solution [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>We are given a list of strings: <script type="math/tex; mode=display">s_1, s_2, s_3,.., s_n</script>. We need to concatenate all these strings in a circular fashion in the same given order, but we can reverse every individual string before concatenating. Now, we need to make a cut in the final concatenated string such that the new string formed is the largest one possible in the lexicographic sense</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-depth-first-search-time-limit-exceeded">Approach #1 Depth First Search [Time Limit Exceeded]</h4>
+<p>The simplest solution is to try forming every possible concatenated string by making use of the given strings and then forming every possible cut in each such final concatenated string.</p>
+<p>To do so, we can make use of a recursive function <code>dfs</code> which appends the current string to the concatenated string formed till now and calls itself with the new concatenated string.  It also appends the reversed current string to the current concatenated string and calls itself. The concatenation of strings goes in the manner of a Depth First Search.
+Thus, after reaching the full depth of every branch traversal, we obtain a new concatenated string as illustrated in the animation below. We can apply all the possible cuts to these strings and find the lexicographically largest string out of all of them.</p>
+<p>!?!../Documents/555_Split_Assembled_Strings.json:1000,563!?!</p>
+<iframe frameborder="0" height="394" name="HVWgAzK8" src="https://leetcode.com/playground/HVWgAzK8/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(2^n)</script>. Size of Recursion tree can grow upto <script type="math/tex; mode=display">2^n</script> where <script type="math/tex; mode=display">n</script> is the number of strings in the list.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Depth of Recursion tree will be <script type="math/tex; mode=display">n</script>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-breadth-first-search-memory-limit-exceeded">Approach #2 Breadth First Search [Memory Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Exploring all strings can also be done using BFS method. A Queue <script type="math/tex; mode=display">queue</script> is maintained which stores the strings formed till now after concatenation of the next string and also by concatenation of reverse of next string. Every time we remove a string from the front of the queue, we add two strings to the back of the queue(one by concatenating the next string directly and another by concatenating the next string after reversing).</p>
+<p>When all the strings are traversed queue contains <script type="math/tex; mode=display">O(2^n)</script> strings, which correspond to every possible valid string which can be formed by doing the concatenations. We check every string into the queue after circularly rotating by placing the cuts at every possible location. While doing this, we keep a track of the lexicographically largest string.</p>
+<p>This animation will depict the method:</p>
+<p>!?!../Documents/555_Split_Assembled_Strings1.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="5MoksFZL" src="https://leetcode.com/playground/5MoksFZL/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(2^n)</script>. <script type="math/tex; mode=display">2^n</script> possible strings will be formed where <script type="math/tex; mode=display">n</script> is the number of strings in the list.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(2^n)</script>. <script type="math/tex; mode=display">queue</script>'s size can grow upto <script type="math/tex; mode=display">2^n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-optimized-solution-accepted">Approach #3 Optimized Solution [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In order to understand how this solution works, firstly we'll look at some of the properties of the transformation involved. The first point to note is that the relative ordering of the strings doesn't change after applying the transformations(i.e. reversing and applying cuts).</p>
+<p>The second property will be explained taking the help of an example. Consider the given list of strings: <script type="math/tex; mode=display">[s_1, s_2, s_3,..,s_j,..s_n]</script>. Now, assume that we choose <script type="math/tex; mode=display">s_j</script> to be the string on which the current cut is placed leading to the formation of two substrings from <script type="math/tex; mode=display">s_j</script>, namely, say <script type="math/tex; mode=display">s_{jpre}</script>, <script type="math/tex; mode=display">s_{jpost}</script>. Thus, the concatenated string formed by such a cut will be: <script type="math/tex; mode=display">[s_{jpost}, s_{j+1},..., s_n, s_{1rev}, s_{2rev},.., s_{(jpre)rev}]</script>. Here, <script type="math/tex; mode=display">s_{irev}</script> means the reversed <script type="math/tex; mode=display">s_i</script> string. </p>
+<p>The concatenated string formed follows the same pattern irrespective of where the cut is placed in <script type="math/tex; mode=display">s_j</script>. But still, the relative ordering of the strings persists, even if we include the reverse operation as well. </p>
+<p>Now, if we consider only a single cut for the time being, in string <script type="math/tex; mode=display">s_j</script>(not reversed) as discussed above, and allow for the reverse operation among the remaining strings, the lexicographically largest concatenated string will be given by: <script type="math/tex; mode=display">[s_{jpost}, \text{max}(s_{j+1},s_{(j+1)rev}) ,..., \text{max}(s_{n},s_{(n)rev}), \text{max}(s_{1},s_{(1)rev}), ..., s_{(jpre)rev}]</script>. Here, <script type="math/tex; mode=display">\text{max}</script> refers to the lexicographic maximum operation. </p>
+<p>Thus, if a particular string <script type="math/tex; mode=display">s_j</script> is finalized for the cut, the largest lexicographic concatenated string is dependent only on whether the string <script type="math/tex; mode=display">s_j</script> is reversed or not, and also on the position of the cut. This happens because the reverse/not reverse operation for the rest of the strings is fixed for a chosen <script type="math/tex; mode=display">s_j</script> as shown above and thus, doesn't impact the final result.</p>
+<p>Based on the above observations, we follow the given procedure. For every given string, we replace the string with the lexicographically larger string out of the original string and the reversed one. After this, we pick up every new string(chosen as the string on which the cuts will be applied), and apply a cut at all the positions of the currently picked string and form the full concantenated string keeping the rest of the newly formed strings intact. We also reverse the current string and follow the same process. While doing this, we keep a track of the largest lexicographic string found so far.</p>
+<p>For a better understanding of the procedure, watch this animation:</p>
+<p>!?!../Documents/555_Split_Assembled_Strings2.json:1000,563!?!</p>
+<iframe frameborder="0" height="496" name="A2jShPos" src="https://leetcode.com/playground/A2jShPos/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. where <script type="math/tex; mode=display">n</script> is the total number of characters in a list.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">t</script> and <script type="math/tex; mode=display">res</script> of size <script type="math/tex; mode=display">n</script> are used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">2233</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">5923</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              3%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/alibaba.html">Alibaba</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

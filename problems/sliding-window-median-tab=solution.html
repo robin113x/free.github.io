@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.
+Examples: 
+[2,3,4] , the median is 3
+[2,3], the median is (2 + 3) / 2 = 2.5 
+Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Your job is to output the median array for each window in the original array.
+For example,
+Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.
+
+Window position                Median
+---------------               -----
+[1  3  -1] -3  5  3  6  7       1
+ 1 [3  -1  -3] 5  3  6  7       -1
+ 1  3 [-1  -3  5] 3  6  7       -1
+ 1  3  -1 [-3  5  3] 6  7       3
+ 1  3  -1  -3 [5  3  6] 7       5
+ 1  3  -1  -3  5 [3  6  7]      6
+
+Therefore, return the median sliding window as [1,-1,-1,3,5,6].
+Note: 
+You may assume k is always valid, ie: k is always smaller than input array&#39;s size for non-empty array.">
+  <meta name="keywords"
+        content="Sliding Window Median, LC 480, leetcode 480, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>480. Sliding Window Median</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.</p>
+Examples: <br />
+<p><code>[2,3,4]</code> , the median is <code>3</code></p>
+<p><code>[2,3]</code>, the median is <code>(2 + 3) / 2 = 2.5</code> </p>
+
+<p>Given an array <i>nums</i>, there is a sliding window of size <i>k</i> which is moving from the very left of the array to the very right. You can only see the <i>k</i> numbers in the window. Each time the sliding window moves right by one position. Your job is to output the median array for each window in the original array.</p>
+
+<p>For example,<br>
+Given <i>nums</i> = <code>[1,3,-1,-3,5,3,6,7]</code>, and <i>k</i> = 3.</p>
+
+<pre>
+Window position                Median
+---------------               -----
+[1  3  -1] -3  5  3  6  7       1
+ 1 [3  -1  -3] 5  3  6  7       -1
+ 1  3 [-1  -3  5] 3  6  7       -1
+ 1  3  -1 [-3  5  3] 6  7       3
+ 1  3  -1  -3 [5  3  6] 7       5
+ 1  3  -1  -3  5 [3  6  7]      6
+</pre>
+
+<p>Therefore, return the median sliding window as <code>[1,-1,-1,3,5,6]</code>.</p>
+
+<p><b>Note: </b><br>
+You may assume <code>k</code> is always valid, ie: <code>k</code> is always smaller than input array's size for non-empty array.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#a-word-of-advice">A word of advice</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-simple-sorting-time-limit-exceeded-barely-accepted">Approach #1 Simple Sorting [Time Limit Exceeded / Barely Accepted]</a></li>
+<li><a href="#approach-2-two-heaps-lazy-removal-accepted">Approach #2 Two Heaps! (Lazy Removal) [Accepted]</a></li>
+<li><a href="#approach-3-two-multisets-accepted">Approach #3 Two Multisets! [Accepted]</a></li>
+<li><a href="#approach-4-multiset-and-two-pointers-accepted">Approach #4 Multiset and Two Pointers [Accepted]</a></li>
+<li><a href="#further-thoughts">Further Thoughts</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h3 id="a-word-of-advice">A word of advice</h3>
+<p>This problem is a companion problem to <a href="https://leetcode.com/problems/find-median-from-data-stream/">295. Find Median From Data Stream</a>. This means that a lot of approaches to solve this problem are based on the <a href="https://leetcode.com/articles/find-median-from-data-stream">methods to solve 295. Find Median From Data Stream</a>. Perhaps try that problem before you approach this one.</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-simple-sorting-time-limit-exceeded-barely-accepted">Approach #1 Simple Sorting [Time Limit Exceeded / Barely Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Do what the question says.</p>
+<p><strong>Algorithm</strong></p>
+<p>Store the numbers in a window container of size <script type="math/tex; mode=display">k</script>. The following operations must take place:</p>
+<ol>
+<li><strong>Inserting</strong> the incoming element.</li>
+<li><strong>Deleting</strong> the outgoing element.</li>
+<li><strong>Sorting</strong> the window to find the medians.</li>
+</ol>
+<p>One primitive approach is to copy <script type="math/tex; mode=display">k</script> consecutive elements from the input to the window and keep sorting these every time. This constitutes duplication of effort.</p>
+<p>We can do a bit better if we instead <em>insert</em> and <em>delete</em> one element per window shift. The challenge then is to maintain the window as <strong>sorted</strong>, before and after the <em>insert</em> and <em>delete</em> operations.</p>
+<p><strong>C++ [Time Limit Exceeded]</strong></p>
+<iframe frameborder="0" height="343" name="Nez6uisz" src="https://leetcode.com/playground/Nez6uisz/shared" width="100%"></iframe>
+<p><strong>Python [Accepted]</strong></p>
+<p>Python comes with an excellent <code>bisect</code> module to help perform efficient insert operations on lists while maintaining their sorted property.</p>
+<iframe frameborder="0" height="394" name="rt3SZUz3" src="https://leetcode.com/playground/rt3SZUz3/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O(n \cdot k \cdot log(k))</script> to <script type="math/tex; mode=display">O(n \cdot k)</script>.</p>
+<ul>
+<li>Copying elements into the container takes about <script type="math/tex; mode=display">O(k)</script> time each. This happens about <script type="math/tex; mode=display">(n-k)</script> times.</li>
+<li>
+<p>Sorting for each of the <script type="math/tex; mode=display">(n-k)</script> sliding window instances takes about <script type="math/tex; mode=display">O(k \cdot log(k))</script> time each.</p>
+</li>
+<li>
+<p>Bisected insertion or deletion takes about <script type="math/tex; mode=display">O(log(k))</script> for searching and <script type="math/tex; mode=display">O(k)</script> for actual shifting of elements. This takes place about <script type="math/tex; mode=display">n</script> times.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(k)</script> extra linear space for the window container.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-two-heaps-lazy-removal-accepted">Approach #2 Two Heaps! (Lazy Removal) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>The idea is the same as <a href="https://leetcode.com/articles/find-median-from-data-stream#approach-3-two-heaps-accepted">Approach #3</a> from <a href="https://leetcode.com/problems/find-median-from-data-stream/">295. Find Median From Data Stream</a>. The only additional requirement is removing the outgoing elements from the window.</p>
+<p>Since the window elements are stored in heaps, deleting elements that are not at the top of the heaps is a pain.</p>
+<p>Some languages (like <strong>Java</strong>) provide implementations of the <code>PriorityQueue</code> class that allow for removing <em>arbitrarily</em> placed elements. Generally, using such features is not efficient nor is their portability assured.</p>
+<p>Assuming that only the tops of heaps (and by extension the <code>PriorityQueue</code> class) are accessible, we need to find a way to efficiently invalidate and remove elements that are moving out of the sliding window.</p>
+<p>At this point, an important thing to notice is the fact that if the two heaps are balanced, only the top of the heaps are actually needed to find the medians. This means that as long as we can somehow keep the heaps balanced, we could also keep some extraneous elements.</p>
+<p>Thus, we can use hash-tables to keep track of invalidated elements. Once they reach the heap tops, we remove them from the heaps. This is the lazy removal technique.</p>
+<p>An immediate challenge at this point is balancing the heaps while keeping extraneous elements. This is done by actually moving some elements to the heap which has extraneous elements, from the other heap. This cancels out the effect of having extraneous elements and maintains the invariant that the heaps are balanced.</p>
+<p><strong>NOTE:</strong> When we talk about keeping the heaps balanced, we are <strong>not</strong> referring to the actual heap sizes. We are only concerned with valid elements and hence when we talk about balancing heaps, we are referring to count of such elements.</p>
+<p><strong>Algorithm</strong></p>
+<ul>
+<li>
+<p>Two priority queues:</p>
+<ol>
+<li>A max-heap <code>lo</code> to store the smaller half of the numbers</li>
+<li>A min-heap <code>hi</code> to store the larger half of the numbers</li>
+</ol>
+</li>
+<li>
+<p>A hash-map or hash-table <code>hash_table</code> for keeping track of invalid numbers. It holds the count of the occurrences of all such numbers that have been invalidated and yet remain in the heaps.</p>
+</li>
+<li>
+<p>The max-heap <code>lo</code> is allowed to store, at worst, one more element more than the min-heap <code>hi</code>. Hence if we have processed <script type="math/tex; mode=display">k</script> elements:</p>
+<ul>
+<li>If <script type="math/tex; mode=display">k = 2*n + 1 \quad (\forall \, n \in \mathbb{Z})</script>, then <code>lo</code> is allowed to hold <script type="math/tex; mode=display">n+1</script> elements, while <code>hi</code> can hold <script type="math/tex; mode=display">n</script> elements.</li>
+<li>If <script type="math/tex; mode=display">k = 2*n \quad (\forall \, n \in \mathbb{Z})</script>, then both heaps are balanced and hold <script type="math/tex; mode=display">n</script> elements each.</li>
+</ul>
+<p>This gives us the nice property that when the heaps are perfectly balanced, the median can be derived from the tops of both heaps. Otherwise, the top of the max-heap <code>lo</code> holds the legitimate median.</p>
+</li>
+</ul>
+<p><strong>NOTE:</strong> As mentioned before, when we are talking about keeping the heaps balanced, the actual sizes of the heaps are irrelevant. Only the count of valid elements in both heaps matter.</p>
+<ul>
+<li>
+<p>Keep a <code>balance</code> factor. It indicates three situations:</p>
+<ul>
+<li><code>balance</code> <script type="math/tex; mode=display">= 0</script>: Both heaps are balanced or nearly balanced.</li>
+<li><code>balance</code> <script type="math/tex; mode=display">< 0</script>: <code>lo</code> needs more valid elements. Elements from <code>hi</code> are moved to <code>lo</code>.</li>
+<li><code>balance</code> <script type="math/tex; mode=display">> 0</script>: <code>hi</code> needs more valid elements. Elements from <code>lo</code> are moved to <code>hi</code>.</li>
+</ul>
+</li>
+<li>
+<p>Inserting an incoming number <code>in_num</code>:</p>
+<ul>
+<li>
+<p>If <code>in_num</code> is less than or equal to the top element of <code>lo</code>, then it can be inserted to <code>lo</code>. However this unbalances <code>hi</code> (<code>hi</code> has lesser valid elements now). Hence <code>balance</code> is incremented.</p>
+</li>
+<li>
+<p>Otherwise, <code>in_num</code> must be added to <code>hi</code>. Obviously, now <code>lo</code> is unbalanced. Hence <code>balance</code> is decremented.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Lazy removal of an outgoing number <code>out_num</code>:</p>
+<ul>
+<li>If <code>out_num</code> is present in <code>lo</code>, then invalidating this occurrence will unbalance <code>lo</code> itself. Hence <code>balance</code> must be decremented.</li>
+<li>
+<p>If <code>out_num</code> is present in <code>hi</code>, then invalidating this occurrence will unbalance <code>hi</code> itself. Hence <code>balance</code> must be incremented.</p>
+</li>
+<li>
+<p>We increment the count of this element in the hash_table table.</p>
+</li>
+<li>Once an invalid element reaches either of the heap tops, we remove them and decrement their counts in the hash_table table.</li>
+</ul>
+</li>
+</ul>
+<iframe frameborder="0" height="515" name="nhx46JwP" src="https://leetcode.com/playground/nhx46JwP/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O(2 * n * log(k)) + O(n-k) \approx O(n \cdot log(k))</script>.</p>
+<ul>
+<li>Either (or sometimes both) of the heaps gets every element inserted into it at least once. Collectively each of those takes about <script type="math/tex; mode=display">O(log(k))</script> time. That is <script type="math/tex; mode=display">n</script> such insertions.</li>
+<li>About <script type="math/tex; mode=display">(n-k)</script> removals from the top of the heaps take place (the number of sliding window instances). Each of those takes about <script type="math/tex; mode=display">O(log(k))</script> time.</li>
+<li>Hash table operations are assumed to take <script type="math/tex; mode=display">O(1)</script> time each. This happens roughly the same number of times as removals from heaps take place.</li>
+</ul>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(k) + O(n) \approx O(n)</script> extra linear space.</p>
+<ul>
+<li>The heaps collectively require <script type="math/tex; mode=display">O(k)</script> space.</li>
+<li>The hash table needs about <script type="math/tex; mode=display">O(n-k)</script> space.</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-two-multisets-accepted">Approach #3 Two Multisets! [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>One can see that <code>multiset</code>s are a great way to keep elements sorted while providing efficient access to the first and last elements. Inserting and deleting arbitrary elements are also fairly efficient operations in a <code>multiset</code>. (Refer to <a href="https://leetcode.com/articles/find-median-from-data-stream#approach-4-multiset-and-two-pointers-accepted">Approach #4 Intuition</a> for <a href="https://leetcode.com/problems/find-median-from-data-stream/">295. Find Median From Data Stream</a>)</p>
+<p>Thus, if the previous approach gives you too much heartburn, consider replacing the use of <code>priority_queue</code> with <code>multiset</code>.</p>
+<p><strong>Algorithm</strong></p>
+<p>Inserting or deleting an element is straight-forward. Balancing the heaps takes the same route as <a href="https://leetcode.com/articles/find-median-from-data-stream#approach-3-two-heaps-accepted">Approach #3</a> of <a href="https://leetcode.com/problems/find-median-from-data-stream/">295. Find Median From Data Stream</a>.</p>
+<iframe frameborder="0" height="515" name="gF6jWb7Y" src="https://leetcode.com/playground/gF6jWb7Y/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O((n-k) * 6 * log(k)) \approx O(n \cdot log(k))</script>.</p>
+<ul>
+<li>At worst, there are three set insertions and three set deletions from the start or end. Each of these takes about <script type="math/tex; mode=display">O(log(k))</script> time.</li>
+<li>Finding the mean takes constant <script type="math/tex; mode=display">O(1)</script> time since the start or ends of sets are directly accessible.</li>
+<li>Each of these steps takes place about <script type="math/tex; mode=display">(n-k)</script> times (the number of sliding window instances).</li>
+</ul>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(k)</script> extra linear space to hold contents of the window.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-multiset-and-two-pointers-accepted">Approach #4 Multiset and Two Pointers [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>This is same as <a href="https://leetcode.com/articles/find-median-from-data-stream#approach-4-multiset-and-two-pointers-accepted">Approach #4</a> for <a href="https://leetcode.com/problems/find-median-from-data-stream/">295. Find Median From Data Stream</a>.</p>
+<blockquote>
+<p>But, we don't actually need two pointers.</p>
+</blockquote>
+<p>Median elements are derived using a single iterator position (when the window size <script type="math/tex; mode=display">k</script> is odd) or two consecutive iterator positions (when <script type="math/tex; mode=display">k</script> is even). Hence keeping track of <em>only</em> one pointer is sufficient. The other pointer can be <em>implicitly derived</em> when required.</p>
+<p><strong>Algorithm</strong></p>
+<ul>
+<li>
+<p>A single iterator <code>mid</code>, which iterates over the <code>window</code> multiset. It is analogous to <code>upper_median</code> in <a href="https://leetcode.com/articles/find-median-from-data-stream#approach-4-multiset-and-two-pointers-accepted">Approach #4</a> for <a href="https://leetcode.com/problems/find-median-from-data-stream/">295. Find Median From Data Stream</a>. <code>lower_median</code> is <em>implicitly derived</em> from <code>mid</code>. It's either equal to <code>mid</code> (when the window size <script type="math/tex; mode=display">k</script> is odd) or <code>prev(mid)</code> <sup id="fnref:note-1"><a class="footnote-ref" href="#fn:note-1" rel="footnote">1</a></sup> <script type="math/tex">when the window size $$k$$ is even</script>.</p>
+</li>
+<li>
+<p>We start with populating our multiset <code>window</code> with the first <script type="math/tex; mode=display">k</script> elements. We set <code>mid</code> to the <script type="math/tex; mode=display">\lfloor k/2 \rfloor</script> indexed element in <code>window</code> (<code>0</code>-based indexing; Multisets always maintain their sorted property).</p>
+</li>
+<li>
+<p>While inserting an element <code>num</code> into <code>window</code>, three cases arise:</p>
+<ol>
+<li>
+<p><code>num</code> is less than the value of upper median <code>mid</code>.</p>
+</li>
+<li>
+<p><code>num</code> is greater than the value of upper median <code>mid</code>.</p>
+</li>
+<li>
+<p><code>num</code> is equal to the value of upper median <code>mid</code>. This situation is often handled as language-dependent. Since C++ <code>multiset</code> insert elements at the end of their equal range, this situation is essentially the same as the previous case.</p>
+</li>
+<li>
+<p>For the first case, <code>num</code> is inserted before the upper median element <code>mid</code>. Thus <code>mid</code> now, no longer points to the <script type="math/tex; mode=display">\lfloor k/2 \rfloor</script> indexed element. In fact it points to the <script type="math/tex; mode=display">\lfloor k/2 \rfloor + 1</script> indexed element. We fix that by decrementing <code>mid</code>.</p>
+</li>
+<li>
+<p>For the second and third cases, <code>num</code> is inserted after the upper median element <code>mid</code> and hence does not spoil the <code>mid</code> iterator. It still points to the <script type="math/tex; mode=display">\lfloor k/2 \rfloor</script> indexed element.</p>
+</li>
+<li>
+<p>Of course, the window size just increased to <script type="math/tex; mode=display">k + 1</script> in all three cases. That will easily be fixed by removing the element that is about to exit the window.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>While removing an element <code>num</code>, the same three cases arise as when we wanted to insert an element:</p>
+<ol>
+<li>
+<p><code>num</code> is less than the value of upper median <code>mid</code>.</p>
+</li>
+<li>
+<p><code>num</code> is greater than the value of upper median <code>mid</code>.</p>
+</li>
+<li>
+<p><code>num</code> is equal to the value of upper median <code>mid</code>. Since <code>mid</code> will point to the first occurrence of <code>num</code> in the multiset <code>window</code> and we deterministically remove the first occurrence (take note that we use <code>std::multiset::lower_bound()</code> <sup id="fnref:note-2"><a class="footnote-ref" href="#fn:note-2" rel="footnote">2</a></sup> to find the correct occurrence to erase), this case is handled in the same manner as the first case.</p>
+</li>
+<li>
+<p>In the first and third cases, removing <code>num</code> will spoil the <code>mid</code> iterator. Thus we need to fix that by incrementing <code>mid</code> before we remove that element.</p>
+</li>
+<li>
+<p>For the second case, the <code>mid</code> iterator is not spoiled. No further action is required.</p>
+</li>
+<li>
+<p>Once this element has been removed, the window size returns to being <script type="math/tex; mode=display">k</script>.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>After insertion of the incoming element and removal of the outgoing element, we are left again with some nice invariants:</p>
+<ol>
+<li>Window size is again <script type="math/tex; mode=display">k</script>.</li>
+<li>The window is still fully sorted.</li>
+<li><code>mid</code> still points to the <script type="math/tex; mode=display">\lfloor k/2 \rfloor</script> indexed element.</li>
+</ol>
+</li>
+<li>
+<p>Finding the median of the window is easy! It is simply the <strong>mean</strong> of the elements pointed to by the two pointers <code>lo_median</code> and <code>hi_median</code>. In our case those are <code>mid</code> or <code>prev(mid)</code> (as decided by whether <script type="math/tex; mode=display">k</script> is odd or even) , and <code>mid</code> respectively.</p>
+</li>
+</ul>
+<p><sup id="fnref:note-3"><a class="footnote-ref" href="#fn:note-3" rel="footnote">3</a></sup></p>
+<iframe frameborder="0" height="515" name="bVVJJaz7" src="https://leetcode.com/playground/bVVJJaz7/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O((n-k) \cdot log(k)) + O(k) \approx O(n \cdot log(k))</script>.</p>
+<ul>
+<li>Initializing <code>mid</code> takes about <script type="math/tex; mode=display">O(k)</script> time.</li>
+<li>Inserting or deleting a number takes <script type="math/tex; mode=display">O(log(k))</script> time for a standard <code>multiset</code> scheme. <sup id="fnref:note-4"><a class="footnote-ref" href="#fn:note-4" rel="footnote">4</a></sup></li>
+<li>Finding the mean takes constant <script type="math/tex; mode=display">O(1)</script> time since the median elements are directly accessible from <code>mid</code> iterator.</li>
+<li>The last two steps take place about <script type="math/tex; mode=display">(n-k)</script> times (the number of sliding window instances).</li>
+</ul>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(k)</script> extra linear space to hold contents of the window.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="further-thoughts">Further Thoughts</h4>
+<p>As noted before, this problem is essentially an extension to <a href="https://leetcode.com/problems/find-median-from-data-stream/">295. Find Median From Data Stream</a>. That problem had a lot of ways to go about, that frankly, are not of much use in an interview. But they are interesting to follow all the same. If you are interested take a look <a href="https://leetcode.com/articles/find-median-from-data-stream#further-thoughts">here.</a> Try extending those methods to this problem.</p>
+<hr/>
+<p>Analysis written by <a href="https://leetcode.com/babhishek21">@babhishek21</a>.</p>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn:note-1">
+<p><code>std::prev()</code> is a C++ method to find the previous element to the current one being pointed to by an iterator. <a class="footnote-backref" href="#fnref:note-1" rev="footnote" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:note-2">
+<p>Had we used <code>std::multiset::find()</code>, there was no guarantee that the first occurrence of <code>num</code> would be found. Although the contrary did happen in all of our tests, I don't recommend using it. Your mileage may vary. <a class="footnote-backref" href="#fnref:note-2" rev="footnote" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+<li id="fn:note-3">
+<p>Shout-out to <a href="https://leetcode.com/votrubac/">@votrubac</a> and <a href="https://leetcode.com/stefanpochmann">@StefanPochmann</a>! <a class="footnote-backref" href="#fnref:note-3" rev="footnote" title="Jump back to footnote 3 in the text">↩</a></p>
+</li>
+<li id="fn:note-4">
+<p><a href="http://en.cppreference.com/w/cpp/container/multiset/insert">Hinting</a> can reduce that to amortized constant <script type="math/tex; mode=display">O(1)</script> time. <a class="footnote-backref" href="#fnref:note-4" rev="footnote" title="Jump back to footnote 4 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">10559</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">34132</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              14%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>
