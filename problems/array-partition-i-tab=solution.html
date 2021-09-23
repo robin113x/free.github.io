@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array of 2n integers, your task is to group these integers into n pairs of integer, say (a1, b1), (a2, b2), ..., (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.
+
+Example 1:
+Input: [1,4,3,2]
+
+Output: 4
+Explanation: n is 2, and the maximum sum of pairs is 4 = min(1, 2) + min(3, 4).
+
+
+Note:
+
+n is a positive integer, which is in the range of [1, 10000].
+All the integers in the array will be in the range of [-10000, 10000].">
+  <meta name="keywords"
+        content="Array Partition I, LC 561, leetcode 561, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>561. Array Partition I</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given an array of <b>2n</b> integers, your task is to group these integers into <b>n</b> pairs of integer, say (a<sub>1</sub>, b<sub>1</sub>), (a<sub>2</sub>, b<sub>2</sub>), ..., (a<sub>n</sub>, b<sub>n</sub>) which makes sum of min(a<sub>i</sub>, b<sub>i</sub>) for all i from 1 to n as large as possible.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> [1,4,3,2]
+
+<b>Output:</b> 4
+<b>Explanation:</b> n is 2, and the maximum sum of pairs is 4 = min(1, 2) + min(3, 4).
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li><b>n</b> is a positive integer, which is in the range of [1, 10000].</li>
+<li>All the integers in the array will be in the range of [-10000, 10000].</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-sorting-accepted">Approach #2 Using Sorting [Accepted]</a></li>
+<li><a href="#approach-3-using-extra-array-accepted">Approach #3 Using Extra Array [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The simplest solution is to consider every possible set of pairings possible by using the elements of the <script type="math/tex; mode=display">nums</script> array. For generating all the possible pairings, we make use of a function <code>permute(nums, current_index)</code>. This function creates all the possible permutations of the elements of the given array.</p>
+<p>To do so, <code>permute</code> takes the index of the current element <script type="math/tex; mode=display">current_index</script> as one of the arguments. Then, it swaps the current element with every other element in the array, lying towards its right, so as to generate a new ordering of the array elements. After the swapping has been done, it makes another call to  <code>permute</code> but this time with the index of the next element in the array. While returning back, we reverse the swapping done in the current function call.</p>
+<p>Thus, when we reach the end of the array, a new ordering of the array's elements is generated. We consider the elements to be taken for the pairings such that the first element of every pair comes from the first half of the new array and the second element comes from the last half of the array. Thus, we sum up the minimum elements out of all these possible pairings and find out the maximum sum out of them.</p>
+<p>The animation below depicts the ways the permutations are generated.</p>
+<p>!?!../Documents/561_Array.json:1000,563!?!</p>
+<iframe frameborder="0" height="513" name="yuWmjysn" src="https://leetcode.com/playground/yuWmjysn/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n!)</script>. A total of <script type="math/tex; mode=display">n!</script> permutations are possible for <script type="math/tex; mode=display">n</script> elements in the array.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-sorting-accepted">Approach #2 Using Sorting [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In order to understand this approach, let us look at the problem from a different perspective. We need to form the pairings of the array's elements such that the overall sum of the minimum out of such pairings is maximum. Thus, we can look at the operation of choosing the minimum out of the pairing, say <script type="math/tex; mode=display">(a, b)</script> as incurring a loss of <script type="math/tex; mode=display">a - b</script>(if <script type="math/tex; mode=display">a> b</script>), in the maximum sum possible.</p>
+<p>The total sum will now be maximum if the overall loss incurred from such pairings is minimized. This minimization of loss in every pairing is possible only if the numbers chosen for the pairings lie closer to each other than to the other elements of the array.</p>
+<p>Taking this into consideration, we can sort the elements of the given array and form the pairings of the elements directly in the sorted order. This will lead to the pairings of elements with minimum difference between them leading to the maximization of the required sum.</p>
+<iframe frameborder="0" height="224" name="d5X9zosv" src="https://leetcode.com/playground/d5X9zosv/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(nlog(n)\big)</script>. Sorting takes <script type="math/tex; mode=display">O\big(nlog(n)\big)</script> time. We iterate over the array only once.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-extra-array-accepted">Approach #3 Using Extra Array [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>This approach is somewhat related to the sorting approach. Since the range of elements in the given array is limited, we can make use of a hashmap <script type="math/tex; mode=display">arr</script>, such that <script type="math/tex; mode=display">arr[i]</script> stores the frequency of occurence of <script type="math/tex; mode=display">(i-10000)^{th}</script> element. This subtraction is done so as to be able to map the numbers in the range <script type="math/tex; mode=display">-10000 &leq; i &leq; -1</script> onto the hashmap.</p>
+<p>Thus, now instead of sorting the array's elements, we can directly traverse the hashmap in an ascending order. But, any element could also occur multiple times in the given array. We need to take this factor into account. </p>
+<p>For this, consider an example: <code>nums: [a, b, a, b, b, a]</code>. The sorted order of this array will be <code>nums_sorted: [a, a, a, b, b, b]</code>. (We aren't actually sorting the array in this approach, but the sorted array is taken just for demonstration). From the previous approach, we know that the required set of pairings is <script type="math/tex; mode=display">(a,a), (a,b), (b,b)</script>. Now, we can see that while choosing the minimum elements, <script type="math/tex; mode=display">a</script> will be chosen twice and <script type="math/tex; mode=display">b</script> will be chosen once only. This happens because the number of <script type="math/tex; mode=display">a</script>'s to be chosen has already been determined by the frequency of <script type="math/tex; mode=display">a</script>, leaving the rest of the places to be filled by <script type="math/tex; mode=display">b</script>. This is because, for the correct result we need to consider the elements in the ascending order. Thus, the lower number always gets priority to be added to the end result.</p>
+<p>But, if the sorted elements take the form: <code>nums_sorted: [a, a, b, b, b, b]</code>, the correct pairing will be <script type="math/tex; mode=display">(a,a), (b,b), (b,b)</script>. Again, in this case the number of <script type="math/tex; mode=display">a</script>'s chosen is already predetermined, but since the number of <script type="math/tex; mode=display">a</script>'s is odd, it doesn't impact the choice of <script type="math/tex; mode=display">b</script> in the final sum.</p>
+<p>Thus, based on the above discussion, we traverse the hashmap <script type="math/tex; mode=display">arr</script>. If the current element is occuring <script type="math/tex; mode=display">freq_i</script> number of times, and one of the elements is left to be paired with other elements in the right region(considering a virtual sorted array), we consider the current element <script type="math/tex; mode=display">\left \lceil\frac{freq_i}{2}\right \rceil</script> number of times and the next element occuring in the array <script type="math/tex; mode=display">\left \lfloor\frac{freq_j}{2}\right \rfloor</script> number of times for the final sum. To propagate the impact of this left over chosen number, we make use of a flag <script type="math/tex; mode=display">d</script>. This flag is set to 1 if there is a leftover element from the current set which will be considered one more time. The same extra element already considered is taken into account while choosing an element from the next set.</p>
+<p>While traversing the hashmap, we determine the correct number of times each element needs to be considered as discussed above. Note that the flag <script type="math/tex; mode=display">d</script> and the <script type="math/tex; mode=display">sum</script> remains unchanged if the current element of the hashmap doesn't exist in the array.</p>
+<p>Below code is inspired by <a href="https://leetcode.com/fallcreek">@fallcreek</a></p>
+<iframe frameborder="0" height="309" name="tzs4t7Hu" src="https://leetcode.com/playground/tzs4t7Hu/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. The whole hashmap <script type="math/tex; mode=display">arr</script> of size <script type="math/tex; mode=display">n</script> is traversed only once.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. A hashmap <script type="math/tex; mode=display">arr</script> of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">56883</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">85423</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              94%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="A group of two or more people wants to meet and minimize the total travel distance. You are given a 2D grid of values 0 or 1, where each 1 marks the home of someone in the group. The distance is calculated using Manhattan Distance, where distance(p1, p2) = |p2.x - p1.x| + |p2.y - p1.y|.
+For example, given three people living at (0,0), (0,4), and (2,2):
+1 - 0 - 0 - 0 - 1
+|   |   |   |   |
+0 - 0 - 0 - 0 - 0
+|   |   |   |   |
+0 - 0 - 1 - 0 - 0
+The point (0,2) is an ideal meeting point, as the total travel distance of 2+2+2=6 is minimal. So return 6.">
+  <meta name="keywords"
+        content="Best Meeting Point, LC 296, leetcode 296, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>296. Best Meeting Point</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>A group of two or more people wants to meet and minimize the total travel distance. You are given a 2D grid of values 0 or 1, where each 1 marks the home of someone in the group. The distance is calculated using <a href="http://en.wikipedia.org/wiki/Taxicab_geometry" target="_blank">Manhattan Distance</a>, where distance(p1, p2) = <code>|p2.x - p1.x| + |p2.y - p1.y|</code>.</p>
+
+<p>For example, given three people living at <code>(0,0)</code>, <code>(0,4)</code>, and <code>(2,2)</code>:</p>
+
+<pre>1 - 0 - 0 - 0 - 1
+|   |   |   |   |
+0 - 0 - 0 - 0 - 0
+|   |   |   |   |
+0 - 0 - 1 - 0 - 0</pre>
+
+<p>The point <code>(0,2)</code> is an ideal meeting point, as the total travel distance of 2+2+2=6 is minimal. So return 6.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-breadth-first-search-time-limit-exceeded">Approach #1 (Breadth-first Search) [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-manhattan-distance-formula-time-limit-exceeded">Approach #2 (Manhattan Distance Formula) [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-sorting-accepted">Approach #3 (Sorting) [Accepted]</a></li>
+<li><a href="#approach-4-collect-coordinates-in-sorted-order-accepted">Approach #4 (Collect Coordinates in Sorted Order) [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-breadth-first-search-time-limit-exceeded">Approach #1 (Breadth-first Search) [Time Limit Exceeded]</h4>
+<p>A brute force approach is to evaluate all possible meeting points in the grid. We could apply breadth-first search originating from each of the point.</p>
+<p>While inserting a point into the queue, we need to record the distance of that point from the meeting point.  Also, we need an extra <code>visited</code> table to record which point had already been visited to avoid being inserted into the queue again.</p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">minTotalDistance</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">grid</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">minDistance</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">row</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">col</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">distance</span> <span class="o">=</span> <span class="n">search</span><span class="o">(</span><span class="n">grid</span><span class="o">,</span> <span class="n">row</span><span class="o">,</span> <span class="n">col</span><span class="o">);</span>
+            <span class="n">minDistance</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">distance</span><span class="o">,</span> <span class="n">minDistance</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">minDistance</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">int</span> <span class="nf">search</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">grid</span><span class="o">,</span> <span class="kt">int</span> <span class="n">row</span><span class="o">,</span> <span class="kt">int</span> <span class="n">col</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Queue</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span>
+    <span class="kt">boolean</span><span class="o">[][]</span> <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="n">m</span><span class="o">][</span><span class="n">n</span><span class="o">];</span>
+    <span class="n">q</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">col</span><span class="o">,</span> <span class="mi">0</span><span class="o">));</span>
+    <span class="kt">int</span> <span class="n">totalDistance</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(!</span><span class="n">q</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">Point</span> <span class="n">point</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">point</span><span class="o">.</span><span class="na">row</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">point</span><span class="o">.</span><span class="na">col</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">point</span><span class="o">.</span><span class="na">distance</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">r</span> <span class="o">&gt;=</span> <span class="n">m</span> <span class="o">||</span> <span class="n">c</span> <span class="o">&gt;=</span> <span class="n">n</span> <span class="o">||</span> <span class="n">visited</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">])</span> <span class="o">{</span>
+            <span class="k">continue</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">grid</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">totalDistance</span> <span class="o">+=</span> <span class="n">d</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">visited</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">q</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="n">d</span> <span class="o">+</span> <span class="mi">1</span><span class="o">));</span>
+        <span class="n">q</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="n">d</span> <span class="o">+</span> <span class="mi">1</span><span class="o">));</span>
+        <span class="n">q</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">r</span><span class="o">,</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">d</span> <span class="o">+</span> <span class="mi">1</span><span class="o">));</span>
+        <span class="n">q</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">r</span><span class="o">,</span> <span class="n">c</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">d</span> <span class="o">+</span> <span class="mi">1</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">totalDistance</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Point</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">row</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">col</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">distance</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nf">Point</span><span class="o">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">,</span> <span class="kt">int</span> <span class="n">col</span><span class="o">,</span> <span class="kt">int</span> <span class="n">distance</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">row</span> <span class="o">=</span> <span class="n">row</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">col</span> <span class="o">=</span> <span class="n">col</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">distance</span> <span class="o">=</span> <span class="n">distance</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(m^2n^2)</script>.
+For each point in the <script type="math/tex; mode=display">m \times n</script> size grid, the breadth-first search takes at most <script type="math/tex; mode=display">m \times n</script> steps to reach all points. Therefore the time complexity is <script type="math/tex; mode=display">O(m^2n^2)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(mn)</script>.
+The <code>visited</code> table consists of <script type="math/tex; mode=display">m \times n</script> elements map to each point in the grid. We insert at most <script type="math/tex; mode=display">m \times n</script> points into the queue.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-manhattan-distance-formula-time-limit-exceeded">Approach #2 (Manhattan Distance Formula) [Time Limit Exceeded]</h4>
+<p>You may notice that breadth-first search is unnecessary. You can just calculate the Manhattan distance using the formula:</p>
+<p>
+<script type="math/tex; mode=display">
+distance(p1, p2) = \left | p2.x - p1.x \right | + \left | p2.y - p1.y \right |
+</script>
+</p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">minTotalDistance</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">grid</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">points</span> <span class="o">=</span> <span class="n">getAllPoints</span><span class="o">(</span><span class="n">grid</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">minDistance</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">row</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">col</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">distance</span> <span class="o">=</span> <span class="n">calculateDistance</span><span class="o">(</span><span class="n">points</span><span class="o">,</span> <span class="n">row</span><span class="o">,</span> <span class="n">col</span><span class="o">);</span>
+            <span class="n">minDistance</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">distance</span><span class="o">,</span> <span class="n">minDistance</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">minDistance</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">int</span> <span class="nf">calculateDistance</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">points</span><span class="o">,</span> <span class="kt">int</span> <span class="n">row</span><span class="o">,</span> <span class="kt">int</span> <span class="n">col</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">distance</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">Point</span> <span class="n">point</span> <span class="o">:</span> <span class="n">points</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">distance</span> <span class="o">+=</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">point</span><span class="o">.</span><span class="na">row</span> <span class="o">-</span> <span class="n">row</span><span class="o">)</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">point</span><span class="o">.</span><span class="na">col</span> <span class="o">-</span> <span class="n">col</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">distance</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="nf">getAllPoints</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">grid</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">points</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">row</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">col</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">grid</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">points</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">col</span><span class="o">));</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">points</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Point</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">row</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">col</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nf">Point</span><span class="o">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">,</span> <span class="kt">int</span> <span class="n">col</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">row</span> <span class="o">=</span> <span class="n">row</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">col</span> <span class="o">=</span> <span class="n">col</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(m^2n^2)</script>.
+Assume that <script type="math/tex; mode=display">k</script> is the total number of houses. For each point in the <script type="math/tex; mode=display">m \times n</script> size grid, we calculate the manhattan distance in <script type="math/tex; mode=display">O(k)</script>. Therefore the time complexity is <script type="math/tex; mode=display">O(mnk)</script>. But do note that there could be up to <script type="math/tex; mode=display">m \times n</script> houses, making the worst case time complexity to be <script type="math/tex; mode=display">O(m^2n^2)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(mn)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-sorting-accepted">Approach #3 (Sorting) [Accepted]</h4>
+<p>Finding the best meeting point in a 2D grid seems difficult. Let us take a step back and solve the 1D case which is much simpler. Notice that the Manhattan distance is the sum of two independent variables. Therefore, once we solve the 1D case, we can solve the 2D case as two independent 1D problems.</p>
+<p>Let us look at some 1D examples below:</p>
+<div class="codehilite"><pre><span></span>Case #1: 1-0-0-0-1
+
+Case #2: 0-1-0-1-0
+</pre></div>
+<p>We know the best meeting point must locate somewhere between the left-most and right-most point. For the above two cases, we would select the center point at <script type="math/tex; mode=display">x = 2</script> as the best meeting point. How about choosing the mean of all points as the meeting point?</p>
+<p>Consider this case:</p>
+<div class="codehilite"><pre><span></span>Case #3: 1-0-0-0-0-0-0-1-1
+</pre></div>
+<p>Using the mean gives us <script type="math/tex; mode=display">\bar{x} = \frac{0 + 7 + 8}{3} = 5</script> as the meeting point. The total distance is <script type="math/tex; mode=display">10</script>.</p>
+<p>But the best meeting point should be at <script type="math/tex; mode=display">x = 7</script> and the total distance is <script type="math/tex; mode=display">8</script>.</p>
+<p>You may argue that the mean is <em>close</em> to the optimal point. But imagine a larger case with many 1's congregating on the right side and just a single 1 on the left-most side. Using the mean as the meeting point would be far from optimal.</p>
+<p>Besides mean, what is a better way to represent the distribution of points? Would median be a better representation? Indeed. In fact, the median <em>must</em> be the optimal meeting point.</p>
+<div class="codehilite"><pre><span></span>Case #4: 1-1-0-0-1
+</pre></div>
+<p>To see why this is so, let us look at case #4 above and choose the median <script type="math/tex; mode=display">x = 1</script> as our initial meeting point. Assume that the total distance traveled is <em>d</em>. Note that we have equal number of points distributed to its left and to its right. Now let us move one step to its right where <script type="math/tex; mode=display">x = 2</script> and notice how the distance changes accordingly.</p>
+<p>Since there are two points to the left of <script type="math/tex; mode=display">x = 2</script>, we add <script type="math/tex; mode=display">2 * (+1)</script> to <em>d</em>. And <em>d</em> is offset by –1 since there is one point to the right. This means the distance had overall increased by 1.</p>
+<p>Therefore, it is clear that:</p>
+<blockquote>
+<p>As long as there is equal number of points to the left and right of the meeting point, the total distance is minimized.</p>
+</blockquote>
+<div class="codehilite"><pre><span></span>Case #5: 1-1-0-0-1-1
+</pre></div>
+<p>One may think that the optimal meeting point must fall on one of the 1's. This is true for cases with odd number of 1's, but not necessarily true when there are even number of 1's, just like case #5 does. You can choose any of the <script type="math/tex; mode=display">x = 1</script> to <script type="math/tex; mode=display">x = 4</script> points and the total distance is minimized. Why?</p>
+<p>The implementation is direct. First we collect both the row and column coordinates, sort them and select their middle elements. Then we calculate the total distance as the sum of two independent 1D problems.</p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">minTotalDistance</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">grid</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">rows</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">cols</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">row</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">col</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">grid</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">rows</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">row</span><span class="o">);</span>
+                <span class="n">cols</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">col</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">rows</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">rows</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">/</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">cols</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">cols</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">/</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">minDistance1D</span><span class="o">(</span><span class="n">rows</span><span class="o">,</span> <span class="n">row</span><span class="o">)</span> <span class="o">+</span> <span class="n">minDistance1D</span><span class="o">(</span><span class="n">cols</span><span class="o">,</span> <span class="n">col</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">int</span> <span class="nf">minDistance1D</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">points</span><span class="o">,</span> <span class="kt">int</span> <span class="n">origin</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">distance</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">point</span> <span class="o">:</span> <span class="n">points</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">distance</span> <span class="o">+=</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">point</span> <span class="o">-</span> <span class="n">origin</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">distance</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p>Note that in the code above we do not need to sort <em>rows</em>, why?</p>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(mn \log mn)</script>.
+Since there could be at most <script type="math/tex; mode=display">m \times n</script> points, therefore the time complexity is <script type="math/tex; mode=display">O(mn \log mn)</script> due to sorting.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(mn)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-collect-coordinates-in-sorted-order-accepted">Approach #4 (Collect Coordinates in Sorted Order) [Accepted]</h4>
+<p>We could use the <a href="https://en.wikipedia.org/wiki/Selection_algorithm">Selection algorithm</a> to select the median in <script type="math/tex; mode=display">O(mn)</script> time, but there is an easier way. Notice that we can collect both the row and column coordinates in sorted order.</p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">minTotalDistance</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">grid</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">collectRows</span><span class="o">(</span><span class="n">grid</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">collectCols</span><span class="o">(</span><span class="n">grid</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">rows</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">rows</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">/</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">cols</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">/</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">minDistance1D</span><span class="o">(</span><span class="n">rows</span><span class="o">,</span> <span class="n">row</span><span class="o">)</span> <span class="o">+</span> <span class="n">minDistance1D</span><span class="o">(</span><span class="n">cols</span><span class="o">,</span> <span class="n">col</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">int</span> <span class="nf">minDistance1D</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">points</span><span class="o">,</span> <span class="kt">int</span> <span class="n">origin</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">distance</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">point</span> <span class="o">:</span> <span class="n">points</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">distance</span> <span class="o">+=</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">point</span> <span class="o">-</span> <span class="n">origin</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">distance</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">collectRows</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">grid</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">rows</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">row</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">col</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">grid</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">rows</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">row</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">rows</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">collectCols</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">grid</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">cols</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">col</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">row</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">grid</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">cols</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">col</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">cols</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p><br/>
+You can calculate the distance without knowing the median using a two pointer approach. This neat approach is inspired by <a href="https://leetcode.com/discuss/65336/14ms-java-solution">@larrywang2014's solution</a>.</p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">minTotalDistance</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">grid</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">collectRows</span><span class="o">(</span><span class="n">grid</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">collectCols</span><span class="o">(</span><span class="n">grid</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">minDistance1D</span><span class="o">(</span><span class="n">rows</span><span class="o">)</span> <span class="o">+</span> <span class="n">minDistance1D</span><span class="o">(</span><span class="n">cols</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">int</span> <span class="nf">minDistance1D</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">points</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">distance</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">distance</span> <span class="o">+=</span> <span class="n">points</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">-</span> <span class="n">points</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+        <span class="n">i</span><span class="o">++;</span>
+        <span class="n">j</span><span class="o">--;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">distance</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(mn)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(mn)</script>.</p>
+</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">15177</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">29139</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              56%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/twitter.html">Twitter</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.
+
+For example:
+Given the following binary tree,
+
+   1            &lt;---
+ /   \
+2     3         &lt;---
+ \     \
+  5     4       &lt;---
+
+
+
+You should return [1, 3, 4].
+
+Credits:Special thanks to @amrsaqr for adding this problem and creating all test cases.">
+  <meta name="keywords"
+        content="Binary Tree Right Side View, LC 199, leetcode 199, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>199. Binary Tree Right Side View</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a binary tree, imagine yourself standing on the <i>right</i> side of it, return the values of the nodes you can see ordered from top to bottom.</p>
+
+<p>
+For example:<br />
+Given the following binary tree,<br />
+<pre>
+   1            <---
+ /   \
+2     3         <---
+ \     \
+  5     4       <---
+</pre>
+</p>
+<p>
+You should return <code>[1, 3, 4]</code>.
+</p>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://leetcode.com/discuss/user/amrsaqr">@amrsaqr</a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#initial-thoughts">Initial Thoughts</a></li>
+<li><a href="#approach-1-depth-first-search-accepted">Approach #1 Depth-First Search [Accepted]</a></li>
+<li><a href="#approach-2-breadth-first-search-accepted">Approach #2 Breadth-First Search [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="initial-thoughts">Initial Thoughts</h4>
+<p>Because the tree topography is unknown ahead of time, it is not possible to
+design an algorithm that visits asymptotically fewer than <script type="math/tex; mode=display">n</script> nodes.
+Therefore, we should try to aim for a linear time solution. With that in
+mind, let's consider a few equally-efficient solutions.</p>
+<h4 id="approach-1-depth-first-search-accepted">Approach #1 Depth-First Search [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>We can efficiently obtain the right-hand view of the binary tree if we visit
+each node in the proper order.</p>
+<p><strong>Algorithm</strong></p>
+<p>One of the aforementioned orderings is defined by a depth-first search in
+which we always visit the right subtree first. This guarantees that the first
+time we visit a particular depth of the tree, the node that we are visiting
+is the rightmost node at that depth. Therefore, we can store the value of the
+first node that we visit at each depth, ultimately generating a final array
+of values once we know exactly how many layers are in the tree.</p>
+<p align="center"><img alt="Depth-First Search" src="https://leetcode.com/articles/Figures/199/199_depth_first.png"/></p>
+<p>The figure above illustrates one instance of the problem. The red nodes
+compose the solution from top to bottom, and the edges are labelled in order
+of visitation.</p>
+<iframe frameborder="0" height="500" name="U8377M7P" src="https://leetcode.com/playground/U8377M7P/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>.</p>
+<p>Because a binary tree with only child pointers is <em>directed acyclic graph</em>
+with only one source node, a traversal of the tree from the root will visit
+each node exactly once (plus a sublinear amount of leaves, represented as
+<code>None</code>). Each visitation requires only <script type="math/tex; mode=display">O(1)</script> work, so the while loop
+runs in linear time. Finally, building the array of rightmost values is
+<script type="math/tex; mode=display">O(</script>height of the tree<script type="math/tex; mode=display">) = O(n)</script> because it is not possible for a
+right-hand view of the tree to contain more nodes than the tree itself.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>.</p>
+<p>At worst, our stack will contain a number of nodes close to the height of
+the tree. Because we are exploring the tree in a depth-first order, there
+are never two nodes from different subtrees of the same parent node on the
+stack at once. Said another way, the entire right subtree of a node will be
+visited before any nodes of the left subtree are pushed onto the stack. If
+this logic is applied recursively down the tree, it follows that the stack
+will be largest when we have reached the end of the tree's longest path
+(the height of the tree). However, because we know nothing about the tree's
+topography, the height of the tree may be equivalent to <script type="math/tex; mode=display">n</script>, causing the
+space complexity to degrade to <script type="math/tex; mode=display">O(n)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-breadth-first-search-accepted">Approach #2 Breadth-First Search [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Much like depth-first search can guarantee that we visit a depth's rightmost
+node first, breadth-first search can guarantee that we visit it <em>last</em>.</p>
+<p><strong>Algorithm</strong></p>
+<p>By performing a breadth-first search that enqueues the left child before the
+right child, we visit each node in each layer from left to right. Therefore,
+by retaining only the most recently visited node per depth, we will have
+the rightmost node for each depth once we finish the tree traversal. The
+algorithm is unchanged, other than swapping out the stack for a
+<code>deque</code><sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> and removing the containment check before assigning into
+<code>rightmost_value_at_depth</code>.</p>
+<p align="center"><img alt="Breadth-first Search Example" src="https://leetcode.com/articles/Figures/199/199_breadth_first.png"/></p>
+<p>The figure above illustrates the same instance as before, but solved via
+breadth-first search. The red nodes compose the solution from top to bottom,
+and the edges are labelled in order of visitation.</p>
+<iframe frameborder="0" height="500" name="9Aia2BUi" src="https://leetcode.com/playground/9Aia2BUi/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>.</p>
+<p>The differences itemized in the <strong>Algorithm</strong> section do not admit
+differences in the time complexity analysis between the bread-first and
+depth-first search approaches.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>.</p>
+<p>Because breadth-first search visits the tree layer-by-layer, the queue
+will be at its largest immediately before visiting the largest layer. The
+size of this layer is <script type="math/tex; mode=display">0.5n = O(n)</script> in the worst case (a complete binary
+tree).</p>
+</li>
+</ul>
+<hr/>
+<p><strong>Footnotes</strong></p>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/emptyset">@emptyset</a></p>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>The
+<a href="https://docs.python.org/3/library/collections.html#collections.deque"><code>deque</code></a>
+datatype from the
+<a href="https://docs.python.org/3/library/collections.html"><code>collections</code></a> module
+supports constant time append/pop from both the head and the tail. If we were
+to use a Python <code>list</code>, it would cost us <script type="math/tex; mode=display">O(n)</script> time to remove its head via
+<code>list.pop(0)</code>. <a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">96743</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">231585</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              55%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/amazon.html">Amazon</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a string s and a list of strings dict, you need to add a closed pair of bold tag &lt;b&gt; and &lt;/b&gt; to wrap the substrings in s that exist in dict. If two such substrings overlap, you need to wrap them together by only one pair of closed bold tag. Also, if two substrings wrapped by bold tags are consecutive, you need to combine them. 
+
+Example 1:
+Input: 
+s = &#34;abcxyz123&#34;
+dict = [&#34;abc&#34;,&#34;123&#34;]
+Output:
+&#34;&lt;b&gt;abc&lt;/b&gt;xyz&lt;b&gt;123&lt;/b&gt;&#34;
+
+
+Example 2:
+Input: 
+s = &#34;aaabbcc&#34;
+dict = [&#34;aaa&#34;,&#34;aab&#34;,&#34;bc&#34;]
+Output:
+&#34;&lt;b&gt;aaabbc&lt;/b&gt;c&#34;
+
+
+Note:
+
+The given dict won&#39;t contain duplicates, and its length won&#39;t exceed 100.
+All the strings in input have length in range [1, 1000].">
+  <meta name="keywords"
+        content="Add Bold Tag in String, LC 616, leetcode 616, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>616. Add Bold Tag in String</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            Given a string <b>s</b> and a list of strings <b>dict</b>, you need to add a closed pair of bold tag <code>&lt;b&gt;</code> and <code>&lt;/b&gt;</code> to wrap the substrings in s that exist in dict. If two such substrings overlap, you need to wrap them together by only one pair of closed bold tag. Also, if two substrings wrapped by bold tags are consecutive, you need to combine them. 
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 
+s = "abcxyz123"
+dict = ["abc","123"]
+<b>Output:</b>
+"&lt;b&gt;abc&lt;/b&gt;xyz&lt;b&gt;123&lt;/b&gt;"
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> 
+s = "aaabbcc"
+dict = ["aaa","aab","bc"]
+<b>Output:</b>
+"&lt;b&gt;aaabbc&lt;/b&gt;c"
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The given dict won't contain duplicates, and its length won't exceed 100.</li>
+<li>All the strings in input have length in range [1, 1000]. </li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-similar-to-merge-interval-problem-accepted">Approach #2 Similar to Merge Interval Problem [Accepted]</a></li>
+<li><a href="#approach-3-using-booleanmarking-arrayaccepted">Approach #3  Using Boolean(Marking) Array[Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In order to proceed with the solution to the given problem, the first basic step is to identify the substrings of the given string <script type="math/tex; mode=display">s</script> which exist in the given dictionary <script type="math/tex; mode=display">dict</script>. For doing this, firstly, we add the given words in the dictionary <script type="math/tex; mode=display">dict</script> to a <script type="math/tex; mode=display">set</script>. Then, we iterate over the given string <script type="math/tex; mode=display">s</script> and consider every possible substring of <script type="math/tex; mode=display">s</script> to check if it exists in the given dictionary <script type="math/tex; mode=display">dict</script>. If so, we add the start and end index to a <script type="math/tex; mode=display">list</script>. Each element of <script type="math/tex; mode=display">dict</script> takes the form: <script type="math/tex; mode=display">[i, j]</script>. Here, <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script> represent the start and the end index of the substring which matches with any word in the dictionary.</p>
+<p>By doing this, we are done with the first step. Now, the problem reduces mainly to identifying the sets of overlapping intervals from among the intervals present in the <script type="math/tex; mode=display">list</script> and adding the tags appropriately at those locations.</p>
+<p>To do so, firstly, we sort the <script type="math/tex; mode=display">list</script> based on the start indices. In case of equality of start indices, we sort the elements based on their end indices. After this, we start creating our resultant string, <script type="math/tex; mode=display">res</script>. The substring of <script type="math/tex; mode=display">s</script> from the beginning till the first start index needs to be added as such to <script type="math/tex; mode=display">res</script>. Then, we pick up the first starting index from the <script type="math/tex; mode=display">list</script>. This index acts as the position to put the opening bold tag. In order to determine the end index(for placing the closing bold tag) by considering the merging required for consecutive or overlapping intervals, for the current range considered, we check if the start index of the next interval in <script type="math/tex; mode=display">list</script> lies before or at the index one larger than end of the current interval. If so, it indicates that either there is an overlap(if the next start index lies before or at the current end index), or the existence of consecutive intervals(if the next start index lies at the current end index + 1). </p>
+<p align="center"><img alt="Interval_Overlap" src="https://leetcode.com/articles/Figures/616/616_Add_Bold_Tag.PNG"/></p>
+<p>If any of these cases occur, we know that the next interval can be merged with the current one. Thus, we update the end index to point to the next interval's end index. We also update our current interval to the next interval and again check the overlapping or consecutive property of the new interval and its next one. We keep on updating the current interval till we reach an interval which doesn't satisfy any of these properties. The end index of the last interval found satisfying this property marks the position for the closing bold tag. </p>
+<p>Since, we had reached the end of the overlapping/consecutive intervals, the substring lying beyond the end index found last and the start index existing beyond this end index in the <script type="math/tex; mode=display">list</script> doesn't exist in the dicitionary <script type="math/tex; mode=display">dict</script>. Thus, we need to append this substring directly to the resultant string formed so far. </p>
+<p>We keep on continuing this process till the whole range till the end index of the last interval has been exhausted. The substring left beyond this point is also appended directly to the <script type="math/tex; mode=display">res</script> formed till now.</p>
+<iframe frameborder="0" height="515" name="KqCRh8Hy" src="https://leetcode.com/playground/KqCRh8Hy/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(s^3)</script>. Generating list of intervals will take <script type="math/tex; mode=display">O(s^3)</script>, where <script type="math/tex; mode=display">s</script> represents string length.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(s+d+s*l)</script>. <script type="math/tex; mode=display">res</script> size grows upto <script type="math/tex; mode=display">s</script> and <script type="math/tex; mode=display">set</script> size will be equal to the size of <script type="math/tex; mode=display">dict</script>. Here, <script type="math/tex; mode=display">d</script> refers to the size of <script type="math/tex; mode=display">dict</script>.And <script type="math/tex; mode=display">list</script> size can grow upto <script type="math/tex; mode=display">O(s*l)</script> in worst case, where <script type="math/tex; mode=display">l</script> refers to <script type="math/tex; mode=display">dict</script> size.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-similar-to-merge-interval-problem-accepted">Approach #2 Similar to Merge Interval Problem [Accepted]</h4>
+<p>In the last approach, to identify the substrings of <script type="math/tex; mode=display">s</script> which exist in the dictionary <script type="math/tex; mode=display">dict</script>, we checked every possible substring of <script type="math/tex; mode=display">s</script> to see if it exists in this. Instead of doing the identification in this manner, we can be a bit smarter. We can pick up every word of the dictionary. For every word <script type="math/tex; mode=display">d</script> of the dictionary chosen currently, say of length <script type="math/tex; mode=display">length_d</script>, it is obvious that the substrings in <script type="math/tex; mode=display">s</script> only with length <script type="math/tex; mode=display">length_d</script>, can match with the <script type="math/tex; mode=display">d</script>. Thus, instead of blindly checking for <script type="math/tex; mode=display">d</script>'s match with every substring in <script type="math/tex; mode=display">s</script>, we check only the substrings with length <script type="math/tex; mode=display">length_d</script>. The matching substrings' indices are again added to the <script type="math/tex; mode=display">list</script> similar to the last approach. </p>
+<p>The rest of the process remains the same as the last approach. The following animation illustrates the process for a clearer understanding.</p>
+<p>!?!../Documents/616_Add_Bold_Tag_2.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="YuNWzTbc" src="https://leetcode.com/playground/YuNWzTbc/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(l*s*x)</script>. Generating list will take <script type="math/tex; mode=display">O(l*s*x)</script>, where <script type="math/tex; mode=display">x</script> is the average string length of <script type="math/tex; mode=display">dict</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(s+s*l)</script>. <script type="math/tex; mode=display">res</script> size grows upto <script type="math/tex; mode=display">O(s)</script> and <script type="math/tex; mode=display">list</script> size can grow upto <script type="math/tex; mode=display">O(s*l)</script> in worst case. </p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-booleanmarking-arrayaccepted">Approach #3  Using Boolean(Marking) Array[Accepted]</h4>
+<p>This approach is inspired by <a href="http://leetcode.com/compton_scatter">@compton_scatter</a>.</p>
+<p>Another idea could be to merge the process of identification of the substrings in <script type="math/tex; mode=display">s</script> matching with the words in <script type="math/tex; mode=display">dict</script>. To do so, we make use of an array <script type="math/tex; mode=display">bold</script> for marking the positions of the substrings in <script type="math/tex; mode=display">s</script> which are present in <script type="math/tex; mode=display">dict</script>. A True value at <script type="math/tex; mode=display">bold[i]</script> indicates that the current character is a part of the substring which is present in <script type="math/tex; mode=display">dict</script>.</p>
+<p>We identify the substrings in <script type="math/tex; mode=display">s</script> which are present in <script type="math/tex; mode=display">dict</script> similar to the last approach, by considering only substrings of length <script type="math/tex; mode=display">length_d</script> for a dictionary word <script type="math/tex; mode=display">d</script>. Whenver such a substring is found with its beginning index as <script type="math/tex; mode=display">i</script>(and end index <script type="math/tex; mode=display">(i + length_d -1)</script>), we mark all such positions in <script type="math/tex; mode=display">bold</script> as True.</p>
+<p>Thus, in this way, whenever a overlapping or consecutive matching substrings exist in <script type="math/tex; mode=display">s</script>, a continuous sequence of True values is present in <script type="math/tex; mode=display">bold</script>. Keeping this idea in mind, we traverse over the string <script type="math/tex; mode=display">s</script> and keep on putting the current character in the resultant string <script type="math/tex; mode=display">res</script>. At every step, we also check if the <script type="math/tex; mode=display">bold</script> array contains the beginning or end of a continuous sequence of True values. At the beginnning of such a sequence, we put an opening bold tag and then keep on putting the characters of <script type="math/tex; mode=display">s</script> till we find a position corresponding to which the last sequence of continuous True values breaks(the first False value is found). We put a closing bold tag at such a position. After this, we again keep on putting the characters of <script type="math/tex; mode=display">s</script> in <script type="math/tex; mode=display">res</script> till we find the next True value and we keep on continuing the process in the same manner.</p>
+<p>The following animation illustrates the process for a better visualization of the process.</p>
+<p>!?!../Documents/616_Add_Bold_Tag_3.json:1000,563!?!</p>
+<iframe frameborder="0" height="479" name="pSbGGZyd" src="https://leetcode.com/playground/pSbGGZyd/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(l*s*x)</script>. Three nested loops are there to fill <script type="math/tex; mode=display">bold</script> array.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(s)</script>. <script type="math/tex; mode=display">res</script> and <script type="math/tex; mode=display">bold</script> size grows upto <script type="math/tex; mode=display">O(s)</script>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">6078</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">15590</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              14%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

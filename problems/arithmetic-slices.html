@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="A sequence of number is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.
+For example, these are arithmetic sequence:
+1, 3, 5, 7, 9
+7, 7, 7, 7
+3, -1, -5, -9
+The following sequence is not arithmetic. 1, 1, 2, 5, 7
+
+A zero-indexed array A consisting of N numbers is given. A slice of that array is any pair of integers (P, Q) such that 0 &lt;= P &lt; Q &lt; N.
+A slice (P, Q) of array A is called arithmetic if the sequence:
+    A[P], A[p + 1], ..., A[Q - 1], A[Q] is arithmetic. In particular, this means that P + 1 &lt; Q.
+The function should return the number of arithmetic slices in the array A. 
+
+Example:
+
+A = [1, 2, 3, 4]
+
+return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] itself.">
+  <meta name="keywords"
+        content="Arithmetic Slices, LC 413, leetcode 413, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>413. Arithmetic Slices</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>A sequence of number is called arithmetic if it consists of at least three elements and if the difference between any two consecutive elements is the same.</p>
+
+<p>For example, these are arithmetic sequence:</p>
+<pre>1, 3, 5, 7, 9
+7, 7, 7, 7
+3, -1, -5, -9</pre>
+
+<p>The following sequence is not arithmetic.</p> <pre>1, 1, 2, 5, 7</pre> 
+<br/>
+
+<p>A zero-indexed array A consisting of N numbers is given. A slice of that array is any pair of integers (P, Q) such that 0 <= P < Q < N.</p>
+
+<p>A slice (P, Q) of array A is called arithmetic if the sequence:<br/>
+    A[P], A[p + 1], ..., A[Q - 1], A[Q] is arithmetic. In particular, this means that P + 1 < Q.</p>
+
+<p>The function should return the number of arithmetic slices in the array A. </p>
+<br/>
+
+<p><b>Example:</b>
+<pre>
+A = [1, 2, 3, 4]
+
+return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] itself.
+</pre>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-accepted">Approach #1 Brute Force [Accepted]</a></li>
+<li><a href="#approach-2-better-brute-force-accepted">Approach #2 Better Brute Force [Accepted]</a></li>
+<li><a href="#approach-3-using-recursion-accepted">Approach #3  Using Recursion [Accepted]</a></li>
+<li><a href="#approach-5-dynamic-programming-accepted">Approach #5 Dynamic Programming [Accepted]:</a></li>
+<li><a href="#approach-5-constant-space-dynamic-programming-accepted">Approach #5 Constant Space Dynamic Programming [Accepted]:</a></li>
+<li><a href="#approach-6-using-formula-accepted">Approach #6 Using Formula [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-accepted">Approach #1 Brute Force [Accepted]</h4>
+<p>The most naive solution is to consider every pair of elements(with atleast 1 element between them), so that the range of elements lying between these two elements acts as a slice. Then, we can iterate over every such slice(range) to check if all the consecutive elements within this range have the same difference. For every such range found, we can increment the <script type="math/tex; mode=display">count</script> that is used to keep a track of the required result.</p>
+<iframe frameborder="0" height="343" name="HT3WjgGf" src="https://leetcode.com/playground/HT3WjgGf/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. We iterate over the range formed by every pair of elements. Here, <script type="math/tex; mode=display">n</script> refers to the number of elements in the given array <script type="math/tex; mode=display">A</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-force-accepted">Approach #2 Better Brute Force [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, we considered every possible range and then iterated over the range to check if the difference between every consercutive element in this range is the same. We can optimize this approach to some extent, by making a small observation. </p>
+<p>We can see, that if we are currently considering the range bound by the elements, let's say, <script type="math/tex; mode=display">A[s]</script>(start) and <script type="math/tex; mode=display">A[e]</script>(end), we have checked the consecutive elements in this range to have the same difference. Now, when we move on to the next range between the indices <script type="math/tex; mode=display">s</script> and <script type="math/tex; mode=display">e+1</script>, we again perform a check on all the elements in the range <script type="math/tex; mode=display">s:e</script>, along with one additional pair <script type="math/tex; mode=display">A[e+1]</script> and <script type="math/tex; mode=display">A[e]</script>. We can remove this redundant check in the range <script type="math/tex; mode=display">s:e</script> and just check the last pair to have the same difference as the one used for the previous range(same <script type="math/tex; mode=display">s</script>, incremented <script type="math/tex; mode=display">e</script>).</p>
+<p>Note that if the last range didn't constitute an arithmetic slice, the same elements will be a part of the updated range as well. Thus, we can omit the rest of the ranges consisting of the same starting index. The rest of the process remains the same as in the last approach.</p>
+<iframe frameborder="0" height="309" name="NPDEAgTz" src="https://leetcode.com/playground/NPDEAgTz/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. Two for loops are used.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-recursion-accepted">Approach #3  Using Recursion [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>By making use of the observation discussed in the last approach, we know, that if a range of elements between the indices <script type="math/tex; mode=display">(i,j)</script> constitute an Arithmetic Slice, and another element <script type="math/tex; mode=display">A[j+1]</script> is included such that <script type="math/tex; mode=display">A[j+1]</script> and <script type="math/tex; mode=display">A[j]</script> have the same difference as that of the previous common difference, the ranges between <script type="math/tex; mode=display">(i,j+1)</script> will constitutes an arithmetic slice. Further, if the original range <script type="math/tex; mode=display">(i,j)</script> doesn't form an arithmetic slice, adding new elements to this range won't do us any good. Thus, no more arithmetic slices can be obtained by adding new elements to it.</p>
+<p>By making use of this observation, we can develop a recursive solution for the given problem as well. Assume that a <script type="math/tex; mode=display">sum</script> variable is used to store the total number of arithmetic slices in the given array <script type="math/tex; mode=display">A</script>. We make use of a recursive function <code>slices(A,i)</code> which returns the number of Arithmetic Slices in the range <script type="math/tex; mode=display">(k,i)</script>, but which are not a part of any range <script type="math/tex; mode=display">(k,j)</script> such that <script type="math/tex; mode=display">j<i</script>. It also updates <script type="math/tex; mode=display">sum</script> with the number of arithmetic slices(total) in the current range. Thus, <script type="math/tex; mode=display">k</script> refers to  the minimum index such that the range <script type="math/tex; mode=display">(k,i)</script> constitutes a valid arithmetic slice.</p>
+<p>Now, suppose we know the number of arithmetic slices in the range <script type="math/tex; mode=display">(0,i-1)</script> constituted by the elements <script type="math/tex; mode=display">[a_0,a_1,a_2,...a_(i-1)]</script>, to be say <script type="math/tex; mode=display">x</script>. If this range itself is an arithmetic slice, all the consecutive elements have the same difference(equal to say, <script type="math/tex; mode=display">a_(i-1)-a_(i-2)</script>). Now, adding a new element <script type="math/tex; mode=display">a_i</script> to it to extend the range to <script type="math/tex; mode=display">(0,i)</script> will constitute an arithmetic slice only if this new element satisfies <script type="math/tex; mode=display">a_i-a_(i-1)=a_(i-1)-a_(i-2)</script>. Thus, now, the addition of this new element, will lead to an addition of <script type="math/tex; mode=display">ap</script> number of arithmetic slices to the ones obtained in the range <script type="math/tex; mode=display">(0,i-1)</script>. The new arithmetic slices will be the ones constituting the ranges <script type="math/tex; mode=display">(0,i), (1,i), ... (i-2,i)</script>, which are a total of  <script type="math/tex; mode=display">x+1</script> additional arithmetic slices. This is because, apart from the range <script type="math/tex; mode=display">(0,i)</script> the rest of the ranges <script type="math/tex; mode=display">(1,i), (2,i),...(i-2,i)</script> can be mapped to <script type="math/tex; mode=display">(0,i-1), (1,i-1),...(i-3,i-1)</script>, with count equal to <script type="math/tex; mode=display">x</script>. </p>
+<p>Thus, in every call to <code>slices</code>, if the <script type="math/tex; mode=display">i^{th}</script> element has the same common difference with the last element as the previous common difference, we can find the number of new arithmetic slices added by the use of this element, <script type="math/tex; mode=display">ap</script> and also update the <script type="math/tex; mode=display">sum</script> to include this <script type="math/tex; mode=display">ap</script> into it, apart from the count obtained by the smaller ranges. But, if the new element doesn't have the same common difference, extra arithmetic slices can't be contributed by it and hence, no addition is done to <script type="math/tex; mode=display">sum</script> for the current element. But, of course <script type="math/tex; mode=display">sum</script> will be updated as per the count obtained from the smaller ranges.</p>
+<iframe frameborder="0" height="360" name="WGzuREMw" src="https://leetcode.com/playground/WGzuREMw/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. The recursive function is called at most <script type="math/tex; mode=display">n-2</script> times.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The depth of the recursion tree goes upto <script type="math/tex; mode=display">n-2</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-dynamic-programming-accepted">Approach #5 Dynamic Programming [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, we start with the full range <script type="math/tex; mode=display">(0,n-1)</script>, where <script type="math/tex; mode=display">n</script> is the number of elements in the given <script type="math/tex; mode=display">A</script> array. We can observe that the result for the range <script type="math/tex; mode=display">(0,i)</script> only depends on the elements in the range <script type="math/tex; mode=display">(0,i)</script> and not on any element beyond this range. Thus, we can make use of Dynamic Programming to solve the given problem.</p>
+<p>We can make use of a 1-D <script type="math/tex; mode=display">dp</script> with number of elements equal to <script type="math/tex; mode=display">n</script>. <script type="math/tex; mode=display">dp[i]</script> is used to store the number of arithmetic slices possible in the range <script type="math/tex; mode=display">(k,i)</script> and not in any range <script type="math/tex; mode=display">(k,j)</script> such that <script type="math/tex; mode=display">j<i</script>. Again, <script type="math/tex; mode=display">k</script> refers to the minimum index possible such that <script type="math/tex; mode=display">(k,j)</script> constitutes a valid Arithmetic Slice.</p>
+<p>Instead of going in the reverse order as in the recursive approach, we can start filling the <script type="math/tex; mode=display">dp</script> in a forward manner. The intuition remains the same as in the last approach. For the <script type="math/tex; mode=display">i^{th}</script> element being considered, we check if this element satsfies the common difference criteria with the previous element. If so, we know the number of new arithmetic slices added will be <script type="math/tex; mode=display">1+dp[i-1]</script> as discussed in the last approach. The <script type="math/tex; mode=display">sum</script> is also updated by the same count to reflect the new arithmetic slices added.  </p>
+<p>The following animation illustrates the <script type="math/tex; mode=display">dp</script> filling process.</p>
+<p>!?!../Documents/413_Arithmetic_Slices.json:1000,563!?!</p>
+<iframe frameborder="0" height="292" name="w8UZ2q6u" src="https://leetcode.com/playground/w8UZ2q6u/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We traverse over the given <script type="math/tex; mode=display">A</script> array with <script type="math/tex; mode=display">n</script> elements once only.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. 1-D <script type="math/tex; mode=display">dp</script> of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-constant-space-dynamic-programming-accepted">Approach #5 Constant Space Dynamic Programming [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, we can observe that we only require the element <script type="math/tex; mode=display">dp[i-1]</script> to determine the value to be entered at <script type="math/tex; mode=display">dp[i]</script>. Thus, instead of making use of a 1-D array to store the required data, we can simply keep a track of just the last element. </p>
+<iframe frameborder="0" height="292" name="mGEcWWi3" src="https://leetcode.com/playground/mGEcWWi3/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We traverse over the given <script type="math/tex; mode=display">A</script> array with <script type="math/tex; mode=display">n</script> elements once only.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-6-using-formula-accepted">Approach #6 Using Formula [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>From the <script type="math/tex; mode=display">dp</script> solution, we can observe that for <script type="math/tex; mode=display">k</script> consecutive elements sastisfying the common difference criteria, we update the <script type="math/tex; mode=display">sum</script> for each such element by <script type="math/tex; mode=display">1, 2, 3, ..., k</script> counts in that order. Thus, instead of updating the <script type="math/tex; mode=display">sum</script> at the same time, we can just keep a track of the number of consecutive elements satisfying the common differnce criteria in a <script type="math/tex; mode=display">count</script> variable and just update the <script type="math/tex; mode=display">sum</script> directly as <script type="math/tex; mode=display">count*(count+1)/2</script> whenver an element not satisfying this criteria is found. At the same time, we also need to reset the <script type="math/tex; mode=display">count</script> value. </p>
+<iframe frameborder="0" height="309" name="fQULWrDF" src="https://leetcode.com/playground/fQULWrDF/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We iterate over <script type="math/tex; mode=display">A</script> with <script type="math/tex; mode=display">n</script> elements exactly once.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">31918</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">58468</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              45%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/baidu.html">Baidu</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/aetion.html">Aetion</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

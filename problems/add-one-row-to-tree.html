@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given the root of a binary tree, then value v and depth d, you need to add a row of nodes with value v at the given depth d. The root node is at depth 1. 
+The adding rule is: given a positive integer depth d, for each NOT null tree nodes N in depth d-1, create two tree nodes with value v as N&#39;s left subtree root and right subtree root. And N&#39;s original left subtree should be the left subtree of the new left subtree root, its original right subtree should be the right subtree of the new right subtree root. If depth d is 1 that means there is no depth d-1 at all, then create a tree node with value v as the new root of the whole original tree, and the original tree is the new root&#39;s left subtree.
+Example 1:
+Input: 
+A binary tree as following:
+       4
+     /   \
+    2     6
+   / \   / 
+  3   1 5   
+
+v = 1
+
+d = 2
+
+Output: 
+       4
+      / \
+     1   1
+    /     \
+   2       6
+  / \     / 
+ 3   1   5   
+
+
+
+Example 2:
+Input: 
+A binary tree as following:
+      4
+     /   
+    2    
+   / \   
+  3   1    
+
+v = 1
+
+d = 3
+
+Output: 
+      4
+     /   
+    2
+   / \    
+  1   1
+ /     \  
+3       1
+
+
+Note:
+
+The given d is in range [1, maximum depth of the given tree + 1].
+The given binary tree has at least one tree node.">
+  <meta name="keywords"
+        content="Add One Row to Tree, LC 623, leetcode 623, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>623. Add One Row to Tree</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given the root of a binary tree, then value <code>v</code> and depth <code>d</code>, you need to add a row of nodes with value <code>v</code> at the given depth <code>d</code>. The root node is at depth 1. </p>
+
+<p>The adding rule is: given a positive integer depth <code>d</code>, for each NOT null tree nodes <code>N</code> in depth <code>d-1</code>, create two tree nodes with value <code>v</code> as <code>N's</code> left subtree root and right subtree root. And <code>N's</code> <b>original left subtree</b> should be the left subtree of the new left subtree root, its <b>original right subtree</b> should be the right subtree of the new right subtree root. If depth <code>d</code> is 1 that means there is no depth d-1 at all, then create a tree node with value <b>v</b> as the new root of the whole original tree, and the original tree is the new root's left subtree.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 
+A binary tree as following:
+       4
+     /   \
+    2     6
+   / \   / 
+  3   1 5   
+
+<b>v = 1</b>
+
+<b>d = 2</b>
+
+<b>Output:</b> 
+       4
+      / \
+     1   1
+    /     \
+   2       6
+  / \     / 
+ 3   1   5   
+
+</pre>
+</p>
+
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> 
+A binary tree as following:
+      4
+     /   
+    2    
+   / \   
+  3   1    
+
+<b>v = 1</b>
+
+<b>d = 3</b>
+
+<b>Output:</b> 
+      4
+     /   
+    2
+   / \    
+  1   1
+ /     \  
+3       1
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The given d is in range [1, maximum depth of the given tree + 1].</li>
+<li>The given binary tree has at least one tree node.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-recursiondfs-accepted">Approach #1 Using Recursion(DFS) [Accepted]</a></li>
+<li><a href="#approach-2-using-stackdfs-accepted">Approach #2 Using stack(DFS) [Accepted]</a></li>
+<li><a href="#approach-3-using-queuebfs-accepted">Approach #3 Using queue(BFS) [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-recursiondfs-accepted">Approach #1 Using Recursion(DFS) [Accepted]</h4>
+<p>If the given depth <script type="math/tex; mode=display">d</script> happens to be equal to 1, we can directly put the whole current tree as a left child of the newly added node. Otherwise, we need to put the new node at appropriate levels. </p>
+<p>To do so, we make use of a recursive function <code>insert(val,node,depth,n)</code>. Here, <script type="math/tex; mode=display">val</script> refers to the value of the new node to be inserted, <script type="math/tex; mode=display">depth</script> refers to the depth of the node currently considered, <script type="math/tex; mode=display">node</script> refers to the node calling the current function for its child subtrees and <script type="math/tex; mode=display">n</script> refers to the height at which the new node needs to be inserted. </p>
+<p>For inserting the new node at appropriate level, we can start by making a call to <code>insert</code> with the root node and 1 as the current level. Inside every such call, we check if we've reached one level prior to the level where the new node needs to be inserted. </p>
+<p>From this level, we can store the roots of the left and right subtrees of the current node temporarily, and insert the new node as the new left and right subchild of the current node, with the temporarily stored left and right subtrees as the left and right subtrees of the newly inserted left or right subchildren appropriately.</p>
+<p>But, if we haven't reached the destined level, we keep on continuing the recursive calling process with the left and right children of the current node respectively. At every such call, we also incrmenet the depth of the current level to reflect the depth change appropriately.</p>
+<p>The animation below illustrates the process:</p>
+<p>!?!../Documents/623_Add_One_Row_Recursion_New.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="mqAnMFzQ" src="https://leetcode.com/playground/mqAnMFzQ/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. A total of <script type="math/tex; mode=display">n</script> nodes of the given tree will be considered.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The depth of the recursion tree can go upto <script type="math/tex; mode=display">n</script> in the worst case(skewed tree).</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-stackdfs-accepted">Approach #2 Using stack(DFS) [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can do the same task as discussed in the last approach by making use of a <script type="math/tex; mode=display">stack</script> as well. But, we need to make use of a new data structure, <script type="math/tex; mode=display">Node</script> here, to keep a track of the depth of the current node along with its value. </p>
+<p>We start by pushing the root <script type="math/tex; mode=display">Node</script> onto the <script type="math/tex; mode=display">stack</script>. Then, at every step we do as follows:</p>
+<ul>
+<li>
+<p>Pop an element from the <script type="math/tex; mode=display">stack</script>. </p>
+</li>
+<li>
+<p>For every Node popped, check if its depth corresponds to one prior to the depth at which the new node needs to be inserted. </p>
+</li>
+<li>
+<p>If yes, insert the new nodes appropriately as in the last approach. </p>
+</li>
+<li>
+<p>If no, we push both the left and the right child Node(value+depth) of the current node onto the <script type="math/tex; mode=display">stack</script>. </p>
+</li>
+<li>
+<p>Continue the popping and pushing process till the <script type="math/tex; mode=display">stack</script> becomes empty.</p>
+</li>
+</ul>
+<p>Look at the animation below for a better understanding.</p>
+<p>!?!../Documents/623_Add_One_Row_Stack_new.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="6Gut8kVG" src="https://leetcode.com/playground/6Gut8kVG/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. A total of <script type="math/tex; mode=display">n</script> nodes of the given tree will be considered.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The depth of the <script type="math/tex; mode=display">stack</script> can go upto <script type="math/tex; mode=display">n</script> in the worst case(skewed tree).</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-queuebfs-accepted">Approach #3 Using queue(BFS) [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The idea of traversal in the last approach is similar to Depth First Search. In that case, we need to traverse through all the nodes of the given tree in the order of branches. Firstly we explored one branch to as much depth as possible and then continued with the other ones. </p>
+<p>If, instead, we go for Breadth First Search, along with keeping track of the depth of the nodes being considered at any moment during the Breadth First Search, we can stop the search process as soon as all the nodes at the depth <script type="math/tex; mode=display">d - 1</script> have been considered once. </p>
+<p>To implement this BFS, we make use of a <script type="math/tex; mode=display">queue</script>. We start off by pushing the root node of the given tree at the back of the <script type="math/tex; mode=display">queue</script> and with the depth of the current level set as 1. Then, at every step, we do the following:</p>
+<ul>
+<li>
+<p>Remove an element from the front of the <script type="math/tex; mode=display">queue</script> and add all its children to the back of another temporary queue, <script type="math/tex; mode=display">temp</script>. </p>
+</li>
+<li>
+<p>Keep on adding the elements to the back of the <script type="math/tex; mode=display">temp</script> till <script type="math/tex; mode=display">queue</script> becomes empty. (Once <script type="math/tex; mode=display">queue</script> becomes empty, it indicates that all the nodes at the current level have been considered and now <script type="math/tex; mode=display">temp</script> contains all the nodes lying at the next level).</p>
+</li>
+<li>
+<p>Reinitialize <script type="math/tex; mode=display">queue</script>  with its value as <script type="math/tex; mode=display">temp</script>. Update the current value of the <script type="math/tex; mode=display">depth</script> to reflect the level of nodes currently being considered. </p>
+</li>
+<li>
+<p>Repeat the process till we reach the depth <script type="math/tex; mode=display">d - 1</script>. </p>
+</li>
+<li>
+<p>On hitting this depth level(<script type="math/tex; mode=display">d-1</script>), add the new nodes appropriately to all the nodes in the <script type="math/tex; mode=display">queue</script> currently, as done in the previous approaches.</p>
+</li>
+</ul>
+<p>The following animation illustrates the process.</p>
+<p>!?!../Documents/623_Add_One_Row_queue_new.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="EC8ne3QM" src="https://leetcode.com/playground/EC8ne3QM/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. A total of <script type="math/tex; mode=display">n</script> nodes of the given tree will be considered in the worst case.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(x)</script>. The size of the <script type="math/tex; mode=display">queue</script> or <script type="math/tex; mode=display">temp</script> queue can grow upto <script type="math/tex; mode=display">x</script> only. Here, <script type="math/tex; mode=display">x</script> refers to the number of maximum number of nodes at any level in the given tree.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">11597</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">24844</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              11%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/gilt-groupe.html">Gilt Groupe</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

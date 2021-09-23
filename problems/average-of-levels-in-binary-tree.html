@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a non-empty binary tree, return the average value of the nodes on each level in the form of an array.
+
+Example 1:
+Input:
+    3
+   / \
+  9  20
+    /  \
+   15   7
+Output: [3, 14.5, 11]
+Explanation:
+The average value of nodes on level 0 is 3,  on level 1 is 14.5, and on level 2 is 11. Hence return [3, 14.5, 11].
+
+
+Note:
+
+The range of node&#39;s value is in the range of 32-bit signed integer.">
+  <meta name="keywords"
+        content="Average of Levels in Binary Tree, LC 637, leetcode 637, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>637. Average of Levels in Binary Tree</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            Given a non-empty binary tree, return the average value of the nodes on each level in the form of an array.
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b>
+    3
+   / \
+  9  20
+    /  \
+   15   7
+<b>Output:</b> [3, 14.5, 11]
+<b>Explanation:</b>
+The average value of nodes on level 0 is 3,  on level 1 is 14.5, and on level 2 is 11. Hence return [3, 14.5, 11].
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The range of node's value is in the range of 32-bit signed integer.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-depth-first-search-accepted">Approach #1 Using Depth First Search [Accepted]</a></li>
+<li><a href="#approach-2-breadth-first-search-accepted">Approach #2 Breadth First Search [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-depth-first-search-accepted">Approach #1 Using Depth First Search [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>One of the methods to solve the given problem is to make use of Depth First Search. In DFS, we try to exhaust each branch of the given tree during the tree traversal before moving onto the next branch.</p>
+<p>To make use of DFS to solve the given problem, we make use of two lists <script type="math/tex; mode=display">count</script> and <script type="math/tex; mode=display">res</script>. Here, <script type="math/tex; mode=display">count[i]</script> refers to the total number of nodes found at the <script type="math/tex; mode=display">i^{th}</script> level(counting from root at level 0) till now, and <script type="math/tex; mode=display">res[i]</script> refers to the sum of the nodes at the <script type="math/tex; mode=display">i^{th}</script> level encountered till now during the Depth First Search.</p>
+<p>We make use of a function <code>average(t, i, res, count)</code>, which is used to fill the <script type="math/tex; mode=display">res</script> and <script type="math/tex; mode=display">count</script> array if we start the DFS from the node <script type="math/tex; mode=display">t</script> at the <script type="math/tex; mode=display">i^{th}</script> level in the given tree. We start by making the function call <code>average(root, 0, res, count)</code>. After this, we do the following at every step:</p>
+<ol>
+<li>
+<p>Add the value of the current node to the <script type="math/tex; mode=display">res</script>(or <script type="math/tex; mode=display">sum</script>) at the index corresponding to the current level. Also, increment the <script type="math/tex; mode=display">count</script> at the index corresponding to the current level. </p>
+</li>
+<li>
+<p>Call the same function, <code>average</code>, with the left and the right child of the current node. Also, update the current level used in making the function call.</p>
+</li>
+<li>
+<p>Repeat the above steps till all the nodes in the given tree have been considered once.</p>
+</li>
+<li>
+<p>Populate the averages in the resultant array to be returned.</p>
+</li>
+</ol>
+<p>The following animation illustrates the process.</p>
+<p>!?!../Documents/637_Avg_of_Levels_DFS.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="eyx7WogA" src="https://leetcode.com/playground/eyx7WogA/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. The whole tree is traversed once only. Here, <script type="math/tex; mode=display">n</script> refers to the total number of nodes in the given binary tree.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(h)</script>. <script type="math/tex; mode=display">res</script> and <script type="math/tex; mode=display">count</script> array of size <script type="math/tex; mode=display">h</script> are used. Here, <script type="math/tex; mode=display">h</script> refers to the height(maximum number of levels) of the given binary tree. Further, the depth of the recursive tree could go upto <script type="math/tex; mode=display">h</script> only.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-breadth-first-search-accepted">Approach #2 Breadth First Search [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Another method to solve the given problem is to make use of a Breadth First Search. In BFS, we start by pushing the root node into a <script type="math/tex; mode=display">queue</script>. Then, we remove an element(node) from the front of the <script type="math/tex; mode=display">queue</script>. For every node removed from the <script type="math/tex; mode=display">queue</script>, we add all its children to the back of the same <script type="math/tex; mode=display">queue</script>. We keep on continuing this process till the <script type="math/tex; mode=display">queue</script> becomes empty. In this way, we can traverse the given tree on a level-by-level basis.</p>
+<p>But, in the current implementation, we need to do a slight modification, since we need to separate the nodes on one level from that of the other. </p>
+<p>The steps to be performed are listed below:</p>
+<ol>
+<li>
+<p>Put the root node into the <script type="math/tex; mode=display">queue</script>.</p>
+</li>
+<li>
+<p>Initialize <script type="math/tex; mode=display">sum</script> and <script type="math/tex; mode=display">count</script> as 0 and <script type="math/tex; mode=display">temp</script> as an empty queue.</p>
+</li>
+<li>
+<p>Pop a node from the front of the <script type="math/tex; mode=display">queue</script>. Add this node's value to the <script type="math/tex; mode=display">sum</script> corresponding to the current level. Also, update the <script type="math/tex; mode=display">count</script> corresponding to the current level.</p>
+</li>
+<li>
+<p>Put the children nodes of the node last popped into the a <script type="math/tex; mode=display">temp</script> queue(instead of <script type="math/tex; mode=display">queue</script>).</p>
+</li>
+<li>
+<p>Continue steps 3 and 4 till <script type="math/tex; mode=display">queue</script> becomes empty. (An empty <script type="math/tex; mode=display">queue</script> indicates that one level of the tree has been considered).</p>
+</li>
+<li>
+<p>Reinitialize <script type="math/tex; mode=display">queue</script> with its value as <script type="math/tex; mode=display">temp</script>.</p>
+</li>
+<li>
+<p>Populate the <script type="math/tex; mode=display">res</script> array with the average corresponding to the current level.</p>
+</li>
+<li>
+<p>Repeat steps 2 to 7 till the <script type="math/tex; mode=display">queue</script> and <script type="math/tex; mode=display">temp</script> become empty.</p>
+</li>
+</ol>
+<p>At the end, <script type="math/tex; mode=display">res</script> is the required result.</p>
+<p>The following animation illustrates the process.</p>
+<p>!?!../Documents/637_Average_Of_Levels.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="92XSTJqk" src="https://leetcode.com/playground/92XSTJqk/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. The whole tree is traversed atmost once. Here, <script type="math/tex; mode=display">n</script> refers to the number of nodes in the given binary tree.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m)</script>. The size of <script type="math/tex; mode=display">queue</script> or <script type="math/tex; mode=display">temp</script> can grow upto atmost the maximum number of nodes at any level in the given binary tree. Here, <script type="math/tex; mode=display">m</script> refers to the maximum mumber of nodes at any level in the input tree.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">29292</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">52556</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              38%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

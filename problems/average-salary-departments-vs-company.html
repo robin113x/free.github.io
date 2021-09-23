@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given two tables as below, write a query to display the comparison result (higher/lower/same) of the average salary of employees in a department to the company&#39;s average salary.">
+  <meta name="keywords"
+        content="Average Salary: Departments VS Company, LC 615, leetcode 615, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>615. Average Salary: Departments VS Company</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            Given two tables as below, write a query to display the comparison result (higher/lower/same) of the average salary of employees in a department to the company's average salary.</p>
+
+Table: <code>salary</code>
+<pre>
+| id | employee_id | amount | pay_date   |
+|----|-------------|--------|------------|
+| 1  | 1           | 9000   | 2017-03-31 |
+| 2  | 2           | 6000   | 2017-03-31 |
+| 3  | 3           | 10000  | 2017-03-31 |
+| 4  | 1           | 7000   | 2017-02-28 |
+| 5  | 2           | 6000   | 2017-02-28 |
+| 6  | 3           | 8000   | 2017-02-28 |
+</pre></p>
+
+The <b>employee_id</b> column refers to the <b>employee_id</b> in the following table <code>employee</code>.</p>
+<pre>
+| employee_id | department_id |
+|-------------|---------------|
+| 1           | 1             |
+| 2           | 2             |
+| 3           | 2             |
+</pre></p>
+
+So for the sample data above, the result is:</p>
+<pre>
+| pay_month | department_id | comparison  |
+|-----------|---------------|-------------|
+| 2017-03   | 1             | higher      |
+| 2017-03   | 2             | lower       |
+| 2017-02   | 1             | same        |
+| 2017-02   | 2             | same        |
+</pre></p>
+
+<b>Explanation</b></p>
+In March, the company's average salary is (9000+6000+10000)/3 = 8333.33...</p>
+The average salary for department '1' is 9000, which is the salary of <b>employee_id</b> '1' since there is only one employee in this department. So the comparison result is 'higher' since 9000 > 8333.33 obviously.</p>
+The average salary of department '2' is (6000 + 10000)/2 = 8000, which is the average of <b>employee_id</b> '2' and '3'. So the comparison result is 'lower' since 8000 < 8333.33.</p>
+With he same formula for the average salary comparison in February, the result is 'same' since both the department '1' and '2' have the same average salary with the company, which is 7000.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-using-avg-and-casewhen-accepted">Approach: Using avg() and case...when... [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-using-avg-and-casewhen-accepted">Approach: Using <code>avg()</code> and <code>case...when...</code> [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Solve this problem by 3 steps as below.</p>
+<p><strong>Algorithm</strong></p>
+<p>1.Calculate the company's average salary in every month
+MySQL has the built-in function avg() to get the average of a list of numbers. Also, we need to format the <em>pay_date</em> column for future use.</p>
+<div class="codehilite"><pre><span></span><span class="k">select</span> <span class="k">avg</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span> <span class="k">as</span> <span class="n">company_avg</span><span class="p">,</span>  <span class="n">date_format</span><span class="p">(</span><span class="n">pay_date</span><span class="p">,</span> <span class="s1">'%Y-%m'</span><span class="p">)</span> <span class="k">as</span> <span class="n">pay_month</span>
+<span class="k">from</span> <span class="n">salary</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">date_format</span><span class="p">(</span><span class="n">pay_date</span><span class="p">,</span> <span class="s1">'%Y-%m'</span><span class="p">)</span>
+<span class="p">;</span>
+</pre></div>
+<table>
+<thead>
+<tr>
+<th>company_avg</th>
+<th>pay_month</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7000.0000</td>
+<td>2017-02</td>
+</tr>
+<tr>
+<td>8333.3333</td>
+<td>2017-03</td>
+</tr>
+</tbody>
+</table>
+<p>2.Calculate the each department's average salary in every month
+To do this, we need to join the <strong>salary</strong> table with the <strong>employee</strong> table using condition <code>salary.employee_id = employee.id</code>.</p>
+<div class="codehilite"><pre><span></span><span class="k">select</span> <span class="n">department_id</span><span class="p">,</span> <span class="k">avg</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span> <span class="k">as</span> <span class="n">department_avg</span><span class="p">,</span> <span class="n">date_format</span><span class="p">(</span><span class="n">pay_date</span><span class="p">,</span> <span class="s1">'%Y-%m'</span><span class="p">)</span> <span class="k">as</span> <span class="n">pay_month</span>
+<span class="k">from</span> <span class="n">salary</span>
+<span class="k">join</span> <span class="n">employee</span> <span class="k">on</span> <span class="n">salary</span><span class="p">.</span><span class="n">employee_id</span> <span class="o">=</span> <span class="n">employee</span><span class="p">.</span><span class="n">employee_id</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">department_id</span><span class="p">,</span> <span class="n">pay_month</span>
+<span class="p">;</span>
+</pre></div>
+<table>
+<thead>
+<tr>
+<th>department_id</th>
+<th>department_avg</th>
+<th>pay_month</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>7000.0000</td>
+<td>2017-02</td>
+</tr>
+<tr>
+<td>1</td>
+<td>9000.0000</td>
+<td>2017-03</td>
+</tr>
+<tr>
+<td>2</td>
+<td>7000.0000</td>
+<td>2017-02</td>
+</tr>
+<tr>
+<td>2</td>
+<td>8000.0000</td>
+<td>2017-03</td>
+</tr>
+</tbody>
+</table>
+<p>3.Compare the previous numbers and display the result
+This step might be the hardest if you have no idea on how to use MySQL flow control statement <a href="https://dev.mysql.com/doc/refman/5.7/en/case.html"><code>case...when...</code></a>.</p>
+<p>MySQL, like other programming languages, also has its flow control. Click <a href="https://dev.mysql.com/doc/refman/5.7/en/flow-control-statements.html">this link</a> to learn it.</p>
+<p>At last, combine the above two query and join them <code>on department_salary.pay_month = company_salary.pay_month</code>.</p>
+<p><strong>MySQL</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">select</span> <span class="n">department_salary</span><span class="p">.</span><span class="n">pay_month</span><span class="p">,</span> <span class="n">department_id</span><span class="p">,</span>
+<span class="k">case</span>
+  <span class="k">when</span> <span class="n">department_avg</span><span class="o">&gt;</span><span class="n">company_avg</span> <span class="k">then</span> <span class="s1">'higher'</span>
+  <span class="k">when</span> <span class="n">department_avg</span><span class="o">&lt;</span><span class="n">company_avg</span> <span class="k">then</span> <span class="s1">'lower'</span>
+  <span class="k">else</span> <span class="s1">'same'</span>
+<span class="k">end</span> <span class="k">as</span> <span class="n">comparison</span>
+<span class="k">from</span>
+<span class="p">(</span>
+  <span class="k">select</span> <span class="n">department_id</span><span class="p">,</span> <span class="k">avg</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span> <span class="k">as</span> <span class="n">department_avg</span><span class="p">,</span> <span class="n">date_format</span><span class="p">(</span><span class="n">pay_date</span><span class="p">,</span> <span class="s1">'%Y-%m'</span><span class="p">)</span> <span class="k">as</span> <span class="n">pay_month</span>
+  <span class="k">from</span> <span class="n">salary</span> <span class="k">join</span> <span class="n">employee</span> <span class="k">on</span> <span class="n">salary</span><span class="p">.</span><span class="n">employee_id</span> <span class="o">=</span> <span class="n">employee</span><span class="p">.</span><span class="n">employee_id</span>
+  <span class="k">group</span> <span class="k">by</span> <span class="n">department_id</span><span class="p">,</span> <span class="n">pay_month</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">department_salary</span>
+<span class="k">join</span>
+<span class="p">(</span>
+  <span class="k">select</span> <span class="k">avg</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span> <span class="k">as</span> <span class="n">company_avg</span><span class="p">,</span>  <span class="n">date_format</span><span class="p">(</span><span class="n">pay_date</span><span class="p">,</span> <span class="s1">'%Y-%m'</span><span class="p">)</span> <span class="k">as</span> <span class="n">pay_month</span> <span class="k">from</span> <span class="n">salary</span> <span class="k">group</span> <span class="k">by</span> <span class="n">date_format</span><span class="p">(</span><span class="n">pay_date</span><span class="p">,</span> <span class="s1">'%Y-%m'</span><span class="p">)</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">company_salary</span>
+<span class="k">on</span> <span class="n">department_salary</span><span class="p">.</span><span class="n">pay_month</span> <span class="o">=</span> <span class="n">company_salary</span><span class="p">.</span><span class="n">pay_month</span>
+<span class="p">;</span>
+</pre></div>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">679</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">2137</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              1%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>
