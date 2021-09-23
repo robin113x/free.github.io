@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad. 
+
+
+Suppose you have n versions [1, 2, ..., n] and you want to find out the first bad one, which causes all the following ones to be bad.
+
+
+You are given an API bool isBadVersion(version) which will return whether version is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.
+
+Credits:Special thanks to @jianchao.li.fighter for adding this problem and creating all test cases.">
+  <meta name="keywords"
+        content="First Bad Version, LC 278, leetcode 278, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>278. First Bad Version</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad. 
+</p>
+
+<p>
+Suppose you have <code>n</code> versions <code>[1, 2, ..., n]</code> and you want to find out the first bad one, which causes all the following ones to be bad.
+</p>
+
+<p>
+You are given an API <code>bool isBadVersion(version)</code> which will return whether <code>version</code> is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.
+</p>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://leetcode.com/discuss/user/jianchao.li.fighter">@jianchao.li.fighter</a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-linear-scan-time-limit-exceeded">Approach #1 (Linear Scan) [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-binary-search-accepted">Approach #2 (Binary Search) [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>This is a very simple problem. There is a subtle trap that you may fall into if you are not careful. Other than that, it is a direct application of a very famous algorithm.</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-linear-scan-time-limit-exceeded">Approach #1 (Linear Scan) [Time Limit Exceeded]</h4>
+<p>The straight forward way is to brute force it by doing a linear scan.</p>
+<iframe frameborder="0" height="190" name="Ezb8JYsL" src="https://leetcode.com/playground/Ezb8JYsL/shared" width="100%"></iframe>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>.
+Assume that <script type="math/tex; mode=display">isBadVersion(version)</script> takes constant time to check if a <em>version</em> is bad. It takes at most <script type="math/tex; mode=display">n - 1</script> checks, therefore the overall time complexity is <script type="math/tex; mode=display">O(n)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-binary-search-accepted">Approach #2 (Binary Search) [Accepted]</h4>
+<p>It is not difficult to see that this could be solved using a classic algorithm - Binary search. Let us see how the search space could be halved each time below.</p>
+<div class="codehilite"><pre><span></span>Scenario #1: isBadVersion(mid) =&gt; false
+
+ 1 2 3 4 5 6 7 8 9
+ G G G G G G B B B       G = Good, B = Bad
+ |       |       |
+left    mid    right
+</pre></div>
+<p>Let us look at the first scenario above where <script type="math/tex; mode=display">isBadVersion(mid) \Rightarrow  false</script>. We know that all versions preceding and including <script type="math/tex; mode=display">mid</script> are all good. So we set <script type="math/tex; mode=display">left = mid + 1</script> to indicate that the new search space is the interval <script type="math/tex; mode=display">[mid + 1, right]</script> (inclusive).</p>
+<div class="codehilite"><pre><span></span>Scenario #2: isBadVersion(mid) =&gt; true
+
+ 1 2 3 4 5 6 7 8 9
+ G G G B B B B B B       G = Good, B = Bad
+ |       |       |
+left    mid    right
+</pre></div>
+<p>The only scenario left is where <script type="math/tex; mode=display">isBadVersion(mid) \Rightarrow true</script>. This tells us that <script type="math/tex; mode=display">mid</script> may or may not be the first bad version, but we can tell for sure that all versions after <script type="math/tex; mode=display">mid</script> can be discarded. Therefore we set <script type="math/tex; mode=display">right = mid</script> as the new search space of interval <script type="math/tex; mode=display">[left,mid]</script> (inclusive).</p>
+<p>In our case, we indicate <script type="math/tex; mode=display">left</script> and <script type="math/tex; mode=display">right</script> as the boundary of our search space (both inclusive). This is why we initialize <script type="math/tex; mode=display">left = 1</script> and <script type="math/tex; mode=display">right = n </script>. How about the terminating condition? We could guess that <script type="math/tex; mode=display">left</script> and <script type="math/tex; mode=display">right</script> eventually both meet and it must be the first bad version, but how could you tell for sure?</p>
+<p>The formal way is to <a href="http://www.cs.cornell.edu/courses/cs211/2006sp/Lectures/L06-Induction/binary_search.html">prove by induction</a>, which you can read up yourself if you are interested. Here is a helpful tip to quickly prove the correctness of your binary search algorithm
+during an interview. We just need to test an input of size 2. Check if it reduces the search space to a single element (which must be the answer) for both of the scenarios above. If not, your algorithm will never terminate.</p>
+<p>If you are setting <script type="math/tex; mode=display">mid = \frac{left + right}{2}</script>, you have to be very careful. Unless you are using a language that does not overflow such as <a href="https://www.reddit.com/r/Python/comments/36xu5z/can_integer_operations_overflow_in_python/">Python</a>, <script type="math/tex; mode=display">left + right</script> could overflow. One way to fix this is to use <script type="math/tex; mode=display">left + \frac{right - left}{2}</script> instead.</p>
+<p>If you fall into this subtle overflow bug, you are not alone. Even Jon Bentley's own implementation of binary search had this <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm#Implementation_issues">overflow bug</a> and remained undetected for over twenty years.</p>
+<iframe frameborder="0" height="275" name="VQBrosDg" src="https://leetcode.com/playground/VQBrosDg/shared" width="100%"></iframe>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(\log n)</script>.
+The search space is halved each time, so the time complexity is <script type="math/tex; mode=display">O(\log n)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>.</p>
+</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">125727</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">485724</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              65%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

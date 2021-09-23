@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="A frog is crossing a river. The river is divided into x units and at each unit there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.
+Given a list of stones&#39; positions (in units) in sorted ascending order, determine if the frog is able to cross the river by landing on the last stone. Initially, the frog is on the first stone and assume the first jump must be 1 unit.
+
+If the frog&#39;s last jump was k units, then its next jump must be either k - 1, k, or k + 1 units. Note that the frog can only jump in the forward direction.
+Note:
+
+The number of stones is ≥ 2 and is &lt; 1,100.
+Each stone&#39;s position will be a non-negative integer &lt; 231.
+The first stone&#39;s position is always 0.
+
+
+Example 1:
+[0,1,3,5,6,8,12,17]
+
+There are a total of 8 stones.
+The first stone at the 0th unit, second stone at the 1st unit,
+third stone at the 3rd unit, and so on...
+The last stone at the 17th unit.
+
+Return true. The frog can jump to the last stone by jumping 
+1 unit to the 2nd stone, then 2 units to the 3rd stone, then 
+2 units to the 4th stone, then 3 units to the 6th stone, 
+4 units to the 7th stone, and 5 units to the 8th stone.
+
+
+Example 2:
+[0,1,2,3,4,8,9,11]
+
+Return false. There is no way to jump to the last stone as 
+the gap between the 5th and 6th stone is too large.">
+  <meta name="keywords"
+        content="Frog Jump, LC 403, leetcode 403, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>403. Frog Jump</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>A frog is crossing a river. The river is divided into x units and at each unit there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.</p>
+
+<p>Given a list of stones' positions (in units) in sorted ascending order, determine if the frog is able to cross the river by landing on the last stone. Initially, the frog is on the first stone and assume the first jump must be 1 unit.
+</p>
+
+<p>If the frog's last jump was <i>k</i> units, then its next jump must be either <i>k</i> - 1, <i>k</i>, or <i>k</i> + 1 units. Note that the frog can only jump in the forward direction.</p>
+
+<p><b>Note:</b>
+<ul>
+<li>The number of stones is &ge; 2 and is < 1,100.</li>
+<li>Each stone's position will be a non-negative integer < 2<sup>31</sup>.</li>
+<li>The first stone's position is always 0.</li>
+</ul>
+</p>
+
+<p><b>Example 1:</b>
+<pre>
+<b>[0,1,3,5,6,8,12,17]</b>
+
+There are a total of 8 stones.
+The first stone at the 0th unit, second stone at the 1st unit,
+third stone at the 3rd unit, and so on...
+The last stone at the 17th unit.
+
+<b>Return true</b>. The frog can jump to the last stone by jumping 
+1 unit to the 2nd stone, then 2 units to the 3rd stone, then 
+2 units to the 4th stone, then 3 units to the 6th stone, 
+4 units to the 7th stone, and 5 units to the 8th stone.
+</pre>
+</p>
+
+<p><b>Example 2:</b>
+<pre>
+<b>[0,1,2,3,4,8,9,11]</b>
+
+<b>Return false</b>. There is no way to jump to the last stone as 
+the gap between the 5th and 6th stone is too large.
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-forcetime-limit-exceeded">Approach #2 Better Brute Force[Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-using-memorization-accepted">Approach #3 Using Memorization [Accepted]</a></li>
+<li><a href="#approach-4-using-memorization-with-binary-search-accepted">Approach #4 Using Memorization with Binary Search [Accepted]</a></li>
+<li><a href="#approach-5-using-dynamic-programmingaccepted">Approach #5 Using Dynamic Programming[Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>Given a sorted stone array containing the positions at which there are stones in a river. We need to determine whether it is possible or not for a frog to cross the river by stepping over these stones,
+provided that the frog starts at position 0, and at every step the frog can make a jump of size <script type="math/tex; mode=display">k-1</script>, <script type="math/tex; mode=display">k</script> or <script type="math/tex; mode=display">k+1</script> if the previous jump is of size <script type="math/tex; mode=display">k</script>.</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>In the brute force approach, we make use of a recursive function <script type="math/tex; mode=display">canCross</script> which takes the given stone array, the current position and the current <script type="math/tex; mode=display">jumpsize</script> as input
+arguments. We start with <script type="math/tex; mode=display">currentPosition=0</script> and <script type="math/tex; mode=display">jumpsize=0</script>. Then for every function call, we start from the <script type="math/tex; mode=display">currentPosition</script> and check if there lies a stone at <script type="math/tex; mode=display">(currentPostion + newjumpsize)</script>, where, the
+<script type="math/tex; mode=display">newjumpsize</script> could be <script type="math/tex; mode=display">jumpsize</script>, <script type="math/tex; mode=display">jumpsize+1</script> or <script type="math/tex; mode=display">jumpsize-1</script>. In order to check whether a stone exists at the specified positions, we check the elements of the array in a linear manner.
+If a stone exists at any of these positions, we call the recursive function again with the same stone array, the <script type="math/tex; mode=display">currentPosition</script> and
+the <script type="math/tex; mode=display">newjumpsize</script> as the parameters. If we are able to reach the end of the stone array through any of these calls, we return <script type="math/tex; mode=display">true</script> to indicate the possibility of reaching the end.</p>
+<iframe frameborder="0" height="326" name="SLsn858o" src="https://leetcode.com/playground/SLsn858o/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(3^n)</script>. Recursion tree can grow upto <script type="math/tex; mode=display">3^n</script>.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Recursion of depth <script type="math/tex; mode=display">n</script> is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-forcetime-limit-exceeded">Approach #2 Better Brute Force[Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the previous brute force approach, we need to find if a stone exists at <script type="math/tex; mode=display">(currentPosition + new
+jumpsize)</script>, where <script type="math/tex; mode=display">newjumpsize</script> could be either of <script type="math/tex; mode=display">jumpsize-1</script>, <script type="math/tex; mode=display">jumpsize</script> or
+<script type="math/tex; mode=display">jumpsize+1</script>. But in order to check if a stone exists at the specified location, we searched the given array in linearly. To optimize this, we can use binary search to look for the element
+in the given array since it is sorted. Rest of the method remains the same.</p>
+<iframe frameborder="0" height="462" name="xnG53xSp" src="https://leetcode.com/playground/xnG53xSp/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(3^n)</script>. Recursion tree can grow upto <script type="math/tex; mode=display">3^n</script>.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Recursion of depth <script type="math/tex; mode=display">n</script> is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-memorization-accepted">Approach #3 Using Memorization [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Another problem with above approaches is that we can make the same function calls coming through different paths e.g. For a given <script type="math/tex; mode=display">currentIndex</script>, we can call the recursive function
+<script type="math/tex; mode=display">canCross</script> with the <script type="math/tex; mode=display">jumpsize</script>, say <script type="math/tex; mode=display">n</script>. This <script type="math/tex; mode=display">n</script> could be resulting from previous <script type="math/tex; mode=display">jumpsize</script> being <script type="math/tex; mode=display">n-1</script>,<script type="math/tex; mode=display">n</script> or <script type="math/tex; mode=display">n+1</script>. Thus, many redundant function calls could be made
+prolonging the running time. This redundancy can be removed by making use of memorization. We make use of a 2-d <script type="math/tex; mode=display">memo</script> array, initialized by <script type="math/tex; mode=display">-1</script>s, to store the result returned from a function call for
+a particular <script type="math/tex; mode=display">currentIndex</script> and <script type="math/tex; mode=display">jumpsize</script>. If the same <script type="math/tex; mode=display">currentIndex</script> and <script type="math/tex; mode=display">jumpsize</script> happens is encountered again, we can return the result directly using the <script type="math/tex; mode=display">memo</script> array. This helps to prune the
+search tree to a great extent.</p>
+<iframe frameborder="0" height="479" name="ZauYpsEv" src="https://leetcode.com/playground/ZauYpsEv/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. Memorization will reduce time complexity to <script type="math/tex; mode=display">O(n^3)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n^2)</script>. <script type="math/tex; mode=display">memo</script> matrix of size <script type="math/tex; mode=display">n^2</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-memorization-with-binary-search-accepted">Approach #4 Using Memorization with Binary Search [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can optimize the above memorization approach, if we make use of Binary Search to find if a stone
+exists at <script type="math/tex; mode=display">currentPostion + newjumpsize</script> instead of searching linearly.</p>
+<iframe frameborder="0" height="515" name="ApwgcSaM" src="https://leetcode.com/playground/ApwgcSaM/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(n^2 log(n)\big)</script>. We traverse the complete <script type="math/tex; mode=display">dp</script> matrix once <script type="math/tex; mode=display">(O(n^2))</script>. For every entry we take atmost <script type="math/tex; mode=display">n</script> numbers as pivot.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n^2)</script>. <script type="math/tex; mode=display">dp</script> matrix of size <script type="math/tex; mode=display">n^2</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-using-dynamic-programmingaccepted">Approach #5 Using Dynamic Programming[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the DP Approach, we make use of a hashmap <script type="math/tex; mode=display">map</script> which contains <script type="math/tex; mode=display">key:value</script> pairs such that <script type="math/tex; mode=display">key</script> refers to the position at which a stone is present and <script type="math/tex; mode=display">value</script> is a
+set containing the <script type="math/tex; mode=display">jumpsize</script> which can lead to the current stone position. We start by making a hashmap whose <script type="math/tex; mode=display">key</script>s are all the positions at which a stone is present and the <script type="math/tex; mode=display">value</script>s are
+all empty except position 0 whose value contains 0. Then, we start traversing the elements(positions) of the given stone array in sequential order. For the <script type="math/tex; mode=display">currentPosition</script>, for every possible <script type="math/tex; mode=display">jumpsize</script> in the
+<script type="math/tex; mode=display">value</script> set, we check if <script type="math/tex; mode=display">currentPosition + newjumpsize</script> exists in the <script type="math/tex; mode=display">map</script>, where <script type="math/tex; mode=display">newjumpsize</script> can be either <script type="math/tex; mode=display">jumpsize-1</script>, <script type="math/tex; mode=display">jumpsize</script>,
+<script type="math/tex; mode=display">jumpsize+1</script>. If so, we append the corresponding <script type="math/tex; mode=display">value</script> set with <script type="math/tex; mode=display">newjumpsize</script>. We continue in the same manner. If at the end, the <script type="math/tex; mode=display">value</script> set corresponding to the
+last position is non-empty, we conclude that reaching the end is possible, otherwise, it isn't.</p>
+<p>For more understanding see this animation-</p>
+<!--![Frog Jump](https://leetcode.com/articles/Figures/135_FrogJump.gif)-->
+<p>!?!../Documents/403_Frog.json:1000,563!?!</p>
+<iframe frameborder="0" height="377" name="WkNK2fiw" src="https://leetcode.com/playground/WkNK2fiw/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. Two nested loops are there.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n^2)</script>. <script type="math/tex; mode=display">hashmap</script> size can grow upto <script type="math/tex; mode=display">n^2</script> .</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">21592</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">66586</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              40%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/snapchat.html">Snapchat</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

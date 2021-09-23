@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="By now, you are given a secret signature consisting of character &#39;D&#39; and &#39;I&#39;. &#39;D&#39; represents a decreasing relationship between two numbers, &#39;I&#39; represents an increasing relationship between two numbers. And our secret signature was constructed by a special integer array, which contains uniquely all the different number from 1 to n (n is the length of the secret signature plus 1). For example, the secret signature &#34;DI&#34; can be constructed by array [2,1,3] or [3,1,2], but won&#39;t be constructed by array [3,2,4] or [2,1,3,4], which are both illegal constructing special string that can&#39;t represent the &#34;DI&#34; secret signature.
+
+
+On the other hand, now your job is to find the lexicographically smallest permutation of [1, 2, ... n] could refer to the given secret signature in the input.
+
+Example 1:
+Input: &#34;I&#34;
+Output: [1,2]
+Explanation: [1,2] is the only legal initial spectial string can construct secret signature &#34;I&#34;, where the number 1 and 2 construct an increasing relationship.
+
+
+Example 2:
+Input: &#34;DI&#34;
+Output: [2,1,3]
+Explanation: Both [2,1,3] and [3,1,2] can construct the secret signature &#34;DI&#34;,">
+  <meta name="keywords"
+        content="Find Permutation, LC 484, leetcode 484, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>484. Find Permutation</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+By now, you are given a <b>secret signature</b> consisting of character 'D' and 'I'. 'D' represents a decreasing relationship between two numbers, 'I' represents an increasing relationship between two numbers. And our <b>secret signature</b> was constructed by a special integer array, which contains uniquely all the different number from 1 to n (n is the length of the secret signature plus 1). For example, the secret signature "DI" can be constructed by array [2,1,3] or [3,1,2], but won't be constructed by array [3,2,4] or [2,1,3,4], which are both illegal constructing special string that can't represent the "DI" <b>secret signature</b>.
+</p>
+
+<p>
+On the other hand, now your job is to find the lexicographically smallest permutation of [1, 2, ... n] could refer to the given <b>secret signature</b> in the input.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> "I"
+<b>Output:</b> [1,2]
+<b>Explanation:</b> [1,2] is the only legal initial spectial string can construct secret signature "I", where the number 1 and 2 construct an increasing relationship.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> "DI"
+<b>Output:</b> [2,1,3]
+<b>Explanation:</b> Both [2,1,3] and [3,1,2] can construct the secret signature "DI", </br>but since we want to find the one with the smallest lexicographical permutation, you need to output [2,1,3]
+</pre>
+</p>
+
+<p><b>Note:</b>
+<li>The input string will only contain the character 'D' and 'I'.</li>
+<li>The length of input string is a positive integer and will not exceed 10,000</li>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-stack-accepted">Approach #1 Using Stack [Accepted]</a></li>
+<li><a href="#approach-2-reversing-the-subarray-accepted">Approach #2 Reversing the subarray [Accepted]</a></li>
+<li><a href="#approach-3-two-pointers-accepted">Approach #3 Two pointers [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-stack-accepted">Approach #1 Using Stack [Accepted]</h4>
+<p>Let's revisit the important points of the given problem statement. For a given <script type="math/tex; mode=display">n</script>, we need to use all the integers in the range <script type="math/tex; mode=display">(1,n)</script> to generate a lexicographically smallest permutation of these <script type="math/tex; mode=display">n</script> numbers which satsfies the pattern given in the string <script type="math/tex; mode=display">s</script>.</p>
+<p>Firstly, we note that the lexicographically smallest permutation that can be generated(irrelevant of the given pattern <script type="math/tex; mode=display">s</script>) using the <script type="math/tex; mode=display">n</script> integers from <script type="math/tex; mode=display">(1,n)</script> is <script type="math/tex; mode=display">[1, 2, 3,.., n]</script>(say <script type="math/tex; mode=display">min</script>). Thus, while generating the required permutation, we can surely say that the permutation generated should be as close as possible to <script type="math/tex; mode=display">min</script>.</p>
+<p>Now, we can also note that the number generated will be the smallest possible only if the digits lying towards the most significant positions are as small as possible while satisfying the given pattern. Now, to understand how these observations help in providing the solution of the given problem, we'll look at a simple example.</p>
+<p>Say, the given pattern <script type="math/tex; mode=display">s</script> is <code>"DDIIIID"</code>. This corresponds to <script type="math/tex; mode=display">n=8</script>. Thus, the <script type="math/tex; mode=display">min</script> permutation possible will be <code>[1, 2, 3, 4, 5, 6, 7, 8]</code>. Now, to satisfy the first two <code>"DD"</code> pattern, we can observe that the best course of action to generate the smallest arrangement will be to rearrange only <code>1, 2, 3</code>, because these are the smallest numbers that can be placed at the three most significant positions to generate the smallest arrangement satisfying the given pattern till now, leading to the formation of <code>[3, 2, 1, 4, 5, 6, 7, 8]</code> till now. We can note that placing any number larger than 3 at any of these positions will lead to the generation of a lexicographically larger arrangement as discussed above.</p>
+<p>We can also note that irrespective of how we rearrange the first three <code>1, 2, 3</code>, the relationship of the last number among them with the  next number always satisfies the criteria required for satisfying the first <code>I</code> in <script type="math/tex; mode=display">s</script>. Further, note that, the pattern generated till now already satisfies the subpattern <code>"IIII"</code> in <script type="math/tex; mode=display">s</script>. This will always be satisfied since the <script type="math/tex; mode=display">min</script> number considered originally always satisfies the increasing criteria.</p>
+<p>Now, when we find the last <code>"D"</code> in the pattern <script type="math/tex; mode=display">s</script>, we again need to make rearrangements in the last two positions only and we need to use only the numbers <code>7, 8</code> in such rearrangements at those positions. This is because, again, we would like to keep the larger number towards the least significant possible as much as possible to generate the lexicographically smallest arrangement. Thus, to satisfy the last <code>"D"</code> the best arrangement of the last two numbers is <code>8, 7</code> leading to the generation of <code>[3, 2, 1, 4, 5, 6, 8, 7]</code> as the required output.</p>
+<p>Based on the above example, we can summarize that, to generate the required arrangement, we can start off with the <script type="math/tex; mode=display">min</script> number that can be formed for the given <script type="math/tex; mode=display">n</script>. Then, to satisfy the given pattern <script type="math/tex; mode=display">s</script>, we need to reverse only those subsections of the <script type="math/tex; mode=display">min</script> array which have a <code>D</code> in the pattern at their corresponding positions.</p>
+<p>To perform these operations, we need not necessarily create the <script type="math/tex; mode=display">min</script> array first, because it simply consists of numbers from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script> in ascending order. </p>
+<p>To perform the operations discussed above, we can make use of a <script type="math/tex; mode=display">stack</script>. We can start considering the numbers <script type="math/tex; mode=display">i</script> from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script>. For every current number, whenver we find a <code>D</code> in the pattern <script type="math/tex; mode=display">s</script>, we just push that number onto the <script type="math/tex; mode=display">stack</script>. This is done so that, later on, when we find the next <code>I</code>, we can pop off these numbers from the stack leading to the formation of a reversed (descending) subpattern of those numbers corrresponding to the <code>D</code>'s in <script type="math/tex; mode=display">s</script>(as discussed above). </p>
+<p>When we encounter an <code>I</code> in the pattern, as discussed above, we push the current number as well onto the <script type="math/tex; mode=display">stack</script> and then pop-off all the numbers on the <script type="math/tex; mode=display">stack</script> and append these numbers to the resultant pattern formed till now.</p>
+<p>Now, we could reach the end of the pattern <script type="math/tex; mode=display">s</script> with a trail of <code>D</code>'s at the end. In this case, we won't find an ending <code>I</code> to pop-off the numbers on the <script type="math/tex; mode=display">stack</script>. Thus, at the end, we push the value <script type="math/tex; mode=display">n</script> on the stack and then pop all the values on the <script type="math/tex; mode=display">stack</script> and append them to the resultant pattern formed till now. Now, if the second last character in <script type="math/tex; mode=display">s</script> was an <code>I</code>, <script type="math/tex; mode=display">n</script> will be appended at the end of the resultant arrangement correctly. If the second last character was a <code>D</code>, the reversed pattern appended at the end of the resultant arrangement will be reversed including the last number <script type="math/tex; mode=display">n</script>. In both the cases, the resultant arrangement turns out to be correct. </p>
+<p>The following animation better illustrates the process.</p>
+<p>!?!../Documents/484_Find_Permutation_1.json:1000,563!?!</p>
+<p>Below code is inpired by <a href="http://leetcode.com/horseno">@horseno</a></p>
+<iframe frameborder="0" height="394" name="oQngSEVg" src="https://leetcode.com/playground/oQngSEVg/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">n</script> numbers will be pushed and popped from the <script type="math/tex; mode=display">stack</script>. Here, <script type="math/tex; mode=display">n</script> refers to the number of elements in the resultant arrangement.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The <script type="math/tex; mode=display">stack</script> can grow upto a depth of <script type="math/tex; mode=display">n</script> in the worst case.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-reversing-the-subarray-accepted">Approach #2 Reversing the subarray [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In order to reverse the subsections of the <script type="math/tex; mode=display">min</script> array, as discussed in the last approach, we can also start by initializing the resultant arrangement <script type="math/tex; mode=display">res</script> with the <script type="math/tex; mode=display">min</script> array i.e. by filling with elements <script type="math/tex; mode=display">(1,n)</script> in ascending order. Then, while traversing the pattern <script type="math/tex; mode=display">s</script>, we can keep a track of the starting and ending indices in <script type="math/tex; mode=display">res</script> corresponding to the <code>D</code>'s in the pattern <script type="math/tex; mode=display">s</script>, and reverse the portions of the sub-arrays in <script type="math/tex; mode=display">res</script> corresponding to these indices. The reasoning behind this remains the same as discussed in the last approach.</p>
+<p>The following animation illustrates the process.</p>
+<p>!?!../Documents/484_Find_Permutation_Reverse.json:1000,563!?!</p>
+<iframe frameborder="0" height="462" name="JWJKE7wc" src="https://leetcode.com/playground/JWJKE7wc/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. The resultant array of size <script type="math/tex; mode=display">n</script> is traversed atmost three times, in the worst case e.g. "DDDDDD"</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-two-pointers-accepted">Approach #3 Two pointers [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Instead of initializing the <script type="math/tex; mode=display">res</script> array once with ascending numbers, we can save one iteration over <script type="math/tex; mode=display">res</script> if we fill it on the fly. To do this, we can keep on filling the numbers in ascending order in <script type="math/tex; mode=display">res</script> for <code>I</code>'s found in the pattern <script type="math/tex; mode=display">s</script>. Whenever we find a <code>D</code> in the pattern <script type="math/tex; mode=display">s</script>, we can store the current position(counting from 1) being filled in the <script type="math/tex; mode=display">res</script> array in a pointer <script type="math/tex; mode=display">j</script>. Now, whenever we find the first <code>I</code> following this last consecutive set of <code>D</code>'s, say at the <script type="math/tex; mode=display">i^{th}</script> position(counting from 1) in <script type="math/tex; mode=display">res</script>, we know, that the elements from <script type="math/tex; mode=display">j^{th}</script> position to the <script type="math/tex; mode=display">i^{th}</script> position in <script type="math/tex; mode=display">res</script> need to be filled with the numbers from <script type="math/tex; mode=display">j</script> to <script type="math/tex; mode=display">i</script> in reverse order. Thus, we can fill the numbers in <script type="math/tex; mode=display">res</script> array starting from the <script type="math/tex; mode=display">j^{th}</script> position, with <script type="math/tex; mode=display">i</script> being the number filled at that position and continue the filling in descending order till reaching the <script type="math/tex; mode=display">i^{th}</script> position. In this way, we can generate the required arrangement without initializing <script type="math/tex; mode=display">res</script>.</p>
+<iframe frameborder="0" height="428" name="XWhYV6uZ" src="https://leetcode.com/playground/XWhYV6uZ/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. The resultant array of size <script type="math/tex; mode=display">n</script> is traversed atmost two times, in the worst case e.g. "DDDDDD"</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">6830</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">12383</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              7%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

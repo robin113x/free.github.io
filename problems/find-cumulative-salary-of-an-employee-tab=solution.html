@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="The Employee table holds the salary information in a year.
+Write a SQL to get the cumulative sum of an employee&#39;s salary over a period of 3 months but exclude the most recent month.
+The result should be displayed by &#39;Id&#39; ascending, and then by &#39;Month&#39; descending.
+Example
+Input
+
+| Id | Month | Salary |
+|----|-------|--------|
+| 1  | 1     | 20     |
+| 2  | 1     | 20     |
+| 1  | 2     | 30     |
+| 2  | 2     | 30     |
+| 3  | 2     | 40     |
+| 1  | 3     | 40     |
+| 3  | 3     | 60     |
+| 1  | 4     | 60     |
+| 3  | 4     | 70     |
+
+Output
+
+
+| Id | Month | Salary |
+|----|-------|--------|
+| 1  | 3     | 90     |
+| 1  | 2     | 50     |
+| 1  | 1     | 20     |
+| 2  | 1     | 20     |
+| 3  | 3     | 100    |
+| 3  | 2     | 40     |
+
+
+Explanation
+Employee &#39;1&#39; has 3 salary records for the following 3 months except the most recent month &#39;4&#39;: salary 40 for month &#39;3&#39;, 30 for month &#39;2&#39; and 20 for month &#39;1&#39;">
+  <meta name="keywords"
+        content="Find Cumulative Salary of an Employee, LC 579, leetcode 579, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>579. Find Cumulative Salary of an Employee</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>The <b>Employee</b> table holds the salary information in a year.</p>
+
+<p>Write a SQL to get the cumulative sum of an employee's salary over a period of 3 months but exclude the most recent month.</p>
+
+<p>The result should be displayed by 'Id' ascending, and then by 'Month' descending.</p> 
+
+<p><b>Example</b><br />
+<b>Input</b>
+<pre>
+| Id | Month | Salary |
+|----|-------|--------|
+| 1  | 1     | 20     |
+| 2  | 1     | 20     |
+| 1  | 2     | 30     |
+| 2  | 2     | 30     |
+| 3  | 2     | 40     |
+| 1  | 3     | 40     |
+| 3  | 3     | 60     |
+| 1  | 4     | 60     |
+| 3  | 4     | 70     |
+</pre>
+
+<b>Output</b>
+<pre>
+
+| Id | Month | Salary |
+|----|-------|--------|
+| 1  | 3     | 90     |
+| 1  | 2     | 50     |
+| 1  | 1     | 20     |
+| 2  | 1     | 20     |
+| 3  | 3     | 100    |
+| 3  | 2     | 40     |
+</pre>
+</p>
+
+<b>Explanation</b>
+<p>Employee '1' has 3 salary records for the following 3 months except the most recent month '4': salary 40 for month '3', 30 for month '2' and 20 for month '1'</br>
+So the cumulative sum of salary of this employee over 3 months is 90(40+30+20), 50(30+20) and 20 respectively.</p> 
+<pre>
+| Id | Month | Salary |
+|----|-------|--------|
+| 1  | 3     | 90     |
+| 1  | 2     | 50     |
+| 1  | 1     | 20     |
+</pre>
+
+Employee '2' only has one salary record (month '1') except its most recent month '2'.
+<pre>
+| Id | Month | Salary |
+|----|-------|--------|
+| 2  | 1     | 20     |
+</pre></p>
+Employ '3' has two salary records except its most recent pay month '4': month '3' with 60 and month '2' with 40. So the cumulative salary is as following.
+<pre>
+| Id | Month | Salary |
+|----|-------|--------|
+| 3  | 3     | 100    |
+| 3  | 2     | 40     |
+</pre></p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-using-outer-join-and-temporary-tables-accepted">Approach: Using OUTER JOIN and temporary tables [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-using-outer-join-and-temporary-tables-accepted">Approach: Using <code>OUTER JOIN</code> and temporary tables [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Solve this issue by two steps. The first one is to get the cumulative sum of an employee's salary over a period of 3 months, and then exclude the most recent month from the result.</p>
+<p><strong>Algorithm</strong></p>
+<p>If you feel hard to work out how to get the cumulative sum of an employee's salary over a period of 3 months, think about 2 months as a start. By joining this <strong>Employee</strong> table with itself, you can get salary information for one more month.</p>
+<div class="codehilite"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span>
+    <span class="n">Employee</span> <span class="n">E1</span>
+        <span class="k">LEFT</span> <span class="k">JOIN</span>
+    <span class="n">Employee</span> <span class="n">E2</span> <span class="k">ON</span> <span class="p">(</span><span class="n">E2</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">E1</span><span class="p">.</span><span class="n">id</span>
+        <span class="k">AND</span> <span class="n">E2</span><span class="p">.</span><span class="k">month</span> <span class="o">=</span> <span class="n">E1</span><span class="p">.</span><span class="k">month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">E1</span><span class="p">.</span><span class="n">id</span> <span class="k">ASC</span> <span class="p">,</span> <span class="n">E1</span><span class="p">.</span> <span class="k">month</span> <span class="k">DESC</span>
+</pre></div>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Month</th>
+<th>Salary</th>
+<th>Id</th>
+<th>Month</th>
+<th>Salary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>4</td>
+<td>60</td>
+<td>1</td>
+<td>3</td>
+<td>40</td>
+</tr>
+<tr>
+<td>1</td>
+<td>3</td>
+<td>40</td>
+<td>1</td>
+<td>2</td>
+<td>30</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>30</td>
+<td>1</td>
+<td>1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>20</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>30</td>
+<td>2</td>
+<td>1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>20</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>70</td>
+<td>3</td>
+<td>3</td>
+<td>60</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>60</td>
+<td>3</td>
+<td>2</td>
+<td>40</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>40</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&gt;Note:</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&gt; - The blank value in the output is actually <code>NULL</code> in the database.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&gt; - The first three columns are from E1, and the rest ones are from E2.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Then we can add the salary to get the cumulative sum for 2 months.</p>
+<div class="codehilite"><pre><span></span><span class="k">SELECT</span>
+    <span class="n">E1</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+    <span class="n">E1</span><span class="p">.</span><span class="k">month</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">IFNULL</span><span class="p">(</span><span class="n">E1</span><span class="p">.</span><span class="n">salary</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">IFNULL</span><span class="p">(</span><span class="n">E2</span><span class="p">.</span><span class="n">salary</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="k">AS</span> <span class="n">Salary</span>
+<span class="k">FROM</span>
+    <span class="n">Employee</span> <span class="n">E1</span>
+        <span class="k">LEFT</span> <span class="k">JOIN</span>
+    <span class="n">Employee</span> <span class="n">E2</span> <span class="k">ON</span> <span class="p">(</span><span class="n">E2</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">E1</span><span class="p">.</span><span class="n">id</span>
+        <span class="k">AND</span> <span class="n">E2</span><span class="p">.</span><span class="k">month</span> <span class="o">=</span> <span class="n">E1</span><span class="p">.</span><span class="k">month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">E1</span><span class="p">.</span><span class="n">id</span> <span class="k">ASC</span> <span class="p">,</span> <span class="n">E1</span><span class="p">.</span><span class="k">month</span> <span class="k">DESC</span>
+</pre></div>
+<div class="codehilite"><pre><span></span>| id | month | Salary |
+|----|-------|--------|
+| 1  | 4     | 100    |
+| 1  | 3     | 70     |
+| 1  | 2     | 50     |
+| 1  | 1     | 20     |
+| 2  | 2     | 50     |
+| 2  | 1     | 20     |
+| 3  | 4     | 130    |
+| 3  | 3     | 100    |
+| 3  | 2     | 40     |
+</pre></div>
+<p>Similarly, you can join this table one more time to get the cumulative sum for 3 months.</p>
+<div class="codehilite"><pre><span></span><span class="k">SELECT</span>
+    <span class="n">E1</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+    <span class="n">E1</span><span class="p">.</span><span class="k">month</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">IFNULL</span><span class="p">(</span><span class="n">E1</span><span class="p">.</span><span class="n">salary</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">IFNULL</span><span class="p">(</span><span class="n">E2</span><span class="p">.</span><span class="n">salary</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">IFNULL</span><span class="p">(</span><span class="n">E3</span><span class="p">.</span><span class="n">salary</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="k">AS</span> <span class="n">Salary</span>
+<span class="k">FROM</span>
+    <span class="n">Employee</span> <span class="n">E1</span>
+        <span class="k">LEFT</span> <span class="k">JOIN</span>
+    <span class="n">Employee</span> <span class="n">E2</span> <span class="k">ON</span> <span class="p">(</span><span class="n">E2</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">E1</span><span class="p">.</span><span class="n">id</span>
+        <span class="k">AND</span> <span class="n">E2</span><span class="p">.</span><span class="k">month</span> <span class="o">=</span> <span class="n">E1</span><span class="p">.</span><span class="k">month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">LEFT</span> <span class="k">JOIN</span>
+    <span class="n">Employee</span> <span class="n">E3</span> <span class="k">ON</span> <span class="p">(</span><span class="n">E3</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">E1</span><span class="p">.</span><span class="n">id</span>
+        <span class="k">AND</span> <span class="n">E3</span><span class="p">.</span><span class="k">month</span> <span class="o">=</span> <span class="n">E1</span><span class="p">.</span><span class="k">month</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">E1</span><span class="p">.</span><span class="n">id</span> <span class="k">ASC</span> <span class="p">,</span> <span class="n">E1</span><span class="p">.</span><span class="k">month</span> <span class="k">DESC</span>
+<span class="p">;</span>
+</pre></div>
+<div class="codehilite"><pre><span></span>| id | month | Salary |
+|----|-------|--------|
+| 1  | 4     | 130    |
+| 1  | 3     | 90     |
+| 1  | 2     | 50     |
+| 1  | 1     | 20     |
+| 2  | 2     | 50     |
+| 2  | 1     | 20     |
+| 3  | 4     | 170    |
+| 3  | 3     | 100    |
+| 3  | 2     | 40     |
+</pre></div>
+<p>In addition, we have to exclude the most recent month as required. If we have a temp table including every id and most recent month like below, then we can easily opt out these months by join it with the above table.</p>
+<div class="codehilite"><pre><span></span>| id | month |
+|----|-------|
+| 1  | 4     |
+| 2  | 2     |
+| 3  | 4     |
+</pre></div>
+<p>Here is the code to generate this table.</p>
+<div class="codehilite"><pre><span></span><span class="k">SELECT</span>
+    <span class="n">id</span><span class="p">,</span> <span class="k">MAX</span><span class="p">(</span><span class="k">month</span><span class="p">)</span> <span class="k">AS</span> <span class="k">month</span>
+<span class="k">FROM</span>
+    <span class="n">Employee</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">id</span>
+<span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+<span class="p">;</span>
+</pre></div>
+<p>At last, we can join them together and get the desired cumulative sum of an employee's salary over a period of 3 months excluding the most recent one.</p>
+<p><strong>MySQL</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">SELECT</span>
+    <span class="n">E1</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+    <span class="n">E1</span><span class="p">.</span><span class="k">month</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">IFNULL</span><span class="p">(</span><span class="n">E1</span><span class="p">.</span><span class="n">salary</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">IFNULL</span><span class="p">(</span><span class="n">E2</span><span class="p">.</span><span class="n">salary</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">IFNULL</span><span class="p">(</span><span class="n">E3</span><span class="p">.</span><span class="n">salary</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="k">AS</span> <span class="n">Salary</span>
+<span class="k">FROM</span>
+    <span class="p">(</span><span class="k">SELECT</span>
+        <span class="n">id</span><span class="p">,</span> <span class="k">MAX</span><span class="p">(</span><span class="k">month</span><span class="p">)</span> <span class="k">AS</span> <span class="k">month</span>
+    <span class="k">FROM</span>
+        <span class="n">Employee</span>
+    <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">id</span>
+    <span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">AS</span> <span class="n">maxmonth</span>
+        <span class="k">LEFT</span> <span class="k">JOIN</span>
+    <span class="n">Employee</span> <span class="n">E1</span> <span class="k">ON</span> <span class="p">(</span><span class="n">maxmonth</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">E1</span><span class="p">.</span><span class="n">id</span>
+        <span class="k">AND</span> <span class="n">maxmonth</span><span class="p">.</span><span class="k">month</span> <span class="o">&gt;</span> <span class="n">E1</span><span class="p">.</span><span class="k">month</span><span class="p">)</span>
+        <span class="k">LEFT</span> <span class="k">JOIN</span>
+    <span class="n">Employee</span> <span class="n">E2</span> <span class="k">ON</span> <span class="p">(</span><span class="n">E2</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">E1</span><span class="p">.</span><span class="n">id</span>
+        <span class="k">AND</span> <span class="n">E2</span><span class="p">.</span><span class="k">month</span> <span class="o">=</span> <span class="n">E1</span><span class="p">.</span><span class="k">month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">LEFT</span> <span class="k">JOIN</span>
+    <span class="n">Employee</span> <span class="n">E3</span> <span class="k">ON</span> <span class="p">(</span><span class="n">E3</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">E1</span><span class="p">.</span><span class="n">id</span>
+        <span class="k">AND</span> <span class="n">E3</span><span class="p">.</span><span class="k">month</span> <span class="o">=</span> <span class="n">E1</span><span class="p">.</span><span class="k">month</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span> <span class="k">ASC</span> <span class="p">,</span> <span class="k">month</span> <span class="k">DESC</span>
+<span class="p">;</span>
+</pre></div>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>month</th>
+<th>Salary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>3</td>
+<td>90</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>50</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>20</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>100</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+<p>Note: Thank <a href="https://discuss.leetcode.com/user/xiaxin">@xiaxin</a> for providing this elegant solution.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">627</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">2309</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              2%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/amazon.html">Amazon</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Write a function to generate the generalized abbreviations of a word.
+
+Example:
+
+Given word = &#34;word&#34;, return the following list (order does not matter):
+[&#34;word&#34;, &#34;1ord&#34;, &#34;w1rd&#34;, &#34;wo1d&#34;, &#34;wor1&#34;, &#34;2rd&#34;, &#34;w2d&#34;, &#34;wo2&#34;, &#34;1o1d&#34;, &#34;1or1&#34;, &#34;w1r1&#34;, &#34;1o2&#34;, &#34;2r1&#34;, &#34;3d&#34;, &#34;w3&#34;, &#34;4&#34;]">
+  <meta name="keywords"
+        content="Generalized Abbreviation, LC 320, leetcode 320, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>320. Generalized Abbreviation</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Write a function to generate the generalized abbreviations of a word.</p>
+
+<p>
+    <b>Example:</b><br/>
+</p>
+<p>Given word = <code>"word"</code>, return the following list (order does not matter):<br />
+<pre>["word", "1ord", "w1rd", "wo1d", "wor1", "2rd", "w2d", "wo2", "1o1d", "1or1", "w1r1", "1o2", "2r1", "3d", "w3", "4"]
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-backtracking-accepted">Approach #1 (Backtracking) [Accepted]</a></li>
+<li><a href="#approach-2-bit-manipulation-accepted">Approach #2 (Bit Manipulation) [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>This article is for intermediate readers. It introduces the following ideas:
+Backtracking and Bit Manipulation</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-backtracking-accepted">Approach #1 (Backtracking) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>How many abbreviations are there for a word of length <script type="math/tex; mode=display">n</script>? The answer is <script type="math/tex; mode=display">2^n</script> because each character can either be abbreviated or not, resulting in different abbreviations.</p>
+<p><strong>Algorithm</strong></p>
+<p>The backtracking algorithm enumerates a set of partial candidates that, in principle, could be completed in several choices to give all the possible solutions to the problem. The completion is done incrementally, by extending the candidate in many steps. Abstractly, the partial candidates can be seen as nodes of a tree, the potential search tree. Each partial candidate is the parent of the candidates that derives from it by an extension step; the leaves of the tree are the partial candidates that cannot be extended any further.</p>
+<p>In our problem, the partial candidates are incomplete abbreviations that can be extended by one of the two choices:</p>
+<ol>
+<li>keep the next character;</li>
+<li>abbreviate the next character.</li>
+</ol>
+<p>We extend the potential candidate in a depth-first manner. We backtrack when we reach a leaf node in the search tree. All the leaves in the search tree are valid abbreviations and shall be put into a shared list which will be returned at the end.</p>
+<iframe frameborder="0" height="496" name="DZ7F6eEQ" src="https://leetcode.com/playground/DZ7F6eEQ/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n 2^n)</script>. For each call to <code>backtrack</code>, it either returns without branching, or it branches into two recursive calls. All these recursive calls form a complete binary recursion tree with <script type="math/tex; mode=display">2^n</script> leaves and <script type="math/tex; mode=display">2^n - 1</script> inner nodes. For each leaf node, it needs <script type="math/tex; mode=display">O(n)</script> time for converting builder to String; for each internal node, it needs only constant time. Thus, the total time complexity is dominated by the leaves. In total that is <script type="math/tex; mode=display">O(n2^n)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. If the return list doesn't count, we only need <script type="math/tex; mode=display">O(n)</script> auxiliary space to store the characters in <code>StringBuilder</code> and the <script type="math/tex; mode=display">O(n)</script> space used by system stack. In a recursive program, the space of system stack is linear to the maximum recursion depth which is <script type="math/tex; mode=display">n</script> in our problem.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-bit-manipulation-accepted">Approach #2 (Bit Manipulation) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If we use <script type="math/tex; mode=display">0</script> to represent a character that is not abbreviated and <script type="math/tex; mode=display">1</script> to represent one that is. Then each abbreviation is mapped to an <script type="math/tex; mode=display">n</script> bit binary number and vice versa.</p>
+<p><strong>Algorithm</strong></p>
+<p>To generate all the <script type="math/tex; mode=display">2^n</script> abbreviation with non-repetition and non-omission, we need to follow rules. In approach #1, the rules are coded in the backtracking process.
+Here we introduce another way.</p>
+<p>From the intuition section, each abbreviation has a one to one relationship to a <script type="math/tex; mode=display">n</script> bit binary number <script type="math/tex; mode=display">x</script>. We can use these numbers as blueprints to build the corresponding abbreviations.</p>
+<p>For example:</p>
+<p>Given word = <code>"word"</code> and x = <code>0b0011</code></p>
+<p>Which means <code>'w'</code> and <code>'o'</code> are kept, <code>'r'</code> and <code>'d'</code> are abbreviated. Therefore, the result is "wo2".</p>
+<p>Thus, for a number <script type="math/tex; mode=display">x</script>, we just need to scan it bit by bit as if it is an array so that we know which character should be kept and which should be abbreviated.</p>
+<p>To scan a number <script type="math/tex; mode=display">x</script> bit by bit, one could extract its last bit by <code>b = x &amp; 1</code> and shift <script type="math/tex; mode=display">x</script> one bit to the right, i.e. <code>x &gt;&gt;= 1</code>.
+Doing this repeatedly, one will get all the <script type="math/tex; mode=display">n</script> bits of <script type="math/tex; mode=display">x</script> from last bit to first bit.</p>
+<iframe frameborder="0" height="513" name="s3sJrrGq" src="https://leetcode.com/playground/s3sJrrGq/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n 2^n)</script>. Building one abbreviation from the number <script type="math/tex; mode=display">x</script>, we need scan all the <script type="math/tex; mode=display">n</script> bits. Besides the <code>StringBuilder::toString</code> function is also linear. Thus, to generate all the <script type="math/tex; mode=display">2^n</script>, it costs <script type="math/tex; mode=display">O(n 2^n)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. If the return list doesn't count, we only need <script type="math/tex; mode=display">O(n)</script> auxiliary space to store the characters in <code>StringBuilder</code>.</p>
+</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">26134</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">57202</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              39%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

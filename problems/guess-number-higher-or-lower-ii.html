@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="We are playing the Guess Game. The game is as follows:
+I pick a number from 1 to n. You have to guess which number I picked.
+Every time you guess wrong, I&#39;ll tell you whether the number I picked is higher or lower. 
+However, when you guess a particular number x,  and you guess wrong, you pay $x. You win the game when you guess the number I picked.
+
+Example:
+
+n = 10, I pick 8.
+
+First round:  You guess 5, I tell you that it&#39;s higher. You pay $5.
+Second round: You guess 7, I tell you that it&#39;s higher. You pay $7.
+Third round:  You guess 9, I tell you that it&#39;s lower. You pay $9.
+
+Game over. 8 is the number I picked.
+
+You end up paying $5 + $7 + $9 = $21.
+
+
+Given a particular n ≥ 1, find out how much money you need to have to guarantee a win.
+Credits:Special thanks to @agave and @StefanPochmann for adding this problem and creating all test cases.">
+  <meta name="keywords"
+        content="Guess Number Higher or Lower II, LC 375, leetcode 375, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>375. Guess Number Higher or Lower II</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>We are playing the Guess Game. The game is as follows:<p> 
+
+<p>I pick a number from <strong>1</strong> to <strong>n</strong>. You have to guess which number I picked.</p>
+
+<p>Every time you guess wrong, I'll tell you whether the number I picked is higher or lower. </p>
+
+<p>However, when you guess a particular number x,  and you guess wrong, you pay <b>$x</b>. You win the game when you guess the number I picked.</p>
+
+<p>
+<b>Example:</b>
+<pre>
+n = 10, I pick 8.
+
+First round:  You guess 5, I tell you that it's higher. You pay $5.
+Second round: You guess 7, I tell you that it's higher. You pay $7.
+Third round:  You guess 9, I tell you that it's lower. You pay $9.
+
+Game over. 8 is the number I picked.
+
+You end up paying $5 + $7 + $9 = $21.
+</pre>
+</p>
+
+<p>Given a particular <strong>n &ge; 1</strong>, find out how much money you need to have to guarantee a <b>win</b>.</p>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://leetcode.com/agave/">@agave</a> and <a href="https://leetcode.com/stefanpochmann/">@StefanPochmann</a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-modified-brute-force-time-limit-exceeded">Approach #2 Modified Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-using-dp-accepted">Approach #3 Using DP [Accepted]</a></li>
+<li><a href="#approach-4-better-approach-using-dp-accepted">Approach #4 Better Approach using DP [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>Given a number <script type="math/tex; mode=display">n</script>, we have to find the worst case cost of guessing a number chosen from the range <script type="math/tex; mode=display">(1, n)</script>, assuming that the guesses are made intelligently(minimize the total cost). The cost is incremented by <script type="math/tex; mode=display">i</script> for every wrong guess <script type="math/tex; mode=display">i</script>.</p>
+<p>For example:</p>
+<div class="codehilite"><pre><span></span>n=5
+1 2 3 4 5
+</pre></div>
+<p>If we start with 3 as the initial guess, the next guess would certainly be 4 as in the worst case required number is 5. Total Cost <script type="math/tex; mode=display">= 4+3=7</script>.</p>
+<p>But if we start with 4 as the initial guess, our next guess would be 2 as in the worst case required number is 3 or 1. Total Cost <script type="math/tex; mode=display">=4+2=6</script> which is the minimum cost.</p>
+<div class="codehilite"><pre><span></span>n=8
+1 2 3 4 5 6 7 8
+</pre></div>
+<p>In this case we have to guess 5 followed by 7. Total Cost <script type="math/tex; mode=display">=5+7=12</script>.
+If we choose 4 as our intial guess. Total Cost <script type="math/tex; mode=display">=4+5+7=16</script>.</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>Firstly, we need to be aware of the fact that out of the range <script type="math/tex; mode=display">(1, n)</script>, we have to guess the numbers intelligently in order to minimize the cost. But, along with that we have to take into account the worst case scenario possible, that is we have to assume that the original number chosen is such that it will try to maximize the overall cost.</p>
+<p>In Brute Force, we can pick up any number <script type="math/tex; mode=display">i</script> in the range <script type="math/tex; mode=display">(1, n)</script>. Assuming it is a wrong guess(worst case scenario), we have to minimize the cost of reaching the required number. Now, the required number could be lying either to the right or left of the number picked(<script type="math/tex; mode=display">i</script>). But to cover the possibility of the worst case number chosen, we need to take the maximum cost out of the cost of reaching the worst number out of the right and left segments of <script type="math/tex; mode=display">i</script>. Thus, if we pick up <script type="math/tex; mode=display">i</script> as the pivot, the overall minimum cost for the worst required number will be:</p>
+<p>
+<script type="math/tex; mode=display">
+\mathrm{cost}(1, n)=i + \max\big(\mathrm{cost}(1,i-1), \mathrm{cost}(i+1,n)\big)
+</script>
+</p>
+<p>For every segment, we can further choose another pivot and repeat the same process for calculating the minimum cost.</p>
+<p>By using the above procedure, we found out the cost of reaching the required number starting with <script type="math/tex; mode=display">i</script> as the pivot. In the same way, we iterate over all the numbers in the range <script type="math/tex; mode=display">(1, n)</script>, choosing them as the pivot, calculating the cost of every pivot chosen and thus, we can find the minimum cost out of those.</p>
+<iframe frameborder="0" height="326" name="QW3ndyqL" src="https://leetcode.com/playground/QW3ndyqL/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n!)</script>. We choose a number as pivot and repeat the pivoting process further <script type="math/tex; mode=display">n</script> times <script type="math/tex; mode=display">O(n!)</script>. We repeat the same process for <script type="math/tex; mode=display">n</script> pivots.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Recursion of depth <script type="math/tex; mode=display">n</script> is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-modified-brute-force-time-limit-exceeded">Approach #2 Modified Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In Brute Force, for numbers in the range <script type="math/tex; mode=display">(i, j)</script>, we picked up every number from <script type="math/tex; mode=display">i</script> to <script type="math/tex; mode=display">j</script> as the pivot and found the maximum cost out of its left and right segments. But an important point to observe is that if we choose any number from the range <script type="math/tex; mode=display">\big( i,\frac{i+j}{2} \big)</script> as the pivot, the right segment(consisting of numbers larger than the picked up pivot) will be longer than the left segment(consisting of numbers smaller than it). Thus, we will always get the maximum cost from its right segment and it will be larger than the minimum cost achievable by choosing some other pivot. Therefore, our objective here is to reduce the larger cost which is coming from the right segment. Thus, it is wise to choose the pivot from the range <script type="math/tex; mode=display">\big(\frac{i+j}{2}, j\big)</script>. In this way the costs of the two segments will be nearer to each other and this will minimize the overall cost.</p>
+<p>Thus, while choosing the pivot instead of iterating from <script type="math/tex; mode=display">i</script> to <script type="math/tex; mode=display">j</script>, we iterate from <script type="math/tex; mode=display">\frac{i+j}{2}</script> to <script type="math/tex; mode=display">j</script> and find the minimum achievable cost similar to brute force.</p>
+<iframe frameborder="0" height="309" name="juXrfQvD" src="https://leetcode.com/playground/juXrfQvD/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n!)</script>. We choose a number as pivot and repeat the pivoting process further <script type="math/tex; mode=display">n</script> times <script type="math/tex; mode=display">O(n!)</script>. We repeat the same process for <script type="math/tex; mode=display">n</script> pivots.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Recursion of depth <script type="math/tex; mode=display">n</script> is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-dp-accepted">Approach #3 Using DP [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The problem of finding the minimum cost of reaching the destination number choosing <script type="math/tex; mode=display">i</script> as a pivot can be divided into the subproblem of finding the maximum out of the minimum costs of its left and right segments as explained above. For each segment, we can continue the process leading to smaller and smaller subproblems. This leads us to the conclusion that we can use DP for this problem.</p>
+<p>We need to use a <script type="math/tex; mode=display">dp</script> matrix, where <script type="math/tex; mode=display">dp(i, j)</script> refers to the minimum cost of finding the worst number given only the numbers in the range <script type="math/tex; mode=display">(i, j)</script>. Now, we need to know how to fill in the entries of this <script type="math/tex; mode=display">dp</script>. If we are given only a single number <script type="math/tex; mode=display">k</script>, no matter what the number is the cost of finding that number is always 0 since we always hit the number directly without any wrong guess. Thus, firstly, we fill in all the entries of the <script type="math/tex; mode=display">dp</script> which correspond to segments of length 1 i.e. all entries <script type="math/tex; mode=display">dp(k, k)</script> are initialized to 0. Then, in order to find the entries for segments of length 2, we need all the entries for segments of length 1. Thus, in general, to fill in the entries corresponding to segments of length <script type="math/tex; mode=display">len</script>, we need all the entries of length <script type="math/tex; mode=display">len-1</script> and below to be already filled. Thus, we need to fill the entries in the order of their segment lengths. Thus, we fill the entries of <script type="math/tex; mode=display">dp</script> diagonally.</p>
+<p>Now, what criteria do we need to fill up the <script type="math/tex; mode=display">dp</script> matrix? For any entry  <script type="math/tex; mode=display">dp(i, j)</script>, given the current segment length of interest is <script type="math/tex; mode=display">len</script> i.e. if <script type="math/tex; mode=display">len=j-i+1</script>, we assume as if we are available only with the numbers in the range <script type="math/tex; mode=display">(i, j)</script>. To fill in its current entry, we follow the same process as Approach 1, choosing every number as the pivot and finding the minimum cost as:</p>
+<p>
+<script type="math/tex; mode=display">
+\mathrm{cost}(i, j)=\mathrm{pivot} + \max\big(\mathrm{cost}(i,\mathrm{pivot}-1), \mathrm{cost}(\mathrm{pivot}+1,n)\big)
+</script>
+</p>
+<p>But, we have an advantage in terms of calculating the cost here, since we already know the costs for the segments of length smaller than <script type="math/tex; mode=display">len</script> from <script type="math/tex; mode=display">dp</script>. Thus, the dp equation becomes:</p>
+<p>
+<script type="math/tex; mode=display">
+\mathrm{dp}(i, j) = \min_{\mathrm{pivots}(i, j)} \big[ \mathrm{pivot} + \max \big( \mathrm{dp}(i,\mathrm{pivot}-1) , \mathrm{dp}(\mathrm{pivot}+1,n) \big) \big]
+</script>
+</p>
+<p>where <script type="math/tex; mode=display">\min_{\mathrm{pivots}(i, j)}</script> indicates the minimum obtained by considering every number in the range <script type="math/tex; mode=display">(i, j)</script> as the pivot.</p>
+<p>The following animation will make the process more clear for n=5:
+<!--<img alt="Guess Number Higher or Lower" src="https://leetcode.com/media/original_images/375_Guess_Number_Higher_or_Lower.gif" />-->
+!?!../Documents/375_Guess.json:791,552!?!</p>
+<iframe frameborder="0" height="326" name="X99KiHYD" src="https://leetcode.com/playground/X99KiHYD/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. We traverse the complete <script type="math/tex; mode=display">dp</script> matrix once <script type="math/tex; mode=display">(O(n^2))</script>. For every entry we take atmost <script type="math/tex; mode=display">n</script> numbers as pivot.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n^2)</script>. <script type="math/tex; mode=display">dp</script> matrix of size <script type="math/tex; mode=display">n^2</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-better-approach-using-dp-accepted">Approach #4 Better Approach using DP [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, we chose every possible pivot from the range <script type="math/tex; mode=display">(i, j)</script>. But, as per the argument given in Approach 2, we can choose pivots only from the range <script type="math/tex; mode=display">\big(i+(len-1)/2,j\big)</script>, where <script type="math/tex; mode=display">len</script> is the current segment length of interest.
+Thus the governing equation is:</p>
+<p>
+<script type="math/tex; mode=display">
+\mathrm{dp}(i, j)=\min_{\mathrm{pivots}\big(i+\frac{len-1}{2}, j\big)}\big[\mathrm{pivot} + \max\big(\mathrm{dp}(i,\mathrm{pivot}-1), \mathrm{dp}(\mathrm{pivot}+1,n)\big)\big]
+</script>
+</p>
+<p>Thus, we can optimize the Approach 3 to some extent.</p>
+<iframe frameborder="0" height="360" name="vxpg2Chd" src="https://leetcode.com/playground/vxpg2Chd/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. We traverse the complete <script type="math/tex; mode=display">dp</script> matrix once <script type="math/tex; mode=display">(O(n^2))</script>. For every entry we take at most <script type="math/tex; mode=display">n</script> numbers as pivot.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n^2)</script>. <script type="math/tex; mode=display">dp</script> matrix of size <script type="math/tex; mode=display">n^2</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">26546</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">73917</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              46%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

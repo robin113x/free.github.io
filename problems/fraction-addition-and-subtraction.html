@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a string representing an expression of fraction addition and subtraction, you need to return the calculation result in string format. The final result should be irreducible fraction. If your final result is an integer, say 2, you need to change it to the format of fraction that has denominator 1. So in this case, 2 should be converted to 2/1.
+Example 1:
+Input:&#34;-1/2+1/2&#34;
+Output: &#34;0/1&#34;
+
+
+Example 2:
+Input:&#34;-1/2+1/2+1/3&#34;
+Output: &#34;1/3&#34;
+
+
+Example 3:
+Input:&#34;1/3-1/2&#34;
+Output: &#34;-1/6&#34;
+
+
+Example 4:
+Input:&#34;5/3+1/3&#34;
+Output: &#34;2/1&#34;
+
+
+Note:
+
+The input string only contains &#39;0&#39; to &#39;9&#39;, &#39;/&#39;, &#39;+&#39; and &#39;-&#39;. So does the output.
+Each fraction (input and output) has format ±numerator/denominator. If the first input fraction or the output is positive, then &#39;+&#39; will be omitted.
+The input only contains valid irreducible fractions, where the numerator and denominator of each fraction will always be in the range [1,10]. If the denominator is 1, it means this fraction is actually an integer in a fraction format defined above.
+The number of given fractions will be in the range [1,10].
+The numerator and denominator of the final result are guaranteed to be valid and in the range of 32-bit int.">
+  <meta name="keywords"
+        content="Fraction Addition and Subtraction, LC 592, leetcode 592, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>592. Fraction Addition and Subtraction</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a string representing an expression of fraction addition and subtraction, you need to return the calculation result in string format. The final result should be <a href = "https://en.wikipedia.org/wiki/Irreducible_fraction">irreducible fraction</a>. If your final result is an integer, say <code>2</code>, you need to change it to the format of fraction that has denominator <code>1</code>. So in this case, <code>2</code> should be converted to <code>2/1</code>.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b>"-1/2+1/2"
+<b>Output:</b> "0/1"
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b>"-1/2+1/2+1/3"
+<b>Output:</b> "1/3"
+</pre>
+</p>
+
+<p><b>Example 3:</b><br />
+<pre>
+<b>Input:</b>"1/3-1/2"
+<b>Output:</b> "-1/6"
+</pre>
+</p>
+
+<p><b>Example 4:</b><br />
+<pre>
+<b>Input:</b>"5/3+1/3"
+<b>Output:</b> "2/1"
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The input string only contains <code>'0'</code> to <code>'9'</code>, <code>'/'</code>, <code>'+'</code> and <code>'-'</code>. So does the output.</li>
+<li>Each fraction (input and output) has format <code>±numerator/denominator</code>. If the first input fraction or the output is positive, then <code>'+'</code> will be omitted.</li>
+<li>The input only contains valid <b>irreducible fractions</b>, where the <b>numerator</b> and <b>denominator</b> of each fraction will always be in the range [1,10]. If the denominator is 1, it means this fraction is actually an integer in a fraction format defined above.</li> 
+<li>The number of given fractions will be in the range [1,10].</li>
+<li>The numerator and denominator of the <b>final result</b> are guaranteed to be valid and in the range of 32-bit int.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-lcmaccepted">Approach #1  Using LCM[Accepted]</a></li>
+<li><a href="#approach-2-using-gcdaccepted">Approach #2  Using GCD[Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-lcmaccepted">Approach #1  Using LCM[Accepted]</h4>
+<p>The first obvious step to be undertaken is to split the given string into individual fractions. We split the string based on <code>+</code> and <code>-</code> sign. We store the signs in the order in which they appear in the string in <script type="math/tex; mode=display">sign</script> array. Further, after getting the individual fractions, we further split the fractions based on <code>/</code> sign. Thus, we obtain the individual numerator and denominator parts. We store the same in <script type="math/tex; mode=display">num</script> and <script type="math/tex; mode=display">den</script> arrays respectively.</p>
+<p>Now, we've got the data ready to be worked upon. In order to see the method we've used in this implementation, we'll take an example and understand the way we work on it.</p>
+<p>Let's say, the given fraction is:</p>
+<p>
+<script type="math/tex; mode=display">\frac{3}{2} + \frac{5}{3} -\frac{7}{6}</script>
+</p>
+<p>We need to equalize all the denominators so as to be able to add and subtract the numerators easily. The nearest value the denominators can be scaled upto is the LCM of all the denominators. Thus, we need to find the LCM of all the denominators and then multiply all the denominators with appropriate integer factors to make them equal to the LCM. But, in order to keep the individual fraction values unchanged, we need to multiply the individual numerators also with the same factors. </p>
+<p>In order to find the LCM, we can go as follows. We use the method <script type="math/tex; mode=display">lcm(a,b,c) = lcm( lcm(a,b), c)</script>. Thus, if we can compute the lcm of two denominators, we can keep on repeating the process iteratively over the denominators to get the overall lcm. To find the lcm of two numbers <script type="math/tex; mode=display">a</script> and <script type="math/tex; mode=display">b</script>, we use <script type="math/tex; mode=display">lcm(a,b) = (a*b)/gcd(a,b)</script>. For the above example, the <script type="math/tex; mode=display">lcm</script> turns out to be 6.</p>
+<p>Thus, we scale up the denominators to 6 as follows:</p>
+<p>
+<script type="math/tex; mode=display">\frac{3*3}{2*3} + \frac{5*2}{3*2} -\frac{7}{6}</script>
+</p>
+<p>Thus, we can observe that, the scaling factor for a fraction <script type="math/tex; mode=display">\frac{num}{den}</script> is given by: <script type="math/tex; mode=display">{num*x}/{den*x}</script>, where <script type="math/tex; mode=display">x</script> is the corresponding scaling factor. Note that, <script type="math/tex; mode=display">den*x=lcm</script>. Thus, <script type="math/tex; mode=display">x=lcm/den</script>. Thus, we find out the corresponding scaling factor <script type="math/tex; mode=display">x_i</script> for each fraction.</p>
+<p>After this, we can directly add or subtract the new scaled numerators.</p>
+<p>In the current example, we obtain <script type="math/tex; mode=display">\frac{12}{6}</script> as the result. Now, we need to convert this into an irreducible fraction. Thus, if we obtain <script type="math/tex; mode=display">\frac{num_i}{den_i}</script> as the final result, we need to find a largest factor <script type="math/tex; mode=display">y</script>, which divides both <script type="math/tex; mode=display">num_i</script> and <script type="math/tex; mode=display">den_i</script>. Such a number, as we know, is the gcd of <script type="math/tex; mode=display">num_i</script> and <script type="math/tex; mode=display">den_i</script>.</p>
+<p>Thus, to convert the result <script type="math/tex; mode=display">\frac{num_i}{den_i}</script>, we divide both the numerator and denominator by the gcd of the two numbers <script type="math/tex; mode=display">y</script> to obtain the final irreducible <script type="math/tex; mode=display">\frac{num_i/y}{den_i/y}</script>.</p>
+<p>Note: A problem with this approach is that we find the lcm of all the denominators in a single go and then reduce the overall fraction at the end. Thus, the lcm value could become very large and could lead to an overflow. But, this solution suffices for the current range of numbers.</p>
+<iframe frameborder="0" height="515" name="8oKguDZy" src="https://leetcode.com/playground/8oKguDZy/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nlogx)</script>. Euclidean GCD algorithm takes <script type="math/tex; mode=display">O(log(a.b))</script> time for finding gcd of two numbers <script type="math/tex; mode=display">a</script> and <script type="math/tex; mode=display">b</script>. Here <script type="math/tex; mode=display">n</script> refers to the number of fractions in the input string and <script type="math/tex; mode=display">x</script> is the maximum possible value of denominator.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Size of <script type="math/tex; mode=display">num</script>, <script type="math/tex; mode=display">den</script> and <script type="math/tex; mode=display">sign</script> list grows upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-gcdaccepted">Approach #2  Using GCD[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We know that we can continue the process of evaluating the given fractions by considering pairs of fractions at a time and continue the process considering the result obtained and the new fraction to be evaluated this time. We make use of this observation, and thus, instead of segregating the signs, numerators and denominators first, we directly start scanning the given strings and operate on the fractions obtained till now whenever a new sign is encountered.</p>
+<p>We operate on the pairs of fractions, and keep on reducing the result obtained to irreducible fractions on the way. By doing this, we can reduce the chances of the problem of potential overflow possible in case the denominators lead to a large value of lcm.</p>
+<p>We also observed from the last approach, that we need to equalize the denominators of a pair of fractions say:</p>
+<p>
+<script type="math/tex; mode=display">\frac{a}{b} + \frac{c}{d}</script>
+</p>
+<p>We used a scaling factor of <script type="math/tex; mode=display">x</script> for the first fraction(both numerator and denominator). Here, <script type="math/tex; mode=display">x=lcm(b,d)/b</script>. For the second fraction, the scaling factor <script type="math/tex; mode=display">y</script> is given by <script type="math/tex; mode=display">y=lcm(b,d)/d</script>. Here, $<script type="math/tex; mode=display">lcm(b,d)=b*d/gcd(b,d)</script>. Thus, instead of finding the lcm and then again determining the scaling factor, we can directly use: <script type="math/tex; mode=display">x=(b*d)/(gcd(b,d)*b) = d/gcd(b,d)</script>, and <script type="math/tex; mode=display">y=(b*d)/(gcd(b,d)*d)</script>. Thus, we need to scale the numerators appropriately and add/subtract them in terms of pairs. The denominators are scaled in the same manner to the lcm of the two denominators involved.</p>
+<p>After evaluting every pair of fractions, we again reduce them to irreducible fractions by diving both the numerator and denominator of the resultant fraction by the gcd of the two.</p>
+<iframe frameborder="0" height="515" name="Nt5WV8C2" src="https://leetcode.com/playground/Nt5WV8C2/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nlogx)</script>. Euclidean GCD algorithm takes <script type="math/tex; mode=display">O(log(a.b))</script> time for finding gcd of two numbers <script type="math/tex; mode=display">a</script> and <script type="math/tex; mode=display">b</script>. Here <script type="math/tex; mode=display">n</script> refers to the number of fractions in the input string and <script type="math/tex; mode=display">x</script> is the maximum possible value of denominator.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Size of <script type="math/tex; mode=display">sign</script> list grows upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">6651</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">14437</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              14%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/ixl.html">IXL</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

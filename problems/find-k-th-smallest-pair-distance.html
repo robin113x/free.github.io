@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an integer array, return the k-th smallest distance among all the pairs. The distance of a pair (A, B) is defined as the absolute difference between A and B. 
+Example 1:
+Input:
+nums = [1,3,1]
+k = 1
+Output: 0 
+Explanation:
+Here are all the pairs:
+(1,3) -&gt; 2
+(1,1) -&gt; 0
+(3,1) -&gt; 2
+Then the 1st smallest distance pair is (1,1), and its distance is 0.
+
+
+Note:
+
+2 &lt;= len(nums) &lt;= 10000.
+0 &lt;= nums[i] &lt; 1000000.
+1 &lt;= k &lt;= len(nums) * (len(nums) - 1) / 2.">
+  <meta name="keywords"
+        content="Find K-th Smallest Pair Distance, LC 719, leetcode 719, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>719. Find K-th Smallest Pair Distance</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given an integer array, return the k-th smallest <b>distance</b> among all the pairs. The distance of a pair (A, B) is defined as the absolute difference between A and B. </p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b>
+nums = [1,3,1]
+k = 1
+<b>Output: 0</b> 
+<b>Explanation:</b>
+Here are all the pairs:
+(1,3) -> 2
+(1,1) -> 0
+(3,1) -> 2
+Then the 1st smallest distance pair is (1,1), and its distance is 0.
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li><code>2 <= len(nums) <= 10000</code>.</li>
+<li><code>0 <= nums[i] < 1000000</code>.</li>
+<li><code>1 <= k <= len(nums) * (len(nums) - 1) / 2</code>.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-heap-time-limit-exceeded">Approach #1: Heap [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-binary-search-prefix-sum-accepted">Approach #2: Binary Search + Prefix Sum [Accepted]</a></li>
+<li><a href="#approach-3-binary-search-sliding-window-accepted">Approach #3: Binary Search + Sliding Window [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-heap-time-limit-exceeded">Approach #1: Heap [Time Limit Exceeded]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Sort the points.  For every point with index <code>i</code>, the pairs with indexes <code>(i, j)</code> [by order of distance] are <code>(i, i+1), (i, i+2), ..., (i, N-1)</code>.</p>
+<p>Let's keep a heap of pairs, initially <code>heap = [(i, i+1) for all i]</code>, and ordered by distance (the distance of <code>(i, j)</code> is <code>nums[j] - nums[i]</code>.)  Whenever we use a pair <code>(i, x)</code> from our heap, we will add <code>(i, x+1)</code> to our heap when appropriate.</p>
+<iframe frameborder="0" height="500" name="haWM6KvQ" src="https://leetcode.com/playground/haWM6KvQ/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O((k+N) \log{N})</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>nums</code>.  As <script type="math/tex; mode=display">k = O(N^2)</script>, this is <script type="math/tex; mode=display">O(N^2 \log {N})</script> in the worst case.  The complexity added by our heap operations is either <script type="math/tex; mode=display">O((k+N) \log N)</script> in the Java solution, or <script type="math/tex; mode=display">O(k \log{N} + N)</script> in the Python solution because the <code>heapq.heapify</code> operation is linear time.  Additionally, we add <script type="math/tex; mode=display">O(N \log N)</script> complexity due to sorting.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>, the space used to store our <code>heap</code> of at most <code>N-1</code> elements.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-binary-search-prefix-sum-accepted">Approach #2: Binary Search + Prefix Sum [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Let's binary search for the answer.  It's definitely in the range <code>[0, W]</code>, where <code>W = max(nums) - min(nums)]</code>.  </p>
+<p>Let <code>possible(guess)</code> be true if and only if there are <code>k</code> or more pairs with distance less than or equal to <code>guess</code>.  We will focus on evaluating our <code>possible</code> function quickly.</p>
+<p><strong>Algorithm</strong></p>
+<p>Let <code>prefix[v]</code> be the number of points in <code>nums</code> less than or equal to <code>v</code>.  Also, let <code>multiplicity[j]</code> be the number of points <code>i</code> with <code>i &lt; j and nums[i] == nums[j]</code>.  We can record both of these with a simple linear scan.</p>
+<p>Now, for every point <code>i</code>, the number of points <code>j</code> with <code>i &lt; j</code> and <code>nums[j] - nums[i] &lt;= guess</code> is <code>prefix[x+guess] - prefix[x] + (count[i] - multiplicity[i])</code>, where <code>count[i]</code> is the number of ocurrences of <code>nums[i]</code> in <code>nums</code>.  The sum of this over all <code>i</code> is the number of pairs with distance <code>&lt;= guess</code>.  </p>
+<p>Finally, because the sum of <code>count[i] - multiplicity[i]</code> is the same as the sum of <code>multiplicity[i]</code>, we could just replace that term with <code>multiplicity[i]</code> without affecting the answer.  (Actually, the sum of multiplicities in total will be a constant used in the answer, so we could precalculate it if we wanted.)</p>
+<p>In our Java solution, we computed <code>possible = count &gt;= k</code> directly in the binary search instead of using a helper function.</p>
+<iframe frameborder="0" height="500" name="upbfbVHa" src="https://leetcode.com/playground/upbfbVHa/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(W + N \log{W} + N \log{N})</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>nums</code>, and <script type="math/tex; mode=display">W</script> is equal to <code>nums[nums.length - 1] - nums[0]</code>.  We do <script type="math/tex; mode=display">O(W)</script> work to calculate <code>prefix</code> initially.  The <script type="math/tex; mode=display">\log W</script> factor comes from our binary search, and we do <script type="math/tex; mode=display">O(N)</script> work inside our call to <code>possible</code> (or to calculate <code>count</code> in Java).  The final <script type="math/tex; mode=display">O(N\log N)</script> factor comes from sorting.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N+W)</script>, the space used to store <code>multiplicity</code> and <code>prefix</code>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-binary-search-sliding-window-accepted">Approach #3: Binary Search + Sliding Window [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>As in <em>Approach #2</em>, let's binary search for the answer, and we will focus on evaluating our <code>possible</code> function quickly.</p>
+<p><strong>Algorithm</strong></p>
+<p>We will use a sliding window approach to count the number of pairs with distance <code>&lt;=</code> guess.  </p>
+<p>For every possible <code>right</code>, we maintain the loop invariant: <code>left</code> is the smallest value such that <code>nums[right] - nums[left] &lt;= guess</code>.  Then, the number of pairs with <code>right</code> as it's right-most endpoint is <code>right - left</code>, and we add all of these up.</p>
+<iframe frameborder="0" height="429" name="UD6QK4gU" src="https://leetcode.com/playground/UD6QK4gU/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N \log{W} + N \log{N})</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>nums</code>, and <script type="math/tex; mode=display">W</script> is equal to <code>nums[nums.length - 1] - nums[0]</code>.  The <script type="math/tex; mode=display">\log W</script> factor comes from our binary search, and we do <script type="math/tex; mode=display">O(N)</script> work inside our call to <code>possible</code> (or to calculate <code>count</code> in Java).  The final <script type="math/tex; mode=display">O(N\log N)</script> factor comes from sorting.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(1)</script>.  No additional space is used except for integer variables.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">3379</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">12848</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              23%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

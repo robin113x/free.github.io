@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.
+Examples: 
+[2,3,4] , the median is 3
+[2,3], the median is (2 + 3) / 2 = 2.5 
+
+Design a data structure that supports the following two operations:
+
+
+void addNum(int num) - Add a integer number from the data stream to the data structure.
+double findMedian() - Return the median of all elements so far.
+
+
+For example:
+
+addNum(1)
+addNum(2)
+findMedian() -&gt; 1.5
+addNum(3) 
+findMedian() -&gt; 2
+
+Credits:Special thanks to @Louis1992 for adding this problem and creating all test cases.">
+  <meta name="keywords"
+        content="Find Median from Data Stream, LC 295, leetcode 295, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>295. Find Median from Data Stream</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.</p>
+Examples: <br />
+<p><code>[2,3,4]</code> , the median is <code>3</code></p>
+<p><code>[2,3]</code>, the median is <code>(2 + 3) / 2 = 2.5</code> </p>
+
+<p>
+Design a data structure that supports the following two operations:
+</p>
+<ul>
+<li>void addNum(int num) - Add a integer number from the data stream to the data structure.</li>
+<li>double findMedian() - Return the median of all elements so far.</li>
+</ul>
+
+<p>
+For example:</p>
+<pre>
+addNum(1)
+addNum(2)
+findMedian() -> 1.5
+addNum(3) 
+findMedian() -> 2
+</pre>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://leetcode.com/discuss/user/Louis1992">@Louis1992</a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-simple-sorting-time-limit-exceeded">Approach #1 Simple Sorting [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-insertion-sort-time-limit-exceeded">Approach #2 Insertion Sort [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-two-heaps-accepted">Approach #3 Two Heaps! [Accepted]</a></li>
+<li><a href="#approach-4-multiset-and-two-pointers-accepted">Approach #4 Multiset and Two Pointers [Accepted]</a></li>
+<li><a href="#further-thoughts">Further Thoughts</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-simple-sorting-time-limit-exceeded">Approach #1 Simple Sorting [Time Limit Exceeded]</h4>
+<p><strong>Intuition</strong></p>
+<p>Do what the question says.</p>
+<p><strong>Algorithm</strong></p>
+<p>Store the numbers in a resize-able container. Every time you need to output the median, sort the container and output the median.</p>
+<iframe frameborder="0" height="377" name="4f383Thu" src="https://leetcode.com/playground/4f383Thu/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O(n \cdot log(n)) + O(1) \simeq O(n \cdot log(n))</script>.</p>
+<ul>
+<li>Adding a number takes amortized <script type="math/tex; mode=display">O(1)</script> time for a container with an efficient resizing scheme.</li>
+<li>Finding the median is primarily dependent on the sorting that takes place. This takes <script type="math/tex; mode=display">O(n \cdot log(n))</script> time for a standard comparative sort.</li>
+</ul>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(n)</script> linear space to hold input in a container. No extra space other than that needed (since sorting can usually be done in-place).</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-insertion-sort-time-limit-exceeded">Approach #2 Insertion Sort [Time Limit Exceeded]</h4>
+<p><strong>Intuition</strong></p>
+<p>Keeping our input container always sorted (i.e. maintaining the sorted nature of the container as an <em>invariant</em>).</p>
+<p><strong>Algorithm</strong></p>
+<p>Which algorithm allows a number to be added to a sorted list of numbers and yet keeps the entire list sorted? Well, for one, <strong>insertion sort!</strong></p>
+<p>We assume that the current list is already sorted. When a new number comes, we have to add it to the list while maintaining the sorted nature of the list. This is achieved easily by finding the correct place to insert the incoming number, using a <strong>binary search</strong> (remember, the list is <em>always sorted</em>). Once the position is found, we need to shift all higher elements by one space to make room for the incoming number.</p>
+<p>This method would work well when the amount of insertion queries is lesser or about the same as the amount of median finding queries.</p>
+<iframe frameborder="0" height="394" name="k7RdqeEJ" src="https://leetcode.com/playground/k7RdqeEJ/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O(n) + O(log(n)) \approx O(n)</script>.</p>
+<ul>
+<li>Binary Search takes <script type="math/tex; mode=display">O(log(n))</script> time to find correct insertion position.</li>
+<li>Insertion can take up to <script type="math/tex; mode=display">O(n)</script> time since elements have to be shifted inside the container to make room for the new element.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Pop quiz:</strong> Can we use a <em>linear</em> search instead of a <em>binary</em> search to find insertion position, without incurring any significant runtime penalty?</p>
+</blockquote>
+<ul>
+<li>Space complexity: <script type="math/tex; mode=display">O(n)</script> linear space to hold input in a container.</li>
+</ul>
+<hr/>
+<h4 id="approach-3-two-heaps-accepted">Approach #3 Two Heaps! [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>The above two approaches gave us some valuable insights on how to tackle this problem. Concretely, one can infer two things:</p>
+<ol>
+<li>If we could maintain direct access to median elements at all times, then finding the median would take a constant amount of time.</li>
+<li>If we could find a reasonably fast way of adding numbers to our containers, additional penalties incurred could be lessened.</li>
+</ol>
+<p>But perhaps the most important insight, which is not readily observable, is the fact that we <em>only</em> need a consistent way to access the median elements. Keeping the <em>entire</em> input sorted is <strong>not a requirement.</strong></p>
+<blockquote>
+<p>Well, if only there were a data structure which could handle our needs.</p>
+</blockquote>
+<p>As it turns out there are two data structures for the job:</p>
+<ul>
+<li>Heaps (or Priority Queues <sup id="fnref:note-1"><a class="footnote-ref" href="#fn:note-1" rel="footnote">1</a></sup>)</li>
+<li>Self-balancing Binary Search Trees (we'll talk more about them in <a href="#approach-4-multiset-and-two-pointers-accepted">Approach #4</a>)</li>
+</ul>
+<p>Heaps are a natural ingredient for this dish! Adding elements to them take logarithmic order of time. They also give direct access to the maximal/minimal elements in a group.</p>
+<p>If we could maintain <em>two</em> heaps in the following way:</p>
+<ul>
+<li>A max-heap to store the smaller half of the input numbers</li>
+<li>A min-heap to store the larger half of the input numbers</li>
+</ul>
+<p>This gives access to median values in the input: they comprise the top of the heaps!</p>
+<p><strong>Wait, what? How?</strong></p>
+<p>If the following conditions are met:</p>
+<ol>
+<li>Both the heaps are balanced (or nearly balanced)</li>
+<li>The max-heap contains all the smaller numbers while the min-heap contains all the larger numbers</li>
+</ol>
+<p>then we can say that:</p>
+<ol>
+<li>All the numbers in the max-heap are smaller or equal to the top element of the max-heap (let's call it <script type="math/tex; mode=display">x</script>)</li>
+<li>All the numbers in the min-heap are larger or equal to the top element of the min-heap (let's call it <script type="math/tex; mode=display">y</script>)</li>
+</ol>
+<p>Then <script type="math/tex; mode=display">x</script> and/or <script type="math/tex; mode=display">y</script> are smaller than (or equal to) almost half of the elements and larger than (or equal to) the other half. That is <em>the</em> definition of <strong>median</strong> elements.</p>
+<p>This leads us to a huge point of pain in this approach: <strong>balancing the two heaps!</strong></p>
+<p><strong>Algorithm</strong></p>
+<ul>
+<li>
+<p>Two priority queues:</p>
+<ol>
+<li>A max-heap <code>lo</code> to store the smaller half of the numbers</li>
+<li>A min-heap <code>hi</code> to store the larger half of the numbers</li>
+</ol>
+</li>
+<li>
+<p>The max-heap <code>lo</code> is allowed to store, at worst, one more element more than the min-heap <code>hi</code>. Hence if we have processed <script type="math/tex; mode=display">k</script> elements:</p>
+<ul>
+<li>If <script type="math/tex; mode=display">k = 2*n + 1 \quad (\forall \, n \in \mathbb{Z})</script>, then <code>lo</code> is allowed to hold <script type="math/tex; mode=display">n+1</script> elements, while <code>hi</code> can hold <script type="math/tex; mode=display">n</script> elements.</li>
+<li>If <script type="math/tex; mode=display">k = 2*n \quad (\forall \, n \in \mathbb{Z})</script>, then both heaps are balanced and hold <script type="math/tex; mode=display">n</script> elements each.</li>
+</ul>
+<p>This gives us the nice property that when the heaps are perfectly balanced, the median can be derived from the tops of both heaps. Otherwise, the top of the max-heap <code>lo</code> holds the legitimate median.</p>
+</li>
+<li>
+<p>Adding a number <code>num</code>:</p>
+<ul>
+<li>Add <code>num</code> to max-heap <code>lo</code>. Since <code>lo</code> received a new element, we must do a balancing step for <code>hi</code>. So remove the largest element from <code>lo</code> and offer it to <code>hi</code>.</li>
+<li>The min-heap <code>hi</code> might end holding more elements than the max-heap <code>lo</code>, after the previous operation. We fix that by removing the smallest element from <code>hi</code> and offering it to <code>lo</code>.</li>
+</ul>
+<p>The above step ensures that we do not disturb the nice little size property we just mentioned.</p>
+</li>
+</ul>
+<p>A little example will clear this up! Say we take input from the stream <code>[41, 35, 62, 5, 97, 108]</code>. The run-though of the algorithm looks like this:</p>
+<div class="codehilite"><pre><span></span>Adding number <span class="m">41</span>
+MaxHeap lo<span class="o">:</span> <span class="p">[</span><span class="m">41</span><span class="p">]</span>           <span class="o">//</span> MaxHeap stores the largest value at the top <span class="p">(</span>index <span class="m">0</span><span class="p">)</span>
+MinHeap hi<span class="o">:</span> <span class="p">[]</span>             <span class="o">//</span> MinHeap stores the smallest value at the top <span class="p">(</span>index <span class="m">0</span><span class="p">)</span>
+Median is <span class="m">41</span>
+<span class="o">=======================</span>
+Adding number <span class="m">35</span>
+MaxHeap lo<span class="o">:</span> <span class="p">[</span><span class="m">35</span><span class="p">]</span>
+MinHeap hi<span class="o">:</span> <span class="p">[</span><span class="m">41</span><span class="p">]</span>
+Median is <span class="m">38</span>
+<span class="o">=======================</span>
+Adding number <span class="m">62</span>
+MaxHeap lo<span class="o">:</span> <span class="p">[</span><span class="m">41</span><span class="p">,</span> <span class="m">35</span><span class="p">]</span>
+MinHeap hi<span class="o">:</span> <span class="p">[</span><span class="m">62</span><span class="p">]</span>
+Median is <span class="m">41</span>
+<span class="o">=======================</span>
+Adding number <span class="m">4</span>
+MaxHeap lo<span class="o">:</span> <span class="p">[</span><span class="m">35</span><span class="p">,</span> <span class="m">4</span><span class="p">]</span>
+MinHeap hi<span class="o">:</span> <span class="p">[</span><span class="m">41</span><span class="p">,</span> <span class="m">62</span><span class="p">]</span>
+Median is <span class="m">38</span>
+<span class="o">=======================</span>
+Adding number <span class="m">97</span>
+MaxHeap lo<span class="o">:</span> <span class="p">[</span><span class="m">41</span><span class="p">,</span> <span class="m">35</span><span class="p">,</span> <span class="m">4</span><span class="p">]</span>
+MinHeap hi<span class="o">:</span> <span class="p">[</span><span class="m">62</span><span class="p">,</span> <span class="m">97</span><span class="p">]</span>
+Median is <span class="m">41</span>
+<span class="o">=======================</span>
+Adding number <span class="m">108</span>
+MaxHeap lo<span class="o">:</span> <span class="p">[</span><span class="m">41</span><span class="p">,</span> <span class="m">35</span><span class="p">,</span> <span class="m">4</span><span class="p">]</span>
+MinHeap hi<span class="o">:</span> <span class="p">[</span><span class="m">62</span><span class="p">,</span> <span class="m">97</span><span class="p">,</span> <span class="m">108</span><span class="p">]</span>
+Median is <span class="m">51.5</span>
+</pre></div>
+<iframe frameborder="0" height="479" name="asbkCdUD" src="https://leetcode.com/playground/asbkCdUD/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O(5 * log(n)) + O(1) \approx O(log(n))</script>.</p>
+<ul>
+<li>At worst, there are three heap insertions and two heap deletions from the top. Each of these takes about <script type="math/tex; mode=display">O(log(n))</script> time.</li>
+<li>Finding the mean takes constant <script type="math/tex; mode=display">O(1)</script> time since the tops of heaps are directly accessible.</li>
+</ul>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(n)</script> linear space to hold input in containers.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-multiset-and-two-pointers-accepted">Approach #4 Multiset and Two Pointers [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Self-balancing Binary Search Trees (like an <a href="https://en.wikipedia.org/wiki/AVL_tree">AVL Tree</a>) have some <em>very</em> interesting properties. They maintain the tree's height to a logarithmic bound. Thus inserting a new element has reasonably good time performance. The median <strong>always</strong> winds up in the root of the tree and/or one of its children. Solving this problem using the same approach as <a href="#approach-3-two-heaps-accepted">Approach #3</a> but using a Self-balancing BST seems like a good choice. Except the fact that implementing such a tree is not trivial and prone to errors.</p>
+<p><em>Why reinvent the wheel?</em> Most languages implement a <code>multiset</code> class which emulates such behavior. The only problem remains keeping track of the median elements. That is easily solved with <strong>pointers!</strong> <sup id="fnref:note-2"><a class="footnote-ref" href="#fn:note-2" rel="footnote">2</a></sup></p>
+<p>We maintain two pointers: one for the lower median element and the other for the higher median element. When the total number of elements is odd, both the pointers point to the same median element (since there is only one median in this case). When the number of elements is even, the pointers point to two consecutive elements, whose mean is the representative median of the input.</p>
+<p><strong>Algorithm</strong></p>
+<ul>
+<li>
+<p>Two iterators/pointers <code>lo_median</code> and <code>hi_median</code>, which iterate over the <code>data</code> multiset.</p>
+</li>
+<li>
+<p>While adding a number <code>num</code>, three cases arise:</p>
+<ol>
+<li>The container is currently <strong>empty.</strong> Hence we simply insert <code>num</code> and set both pointers to point to this element.</li>
+<li>
+<p>The container currently holds an <strong>odd</strong> number of elements. This means that both the pointers currently point to the same element.</p>
+<ul>
+<li>If <code>num</code> is not equal to the current median element, then <code>num</code> goes on either side of it. Whichever side it goes, the size of that part increases and hence the corresponding pointer is updated. For example, if <code>num</code> is less than the median element, the size of the lesser half of input increases by <script type="math/tex; mode=display">1</script> on inserting <code>num</code>. Thus it makes sense to decrement <code>lo_median</code>.</li>
+<li>If <code>num</code> is equal to the current median element, then the action taken is dependent on how <code>num</code> is inserted into <code>data</code>. <strong>NOTE:</strong> In our given C++ code example, <code>std::multiset::insert</code> inserts an element <em>after</em> all elements of equal value. Hence we increment <code>hi_median</code>.</li>
+</ul>
+</li>
+<li>
+<p>The container currently holds an <strong>even</strong> number of elements. This means that the pointers currently point to consecutive elements.</p>
+<ul>
+<li>If <code>num</code> is a number between both median elements, then <code>num</code> becomes the new median. Both pointers must point to it.</li>
+<li>Otherwise, <code>num</code> increases the size of either the lesser or higher half of the input. We update the pointers accordingly. It is important to remember that both the pointers <strong><em>must</em></strong> point to the same element now.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Finding the median is easy! It is simply the <strong>mean</strong> of the elements pointed to by the two pointers <code>lo_median</code> and <code>hi_median</code>.</p>
+</li>
+</ul>
+<iframe frameborder="0" height="515" name="NJ4LimHc" src="https://leetcode.com/playground/NJ4LimHc/shared" width="100%"></iframe>
+<p>A much shorter (but harder to understand), <strong><em>one</em></strong> <em>pointer</em> version <sup id="fnref:note-3"><a class="footnote-ref" href="#fn:note-3" rel="footnote">3</a></sup> of this solution is given below:</p>
+<iframe frameborder="0" height="515" name="ZAJQwdQE" src="https://leetcode.com/playground/ZAJQwdQE/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O(log(n)) + O(1) \approx O(log(n))</script>.</p>
+<ul>
+<li>Inserting a number takes <script type="math/tex; mode=display">O(log(n))</script> time for a standard <code>multiset</code> scheme. <sup id="fnref:note-4"><a class="footnote-ref" href="#fn:note-4" rel="footnote">4</a></sup></li>
+<li>Finding the mean takes constant <script type="math/tex; mode=display">O(1)</script> time since the median elements are directly accessible from the two pointers.</li>
+</ul>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(n)</script> linear space to hold input in container.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="further-thoughts">Further Thoughts</h4>
+<p>There are so many ways around this problem, that frankly, it is scary. Here are a few more that I came across:</p>
+<ul>
+<li>
+<p><strong>Buckets!</strong> If the numbers in the stream are statistically distributed, then it is easier to keep track of buckets where the median would land, than the entire array. Once you know the correct bucket, simply sort it find the median. If the bucket size is significantly smaller than the size of input processed, this results in huge time saving. <a href="https://leetcode.com/mitbbs8080/">@mitbbs8080</a> has an interesting implementation <a href="https://discuss.leetcode.com/post/32180">here.</a></p>
+</li>
+<li>
+<p><strong>Reservoir Sampling.</strong> Following along the lines of using buckets: if the stream is statistically distributed, you can rely on Reservoir Sampling. Basically, if you could maintain just one good bucket (or <em>reservoir</em>) which could hold a representative sample of the entire stream, you could estimate the median of the entire stream from just this one bucket. This means good time and memory performance. Reservoir Sampling lets you do just that. Determining a <strong>"good"</strong> size for your reservoir? <em>Now, that's a whole other challenge.</em> A good explanation for this can be found in <a href="https://stackoverflow.com/a/10693752/2844164">this StackOverflow answer.</a></p>
+</li>
+<li>
+<p><strong>Segment Trees</strong> are a great data structure if you need to do a lot of insertions or a lot of read queries over a limited range of input values. They allow us to do all such operations <em>fast</em> and in roughly the <em>same amount of time</em>, <strong>always.</strong> The only problem is that they are far from trivial to implement. Take a look at my <a href="https://leetcode.com/articles/recursive-approach-segment-trees-range-sum-queries-lazy-propagation/">introductory article on Segment Trees</a> if you are interested.</p>
+</li>
+<li>
+<p><strong>Order Statistic Trees</strong> are data structures which seem to be tailor-made for this problem. They have all the nice features of a BST, but also let you find the <script type="math/tex; mode=display">k^{th}</script> order element stored in the tree. They are a pain to implement and no standard interview would require you to code these up. But they are fun to use if they are already implemented in the language of your choice. <sup id="fnref:note-5"><a class="footnote-ref" href="#fn:note-5" rel="footnote">5</a></sup></p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by <a href="https://leetcode.com/babhishek21">@babhishek21</a>.</p>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn:note-1">
+<p>Priority Queues queue out elements based on a predefined priority. They are an abstract concept and can, as such, be implemented in many different ways. Heaps are an efficient way to implement Priority Queues. <a class="footnote-backref" href="#fnref:note-1" rev="footnote" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:note-2">
+<p>Shout-out to <a href="https://leetcode.com/pharese/">@pharese</a> for this approach. <a class="footnote-backref" href="#fnref:note-2" rev="footnote" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+<li id="fn:note-3">
+<p>Inspired from <a href="https://discuss.leetcode.com/topic/74963/o-n-log-k-c-using-multiset-and-updating-middle-iterator/">this post</a> by <a href="https://leetcode.com/stefanpochmann">@StefanPochmann</a>. <a class="footnote-backref" href="#fnref:note-3" rev="footnote" title="Jump back to footnote 3 in the text">↩</a></p>
+</li>
+<li id="fn:note-4">
+<p><a href="http://en.cppreference.com/w/cpp/container/multiset/insert">Hinting</a> can reduce that to amortized constant <script type="math/tex; mode=display">O(1)</script> time. <a class="footnote-backref" href="#fnref:note-4" rev="footnote" title="Jump back to footnote 4 in the text">↩</a></p>
+</li>
+<li id="fn:note-5">
+<p><a href="https://gcc.gnu.org/onlinedocs/libstdc++/manual/policy_based_data_structures_test.html"><strong>GNU</strong> <code>libstdc++</code></a> users are in luck! Take a look at <a href="https://stackoverflow.com/a/11228573/2844164">this StackOverflow answer.</a> <a class="footnote-backref" href="#fnref:note-5" rev="footnote" title="Jump back to footnote 5 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">52062</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">184003</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              58%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

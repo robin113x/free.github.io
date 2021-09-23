@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.
+
+
+Note:
+
+You must not modify the array (assume the array is read only).
+You must use only constant, O(1) extra space.
+Your runtime complexity should be less than O(n2).
+There is only one duplicate number in the array, but it could be repeated more than once.
+
+
+Credits:Special thanks to @jianchao.li.fighter for adding this problem and creating all test cases.">
+  <meta name="keywords"
+        content="Find the Duplicate Number, LC 287, leetcode 287, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>287. Find the Duplicate Number</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given an array <i>nums</i> containing <i>n</i> + 1 integers where each integer is between 1 and <i>n</i> (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.
+</p>
+
+<p>
+<b>Note:</b><br>
+<ol>
+<li>You <b>must not</b> modify the array (assume the array is read only).</li>
+<li>You must use only constant, <i>O</i>(1) extra space.</li>
+<li>Your runtime complexity should be less than <code>O(n<sup>2</sup>)</code>.</li>
+<li>There is only one duplicate number in the array, but it could be repeated more than once.</li>
+</ol>
+</p>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://leetcode.com/discuss/user/jianchao.li.fighter">@jianchao.li.fighter</a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#note">Note</a></li>
+<li><a href="#proof">Proof</a></li>
+<li><a href="#approach-1-sorting-accepted">Approach #1 Sorting [Accepted]</a></li>
+<li><a href="#approach-2-set-accepted">Approach #2 Set [Accepted]</a></li>
+<li><a href="#approach-3-floyds-tortoise-and-hare-cycle-detection-accepted">Approach #3 Floyd's Tortoise and Hare (Cycle Detection) [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="note">Note</h4>
+<p>The first two approaches mentioned do not satisfy the constraints given in
+the prompt, but they are solutions that you might be likely to come up with
+during a technical interview. As an interviewer, I personally would <em>not</em>
+expect someone to come up with the cycle detection solution unless they have
+heard it before.</p>
+<h4 id="proof">Proof</h4>
+<p>Proving that at least one duplicate must exist in <code>nums</code> is simple
+application of the
+<a href="https://en.wikipedia.org/wiki/Pigeonhole_principle">pigeonhole principle</a>.
+Here, each number in <code>nums</code> is a "pigeon" and each distinct number that can
+appear in <code>nums</code> is a "pigeonhole". Because there are <script type="math/tex; mode=display">n+1</script> numbers are
+<script type="math/tex; mode=display">n</script> distinct possible numbers, the pigeonhole principle implies that at
+least one of the numbers is duplicated.</p>
+<h4 id="approach-1-sorting-accepted">Approach #1 Sorting [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If the numbers are sorted, then any duplicate numbers will be adjacent in the
+sorted array.</p>
+<p><strong>Algorithm</strong></p>
+<p>Given the intuition, the algorithm follows fairly simply. First, we sort the
+array, and then we compare each element to the previous element. Because
+there is exactly one duplicated element in the array, we know that the array
+is of at least length 2, and we can return the duplicate element as soon as
+we find it.</p>
+<iframe frameborder="0" height="259" name="bQGYqfgj" src="https://leetcode.com/playground/bQGYqfgj/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nlgn)</script>
+</p>
+<p>The <code>sort</code> invocation costs <script type="math/tex; mode=display">O(nlgn)</script> time in Python and Java, so it
+dominates the subsequent linear scan.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script> (or <script type="math/tex; mode=display">O(n)</script>)</p>
+<p>Here, we sort <code>nums</code> in place, so the memory footprint is constant. If we
+cannot modify the input array, then we must allocate linear space for a
+copy of <code>nums</code> and sort that instead.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-set-accepted">Approach #2 Set [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If we store each element as we iterate over the array, we can simply check
+each element as we iterate over the array.</p>
+<p><strong>Algorithm</strong></p>
+<p>In order to achieve linear time complexity, we need to be able to insert
+elements into a data structure (and look them up) in constant time. A <code>Set</code>
+satisfies these constraints nicely, so we iterate over the array and insert
+each element into <code>seen</code>. Before inserting it, we check whether it is already
+there. If it is, then we found our duplicate, so we return it.</p>
+<iframe frameborder="0" height="276" name="jP4YUkB7" src="https://leetcode.com/playground/jP4YUkB7/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p><code>Set</code> in both Python and Java rely on underlying hash tables, so
+insertion and lookup have amortized constant time complexities. The
+algorithm is therefore linear, as it consists of a <code>for</code> loop that
+performs constant work <script type="math/tex; mode=display">n</script> times.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>In the worst case, the duplicate element appears twice, with one of its
+appearances at array index <script type="math/tex; mode=display">n-1</script>. In this case, <code>seen</code> will contain
+<script type="math/tex; mode=display">n-1</script> distinct values, and will therefore occupy <script type="math/tex; mode=display">O(n)</script> space.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-floyds-tortoise-and-hare-cycle-detection-accepted">Approach #3 Floyd's Tortoise and Hare (Cycle Detection) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If we interpret <code>nums</code> such that for each pair of index <script type="math/tex; mode=display">i</script> and value
+<script type="math/tex; mode=display">v_i</script>, the "next" value <script type="math/tex; mode=display">v_j</script> is at index <script type="math/tex; mode=display">v_i</script>, we can reduce this
+problem to cycle detection. See the solution to
+<a href="https://leetcode.com/problems/linked-list-cycle-ii/solution/">Linked List Cycle II</a>
+for more details.</p>
+<p><strong>Algorithm</strong></p>
+<p>First off, we can easily show that the constraints of the problem imply that
+a cycle <em>must</em> exist. Because each number in <code>nums</code> is between <script type="math/tex; mode=display">1</script> and
+<script type="math/tex; mode=display">n</script>, it will necessarily point to an index that exists. Therefore, the list
+can be traversed infinitely, which implies that there is a cycle.
+Additionally, because <script type="math/tex; mode=display">0</script> cannot appear as a value in <code>nums</code>, <code>nums[0]</code>
+cannot be part of the cycle. Therefore, traversing the array in this manner
+from <code>nums[0]</code> is equivalent to traversing a cyclic linked list. Given this,
+the problem can be solved just like
+<a href="https://leetcode.com/problems/linked-list-cycle-ii/">Linked List Cycle II</a>.</p>
+<p>To see the algorithm in action, check out the animation below:</p>
+<p>!?!../Documents/287_Find_the_Duplicate_Number.json:1280,720!?!</p>
+<iframe frameborder="0" height="412" name="RMBz6AQR" src="https://leetcode.com/playground/RMBz6AQR/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>For detailed analysis, refer to 
+<a href="https://leetcode.com/problems/linked-list-cycle-ii/solution/#approach-2-floyds-tortoise-and-hare-accepted">Linked List Cycle II</a>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>
+</p>
+<p>For detailed analysis, refer to 
+<a href="https://leetcode.com/problems/linked-list-cycle-ii/solution/#approach-2-floyds-tortoise-and-hare-accepted">Linked List Cycle II</a>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis and solutions written by: <a href="https://leetcode.com/emptyset">@emptyset</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">90532</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">206284</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              76%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/bloomberg.html">Bloomberg</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

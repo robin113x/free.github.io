@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array of citations (each citation is a non-negative integer) of a researcher, write a function to compute the researcher&#39;s h-index.
+
+
+According to the definition of h-index on Wikipedia: &#34;A scientist has index h if h of his/her N papers have at least h citations each, and the other N − h papers have no more than h citations each.&#34;
+
+
+For example, given citations = [3, 0, 6, 1, 5], which means the researcher has 5 papers in total and each of them had received 3, 0, 6, 1, 5 citations respectively. Since the researcher has 3 papers with at least 3 citations each and the remaining two with no more than 3 citations each, his h-index is 3.
+
+
+Note: If there are several possible values for h, the maximum one is taken as the h-index.
+
+Credits:Special thanks to @jianchao.li.fighter for adding this problem and creating all test cases.">
+  <meta name="keywords"
+        content="H-Index, LC 274, leetcode 274, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>274. H-Index</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given an array of citations (each citation is a non-negative integer) of a researcher, write a function to compute the researcher's h-index.
+</p>
+
+<p>
+According to the <a href="https://en.wikipedia.org/wiki/H-index" target="_blank">definition of h-index on Wikipedia</a>: "A scientist has index <i>h</i> if <i>h</i> of his/her <i>N</i> papers have <b>at least</b> <i>h</i> citations each, and the other <i>N &minus; h</i> papers have <b>no more than</b> <i>h</i> citations each."
+</p>
+
+<p>
+For example, given <code>citations = [3, 0, 6, 1, 5]</code>, which means the researcher has <code>5</code> papers in total and each of them had received <code>3, 0, 6, 1, 5</code> citations respectively. Since the researcher has <code>3</code> papers with <b>at least</b> <code>3</code> citations each and the remaining two with <b>no more than</b> <code>3</code> citations each, his h-index is <code>3</code>.
+</p>
+
+<p>
+<b>Note</b>: If there are several possible values for <code>h</code>, the maximum one is taken as the h-index.
+</p>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://leetcode.com/discuss/user/jianchao.li.fighter">@jianchao.li.fighter</a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-sorting-accepted">Approach #1 (Sorting) [Accepted]</a></li>
+<li><a href="#approach-2-counting-accepted">Approach #2 (Counting) [Accepted]</a></li>
+</ul>
+</li>
+<li><a href="#further-thoughts">Further Thoughts</a></li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>This article is for intermediate readers. It introduces the following ideas:
+Comparison Sort and Counting Sort.</p>
+<h2 id="solution">Solution</h2>
+<h4 id="approach-1-sorting-accepted">Approach #1 (Sorting) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Think geometrically. Imagine plotting a histogram where the <script type="math/tex; mode=display">y</script>-axis represents the number of citations for each paper. After sorting in <em>descending</em> order, <script type="math/tex; mode=display">h</script>-index is the length of the largest <strong>square</strong> in the histogram.</p>
+<p align="center"><img alt="h-index" src="https://leetcode.com/articles/Figures/274_H_index.svg" width="539px"/></p>
+<p align="center"><em>Figure 1. <script type="math/tex; mode=display">h</script>-index from a plot of decreasing citations for papers</em></p>
+<p><strong>Algorithm</strong></p>
+<p>To find such a square length, we first sort the citations array in <em>descending</em> order.
+After sorting, if <script type="math/tex; mode=display">\mathrm{citations}[i] \gt i</script>, then papers <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">i</script> all have at least <script type="math/tex; mode=display">i + 1</script> citations.</p>
+<p>Thus, to find <script type="math/tex; mode=display">h</script>-index, we search for the largest <script type="math/tex; mode=display">i</script> (let's call it <script type="math/tex; mode=display">i'</script>) such that</p>
+<p>
+<script type="math/tex; mode=display">
+\mathrm{citations}[i] \gt i
+</script>
+</p>
+<p>and therefore the <script type="math/tex; mode=display">h</script>-index is <script type="math/tex; mode=display">i' + 1</script>.</p>
+<p>For example:</p>
+<table>
+<thead>
+<tr>
+<th align="center">
+<script type="math/tex; mode=display">i</script>
+</th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">sorted citations</td>
+<td align="center">10</td>
+<td align="center">9</td>
+<td align="center">5</td>
+<td align="center">3</td>
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex; mode=display">\mathrm{citations}[i] \gt i</script>?</td>
+<td align="center">true</td>
+<td align="center">true</td>
+<td align="center">true</td>
+<td align="center">false</td>
+<td align="center">false</td>
+<td align="center">false</td>
+<td align="center">false</td>
+</tr>
+</tbody>
+</table>
+<p>In this example, we know that the largest <script type="math/tex; mode=display">i</script> with <script type="math/tex; mode=display">\mathrm{citations}[i] \gt i</script> is <script type="math/tex; mode=display">i'=2</script>. Thus</p>
+<p>
+<script type="math/tex; mode=display">
+h = i' + 1 = 3
+</script>
+</p>
+<p>Because <script type="math/tex; mode=display">\mathrm{citations}[i'] \gt i'</script>, <script type="math/tex; mode=display">i' + 1</script> papers (from paper 0 to paper <script type="math/tex; mode=display">i'</script>) have citations at least <script type="math/tex; mode=display">i' + 1</script> and <script type="math/tex; mode=display">n - i' - 1</script> papers (from paper <script type="math/tex; mode=display">i' + 1</script> to paper <script type="math/tex; mode=display">n - 1</script>) have citations no more than <script type="math/tex; mode=display">i' + 1</script>. By the definition of <script type="math/tex; mode=display">h</script>-index, <script type="math/tex; mode=display">h = i' + 1</script>.</p>
+<p>It is also possible to find <script type="math/tex; mode=display">i'</script> through binary search after sorting. However, since comparison sorting has a time complexity of <script type="math/tex; mode=display">O(n \log n)</script> which dominates the performance of entire algorithm (linear search is <script type="math/tex; mode=display">O(n)</script>). Using a binary search (<script type="math/tex; mode=display">O(\log n)</script>) instead of linear search won't change the asymptotic time complexity.</p>
+<p>Also note that, we deduced the algorithm in descending for simplicity. Usually the sort function provided by default is in ascending order. The same principles applies to both ascending order and descending order. In the case of ascending order, we just scan it from backward.</p>
+<iframe frameborder="0" height="259" name="wJ3A9AXC" src="https://leetcode.com/playground/wJ3A9AXC/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n\log n)</script>. Comparison sorting dominates the time complexity.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Most libraries using <code>heap sort</code> which costs <script type="math/tex; mode=display">O(1)</script> extra space in the worst case.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-counting-accepted">Approach #2 (Counting) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Comparison sorting algorithm has a lower bound of <script type="math/tex; mode=display">O(n\log n)</script>. To achieve better performance, we need non-comparison based sorting algorithms.</p>
+<p><strong>Algorithm</strong></p>
+<p>From <a href="#approach-1-sorting-accepted">Approach #1</a>, we sort the citations to find the h-index. However, it is well known that comparison sorting algorithms such as <code>heapsort</code>, <code>mergesort</code> and <code>quicksort</code> have a lower bound of <script type="math/tex; mode=display">O(n\log n)</script>. The most commonly used non-comparison sorting is <code>counting sort</code>.</p>
+<blockquote>
+<p>Counting sort operates by counting the number of objects that have each distinct key value, and using arithmetic on those tallies to determine the positions of each key value in the output sequence. Its running time is linear in the number of items and the difference between the maximum and minimum keys, so it is only suitable for direct use in situations where the variation in keys is not significantly greater than the number of items.</p>
+<p>---by Wikipedia</p>
+</blockquote>
+<p>However, in our problem, the keys are the citations of each paper which can be much larger than the number of papers <script type="math/tex; mode=display">n</script>. It seems that we cannot use <code>counting sort</code>. The trick here is the following observation:</p>
+<blockquote>
+<p>Any citation larger than <script type="math/tex; mode=display">n</script> can be replaced by <script type="math/tex; mode=display">n</script> and the <script type="math/tex; mode=display">h</script>-index will not change after the replacement</p>
+</blockquote>
+<p>The reason is that <script type="math/tex; mode=display">h</script>-index is upper bounded by total number of papers <script type="math/tex; mode=display">n</script>, i.e.</p>
+<p>
+<script type="math/tex; mode=display">
+h \leq n
+</script>
+</p>
+<p>In the diagram, replacing citations greater than <script type="math/tex; mode=display">n</script> with <script type="math/tex; mode=display">n</script> is equivalent to cutting off the area where <script type="math/tex; mode=display">y > n</script>.</p>
+<p align="center"><img alt="h-index cut off" src="https://leetcode.com/articles/Figures/274_H_index_2.svg" width="539px"/></p>
+<p align="center"><em>Figure 2. cutting off the area with citations more than <script type="math/tex; mode=display">n</script></em></p>
+<p>Apparently, cutting that area off will not change the largest <strong>square</strong> and the <script type="math/tex; mode=display">h</script>-index.</p>
+<p>After we have the counts, we can get a sorted citations by traversing the counts array. And the rest is the same as <a href="#approach-1-sorting-accepted">Approach #1</a>.</p>
+<p>But we can do even better. The idea is that we don't even need to get sorted citations. We can find the <script type="math/tex; mode=display">h</script>-index by using the paper counts directly.</p>
+<p>To explain this, let's look at the following example:</p>
+<p>
+<script type="math/tex; mode=display">
+\mathrm{citations} = [1, 3, 2, 3, 100]
+</script>
+</p>
+<p>The counting results are:</p>
+<table>
+<thead>
+<tr>
+<th align="center">
+<script type="math/tex; mode=display">k</script>
+</th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">count</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">
+<script type="math/tex; mode=display">s_k</script>
+</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>The value <script type="math/tex; mode=display">s_k</script> is defined as "the sum of all counts with citation <script type="math/tex; mode=display">\geq k</script>" or "the number of papers having, at least, <script type="math/tex; mode=display">k</script> citations". By definition of the h-index, the largest <script type="math/tex; mode=display">k</script> with <script type="math/tex; mode=display">k \leq s_k</script> is our answer.</p>
+<p>After replacing <script type="math/tex; mode=display">100</script> with <script type="math/tex; mode=display">n = 5</script>, we have <script type="math/tex; mode=display">\mathrm{citations} = [1, 3, 2, 3, 5]</script>. Now, we count the number of papers for each citation number <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">5</script>. The counts are <script type="math/tex; mode=display">[0, 1, 1, 2, 0, 1]</script>. The first <script type="math/tex; mode=display">k</script> from right to left (<script type="math/tex; mode=display">5</script> down to <script type="math/tex; mode=display">0</script>) that have <script type="math/tex; mode=display">k \leq s</script> is the <script type="math/tex; mode=display">h</script>-index <script type="math/tex; mode=display">3</script>.</p>
+<p>Since we can calculate <script type="math/tex; mode=display">s_k</script> on the fly when traverse the count array, we only need one pass through the count array which only costs <script type="math/tex; mode=display">O(n)</script> time.</p>
+<iframe frameborder="0" height="293" name="4ZajNz22" src="https://leetcode.com/playground/4ZajNz22/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. There are two steps. The counting part is <script type="math/tex; mode=display">O(n)</script> since we traverse the <code>citations</code> array once and only once. The second part of finding the <script type="math/tex; mode=display">h</script>-index is also <script type="math/tex; mode=display">O(n)</script> since we traverse the <code>papers</code> array at most once. Thus, the entire algorithm is <script type="math/tex; mode=display">O(n)</script>
+</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. We use <script type="math/tex; mode=display">O(n)</script> auxiliary space to store the counts.</p>
+</li>
+</ul>
+<h2 id="further-thoughts">Further Thoughts</h2>
+<blockquote>
+<p>Is it possible to have multiple <script type="math/tex; mode=display">h</script>-values?</p>
+</blockquote>
+<p>The answer is <strong>NO</strong>. One can find this intuitively from Figure 1. The dashed line <script type="math/tex; mode=display">y = x</script> crosses the histogram once and only once, because the sorted bars are monotonic. It can also be proven from the definition of the <script type="math/tex; mode=display">h</script>-index.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">87850</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">261661</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              45%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/bloomberg.html">Bloomberg</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

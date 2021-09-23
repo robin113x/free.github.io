@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="There are N students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. For example, if A is a direct friend of B, and B is a direct friend of C, then A is an indirect friend of C. And we defined a friend circle is a group of students who are direct or indirect friends.
+
+
+Given a N*N matrix M representing the friend relationship between students in the class. If M[i][j] = 1, then the ith and jth students are direct friends with each other, otherwise not. And you have to output the total number of friend circles among all the students.
+
+Example 1:
+Input: 
+[[1,1,0],
+ [1,1,0],
+ [0,0,1]]
+Output: 2
+Explanation:The 0th and 1st students are direct friends, so they are in a friend circle. The 2nd student himself is in a friend circle. So return 2.
+
+
+Example 2:
+Input: 
+[[1,1,0],
+ [1,1,1],
+ [0,1,1]]
+Output: 1
+Explanation:The 0th and 1st students are direct friends, the 1st and 2nd students are direct friends, so the 0th and 2nd students are indirect friends. All of them are in the same friend circle, so return 1.
+
+
+Note:
+
+N is in range [1,200].
+M[i][i] = 1 for all students.
+If M[i][j] = 1, then M[j][i] = 1.">
+  <meta name="keywords"
+        content="Friend Circles, LC 547, leetcode 547, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>547. Friend Circles</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+There are <b>N</b> students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. For example, if A is a <b>direct</b> friend of B, and B is a <b>direct</b> friend of C, then A is an <b>indirect</b> friend of C. And we defined a friend circle is a group of students who are direct or indirect friends.
+</p>
+
+<p>
+Given a <b>N*N</b> matrix <b>M</b> representing the friend relationship between students in the class. If M[i][j] = 1, then the i<sub>th</sub> and j<sub>th</sub> students are <b>direct</b> friends with each other, otherwise not. And you have to output the total number of friend circles among all the students.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 
+[[1,1,0],
+ [1,1,0],
+ [0,0,1]]
+<b>Output:</b> 2
+<b>Explanation:</b>The 0<sub>th</sub> and 1<sub>st</sub> students are direct friends, so they are in a friend circle. <br/>The 2<sub>nd</sub> student himself is in a friend circle. So return 2.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> 
+[[1,1,0],
+ [1,1,1],
+ [0,1,1]]
+<b>Output:</b> 1
+<b>Explanation:</b>The 0<sub>th</sub> and 1<sub>st</sub> students are direct friends, the 1<sub>st</sub> and 2<sub>nd</sub> students are direct friends, <br/>so the 0<sub>th</sub> and 2<sub>nd</sub> students are indirect friends. All of them are in the same friend circle, so return 1.
+</pre>
+</p>
+
+
+<p><b>Note:</b><br>
+<ol>
+<li>N is in range [1,200].</li>
+<li>M[i][i] = 1 for all students.</li>
+<li>If M[i][j] = 1, then M[j][i] = 1.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-depth-first-searchaccepted">Approach #1 Using Depth First Search[Accepted]</a></li>
+<li><a href="#approach-2-using-breadth-first-searchaccepted">Approach #2 Using Breadth First Search[Accepted]</a></li>
+<li><a href="#approach-3-using-union-find-methodaccepted">Approach #3 Using Union-Find Method[Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-depth-first-searchaccepted">Approach #1 Using Depth First Search[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The given matrix can be viewed as the Adjacency Matrix of a graph. By viewing the matrix in such a manner, our problem reduces
+to the problem of finding the number of connected components in an undirected graph. In order to understand the above statement, consider the
+example matrix below:</p>
+<div class="codehilite"><pre><span></span>M= [1 1 0 0 0 0
+
+    1 1 0 0 0 0
+
+    0 0 1 1 1 0
+
+    0 0 1 1 0 0
+
+    0 0 1 0 1 0
+
+    0 0 0 0 0 1]
+</pre></div>
+<p>If we view this matrix M as the adjancency matrix of a graph, the following graph is formed:</p>
+<p><img alt="Friend_Circles" src="https://leetcode.com/articles/Figures/647_Friend_Circles_1.jpg"/></p>
+<p>In this graph, the node numbers represent the indices in the matrix M and an edge exists between the nodes numbered <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script>,
+if there is a 1 at the corresponding <script type="math/tex; mode=display">M[i][j]</script>.</p>
+<p>In order to find the number of connected components in an undirected graph, one of the simplest methods is to make use of Depth First Search
+starting from every node. We make use of <script type="math/tex; mode=display">visited</script> array of size <script type="math/tex; mode=display">N</script>(<script type="math/tex; mode=display">M</script> is of size <script type="math/tex; mode=display">NxN</script>). This <script type="math/tex; mode=display">visited[i]</script> element
+is used to indicate that the <script type="math/tex; mode=display">i^{th}</script> node has already been visited while undergoing a Depth First Search from some node.</p>
+<p>To undergo DFS, we pick up a node and visit all its directly connected nodes. But, as soon as we visit any of those nodes, we recursively apply the same process to them as well. Thus, we try to go as deeper into the levels of the graph as possible starting from a current node first, leaving the other direct neighbour nodes to be visited later on.</p>
+<p>The depth first search for an arbitrary graph is shown below:</p>
+<!--![Friend_Circles](https://leetcode.com/articles/Figures/647_Friend_Circles2.gif)-->
+<p>!?!../Documents/547_Friend_Circles_dfs.json:1000,563!?!</p>
+<p>From the graph, we can see that the components which are connected can be reached starting from any single node of the connected group.
+Thus, to find the number of connected components, we start from every node which isn't visited right now and apply DFS starting with it.
+We increment the <script type="math/tex; mode=display">count</script> of connected components for every new starting node.</p>
+<iframe frameborder="0" height="445" name="YcWQPXNS" src="https://leetcode.com/playground/YcWQPXNS/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. The complete matrix of size <script type="math/tex; mode=display">n^2</script> is traversed.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">visited</script> array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-breadth-first-searchaccepted">Approach #2 Using Breadth First Search[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>As discussed in the above method, if we view the given matrix as an adjacency matrix of a graph, we can use graph algorithms easily to find the number of connected components. This approach makes use of Breadth First Search for a graph.</p>
+<p>In case of Breadth First Search, we start from a particular node and visit all its directly connected nodes first. After all the direct neighbours have been visited, we apply the same process to the neighbour nodes as well. Thus, we exhaust the nodes of a graph on a level by level basis. An example of Breadth First Search is shown below:</p>
+<!--![Friend_Circles](https://leetcode.com/articles/Figures/647_Friend_Circles3.gif)-->
+<p>!?!../Documents/547_Friend_Circles_bfs.json:1000,563!?!</p>
+<p>In this case also, we apply BFS starting from one of the nodes. We make use of a <script type="math/tex; mode=display">visited</script> array to keep a track of the already visited nodes. We increment the <script type="math/tex; mode=display">count</script> of connected components whenever we need to start off with a new node as the root node for applying BFS which hasn't been already visited.</p>
+<iframe frameborder="0" height="428" name="srJD42Lf" src="https://leetcode.com/playground/srJD42Lf/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. The complete matrix of size <script type="math/tex; mode=display">n^2</script> is traversed.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. A <script type="math/tex; mode=display">queue</script> and <script type="math/tex; mode=display">visited</script> array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-union-find-methodaccepted">Approach #3 Using Union-Find Method[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Another method that can be used to determine the number of connected components in a graph is the union find method. The method is simple.</p>
+<p>We make use of a <script type="math/tex; mode=display">parent</script> array of size <script type="math/tex; mode=display">N</script>. We traverse over all the nodes of the graph. For every node traversed, we traverse over all the nodes directly connected to it and assign them to a single group which is represented by their <script type="math/tex; mode=display">parent</script> node. This process is called forming a <script type="math/tex; mode=display">union</script>. Every group has a single <script type="math/tex; mode=display">parent</script> node, whose own parent is given by <script type="math/tex; mode=display">\text{-1}</script>.</p>
+<p>For every new pair of nodes found, we look for the parents of both the nodes. If the parents nodes are the same, it indicates that they have already been united into the same group. If the parent nodes differ, it means they are yet to be united. Thus, for the pair of nodes <script type="math/tex; mode=display">(x, y)</script>, while forming the union, we assign <script type="math/tex; mode=display">parent\big[parent[x]\big]=parent[y]</script>, which ultimately combines them into the same group.</p>
+<p>The following animation depicts the process for a simple matrix:</p>
+<!--![Friend_Circles](https://leetcode.com/articles/Figures/647_Friend_Circles4.gif)-->
+<p>!?!../Documents/547_Friend_Circles_dfs.json:1000,563!?!</p>
+<p>At the end, we find the number of groups, or the number of parent nodes. Such nodes have their parents indicated by a <script type="math/tex; mode=display">\text{-1}</script>. This gives us the required count.</p>
+<iframe frameborder="0" height="515" name="LC2i2T7b" src="https://leetcode.com/playground/LC2i2T7b/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. We traverse over the complete matrix once. Union and find operations take <script type="math/tex; mode=display">O(n)</script> time in the worst case.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">parent</script> array of size <script type="math/tex; mode=display">n</script> is used.</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">25885</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">52728</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              47%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/bloomberg.html">Bloomberg</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/two-sigma.html">Two Sigma</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

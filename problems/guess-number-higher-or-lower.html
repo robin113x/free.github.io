@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="We are playing the Guess Game. The game is as follows:
+I pick a number from 1 to n. You have to guess which number I picked.
+Every time you guess wrong, I&#39;ll tell you whether the number is higher or lower.
+You call a pre-defined API guess(int num) which returns 3 possible results (-1, 1, or 0):
+
+-1 : My number is lower
+ 1 : My number is higher
+ 0 : Congrats! You got it!
+
+Example:
+
+n = 10, I pick 6.
+
+Return 6.">
+  <meta name="keywords"
+        content="Guess Number Higher or Lower, LC 374, leetcode 374, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>374. Guess Number Higher or Lower</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>We are playing the Guess Game. The game is as follows:<p> 
+
+<p>I pick a number from <b>1</b> to <b><i>n</i></b>. You have to guess which number I picked.</p>
+
+<p>Every time you guess wrong, I'll tell you whether the number is higher or lower.</p>
+
+<p>You call a pre-defined API <code>guess(int num)</code> which returns 3 possible results (<code>-1</code>, <code>1</code>, or <code>0</code>):</p>
+<pre>
+-1 : My number is lower
+ 1 : My number is higher
+ 0 : Congrats! You got it!
+</pre>
+
+<p><b>Example:</b><br />
+<pre>
+n = 10, I pick 6.
+
+Return 6.
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-binary-search-accepted">Approach #2 Binary Search [Accepted]</a></li>
+<li><a href="#approach-3-ternary-search-accepted">Approach #3 Ternary Search [Accepted]</a></li>
+</ul>
+</li>
+<li><a href="#follow-up">Follow up</a><ul>
+<li><a href="#comparisons-between-binary-search-and-ternary-search">Comparisons between Binary Search and Ternary Search</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>We check every number from 1 to n-1 and pass it to the <script type="math/tex; mode=display">guess</script> function. The number
+for which a 0 is returned is the required answer.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="cm">/* The guess API is defined in the parent class GuessGame.</span>
+<span class="cm">   @param num, your guess</span>
+<span class="cm">   @return -1 if my number is lower, 1 if my number is higher, otherwise return 0</span>
+<span class="cm">      int guess(int num); */</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="kd">extends</span> <span class="n">GuessGame</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">guessNumber</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">guess</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="k">return</span> <span class="n">i</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">n</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We scan all the numbers from 1 to n.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-binary-search-accepted">Approach #2 Binary Search [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can apply Binary Search to find the given number. We start with the mid
+number. We pass that number to the <script type="math/tex; mode=display">guess</script> function. If it returns a -1, it implies that the guessed number is larger than the required one. Thus, we use Binary Search for numbers lower than itself. Similarly, if it returns a 1, we use Binary Search
+ for numbers higher than itself.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="cm">/* The guess API is defined in the parent class GuessGame.</span>
+<span class="cm">   @param num, your guess</span>
+<span class="cm">   @return -1 if my number is lower, 1 if my number is higher, otherwise return 0</span>
+<span class="cm">      int guess(int num); */</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="kd">extends</span> <span class="n">GuessGame</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">guessNumber</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="o">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="n">guess</span><span class="o">(</span><span class="n">mid</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">res</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">res</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+            <span class="k">else</span>
+                <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O\big(\log_2 n\big)</script>. Binary Search is used.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-3-ternary-search-accepted">Approach #3 Ternary Search [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In Binary Search, we choose the middle element as the pivot in splitting. In Ternary Search, we choose two pivots (say <script type="math/tex; mode=display">m1</script> and <script type="math/tex; mode=display">m2</script>) such that the given range is divided into three equal parts. If the required number <script type="math/tex; mode=display">num</script> is less than <script type="math/tex; mode=display">m1</script> then we apply ternary search on the left segment of <script type="math/tex; mode=display">m1</script>. If <script type="math/tex; mode=display">num</script> lies between <script type="math/tex; mode=display">m1</script> and <script type="math/tex; mode=display">m2</script>, we apply ternary search between <script type="math/tex; mode=display">m1</script> and <script type="math/tex; mode=display">m2</script>. Otherwise we will search in the segment right to <script type="math/tex; mode=display">m2</script>.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="cm">/* The guess API is defined in the parent class GuessGame.</span>
+<span class="cm">   @param num, your guess</span>
+<span class="cm">   @return -1 if my number is lower, 1 if my number is higher, otherwise return 0</span>
+<span class="cm">      int guess(int num); */</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="kd">extends</span> <span class="n">GuessGame</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">guessNumber</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">mid1</span> <span class="o">=</span> <span class="n">low</span> <span class="o">+</span> <span class="o">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="o">)</span> <span class="o">/</span> <span class="mi">3</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">mid2</span> <span class="o">=</span> <span class="n">high</span> <span class="o">-</span> <span class="o">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">low</span><span class="o">)</span> <span class="o">/</span> <span class="mi">3</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">res1</span> <span class="o">=</span> <span class="n">guess</span><span class="o">(</span><span class="n">mid1</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">res2</span> <span class="o">=</span> <span class="n">guess</span><span class="o">(</span><span class="n">mid2</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">res1</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="k">return</span> <span class="n">mid1</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">res2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="k">return</span> <span class="n">mid2</span><span class="o">;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">res1</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="n">high</span> <span class="o">=</span> <span class="n">mid1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">res2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+                <span class="n">low</span> <span class="o">=</span> <span class="n">mid2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+            <span class="k">else</span> <span class="o">{</span>
+                <span class="n">low</span> <span class="o">=</span> <span class="n">mid1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+                <span class="n">high</span> <span class="o">=</span> <span class="n">mid2</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O\big(\log_3 n \big)</script>. Ternary Search is used.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space is used.</li>
+</ul>
+<hr/>
+<h2 id="follow-up">Follow up</h2>
+<p>It seems that ternary search is able to terminate earlier compared to binary search. But why is binary search more widely used?</p>
+<h4 id="comparisons-between-binary-search-and-ternary-search">Comparisons between Binary Search and Ternary Search</h4>
+<p>Ternary Search is worse than Binary Search. The following outlines the recursive formula to count comparisons of Binary Search in the worst case.</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align*}
+T(n) &= T\bigg(\frac{n}{2} \ \bigg) + 2, \quad T(1) = 1 \\
+T\bigg(\frac{n}{2} \ \bigg) &= T\bigg(\frac{n}{2^2} \ \bigg) + 2 \\
+\\
+\therefore{} \quad T(n) &= T\bigg(\frac{n}{2^2} \ \bigg) + 2 \times 2 \\
+&= T\bigg(\frac{n}{2^3} \ \bigg) + 3 \times 2 \\
+&= \ldots \\
+&= T\bigg(\frac{n}{2^{\log_2 n}} \ \bigg) + 2 \log_2 n \\
+&= T(1) + 2 \log_2 n \\
+&= 1 + 2 \log_2 n
+\end{align*}
+</script>
+</p>
+<p>The following outlines the recursive formula to count comparisons of Ternary Search in the worst case.</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align*}
+T(n) &= T\bigg(\frac{n}{3} \ \bigg) + 4, \quad T(1) = 1 \\
+T\bigg(\frac{n}{3} \ \bigg) &= T\bigg(\frac{n}{3^2} \ \bigg) + 4 \\
+\\
+\therefore{} \quad T(n) &= T\bigg(\frac{n}{3^2} \ \bigg) + 2 \times 4 \\
+&= T\bigg(\frac{n}{3^3} \ \bigg) + 3 \times 4 \\
+&= \ldots \\
+&= T\bigg(\frac{n}{3^{\log_3 n}} \ \bigg) + 4 \log_3 n \\
+&= T(1) + 4 \log_3 n \\
+&= 1 + 4 \log_3 n
+\end{align*}
+</script>
+</p>
+<p>As shown above, the total comparisons in the worst case for ternary and binary search are <script type="math/tex; mode=display">1 + 4 \log_3 n</script> and <script type="math/tex; mode=display">1 + 2 \log_2 n</script> comparisons respectively. To determine which is larger, we can just look at the expression <script type="math/tex; mode=display">2 \log_3 n</script> and <script type="math/tex; mode=display">\log_2 n</script> . The expression <script type="math/tex; mode=display">2 \log_3 n</script> can be written as <script type="math/tex; mode=display">\frac{2}{\log_2 3} \times \log_2 n</script> . Since the value of <script type="math/tex; mode=display">\frac{2}{\log_2 3}</script> is greater than one, Ternary Search does more comparisons than Binary Search in the worst case.</p>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">61743</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">171211</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              64%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

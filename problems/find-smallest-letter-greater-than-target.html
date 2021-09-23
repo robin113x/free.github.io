@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a list of sorted characters letters containing only lowercase letters, and given a target letter target, find the smallest element in the list that is larger than the given target.
+
+Letters also wrap around.  For example, if the target is target = &#39;z&#39; and letters = [&#39;a&#39;, &#39;b&#39;], the answer is &#39;a&#39;.
+
+Examples:
+Input:
+letters = [&#34;c&#34;, &#34;f&#34;, &#34;j&#34;]
+target = &#34;a&#34;
+Output: &#34;c&#34;
+
+Input:
+letters = [&#34;c&#34;, &#34;f&#34;, &#34;j&#34;]
+target = &#34;c&#34;
+Output: &#34;f&#34;
+
+Input:
+letters = [&#34;c&#34;, &#34;f&#34;, &#34;j&#34;]
+target = &#34;d&#34;
+Output: &#34;f&#34;
+
+Input:
+letters = [&#34;c&#34;, &#34;f&#34;, &#34;j&#34;]
+target = &#34;g&#34;
+Output: &#34;j&#34;
+
+Input:
+letters = [&#34;c&#34;, &#34;f&#34;, &#34;j&#34;]
+target = &#34;j&#34;
+Output: &#34;c&#34;
+
+Input:
+letters = [&#34;c&#34;, &#34;f&#34;, &#34;j&#34;]
+target = &#34;k&#34;
+Output: &#34;c&#34;
+
+
+Note:
+
+letters has a length in range [2, 10000].
+letters consists of lowercase letters, and contains at least 2 unique letters.
+target is a lowercase letter.">
+  <meta name="keywords"
+        content="Find Smallest Letter Greater Than Target, LC 744, leetcode 744, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>744. Find Smallest Letter Greater Than Target</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given a list of sorted characters <code>letters</code> containing only lowercase letters, and given a target letter <code>target</code>, find the smallest element in the list that is larger than the given target.
+</p><p>
+Letters also wrap around.  For example, if the target is <code>target = 'z'</code> and <code>letters = ['a', 'b']</code>, the answer is <code>'a'</code>.
+</p>
+
+<p><b>Examples:</b><br />
+<pre>
+<b>Input:</b>
+letters = ["c", "f", "j"]
+target = "a"
+<b>Output:</b> "c"
+
+<b>Input:</b>
+letters = ["c", "f", "j"]
+target = "c"
+<b>Output:</b> "f"
+
+<b>Input:</b>
+letters = ["c", "f", "j"]
+target = "d"
+<b>Output:</b> "f"
+
+<b>Input:</b>
+letters = ["c", "f", "j"]
+target = "g"
+<b>Output:</b> "j"
+
+<b>Input:</b>
+letters = ["c", "f", "j"]
+target = "j"
+<b>Output:</b> "c"
+
+<b>Input:</b>
+letters = ["c", "f", "j"]
+target = "k"
+<b>Output:</b> "c"
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li><code>letters</code> has a length in range <code>[2, 10000]</code>.</li>
+<li><code>letters</code> consists of lowercase letters, and contains at least 2 unique letters.</li>
+<li><code>target</code> is a lowercase letter.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-record-letters-seen-accepted">Approach #1: Record Letters Seen [Accepted]</a></li>
+<li><a href="#approach-2-linear-scan-accepted">Approach #2: Linear Scan [Accepted]</a></li>
+<li><a href="#approach-3-binary-search-accepted">Approach #3: Binary Search [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-record-letters-seen-accepted">Approach #1: Record Letters Seen [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Let's scan through <code>letters</code> and record if we see a letter or not.  We could do this with an array of size 26, or with a Set structure.</p>
+<p>Then, for every next letter (starting with the letter that is one greater than the target), let's check if we've seen it.  If we have, it must be the answer.</p>
+<iframe frameborder="0" height="276" name="auZQ7CwK" src="https://leetcode.com/playground/auZQ7CwK/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>letters</code>.  We scan every element of the array.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(1)</script>, the maximum size of <code>seen</code>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-linear-scan-accepted">Approach #2: Linear Scan [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Since <code>letters</code> are sorted, if we see something larger when scanning form left to right, it must be the answer.  Otherwise, (since <code>letters</code> is non-empty), the answer is <code>letters[0]</code>.</p>
+<iframe frameborder="0" height="174" name="RvMYaXpq" src="https://leetcode.com/playground/RvMYaXpq/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>letters</code>.  We scan every element of the array.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(1)</script>, as we maintain only pointers.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-binary-search-accepted">Approach #3: Binary Search [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Like in <em>Approach #2</em>, we want to find something larger than target in a sorted array.  This is ideal for a <em>binary search</em>: Let's find the rightmost position to insert <code>target</code> into <code>letters</code> so that it remains sorted.</p>
+<p>Our binary search (a typical one) proceeds in a number of rounds.  At each round, let's maintain the <em>loop invariant</em> that the answer must be in the interval <code>[lo, hi]</code>.  Let <code>mi = (lo + hi) / 2</code>.  If <code>letters[mi] &lt;= target</code>, then we must insert it in the interval <code>[mi + 1, hi]</code>.  Otherwise, we must insert it in the interval <code>[lo, mi]</code>.</p>
+<p>At the end, if our insertion position says to insert <code>target</code> into the last position <code>letters.length</code>, we return <code>letters[0]</code> instead.  This is what the modulo operation does.</p>
+<iframe frameborder="0" height="242" name="bQDjgxiu" src="https://leetcode.com/playground/bQDjgxiu/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(\log N)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>letters</code>.  We peek only at <script type="math/tex; mode=display">\log N</script> elements in the array.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(1)</script>, as we maintain only pointers.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">4527</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">8959</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              9%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/linkedin.html">LinkedIn</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

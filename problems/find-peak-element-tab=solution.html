@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="A peak element is an element that is greater than its neighbors.
+Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.
+The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.
+You may imagine that num[-1] = num[n] = -∞.
+For example, in array [1, 2, 3, 1], 3 is a peak element and your function should return the index number 2.
+click to show spoilers.
+Note:
+Your solution should be in logarithmic complexity.
+
+Credits:Special thanks to @ts for adding this problem and creating all test cases.">
+  <meta name="keywords"
+        content="Find Peak Element, LC 162, leetcode 162, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>162. Find Peak Element</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>A peak element is an element that is greater than its neighbors.</p>
+
+<p>Given an input array where <code>num[i] &ne; num[i+1]</code>, find a peak element and return its index.</p>
+
+<p>The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.</p>
+
+<p>You may imagine that <code>num[-1] = num[n] = -&infin;</code>.</p>
+
+<p>For example, in array <code>[1, 2, 3, 1]</code>, 3 is a peak element and your function should return the index number 2.</p>
+
+<p class="showspoilers"><a href="#" onclick="showSpoilers(this); return false;">click to show spoilers.</a></p>
+
+<div class="spoilers"><b>Note:</b>
+<p>Your solution should be in logarithmic complexity.</p>
+</div>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://oj.leetcode.com/discuss/user/ts">@ts</a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-linear-scan-accepted">Approach #1 Linear Scan [Accepted]</a></li>
+<li><a href="#approach-2-recursive-binary-search-accepted">Approach #2 Recursive Binary Search [Accepted]</a></li>
+<li><a href="#approach-3-iterative-binary-search-accepted">Approach #3 Iterative Binary Search [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-linear-scan-accepted">Approach #1 Linear Scan [Accepted]</h4>
+<p>In this approach, we make use of the fact that two consecutive numbers <script type="math/tex; mode=display">nums[j]</script> and <script type="math/tex; mode=display">nums[j + 1]</script> are never equal. Thus, we can traverse over the <script type="math/tex; mode=display">nums</script> array starting from the beginning. Whenever, we find a number <script type="math/tex; mode=display">nums[i]</script>, we only need to check if it is larger than the next number <script type="math/tex; mode=display">nums[i+1]</script> for determining if <script type="math/tex; mode=display">nums[i]</script> is the peak element. The reasoning behind this can be understood by taking the following three cases which cover every case into which any problem can be divided.</p>
+<p>Case 1: All the numbers appear in a descending order. In this case, the first element corresponds to the peak element. We start off by checking if the current element is larger than the next one. The first element satisfies this criteria, and is hence identified as the peak correctly. In this case, we didn't reach a point where we needed to compare <script type="math/tex; mode=display">nums[i]</script> with <script type="math/tex; mode=display">nums[i-1]</script> also, to determine if it is the peak element or not.</p>
+<p align="center"><img alt="Graph" src="https://leetcode.com/articles/Figures/162/Find_Peak_Case1.PNG"/></p>
+<p>Case 2: All the elements appear in ascending order. In this case, we keep on comparing <script type="math/tex; mode=display">nums[i]</script> with <script type="math/tex; mode=display">nums[i+1]</script> to determine if <script type="math/tex; mode=display">nums[i]</script> is the peak element or not. None of the elements satisfy this criteria, indicating that we are currently on a rising slope and not on a peak. Thus, at the end, we need to return the last element as the peak element, which turns out to be correct. In this case also, we need not compare <script type="math/tex; mode=display">nums[i]</script> with <script type="math/tex; mode=display">nums[i-1]</script>, since being on the rising slope is a sufficient condition to ensure that <script type="math/tex; mode=display">nums[i]</script> isn't the peak element.</p>
+<p align="center"><img alt="Graph" src="https://leetcode.com/articles/Figures/162/Find_Peak_Case2.PNG"/></p>
+<p>Case 3: The peak appears somewhere in the middle. In this case, when we are traversing on the rising edge, as in Case 2, none of the elements will satisfy <script type="math/tex; mode=display">nums[i] > nums[i + 1]</script>. We need not compare <script type="math/tex; mode=display">nums[i]</script> with <script type="math/tex; mode=display">nums[i-1]</script> on the rising slope as discussed above. When we finally reach the peak element, the condition <script type="math/tex; mode=display">nums[i] > nums[i + 1]</script> is satisfied. We again, need not compare <script type="math/tex; mode=display">nums[i]</script> with <script type="math/tex; mode=display">nums[i-1]</script>. This is because, we could reach <script type="math/tex; mode=display">nums[i]</script> as the current element only when the check <script type="math/tex; mode=display">nums[i] > nums[i + 1]</script> failed for the previous(<script type="math/tex; mode=display">(i-1)^{th}</script> element, indicating that <script type="math/tex; mode=display">nums[i-1] < nums[i]</script>. Thus, we are able to identify the peak element correctly in this case as well.</p>
+<p align="center"><img alt="Graph" src="https://leetcode.com/articles/Figures/162/Find_Peak_Case3.PNG"/></p>
+<iframe frameborder="0" height="207" name="m9g6nHmm" src="https://leetcode.com/playground/m9g6nHmm/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We traverse the <script type="math/tex; mode=display">nums</script> array of size <script type="math/tex; mode=display">n</script> once only.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-recursive-binary-search-accepted">Approach #2 Recursive Binary Search [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can view any given sequence in <script type="math/tex; mode=display">nums</script> array as alternating ascending and descending sequences. By making use of this, and the fact that we can return any peak as the result, we can make use of Binary Search to find the required peak element.</p>
+<p>In case of simple Binary Search, we work on a sorted sequence of numbers and try to find out the required number by reducing the search space at every step. In this case, we use a modification of this simple Binary Search to our advantage. We start off by finding the middle element, <script type="math/tex; mode=display">mid</script> from the given <script type="math/tex; mode=display">nums</script> array. If this element happens to be lying in a descending sequence of numbers. or a local falling slope(found by comparing <script type="math/tex; mode=display">nums[i]</script> to its right neighbour), it means that the peak will always lie towards the left of this element. Thus, we reduce the search space to the left of <script type="math/tex; mode=display">mid</script>(including itself) and perform the same process on left subarray.</p>
+<p>If the middle element, <script type="math/tex; mode=display">mid</script> lies in an ascending sequence of numbers, or a rising slope(found by comparing <script type="math/tex; mode=display">nums[i]</script> to its right neighbour), it obviously implies that the peak lies towards the right of this element. Thus, we reduce the search space to the right of <script type="math/tex; mode=display">mid</script> and perform the same process on the right subarray.</p>
+<p>In this way, we keep on reducing the search space till we eventually reach a state where only one element is remaining in the search space. This single element is the peak element.</p>
+<p>To see how it works, let's consider the three cases discussed above again.</p>
+<p>Case 1. In this case, we firstly find <script type="math/tex; mode=display">3</script> as the middle element. Since it lies on a falling slope, we reduce the search space to <code>[1, 2, 3]</code>. For this subarray, <script type="math/tex; mode=display">2</script> happens to be the middle element, which again lies on a falling slope, reducing the search space to <code>[1, 2]</code>. Now, <script type="math/tex; mode=display">1</script> acts as the middle element and it lies on a falling slope, reducing the search space to <code>[1]</code> only. Thus, <script type="math/tex; mode=display">1</script> is returned as the peak correctly.</p>
+<p>!?!../Documents/Find_Peak_Case1.json:1000,563!?!</p>
+<p>Case 2. In this case, we firstly find <script type="math/tex; mode=display">3</script> as the middle element. Since it lies on a rising slope, we reduce the search space to <code>[4, 5]</code>. Now, <script type="math/tex; mode=display">4</script> acts as the middle element for this subarray and it lies on a rising slope, reducing the search space to <code>[5]</code> only. Thus, <script type="math/tex; mode=display">5</script> is returned as the peak correctly.</p>
+<p>!?!../Documents/Find_Peak_Case2.json:1000,563!?!</p>
+<p>Case 3. In this case, the peak lies somewhere in the middle. The first middle element is <script type="math/tex; mode=display">4</script>. It lies on a rising slope, indicating that the peak lies towards its right. Thus, the search space is reduced to <code>[5, 1]</code>. Now, <script type="math/tex; mode=display">5</script> happens to be the on a falling slope(relative to its right neighbour), reducing the search space to <code>[5]</code> only. Thus, <script type="math/tex; mode=display">5</script> is identified as the peak element correctly.</p>
+<p>!?!../Documents/Find_Peak_Case3.json:1000,563!?!</p>
+<iframe frameborder="0" height="292" name="DQ6yCGV8" src="https://leetcode.com/playground/DQ6yCGV8/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(log_2(n)\big)</script>. We reduce the search space in half at every step. Thus, the total search space will be consumed in <script type="math/tex; mode=display">log_2(n)</script> steps. Here, <script type="math/tex; mode=display">n</script> refers to the size of <script type="math/tex; mode=display">nums</script> array.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O\big(log_2(n)\big)</script>. We reduce the search space in half at every step. Thus, the total search space will be consumed in <script type="math/tex; mode=display">log_2(n)</script> steps. Thus, the depth of recursion tree will go upto <script type="math/tex; mode=display">log_2(n)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-iterative-binary-search-accepted">Approach #3 Iterative Binary Search [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The binary search discussed in the previous approach used a recursive method. We can do the same process in an iterative fashion also. This is done in the current approach.</p>
+<iframe frameborder="0" height="275" name="nMPNAyTN" src="https://leetcode.com/playground/nMPNAyTN/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(log_2(n)\big)</script>. We reduce the search space in half at every step. Thus, the total search space will be consumed in <script type="math/tex; mode=display">log_2(n)</script> steps. Here, <script type="math/tex; mode=display">n</script> refers to the size of <script type="math/tex; mode=display">nums</script> array.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">134324</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">351269</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              69%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/microsoft.html">Microsoft</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Get the highest answer rate question from a table survey_log with these columns:
+uid, action, question_id, answer_id, q_num, timestamp.
+
+
+uid means user id; action has these kind of values: &#34;show&#34;, &#34;answer&#34;, &#34;skip&#34;;
+answer_id is not null when action column is &#34;answer&#34;, while is null for &#34;show&#34; and &#34;skip&#34;;
+q_num is the numeral order of the question in current session.
+
+Write a sql query to identify the question which has the highest answer rate.
+Example:
+Input:
++------+-----------+--------------+------------+-----------+------------+
+| uid  | action    | question_id  | answer_id  | q_num     | timestamp  |
++------+-----------+--------------+------------+-----------+------------+
+| 5    | show      | 285          | null       | 1         | 123        |
+| 5    | answer    | 285          | 124124     | 1         | 124        |
+| 5    | show      | 369          | null       | 2         | 125        |
+| 5    | skip      | 369          | null       | 2         | 126        |
++------+-----------+--------------+------------+-----------+------------+
+Output:
++-------------+
+| survey_log  |
++-------------+
+|    285      |
++-------------+
+Explanation:
+question 285 has answer rate 1/1, while question 369 has 0/1 answer rate, so output 285.
+
+
+Note:
+The highest answer rate meaning is: answer number&#39;s ratio in show number in the same question.">
+  <meta name="keywords"
+        content="Get Highest Answer Rate Question, LC 578, leetcode 578, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>578. Get Highest Answer Rate Question</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Get the highest answer rate question from a table <code>survey_log</code> with these columns:
+<b>uid</b>, <b>action</b>, <b>question_id</b>, <b>answer_id</b>, <b>q_num</b>, <b>timestamp</b>.
+</p>
+
+<p>
+uid means user id; action has these kind of values: "show", "answer", "skip";
+answer_id is not null when action column is "answer", while is null for "show" and "skip";
+q_num is the numeral order of the question in current session.
+</p>
+
+<p>Write a sql query to identify the question which has the highest answer rate.</p>
+
+<p><b>Example:</b><br />
+<pre>
+<b>Input:</b>
++------+-----------+--------------+------------+-----------+------------+
+| uid  | action    | question_id  | answer_id  | q_num     | timestamp  |
++------+-----------+--------------+------------+-----------+------------+
+| 5    | show      | 285          | null       | 1         | 123        |
+| 5    | answer    | 285          | 124124     | 1         | 124        |
+| 5    | show      | 369          | null       | 2         | 125        |
+| 5    | skip      | 369          | null       | 2         | 126        |
++------+-----------+--------------+------------+-----------+------------+
+<b>Output:</b>
++-------------+
+| survey_log  |
++-------------+
+|    285      |
++-------------+
+<b>Explanation:</b>
+question 285 has answer rate 1/1, while question 369 has 0/1 answer rate, so output 285.
+</pre>
+</p>
+
+<p><b>Note:</b>
+The highest answer rate meaning is: answer number's ratio in show number in the same question.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-i-using-sub-query-and-sum-function-accepted">Approach I: Using sub-query and SUM() function [Accepted]</a></li>
+<li><a href="#approach-ii-using-sub-query-and-countif-function-accepted">Approach II: Using sub-query and COUNT(IF...) function [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-i-using-sub-query-and-sum-function-accepted">Approach I: Using sub-query and <code>SUM()</code> function [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Calculate the answered times / show times for each question.</p>
+<p><strong>Algorithm</strong></p>
+<p>First, we can use <code>SUM()</code> to get the total number of answered times as well as the show times for each question using a sub-query as below.</p>
+<div class="codehilite"><pre><span></span><span class="k">SELECT</span>
+    <span class="n">question_id</span><span class="p">,</span>
+    <span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span>
+        <span class="k">WHEN</span> <span class="n">action</span> <span class="o">=</span> <span class="s1">'answer'</span> <span class="k">THEN</span> <span class="mi">1</span>
+        <span class="k">ELSE</span> <span class="mi">0</span>
+    <span class="k">END</span><span class="p">)</span> <span class="k">AS</span> <span class="n">num_answer</span><span class="p">,</span>
+    <span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span>
+        <span class="k">WHEN</span> <span class="n">action</span> <span class="o">=</span> <span class="s1">'show'</span> <span class="k">THEN</span> <span class="mi">1</span>
+        <span class="k">ELSE</span> <span class="mi">0</span>
+    <span class="k">END</span><span class="p">)</span> <span class="k">AS</span> <span class="n">num_show</span>
+<span class="k">FROM</span>
+    <span class="n">survey_log</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">question_id</span>
+<span class="p">;</span>
+</pre></div>
+<div class="codehilite"><pre><span></span>| question_id | num_answer | num_show |
+|-------------|------------|----------|
+| 285         | 1          | 1        |
+| 369         | 0          | 1        |
+</pre></div>
+<p>Then we can calculate the answer rate by its definition.</p>
+<p><strong>MySQL</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">SELECT</span> <span class="n">question_id</span> <span class="k">as</span> <span class="n">survey_log</span>
+<span class="k">FROM</span>
+<span class="p">(</span>
+    <span class="k">SELECT</span> <span class="n">question_id</span><span class="p">,</span>
+         <span class="k">SUM</span><span class="p">(</span><span class="k">case</span> <span class="k">when</span> <span class="n">action</span><span class="o">=</span><span class="ss">"answer"</span> <span class="k">THEN</span> <span class="mi">1</span> <span class="k">ELSE</span> <span class="mi">0</span> <span class="k">END</span><span class="p">)</span> <span class="k">as</span> <span class="n">num_answer</span><span class="p">,</span>
+        <span class="k">SUM</span><span class="p">(</span><span class="k">case</span> <span class="k">when</span> <span class="n">action</span><span class="o">=</span><span class="ss">"show"</span> <span class="k">THEN</span> <span class="mi">1</span> <span class="k">ELSE</span> <span class="mi">0</span> <span class="k">END</span><span class="p">)</span> <span class="k">as</span> <span class="n">num_show</span><span class="p">,</span>    
+    <span class="k">FROM</span> <span class="n">survey_log</span>
+    <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">question_id</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">tbl</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="p">(</span><span class="n">num_answer</span> <span class="o">/</span> <span class="n">num_show</span><span class="p">)</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">1</span>
+</pre></div>
+<h4 id="approach-ii-using-sub-query-and-countif-function-accepted">Approach II: Using sub-query and <code>COUNT(IF...)</code> function [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>This solution is very straight forward: use the <code>COUNT()</code> function to sum the answer and show time combining with the <code>IF()</code> function.</p>
+<p><strong>MySQL</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">SELECT</span> 
+    <span class="n">question_id</span> <span class="k">AS</span> <span class="s1">'survey_log'</span>
+<span class="k">FROM</span>
+    <span class="n">survey_log</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">question_id</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">answer_id</span><span class="p">)</span> <span class="o">/</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">IF</span><span class="p">(</span><span class="n">action</span> <span class="o">=</span> <span class="s1">'show'</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">1695</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">6030</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              2%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

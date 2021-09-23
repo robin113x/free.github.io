@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="In combinatorial mathematics, a derangement is a permutation of the elements of a set, such that no element appears in its original position.
+
+
+There&#39;s originally an array consisting of n integers from 1 to n in ascending order, you need to find the number of derangement it can generate.
+
+
+Also, since the answer may be very large, you should return the output mod 109 + 7.
+
+Example 1:
+Input: 3
+Output: 2
+Explanation: The original array is [1,2,3]. The two derangements are [2,3,1] and [3,1,2].
+
+
+Note:
+n is in the range of [1, 106].">
+  <meta name="keywords"
+        content="Find the Derangement of An Array, LC 634, leetcode 634, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>634. Find the Derangement of An Array</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+In combinatorial mathematics, a derangement is a permutation of the elements of a set, such that no element appears in its original position.
+</p>
+
+<p>
+There's originally an array consisting of <code>n</code> integers from 1 to <code>n</code> in ascending order, you need to find the number of derangement it can generate.
+</p>
+
+<p>
+Also, since the answer may be very large, you should return the output mod 10<sup>9</sup> + 7.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 3
+<b>Output:</b> 2
+<b>Explanation:</b> The original array is [1,2,3]. The two derangements are [2,3,1] and [3,1,2].
+</pre>
+</p>
+
+<p><b>Note:</b><br/>
+<code>n</code> is in the range of [1, 10<sup>6</sup>].
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-recursion-stack-overflow">Approach #2 Using Recursion [Stack Overflow]</a></li>
+<li><a href="#approach-3-dynamic-programming-accepted">Approach #3 Dynamic Programming [Accepted]:</a></li>
+<li><a href="#approach-4-constant-space-dynamic-programming-accepted">Approach #4 Constant Space Dynamic Programming [Accepted]:</a></li>
+<li><a href="#approach-5-using-formula-accepted">Approach #5 Using Formula [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>The simplest solution is to consider every possible permutation of the given numbers from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script> and count the number of permutations which are dereangements of the 
+original arrangement. </p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big((n+1)!\big)</script>. <script type="math/tex; mode=display">n!</script> permutations are possible for <script type="math/tex; mode=display">n</script> numbers. For each permutation, we need to traverse over the whole arrangement to check if it 
+is a derangement or not, which takes <script type="math/tex; mode=display">O(n)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Each permutation would require <script type="math/tex; mode=display">n</script> space to be stored.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-recursion-stack-overflow">Approach #2 Using Recursion [Stack Overflow]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In order to find the number of derangements for <script type="math/tex; mode=display">n</script> numbers, firstly we can consider the the original array to be 
+<code>[1,2,3,...,n]</code>. Now, in order to generate the derangements of this array, assume that firstly, we move the number 1 from 
+its original position and place at the place of the number <script type="math/tex; mode=display">i</script>. But, now, this <script type="math/tex; mode=display">i^{th}</script> position can be chosen 
+in <script type="math/tex; mode=display">n-1</script> ways. Now, for placing the number <script type="math/tex; mode=display">i</script> we have got two options:</p>
+<ol>
+<li>
+<p>We place <script type="math/tex; mode=display">i</script> at the place of <script type="math/tex; mode=display">1</script>: By doing this, the problem of finding the derangements reduces to finding the derangements of the 
+remaining <script type="math/tex; mode=display">n-2</script> numbers, since we've got <script type="math/tex; mode=display">n-2</script> numbers and <script type="math/tex; mode=display">n-2</script> places, such that every number can't be placed at exactly one position.</p>
+</li>
+<li>
+<p>We don't place <script type="math/tex; mode=display">i</script> at the place of <script type="math/tex; mode=display">1</script>: By doing this, the problem of finding the derangements reduces to finding the 
+derangements for the <script type="math/tex; mode=display">n-1</script> elements(except 1). This is because, now we've got <script type="math/tex; mode=display">n-1</script> elements and these <script type="math/tex; mode=display">n-1</script> elements can't be placed at 
+exactly one location(with <script type="math/tex; mode=display">i</script> not being placed at the first position).</p>
+</li>
+</ol>
+<p align="center"><img alt="Derangement_Split" src="https://leetcode.com/articles/Figures/634/634_Find_Derangements_split.PNG"/></p>
+<p>Based, on the above discussion, if <script type="math/tex; mode=display">d(n)</script> represents the number of derangements for <script type="math/tex; mode=display">n</script> elements, it can be obtained as:</p>
+<p>
+<script type="math/tex; mode=display">d(n) = (n-1)*[d(n-1) + d(n-2)]</script>
+</p>
+<p>This is a recursive equation and can thus, be solved easily by making use of a recursive function.</p>
+<p>But, if we go with the above method, a lot of duplicate function calls wiil be made, with the same parameters being passed. This is because the same state can be reached through various paths in the recursive tree. In order to avoid these duplicate calls, we can store the result of a function call, once its made, 
+into a memoization array. Thus, whenever the same function call is made again, we can directly return the result from this memoization array. 
+This helps to prune the search space to a great extent.</p>
+<iframe frameborder="0" height="326" name="6sZQMgm6" src="https://leetcode.com/playground/6sZQMgm6/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">memo</script> array of length <script type="math/tex; mode=display">n</script> is filled once only.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">memo</script> array of length <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-dynamic-programming-accepted">Approach #3 Dynamic Programming [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>As we've discussed above, the recursive formula for finding the derangements for <script type="math/tex; mode=display">n</script> elements is given by:</p>
+<p>
+<script type="math/tex; mode=display">d(n) = (n-1)*[d(n-1) + d(n-2)]</script>
+</p>
+<p>From this expression, we can see that the result for derangements for <script type="math/tex; mode=display">i</script> numbers depends only on the result of the derangments 
+of numbers lesser than <script type="math/tex; mode=display">i</script>. Thus, we can solve the given problem by making use of Dynamic Programming.</p>
+<p>The equation for Dynamic Programming remains identical to the recursive equation.</p>
+<p>
+<script type="math/tex; mode=display">dp[i] = (i - 1)*(dp[i-1]+dp[i-2])</script>
+</p>
+<p>Here, <script type="math/tex; mode=display">dp[i]</script> is used to store the number of derangements for <script type="math/tex; mode=display">i</script> elements. We start filling the <script type="math/tex; mode=display">dp</script> array from <script type="math/tex; mode=display">i=0</script> and move towards the larger values of <script type="math/tex; mode=display">i</script>. At the end, the value of 
+<script type="math/tex; mode=display">dp[n]</script> gives the required result.</p>
+<p>The following animation illustrates the <script type="math/tex; mode=display">dp</script> filling process.</p>
+<p>!?!../Documents/634_Find_Derangements.json:1000,563!?!</p>
+<iframe frameborder="0" height="292" name="r4pe7vRB" src="https://leetcode.com/playground/r4pe7vRB/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Single loop upto <script type="math/tex; mode=display">n</script> is required to fill the <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-constant-space-dynamic-programming-accepted">Approach #4 Constant Space Dynamic Programming [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, we can easily observe that the result for <script type="math/tex; mode=display">dp[i]</script> depends only on the previous two elements, <script type="math/tex; mode=display">dp[i-1]</script> and 
+<script type="math/tex; mode=display">dp[i-2]</script>. Thus, instead of maintaining the entire 1-D array, we can just keep a track of the last two values required to calculate the 
+value of the current element. By making use of this observation, we can save the space required by the <script type="math/tex; mode=display">dp</script> array in the last approach.</p>
+<iframe frameborder="0" height="326" name="Jg5QLdKy" src="https://leetcode.com/playground/Jg5QLdKy/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Single loop upto <script type="math/tex; mode=display">n</script> is required to find the required result.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-using-formula-accepted">Approach #5 Using Formula [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>Before discussing this approach, we need to look at some preliminaries.</p>
+<p>In combinatorics (combinatorial mathematics), the inclusion–exclusion principle is a counting 
+technique which generalizes the familiar method of obtaining the number of elements in the union of two 
+finite sets; symbolically expressed as</p>
+<p>
+<script type="math/tex; mode=display">\left|A\cup B\right|=\left|A\right|+\left|B\right|-\left|A\cap B\right|</script>
+</p>
+<p>where <script type="math/tex; mode=display">A</script> and <script type="math/tex; mode=display">B</script> are two finite sets and <script type="math/tex; mode=display">\left|S\right|</script> indicates the cardinality of a set <script type="math/tex; mode=display">S</script> 
+(which may be considered as the number of elements of the set, if the set is finite). </p>
+<p align="center"><img alt="AUB" src="https://leetcode.com/articles/Figures/634/634_AUB.PNG"/></p>
+<p>The formula expresses the fact that the sum of the sizes of the two sets may be too large since
+ some elements may be counted twice. The double-counted elements are those in the intersection of 
+ the two sets and the count is corrected by subtracting the size of the intersection.</p>
+<p>The principle is more clearly seen in the case of three sets, which for the sets <script type="math/tex; mode=display">A</script>, <script type="math/tex; mode=display">B</script> and <script type="math/tex; mode=display">C</script> is given by</p>
+<p>
+<script type="math/tex; mode=display">\left|A\cup B\cup C\right|=\left|A\right|+\left|B\right|+\left|C\right|-\left|A\cap B\right|-\left|A\cap C\right|-\left|B\cap C\right|+\left|A\cap B\cap C\right|</script>.</p>
+<p>This formula can be verified by counting how many times each region in the 
+Venn diagram figure shown below. </p>
+<p align="center"><img alt="AUBUC" src="https://leetcode.com/articles/Figures/634/634_AUBUC.png"/></p>
+<p>In this case, 
+when removing the contributions of over-counted elements, the number of elements in the mutual 
+intersection of the three sets has been subtracted too often, so must be added back in to get the correct total.</p>
+<p>In its general form, the principle of inclusion–exclusion states that for finite sets <script type="math/tex; mode=display">A_1, ..., A_n</script>, one
+ has the identity</p>
+<p>
+<script type="math/tex; mode=display">\left|\bigcup _{i=1}^{n}A_{i}\right|=\sum_{i=1}^{n}\left|A_{i}\right|-\sum_{1 &leq; i < j &leq; n}\left|A_{i}\cap A_{j}\right|+...</script>
+</p>
+<p>
+<script type="math/tex; mode=display">+...+\sum_{1 &leq; i < j < k &leq; n}\left|A_{i}\cap A_{j}\cap A_{k}\right|-..... +(-1)^{n}\left|A_{1}\cap... \cap A_{n}\right|</script>
+</p>
+<p>By applying De-Morgan's law to the above equation, we can obtain</p>
+<p>
+<script type="math/tex; mode=display">\left|\bigcap _{i=1}^{n}\bar{A_{i}}\right|=\left|S-\bigcup _{i=1}^{n}A_{i}\right|=\left|S\right|-</script>
+<script type="math/tex; mode=display">\sum_{i=1}^{n}\left|A_{i}\right|+\sum_{1 &leq; i < j &leq; n}\left|A_{i}\cap A_{j}\right|-.... +(-1)^{n}\left|A_{1}\cap....\cap A_{n}\right|</script>
+</p>
+<p>Here, <script type="math/tex; mode=display">S</script> represents the universal set containing all of the <script type="math/tex; mode=display">A_i</script> and <script type="math/tex; mode=display">\bar{A_{i}}</script> denotes the complement of <script type="math/tex; mode=display">A_i</script> in <script type="math/tex; mode=display">S</script>.</p>
+<p>Now, let <script type="math/tex; mode=display">A_i</script> denote the set of permutations  which leave <script type="math/tex; mode=display">A_i</script> in its natural position. Thus, the number of permutations in which 
+the <script type="math/tex; mode=display">i^{th}</script> element remains at its natural position is <script type="math/tex; mode=display">(n-1)!</script>. Thus, the component <script type="math/tex; mode=display">\sum_{i=1}^{n}\left|A_{i}\right|</script> above 
+becomes <script type="math/tex; mode=display">{{n}\choose{1}} (n-1)!</script>. Here, <script type="math/tex; mode=display">{{n}\choose{1}}</script> represents the number of ways of choosing 1 element out of <script type="math/tex; mode=display">n</script> elements.</p>
+<p>Making use of this notation, the required number of derangements can be denoted by <script type="math/tex; mode=display">\left|\bigcap _{i=1}^{n}\bar{A_{i}}\right|</script> term. </p>
+<p>This is the same term which has been expanded in the last equation. Putting appropriate values of the elements, we can expand the above equation as:</p>
+<p>
+<script type="math/tex; mode=display">\left|\bigcap _{i=1}^{n}\bar{A_{i}}\right|=n! -{n \choose 1}(n-1)! + {n\choose 2}(n-2)! - {n \choose 3}(n-3)! +...</script>
+<script type="math/tex; mode=display">...+(-1)^{p}{n \choose p}(n-p)! +...+ (-1)^{n}{n \choose n} (n-n)!</script>
+</p>
+<p>
+<script type="math/tex; mode=display"> = n! - \frac{n!}{1!} + \frac{n!}{2!} - \frac{n!}{3!}+...+(-1)^n \frac{n!}{n!}</script>
+</p>
+<p>We can make use of this formula to obtain the required number of derangements.</p>
+<iframe frameborder="0" height="224" name="e35fvm74" src="https://leetcode.com/playground/e35fvm74/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Single loop upto <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">2833</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">8124</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              14%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/ixl.html">IXL</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

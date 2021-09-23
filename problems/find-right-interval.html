@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a set of intervals, for each of the interval i, check if there exists an interval j whose start point is bigger than or equal to the end point of the interval i, which can be called that j is on the &#34;right&#34; of i.
+
+
+For any interval i, you need to store the minimum interval j&#39;s index, which means that the interval j has the minimum start point to build the &#34;right&#34; relationship for interval i. If the interval j doesn&#39;t exist, store -1 for the interval i. Finally, you need output the stored value of each interval as an array.
+
+Note:
+
+You may assume the interval&#39;s end point is always bigger than its start point.
+You may assume none of these intervals have the same start point.
+
+
+Example 1:
+Input: [ [1,2] ]
+
+Output: [-1]
+
+Explanation: There is only one interval in the collection, so it outputs -1.
+
+
+Example 2:
+Input: [ [3,4], [2,3], [1,2] ]
+
+Output: [-1, 0, 1]
+
+Explanation: There is no satisfied &#34;right&#34; interval for [3,4].
+For [2,3], the interval [3,4] has minimum-&#34;right&#34; start point;
+For [1,2], the interval [2,3] has minimum-&#34;right&#34; start point.
+
+
+Example 3:
+Input: [ [1,4], [2,3], [3,4] ]
+
+Output: [-1, 2, -1]
+
+Explanation: There is no satisfied &#34;right&#34; interval for [1,4] and [3,4].
+For [2,3], the interval [3,4] has minimum-&#34;right&#34; start point.">
+  <meta name="keywords"
+        content="Find Right Interval, LC 436, leetcode 436, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>436. Find Right Interval</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given a set of intervals, for each of the interval i, check if there exists an interval j whose start point is bigger than or equal to the end point of the interval i, which can be called that j is on the "right" of i.
+</p>
+
+<p>
+For any interval i, you need to store the minimum interval j's index, which means that the interval j has the minimum start point to build the "right" relationship for interval i. If the interval j doesn't exist, store -1 for the interval i. Finally, you need output the stored value of each interval as an array.
+</p>
+
+<p><b>Note:</b><br />
+<ol>
+<li>You may assume the interval's end point is always bigger than its start point.</li>
+<li>You may assume none of these intervals have the same start point.</li>
+</ol>
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> [ [1,2] ]
+
+<b>Output:</b> [-1]
+
+<b>Explanation:</b> There is only one interval in the collection, so it outputs -1.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> [ [3,4], [2,3], [1,2] ]
+
+<b>Output:</b> [-1, 0, 1]
+
+<b>Explanation:</b> There is no satisfied "right" interval for [3,4].
+For [2,3], the interval [3,4] has minimum-"right" start point;
+For [1,2], the interval [2,3] has minimum-"right" start point.
+</pre>
+</p>
+
+<p><b>Example 3:</b><br />
+<pre>
+<b>Input:</b> [ [1,4], [2,3], [3,4] ]
+
+<b>Output:</b> [-1, 2, -1]
+
+<b>Explanation:</b> There is no satisfied "right" interval for [1,4] and [3,4].
+For [2,3], the interval [3,4] has minimum-"right" start point.
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-sorting-scanning-time-limit-exceeded">Approach #2 Using Sorting + Scanning [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-using-sorting-binary-search-accepted">Approach #3 Using Sorting + Binary Search [Accepted]</a></li>
+<li><a href="#approach-4-using-treemap-accepted">Approach #4 Using TreeMap [Accepted]</a></li>
+<li><a href="#approach-5-using-two-arrays-without-binary-searchaccepted">Approach #5 Using Two Arrays without Binary Search[Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>The simplest solution consists of picking up every interval in the set and looking for the the interval whose start point is larger(by a
+ minimum difference) than
+ the chosen interval's end point by scanning the complete set for every interval chosen. While scanning, we keep a track of the interval
+ with the minimum start point satisfying the given criteria along with its index. The result obtained for every interval chosen is
+ stored at the corresponding index in the res array which is returned at the end.</p>
+<iframe frameborder="0" height="496" name="qzN73MkH" src="https://leetcode.com/playground/qzN73MkH/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. The complete set of <script type="math/tex; mode=display">n</script> intervals is scanned for every(<script type="math/tex; mode=display">n</script>) interval chosen.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">res</script> array of size <script type="math/tex; mode=display">n</script> is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-sorting-scanning-time-limit-exceeded">Approach #2 Using Sorting + Scanning [Time Limit Exceeded]</h4>
+<p>We make use of a hashmap <script type="math/tex; mode=display">\text{hash}</script>, which stores the data in the form of a <script type="math/tex; mode=display">(Key, Value)</script> pair. Here, the <script type="math/tex; mode=display">Key</script> corresponds to the interval chosen and the <script type="math/tex; mode=display">Value</script> corresponds to the index of the particular interval in the given <script type="math/tex; mode=display">intervals</script> array. We store every element of the <script type="math/tex; mode=display">intervals</script> array in the <script type="math/tex; mode=display">hash</script>-map.</p>
+<p>Now, we sort the <script type="math/tex; mode=display">intervals</script> array based on the starting points. We needed to store the indices of the array in the hashmap, so as to be able to obtain the indices even after the sorting.</p>
+<p>Now, we pick up every interval of the sorted array, and find out the interval from the remaining ones whose start point comes just after
+the end point of the interval chosen. How do we proceed? Say, we've picked up the <script type="math/tex; mode=display">i^{th}</script> interval right now. In order to find an
+interval satisfying the given criteria, we need not search in the intervals behind it. This is because the <script type="math/tex; mode=display">intervals</script> array has been sorted based on the
+starting points and the end point is always greater than the starting point for a given interval. Thus, we search in the intervals only with indices <script type="math/tex; mode=display">j</script>, such that <script type="math/tex; mode=display">i+1< j < n</script>. The first element encountered while scanning in the ascending order is the required result for the interval chosen, since all the intervals lying after this interval will have comparatively larger start points.</p>
+<p>Then, we can obtain the index corresponding to the corresponding interval from the hashmap, which is stored in the corresponding entry of the <script type="math/tex; mode=display">res</script> array. If no interval satifies the criteria, we put a <script type="math/tex; mode=display">\text{-1}</script> in the corresponding entry.</p>
+<iframe frameborder="0" height="515" name="EsSkj3SC" src="https://leetcode.com/playground/EsSkj3SC/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>.</li>
+</ul>
+<p>Sorting takes <script type="math/tex; mode=display">O\big(nlog(n)\big)</script> time. For the first interval we need to search among <script type="math/tex; mode=display">n-1</script> elements. For the second interval, the search is done among <script type="math/tex; mode=display">n-2</script> elements and so on leading to a total of:</p>
+<p>
+<script type="math/tex; mode=display">(n-1) + (n-2) + (n-3) + .... + 3 + 2 + 1 = \frac{n.(n-1)}{2} = O(n^2)</script> calculations.</p>
+<ul>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">res</script> array of size <script type="math/tex; mode=display">n</script> is used. A hashmap <script type="math/tex; mode=display">hash</script> of size <script type="math/tex; mode=display">n</script> is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-sorting-binary-search-accepted">Approach #3 Using Sorting + Binary Search [Accepted]</h4>
+<p>We can optimize the above approach to some extent, since we can make use of the factor of the <script type="math/tex; mode=display">intervals</script> array being sorted. Instead of searching for the required interval in a linear manner, we can make use of Binary Search to find an interval whose start point is just larger than the end point of the current interval.</p>
+<p>Again, if such an interval is found, we obtain its index from the hashmap and store the result in the appropriate <script type="math/tex; mode=display">res</script> entry. If not, we put a <script type="math/tex; mode=display">\text{-1}</script> at the corresponding entry.</p>
+<iframe frameborder="0" height="515" name="pn9fpMev" src="https://leetcode.com/playground/pn9fpMev/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big((n.log(n)\big)</script>. Sorting takes <script type="math/tex; mode=display">O\big(n.log(n)\big)</script> time. Binary search takes <script type="math/tex; mode=display">O\big(log(n)\big) time for each of the </script>n$$ intervals.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">res</script> array of size <script type="math/tex; mode=display">n</script> is used. A hashmap <script type="math/tex; mode=display">hash</script> of size <script type="math/tex; mode=display">O(n)</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-treemap-accepted">Approach #4 Using TreeMap [Accepted]</h4>
+<p>In this approach, instead of using a hashmap, we make use of a TreeMap <script type="math/tex; mode=display">starts</script>, which is simply a Red-Black Tree(a kind of balanced Binary Search Tree) . This Treemap <script type="math/tex; mode=display">start</script> stores data in the form of <script type="math/tex; mode=display">(Key, Value)</script> pair and always remain sorted based on its keys.
+In our case, we store the data such that the start point of an interval acts as the <script type="math/tex; mode=display">Key</script> and the index corresponding to the interval acts as the value, since we are concerned with data sorted based on the start points, as discussed in previous approaches. Every element of the <script type="math/tex; mode=display">intervals</script> array is stored in the TreeMap.</p>
+<p>Now, we choose each element of the <script type="math/tex; mode=display">intervals</script> array and make use of a function <code>TreeMap.ceilingEntry(end_point)</code> to obtain the element in the TreeMap with its <script type="math/tex; mode=display">Key</script> just larger than the <script type="math/tex; mode=display">end_point</script> of the currently chosen interval. The function <code>ceilingEntry(Key)</code> returns the element just with its <script type="math/tex; mode=display">Key</script> larger than the <code>Key</code>(passed as the argument) from amongst the elements of the TreeMap and returns <code>null</code> if no such element exists.</p>
+<p>If non-null value is returned, we obtain the <script type="math/tex; mode=display">Value</script> from the <script type="math/tex; mode=display">(Key, Value)</script> pair obtained at the appropriate entry in the <script type="math/tex; mode=display">res</script> array. If a null value is returned, we simply store a <script type="math/tex; mode=display">\text{-1}</script> at the corresponding <script type="math/tex; mode=display">res</script> entry.</p>
+<iframe frameborder="0" height="462" name="7wB2XEVo" src="https://leetcode.com/playground/7wB2XEVo/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big((n.log(n)\big)</script>. Inserting an element into TreeMap takes <script type="math/tex; mode=display">O\big(log(n)\big)</script> time. <script type="math/tex; mode=display">n</script> such insertions are done. The search in TreeMap using <code>ceilingEntry</code> also takes <script type="math/tex; mode=display">O\big((log(n)\big)</script> time. <script type="math/tex; mode=display">n</script> such searches are done.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">res</script> array of size <script type="math/tex; mode=display">n</script> is used. TreeMap <script type="math/tex; mode=display">starts</script> of size <script type="math/tex; mode=display">O(n)</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-using-two-arrays-without-binary-searchaccepted">Approach #5 Using Two Arrays without Binary Search[Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>The intuition behind this approach is as follows: If we maintain two arrays,</p>
+<ol>
+<li>
+<p>
+<script type="math/tex; mode=display">\text{intervals}</script>, which is sorted based on the start points.</p>
+</li>
+<li>
+<p>
+<script type="math/tex; mode=display">\text{endIntervals}</script>, which is sorted based on the end points.</p>
+</li>
+</ol>
+<p>Once we pick up the first interval(or, say the <script type="math/tex; mode=display">i^{th}</script> interval) from the <script type="math/tex; mode=display">\text{endIntervals}</script> array, we can determine the appropriate interval satisfying the right interval criteria by scanning the intervals in <script type="math/tex; mode=display">\text{intervals}</script> array from left towards the right, since the <script type="math/tex; mode=display">\text{intervals}</script> array is sorted based on the start points. Say, the index of the element chosen from the <script type="math/tex; mode=display">\text{intervals}</script> array happens to be <script type="math/tex; mode=display">j</script>.</p>
+<p>Now, when we pick up the next interval(say the <script type="math/tex; mode=display">(i+1)^{th}</script> interval) from the <script type="math/tex; mode=display">\text{endIntervals}</script> array, we need not start scanning the <script type="math/tex; mode=display">\text{intervals}</script> array from the first index. Rather, we can start off directly from the <script type="math/tex; mode=display">j^{th}</script> index where we left off last time in the <script type="math/tex; mode=display">\text{intervals}</script> array. This is because end point corresponding to <script type="math/tex; mode=display">\text{endIntervals[i+1]}</script> is larger than the one corresponding to <script type="math/tex; mode=display">\text{endIntervals[i]}</script> and none of the intervals from <script type="math/tex; mode=display">\text{intervals[k]}</script>, such that <script type="math/tex; mode=display">0< k < j</script>, satisfies the right neighbor criteria with <script type="math/tex; mode=display">\text{endIntervals[i]}</script>, and hence not with <script type="math/tex; mode=display">\text{endIntervals[i+1]}</script> as well.</p>
+<p>If at any moment, we reach the end of the array i.e. <script type="math/tex; mode=display">j=intervals.length</script> and no element satisfying the right interval criteria is available in the <script type="math/tex; mode=display">\text{intervals}</script> array, we put a <script type="math/tex; mode=display">\text{-1}</script> in the corresponding <script type="math/tex; mode=display">res</script> entry. The same holds for all the remaining elements of the <script type="math/tex; mode=display">\text{endIntervals}</script> array, whose end points are even larger than the previous interval encountered.</p>
+<p>Also we make use of a hashmap <script type="math/tex; mode=display">hash</script> initially to preserve the indices corresponding to the intervals even after sorting.</p>
+<p>For more understanding see the below animation:</p>
+<!--![Find_Right_Interval](https://leetcode.com/articles/Figures/436_Find_Right_Interval.gif)-->
+<p>!?!../Documents/436_Find.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="YVrCA3RQ" src="https://leetcode.com/playground/YVrCA3RQ/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(n.log(n)\big)</script>. Sorting takes <script type="math/tex; mode=display">O\big(n.log(n)\big)</script> time. A total of <script type="math/tex; mode=display">O(n)</script> time is spent on searching for the appropriate intervals, since the <script type="math/tex; mode=display">\text{endIntervals}</script> and <script type="math/tex; mode=display">\text{intervals}</script> array is scanned only once.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">\text{endIntervals}</script>, <script type="math/tex; mode=display">\text{intervals}</script> and <script type="math/tex; mode=display">res</script> array of size <script type="math/tex; mode=display">n</script> are used. A hashmap <script type="math/tex; mode=display">hash</script> of size <script type="math/tex; mode=display">O(n)</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">15808</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">38169</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              12%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>
