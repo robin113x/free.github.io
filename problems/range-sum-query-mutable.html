@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
+
+The update(i, val) function modifies nums by updating the element at index i to val.
+
+Example:
+
+Given nums = [1, 3, 5]
+
+sumRange(0, 2) -&gt; 9
+update(1, 2)
+sumRange(0, 2) -&gt; 8
+
+
+Note:
+
+The array is only modifiable by the update function.
+You may assume the number of calls to update and sumRange function is distributed evenly.">
+  <meta name="keywords"
+        content="Range Sum Query - Mutable, LC 307, leetcode 307, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>307. Range Sum Query - Mutable</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given an integer array <i>nums</i>, find the sum of the elements between indices <i>i</i> and <i>j</i> (<i>i</i> &le; <i>j</i>), inclusive.</p>
+
+The <i>update(i, val)</i> function modifies <i>nums</i> by updating the element at index <i>i</i> to <i>val</i>.
+
+<p><b>Example:</b><br>
+<pre>
+Given nums = [1, 3, 5]
+
+sumRange(0, 2) -> 9
+update(1, 2)
+sumRange(0, 2) -> 8
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The array is only modifiable by the <i>update</i> function.</li>
+<li>You may assume the number of calls to <i>update</i> and <i>sumRange</i> function is distributed evenly.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-naive-time-limit-exceeded">Approach #1 (Naive) [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-sqrt-decomposition-accepted">Approach #2 (Sqrt decomposition) [Accepted]</a></li>
+<li><a href="#approach-3-segment-tree-accepted">Approach #3 (Segment tree) [Accepted]</a><ul>
+<li><a href="#1-build-segment-tree">1. Build segment tree</a></li>
+<li><a href="#2-update-segment-tree">2. Update segment tree</a></li>
+<li><a href="#3-range-sum-query">3. Range Sum Query</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#further-thoughts">Further Thoughts</a></li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>This article is for intermediate level readers. It introduces the following concepts:
+Range sum query, Sqrt decomposition, Segment tree.</p>
+<h2 id="solution">Solution</h2>
+<h4 id="approach-1-naive-time-limit-exceeded">Approach #1 (Naive) [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>A trivial solution for Range Sum Query - <code>RSQ(i, j)</code> is to iterate the array from index <script type="math/tex; mode=display">i</script> to <script type="math/tex; mode=display">j</script> and sum each element.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">private</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">sumRange</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="o">;</span> <span class="n">l</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">data</span><span class="o">[</span><span class="n">l</span><span class="o">];</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">update</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">val</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="c1">// Time Limit Exceeded</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script> - range sum query, <script type="math/tex; mode=display">O(1)</script> - update query</p>
+<p>For range sum query we access each element from the array for constant time and in the worst case we access <script type="math/tex; mode=display">n</script> elements. Therefore time complexity is <script type="math/tex; mode=display">O(n)</script>. Time complexity of update query is <script type="math/tex; mode=display">O(1)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>.</p>
+</li>
+</ul>
+<h4 id="approach-2-sqrt-decomposition-accepted">Approach #2 (Sqrt decomposition) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>The idea is to  split the array in blocks with length of <script type="math/tex; mode=display">\sqrt{n}</script>. Then we calculate the sum of each block and store it in auxiliary memory <code>b</code>.
+To query <code>RSQ(i, j)</code>, we will add the sums of all the blocks lying inside and those that partially overlap with range <script type="math/tex; mode=display">[i \ldots j]</script>.</p>
+<p><strong>Algorithm</strong></p>
+<p align="center"><img alt="Range sum query using SQRT decomposition" src="https://leetcode.com/media/original_images/307_RSQ_Sqrt.png" width="539px"/></p>
+<p align="center"><em>Figure 1. Range sum query using SQRT decomposition.</em></p>
+<p>In the example above, the array <code>nums</code>'s length is <code>9</code>, which is split into blocks of size <script type="math/tex; mode=display">\sqrt{9}</script>. To get <code>RSQ(1, 7)</code> we add <code>b[1]</code>.  It stores the sum of <code>range [3, 5]</code> and partially sums from <code>block 0</code>  and <code>block 2</code>, which are overlapping boundary blocks.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">private</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">b</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kt">int</span> <span class="n">len</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="nf">NumArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">nums</span> <span class="o">=</span> <span class="n">nums</span><span class="o">;</span>
+    <span class="kt">double</span> <span class="n">l</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+    <span class="n">len</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">/</span><span class="n">l</span><span class="o">);</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span> <span class="o">[</span><span class="n">len</span><span class="o">];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="n">b</span><span class="o">[</span><span class="n">i</span> <span class="o">/</span> <span class="n">len</span><span class="o">]</span> <span class="o">+=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">sumRange</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">startBlock</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">len</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">endBlock</span> <span class="o">=</span> <span class="n">j</span> <span class="o">/</span> <span class="n">len</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">startBlock</span> <span class="o">==</span> <span class="n">endBlock</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">nums</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="o">(</span><span class="n">startBlock</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">*</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">nums</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">startBlock</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">endBlock</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">b</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">endBlock</span> <span class="o">*</span> <span class="n">len</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">nums</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">b_l</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">len</span><span class="o">;</span>
+    <span class="n">b</span><span class="o">[</span><span class="n">b_l</span><span class="o">]</span> <span class="o">=</span> <span class="n">b</span><span class="o">[</span><span class="n">b_l</span><span class="o">]</span> <span class="o">-</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">val</span><span class="o">;</span>
+    <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">val</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="c1">// Accepted</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script> - preprocessing, <script type="math/tex; mode=display">O(\sqrt{n})</script> - range sum query, <script type="math/tex; mode=display">O(1)</script> - update query</p>
+<p>For range sum query in the worst-case scenario we have to sum approximately <script type="math/tex; mode=display">3 \sqrt{n}</script> elements. In this case the range includes <script type="math/tex; mode=display">\sqrt{n} - 2</script> blocks, which total sum costs <script type="math/tex; mode=display">\sqrt{n} - 2</script> operations. In addition to this we have to add the sum of the two boundary blocks. This takes another <script type="math/tex; mode=display">2 (\sqrt{n} - 1)</script> operations. The total amount of operations is around <script type="math/tex; mode=display">3 \sqrt{n}</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(\sqrt{n})</script>.</p>
+<p>We need additional <script type="math/tex; mode=display">\sqrt{n}</script> memory to store all block sums.</p>
+</li>
+</ul>
+<h4 id="approach-3-segment-tree-accepted">Approach #3 (Segment tree) [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Segment tree is a very flexible data structure, because it is used to solve numerous range query problems like finding minimum, maximum, sum, greatest common divisor, least common denominator in array in logarithmic time.</p>
+<p align="center"><img alt="Illustration of Segment tree" src="https://leetcode.com/media/original_images/307_RSQ_SegmentTree.png" width="539px"/></p>
+<p align="center"><em>Figure 2. Illustration of Segment tree.</em></p>
+<p>The segment tree for array <script type="math/tex; mode=display">a[0, 1, \ldots ,n-1]</script> is a binary tree in which each node contains <strong>aggregate</strong> information (min, max, sum, etc.) for a subrange <script type="math/tex; mode=display">[i \ldots j]</script> of the array, as its left and right child hold information for range <script type="math/tex; mode=display">[i \ldots \frac{i+j}{2}]</script> and <script type="math/tex; mode=display">[\frac{i + j}{2} + 1, j]</script>.</p>
+<p>Segment tree could be implemented using either an array or a tree. For an array implementation, if the element at index <script type="math/tex; mode=display">i</script> is not a leaf, its left and right child are stored at index <script type="math/tex; mode=display">2i</script> and <script type="math/tex; mode=display">2i + 1</script> respectively.</p>
+<p>In the example above (Figure 2), every leaf node contains the initial array elements <code>{2,4,5,7,8,9}</code>. The internal nodes contain the sum of the corresponding elements in range - <code>(11)</code> for the elements from index 0 to index 2. The root <code>(35)</code> being the sum  of its children <code>(6)</code>;<code>(29)</code>, holds the total sum of the entire array.</p>
+<p>Segment Tree can be broken down to the three following steps:</p>
+<ol>
+<li>Pre-processing step which builds the segment tree from a given array.</li>
+<li>Update the segment tree when an element is modified.</li>
+<li>Calculate the Range Sum Query using the segment tree.</li>
+</ol>
+<h5 id="1-build-segment-tree">1. Build segment tree</h5>
+<p>We will use a very effective bottom-up approach to build segment tree. We already know from the above that if some node <script type="math/tex; mode=display">p</script> holds the sum of <script type="math/tex; mode=display">[i \ldots j]</script> range, its left and right children hold the sum for range <script type="math/tex; mode=display">[i \ldots \frac{i + j}{2}]</script> and <script type="math/tex; mode=display">[\frac{i + j}{2} + 1, j]</script> respectively.</p>
+<p>Therefore to find the sum of node <script type="math/tex; mode=display">p</script>, we need to calculate the sum of its right and left child in advance.</p>
+<p>We begin from the leaves, initialize them with input array elements <script type="math/tex; mode=display">a[0, 1, \ldots, n-1]</script>. Then we move upward to the higher level to calculate the parents' sum till we get to the root of the segment tree.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kt">int</span><span class="o">[]</span> <span class="n">tree</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">n</span><span class="o">;</span>
+<span class="kd">public</span> <span class="nf">NumArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span> <span class="o">*</span> <span class="mi">2</span><span class="o">];</span>
+        <span class="n">buildTree</span><span class="o">(</span><span class="n">nums</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">buildTree</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>  <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++,</span>  <span class="n">j</span><span class="o">++)</span>
+        <span class="n">tree</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="o">--</span><span class="n">i</span><span class="o">)</span>
+        <span class="n">tree</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">tree</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="o">]</span> <span class="o">+</span> <span class="n">tree</span><span class="o">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>Time complexity is  <script type="math/tex; mode=display">O(n)</script>, because we calculate the sum of one node during each iteration of the for loop. There are approximately <script type="math/tex; mode=display">2n</script> nodes in a segment tree.</p>
+<p>This could be proved in the following way: Segmented tree for array with <script type="math/tex; mode=display">n</script> elements has <script type="math/tex; mode=display">n</script> leaves (the array elements itself). The number of nodes in each level is half the number in the level below.</p>
+<p>So if we sum the number by level we will get:</p>
+<p>
+<script type="math/tex; mode=display">
+n + n/2  + n/4 + n/8 + \ldots + 1 \approx 2n
+</script>
+</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>.</p>
+<p>We used <script type="math/tex; mode=display">2n</script> extra space to store the segment tree.</p>
+</li>
+</ul>
+<h5 id="2-update-segment-tree">2. Update segment tree</h5>
+<p>When we update the array at some index <script type="math/tex; mode=display">i</script> we need to rebuild the segment tree, because there are tree nodes which contain the sum of the modified element. Again we will use a bottom-up approach. We update the leaf node that stores <script type="math/tex; mode=display">a[i]</script>. From there we will follow the path up to the root updating the value of each parent as a sum of its children values.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">update</span><span class="o">(</span><span class="kt">int</span> <span class="n">pos</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">pos</span> <span class="o">+=</span> <span class="n">n</span><span class="o">;</span>
+    <span class="n">tree</span><span class="o">[</span><span class="n">pos</span><span class="o">]</span> <span class="o">=</span> <span class="n">val</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">pos</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">pos</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">pos</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">pos</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="c1">// parent is updated after child is updated</span>
+        <span class="n">tree</span><span class="o">[</span><span class="n">pos</span> <span class="o">/</span> <span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="n">tree</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">+</span> <span class="n">tree</span><span class="o">[</span><span class="n">right</span><span class="o">];</span>
+        <span class="n">pos</span> <span class="o">/=</span> <span class="mi">2</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(\log n)</script>.</p>
+<p>Algorithm  has <script type="math/tex; mode=display">O(\log n)</script> time complexity, because there are a few tree nodes with range that include  <script type="math/tex; mode=display">i</script>th array element, one on each level. There are <script type="math/tex; mode=display">\log(n)</script>  levels.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>.</p>
+</li>
+</ul>
+<h5 id="3-range-sum-query">3. Range Sum Query</h5>
+<p>We can find range sum query  <script type="math/tex; mode=display">[L, R]</script> using segment tree in the following way:</p>
+<p>Algorithm hold loop invariant:</p>
+<p>
+<script type="math/tex; mode=display">l \le r</script> and sum of <script type="math/tex; mode=display">[L \ldots l]</script> and <script type="math/tex; mode=display">[r \ldots R]</script> has been calculated, where <script type="math/tex; mode=display">l</script> and <script type="math/tex; mode=display">r</script> are the left and right boundary of calculated sum.
+Initially we set <script type="math/tex; mode=display">l</script> with left leaf <script type="math/tex; mode=display">L</script> and <script type="math/tex; mode=display">r</script> with right leaf <script type="math/tex; mode=display">R</script>.
+Range <script type="math/tex; mode=display">[l, r]</script> shrinks on each iteration till range borders meets after approximately <script type="math/tex; mode=display">\log n</script> iterations of the algorithm</p>
+<ul>
+<li>Loop till <script type="math/tex; mode=display">l \le r</script>
+<ul>
+<li>Check if <script type="math/tex; mode=display">l</script> is right child of its parent <script type="math/tex; mode=display">P</script>
+<ul>
+<li>
+<script type="math/tex; mode=display">l</script> is right child of <script type="math/tex; mode=display">P</script>. Then <script type="math/tex; mode=display">P</script> contains sum of range of <script type="math/tex; mode=display">l</script> and another  child which is outside the range <script type="math/tex; mode=display">[l, r]</script> and we don't need parent <script type="math/tex; mode=display">P</script> sum. Add <script type="math/tex; mode=display">l</script> to <script type="math/tex; mode=display">sum</script> without its parent <script type="math/tex; mode=display">P</script> and set <script type="math/tex; mode=display">l</script> to point to the right of <script type="math/tex; mode=display">P</script> on the upper level.</li>
+<li>
+<script type="math/tex; mode=display">l</script> is not right child of <script type="math/tex; mode=display">P</script>. Then parent <script type="math/tex; mode=display">P</script> contains sum of range which lies in <script type="math/tex; mode=display">[l, r]</script>. Add <script type="math/tex; mode=display">P</script> to <script type="math/tex; mode=display">sum</script> and set <script type="math/tex; mode=display">l</script> to point to the parent of <script type="math/tex; mode=display">P</script>
+</li>
+</ul>
+</li>
+<li>Check if <script type="math/tex; mode=display">r</script> is left child of its parent <script type="math/tex; mode=display">P</script>
+<ul>
+<li>
+<script type="math/tex; mode=display">r</script> is left child of <script type="math/tex; mode=display">P</script>. Then <script type="math/tex; mode=display">P</script> contains sum of range of <script type="math/tex; mode=display">r</script> and another  child which is outside the range <script type="math/tex; mode=display">[l, r]</script> and we don't need parent <script type="math/tex; mode=display">P</script> sum. Add <script type="math/tex; mode=display">r</script>  to <script type="math/tex; mode=display">sum</script> without its parent <script type="math/tex; mode=display">P</script> and set <script type="math/tex; mode=display">r</script> to point to the left of <script type="math/tex; mode=display">P</script> on the upper level.</li>
+<li>
+<script type="math/tex; mode=display">r</script> is not left child of <script type="math/tex; mode=display">P</script>. Then parent <script type="math/tex; mode=display">P</script> contains sum of range which lies in <script type="math/tex; mode=display">[l, r]</script>. Add <script type="math/tex; mode=display">P</script> to <script type="math/tex; mode=display">sum</script> and set <script type="math/tex; mode=display">r</script> to point to the parent of <script type="math/tex; mode=display">P</script>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">sumRange</span><span class="o">(</span><span class="kt">int</span> <span class="n">l</span><span class="o">,</span> <span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// get leaf with value 'l'</span>
+    <span class="n">l</span> <span class="o">+=</span> <span class="n">n</span><span class="o">;</span>
+    <span class="c1">// get leaf with value 'r'</span>
+    <span class="n">r</span> <span class="o">+=</span> <span class="n">n</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">((</span><span class="n">l</span> <span class="o">%</span> <span class="mi">2</span><span class="o">)</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+           <span class="n">sum</span> <span class="o">+=</span> <span class="n">tree</span><span class="o">[</span><span class="n">l</span><span class="o">];</span>
+           <span class="n">l</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">((</span><span class="n">r</span> <span class="o">%</span> <span class="mi">2</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+           <span class="n">sum</span> <span class="o">+=</span> <span class="n">tree</span><span class="o">[</span><span class="n">r</span><span class="o">];</span>
+           <span class="n">r</span><span class="o">--;</span>
+        <span class="o">}</span>
+        <span class="n">l</span> <span class="o">/=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="n">r</span> <span class="o">/=</span> <span class="mi">2</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(\log n)</script>
+</p>
+<p>Time complexity is <script type="math/tex; mode=display">O(\log n)</script> because on each iteration of the algorithm we move one level up, either to the parent of the  current node or to the next sibling of parent to the left or right direction till the two boundaries meet. In the worst-case scenario this happens at the root after <script type="math/tex; mode=display">\log n</script> iterations of the algorithm.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>.</p>
+</li>
+</ul>
+<h2 id="further-thoughts">Further Thoughts</h2>
+<p>The iterative version of Segment Trees was introduced in this article. A more intuitive, recursive version of Segment Trees to solve this problem is discussed <a href="https://leetcode.com/articles/recursive-approach-segment-trees-range-sum-queries-lazy-propagation/">here</a>. The concept of Lazy Propagation is also introduced there.</p>
+<p>There is an alternative solution of the problem using Binary Indexed Tree. It is faster and simpler to code.
+You can find it <a href="https://leetcode.com/discuss/74222/java-using-binary-indexed-tree-with-clear-explanation">here</a>.</p>
+<p>Analysis written by: @elmirap.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">39183</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">181070</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              33%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

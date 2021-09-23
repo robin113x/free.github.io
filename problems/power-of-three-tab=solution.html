@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an integer, write a function to determine if it is a power of three.
+
+
+Follow up:
+    Could you do it without using any loop / recursion?
+
+Credits:Special thanks to @dietpepsi for adding this problem and creating all test cases.">
+  <meta name="keywords"
+        content="Power of Three, LC 326, leetcode 326, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>326. Power of Three</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+    Given an integer, write a function to determine if it is a power of three.
+</p>
+<p>
+    <b>Follow up:</b><br>
+    Could you do it without using any loop / recursion?
+</p>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://leetcode.com/discuss/user/dietpepsi">@dietpepsi</a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-loop-iteration-accepted">Approach #1 Loop Iteration [Accepted]</a></li>
+<li><a href="#approach-2-base-conversion-accepted">Approach #2 Base Conversion [Accepted]</a></li>
+<li><a href="#approach-3-mathematics-accepted">Approach #3 Mathematics [Accepted]</a></li>
+<li><a href="#approach-4-integer-limitations-accepted">Approach #4 Integer Limitations [Accepted]</a></li>
+</ul>
+</li>
+<li><a href="#performance-measurements">Performance Measurements</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<p>In this article we will look into ways of speeding up simple computations and why that is useful in practice.</p>
+<hr/>
+<h4 id="approach-1-loop-iteration-accepted">Approach #1 Loop Iteration [Accepted]</h4>
+<p>One simple way of finding out if a number <code>n</code> is a power of a number <code>b</code> is to keep dividing <code>n</code> by <code>b</code> as long as the remainder is <strong>0</strong>. This is because we can write</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align*}
+n &= b^x \\
+n &= b \times b \times \ldots \times b
+\end{align*}
+</script>
+</p>
+<p>Hence it should be possible to divide <code>n</code> by <code>b</code> <code>x</code> times, every time with a remainder of <strong>0</strong> and the end result to be <strong>1</strong>.</p>
+<iframe frameborder="0" height="275" name="oqtKkauN" src="https://leetcode.com/playground/oqtKkauN/shared" width="100%"></iframe>
+<p>Notice that we need a guard to check that <code>n != 0</code>, otherwise the while loop will never finish. For negative numbers, the algorithm does not make sense, so we will include this guard as well.</p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(log_b(n))</script>. In our case that is <script type="math/tex; mode=display">O(log_3n)</script>. The number of divisions is given by that logarithm.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. We are not using any additional memory.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-base-conversion-accepted">Approach #2 Base Conversion [Accepted]</h4>
+<p>In Base 10, all powers of 10 start with the digit <strong>1</strong> and then are followed only by <strong>0</strong> (e.g. 10, 100, 1000). This is true for other bases and their respective powers. For instance in <em>base 2</em>, the representations of <script type="math/tex; mode=display">10_2</script>, <script type="math/tex; mode=display">100_2</script> and <script type="math/tex; mode=display">1000_2</script> are <script type="math/tex; mode=display">2_{10}</script>, <script type="math/tex; mode=display">4_{10}</script> and <script type="math/tex; mode=display">8_{10}</script> respectively. Therefore if we convert our number to base 3 and the representation is of the form 100...0, then the number is a power of 3.</p>
+<p><strong>Proof</strong></p>
+<p>Given the base 3 representation of a number as the array <code>s</code>, with the least significant digit on index 0, the formula for converting from base <strong>3</strong> to base <strong>10</strong> is:</p>
+<p>
+<script type="math/tex; mode=display">
+\sum_{i=0}^{len(s) - 1} s[i] * 3^{i}
+</script>
+</p>
+<p>Therefore, having just one digit of <strong>1</strong> and everything else <strong>0</strong> means the number is a power of 3.</p>
+<p><strong>Implementation</strong></p>
+<p>All we need to do is convert <sup>[4]</sup> the number to <em>base 3</em> and check if it is written as a leading <strong>1</strong> followed by all <strong>0</strong>.</p>
+<p>A couple of built-in Java functions will help us along the way.</p>
+<iframe frameborder="0" height="71" name="JHQszU9Y" src="https://leetcode.com/playground/JHQszU9Y/shared" width="100%"></iframe>
+<p>The code above converts <code>number</code> into base <code>base</code> and returns the result as a <code>String</code>. For example, <code>Integer.toString(5, 2) == "101"</code> and <code>Integer.toString(5, 3) == "12"</code>.</p>
+<iframe frameborder="0" height="71" name="whcADo6Z" src="https://leetcode.com/playground/whcADo6Z/shared" width="100%"></iframe>
+<p>The code above checks if a certain <strong>Regular Expression</strong><sup>[2]</sup> pattern exists inside a string. For instance the above will return true if the substring "123" exists inside the string <code>myString</code>.</p>
+<iframe frameborder="0" height="71" name="dQUs9bjm" src="https://leetcode.com/playground/dQUs9bjm/shared" width="100%"></iframe>
+<p>We will use the regular expression above for checking if the string starts with <strong>1</strong> <code>^1</code>, is followed by zero or more <strong>0</strong>s <code>0*</code> and contains nothing else <code>$</code>.</p>
+<iframe frameborder="0" height="139" name="NhaMEsdz" src="https://leetcode.com/playground/NhaMEsdz/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(log_3n)</script>.</p>
+<p>Assumptions:</p>
+<ul>
+<li><code>Integer.toString()</code> - Base conversion is generally implemented as a repeated division. The complexity of  should be similar to our approach #1: <script type="math/tex; mode=display">O(log_3n)</script>.</li>
+<li><code>String.matches()</code> - Method iterates over the entire string. The number of digits in the base 3 representation of <code>n</code> is <script type="math/tex; mode=display">O(log_3n)</script>.</li>
+</ul>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(log_3n)</script>.</p>
+<p>We are using two additional variables,</p>
+<ul>
+<li>The string of the base 3 representation of the number (size <script type="math/tex; mode=display">log_3n</script>)</li>
+<li>The string of the regular expression (constant size)</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-mathematics-accepted">Approach #3 Mathematics [Accepted]</h4>
+<p>We can use mathematics as follows</p>
+<p>
+<script type="math/tex; mode=display">
+n = 3^i \\
+i = log_3(n) \\
+i = \frac{log_b(n)}{log_b(3)}
+</script>
+</p>
+<p><code>n</code> is a power of three if and only if <code>i</code> is an integer. In Java, we check if a number is an integer by taking the decimal part (using <code>% 1</code>) and checking if it is 0.</p>
+<iframe frameborder="0" height="139" name="rfdsFHXp" src="https://leetcode.com/playground/rfdsFHXp/shared" width="100%"></iframe>
+<p><strong>Common pitfalls</strong></p>
+<p>This solution is problematic because we start using <code>double</code>s, which means we are subject to precision errors. This means, we should never use <code>==</code> when comparing <code>double</code>s. That is because the result of <code>Math.log10(n) / Math.log10(3)</code> could be <code>5.0000001</code> or <code>4.9999999</code>. This effect can be observed by using the function <code>Math.log()</code> instead of <code>Math.log10()</code>.</p>
+<p>In order to fix that, we need to compare the result against an <code>epsilon</code>.</p>
+<iframe frameborder="0" height="71" name="NsNRPhpt" src="https://leetcode.com/playground/NsNRPhpt/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">Unknown</script> The expensive operation here is <code>Math.log</code>, which upper bounds the time complexity of our algorithm. The implementation is dependent on the language we are using and the compiler<sup>[3]</sup></p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. We are not using any additional memory. The <code>epsilon</code> variable can be inlined.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-integer-limitations-accepted">Approach #4 Integer Limitations [Accepted]</h4>
+<p>An important piece of information can be deduced from the function signature</p>
+<iframe frameborder="0" height="71" name="9YvN5pNn" src="https://leetcode.com/playground/9YvN5pNn/shared" width="100%"></iframe>
+<p>In particular, <code>n</code> is of type <code>int</code>. In Java, this means it is a 4 byte, signed integer [ref]. The maximum value of this data type is <strong>2147483647</strong>. Three ways of calculating this value are</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/15004944/max-value-of-integer">Google</a></li>
+<li><code>System.out.println(Integer.MAX_VALUE);</code></li>
+<li>MaxInt = <script type="math/tex; mode=display">\frac{ 2^{32} }{2} - 1</script> since we use 32 bits to represent the number, half of the range is used for negative numbers and 0 is part of the positive numbers</li>
+</ul>
+<p>Knowing the limitation of <code>n</code>, we can now deduce that the maximum value of <code>n</code> that is also a power of three is <strong>1162261467</strong>. We calculate this as:</p>
+<p>
+<script type="math/tex; mode=display">
+3^{\lfloor{}log_3{MaxInt}\rfloor{}} = 3^{\lfloor{}19.56\rfloor{}} = 3^{19} = 1162261467
+</script>
+</p>
+<p>Therefore, the possible values of <code>n</code> where we should return <code>true</code> are <script type="math/tex; mode=display">3^0</script>, <script type="math/tex; mode=display">3^1</script> ... <script type="math/tex; mode=display">3^{19}</script>. Since 3 is a prime number, the only divisors of <script type="math/tex; mode=display">3^{19}</script> are <script type="math/tex; mode=display">3^0</script>, <script type="math/tex; mode=display">3^1</script> ... <script type="math/tex; mode=display">3^{19}</script>, therefore all we need to do is divide <script type="math/tex; mode=display">3^{19}</script> by <code>n</code>. A remainder of <strong>0</strong> means <code>n</code> is a divisor of <script type="math/tex; mode=display">3^{19}</script> and therefore a power of three.</p>
+<iframe frameborder="0" height="139" name="nFdyeL8J" src="https://leetcode.com/playground/nFdyeL8J/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(1)</script>. We are only doing one operation.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. We are not using any additional memory.</p>
+</li>
+</ul>
+<h2 id="performance-measurements">Performance Measurements</h2>
+<p>Single runs of the function make it is hard to accurately measure the difference of the two solutions. On LeetCode, on the <em>Accepted Solutions Runtime Distribution</em> page, all solutions being between <code>15 ms</code> and <code>20 ms</code>. For completeness, we have proposed the following benchmark to see how the two solutions differ.</p>
+<p><strong>Java Benchmark Code</strong>
+<iframe frameborder="0" height="173" name="DrxGaCVC" src="https://leetcode.com/playground/DrxGaCVC/shared" width="100%"></iframe></p>
+<p>In the table below, the values are in seconds.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Iterations</th>
+<th align="center">
+<script type="math/tex; mode=display">10^6</script>
+</th>
+<th align="center">
+<script type="math/tex; mode=display">10^7</script>
+</th>
+<th align="center">
+<script type="math/tex; mode=display">10^8</script>
+</th>
+<th align="center">
+<script type="math/tex; mode=display">10^9</script>
+</th>
+<th align="center">
+<script type="math/tex; mode=display">Maxint</script>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Java Approach #1 (Naive)</td>
+<td align="center">0.04</td>
+<td align="center">0.07</td>
+<td align="center">0.30</td>
+<td align="center">2.47</td>
+<td align="center">5.26</td>
+</tr>
+<tr>
+<td align="center">Java Approach #2 (Strings)</td>
+<td align="center">0.68</td>
+<td align="center">4.02</td>
+<td align="center">38.90</td>
+<td align="center">409.16</td>
+<td align="center">893.89</td>
+</tr>
+<tr>
+<td align="center">Java Approach #3 (Logarithms)</td>
+<td align="center">0.09</td>
+<td align="center">0.50</td>
+<td align="center">4.59</td>
+<td align="center">45.53</td>
+<td align="center">97.50</td>
+</tr>
+<tr>
+<td align="center">Java Approach #4 (Fast)</td>
+<td align="center">0.04</td>
+<td align="center">0.06</td>
+<td align="center">0.08</td>
+<td align="center">0.41</td>
+<td align="center">0.78</td>
+</tr>
+</tbody>
+</table>
+<p>As we can see, for small values of N, the difference is not noticeable, but as we do more iterations and the values of <code>n</code> passed to <code>isPowerOfThree()</code> grow, we see significant boosts in performance for Approach #4.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Simple optimizations like this might seem negligible, but historically, when computation power was an issue, it allowed certain computer programs (such as Quake 3<sup>[1]</sup>) possible.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>[1] <a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root">https://en.wikipedia.org/wiki/Fast_inverse_square_root</a></li>
+<li>[2] <a href="https://en.wikipedia.org/wiki/Regular_expression">https://en.wikipedia.org/wiki/Regular_expression</a></li>
+<li>[3] <a href="http://developer.classpath.org/doc/java/lang/StrictMath-source.html">http://developer.classpath.org/doc/java/lang/StrictMath-source.html</a></li>
+<li>[4] <a href="http://www.cut-the-knot.org/recurrence/conversion.shtml">http://www.cut-the-knot.org/recurrence/conversion.shtml</a></li>
+</ul>
+<p>Analysis written by: <a href="http://andrei.cioara.me">@aicioara</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">111106</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">274272</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              83%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

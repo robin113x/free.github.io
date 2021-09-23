@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="We define the Perfect Number is a positive integer that is equal to the sum of all its positive divisors except itself. 
+
+Now, given an integer n, write a function that returns true when it is a perfect number and false when it is not.">
+  <meta name="keywords"
+        content="Perfect Number, LC 507, leetcode 507, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>507. Perfect Number</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>We define the Perfect Number is a <b>positive</b> integer that is equal to the sum of all its <b>positive</b> divisors except itself. 
+</p>
+Now, given an <b>integer</b> n, write a function that returns true when it is a perfect number and false when it is not.
+</p>
+
+<p><b>Example:</b><br />
+<pre>
+<b>Input:</b> 28
+<b>Output:</b> True
+<b>Explanation:</b> 28 = 1 + 2 + 4 + 7 + 14
+</pre>
+</p>
+
+<p><b>Note:</b>
+The input number <b>n</b> will not exceed 100,000,000. (1e8)
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-optimal-solution-accepted">Approach #3 Optimal Solution [Accepted]</a></li>
+<li><a href="#approach-4-euclid-euler-theorem-accepted">Approach #4 Euclid-Euler Theorem [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In brute force approach, we consider every possible number to be a divisor of the given number <script type="math/tex; mode=display">num</script>, by iterating over all the numbers lesser than <script type="math/tex; mode=display">num</script>. Then, we add up all the factors to check if the given number satisfies the Perfect Number property. This approach obviously fails if the number <script type="math/tex; mode=display">num</script> is very large.</p>
+<iframe frameborder="0" height="343" name="6Nzf7w9h" src="https://leetcode.com/playground/6Nzf7w9h/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We iterate over all the numbers lesser than <script type="math/tex; mode=display">n</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can little optimize the brute force by breaking the loop when the value of <script type="math/tex; mode=display">sum</script> increase the value of <script type="math/tex; mode=display">num</script>. In that case, we can directly return <script type="math/tex; mode=display">false</script>.</p>
+<iframe frameborder="0" height="377" name="bGGFxpmt" src="https://leetcode.com/playground/bGGFxpmt/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. In worst case, we iterate over all the numbers lesser than <script type="math/tex; mode=display">n</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-optimal-solution-accepted">Approach #3 Optimal Solution [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this method, instead of iterating over all the integers to find the factors of <script type="math/tex; mode=display">num</script>, we only iterate upto the <script type="math/tex; mode=display">\sqrt{n}</script>. The reasoning behind this can be understood as follows.</p>
+<p>Consider the given number <script type="math/tex; mode=display">num</script> which can have <script type="math/tex; mode=display">m</script> distinct factors, namely <script type="math/tex; mode=display">n_1, n_2,..., n_m</script>. Now, since the number <script type="math/tex; mode=display">num</script> is divisible by <script type="math/tex; mode=display">n_i</script>, it is also divisible by <script type="math/tex; mode=display">n_j=num/n_1</script> i.e. <script type="math/tex; mode=display">n_i*n_j=num</script>. Also, the largest number in such a pair can only be up to <script type="math/tex; mode=display">\sqrt{num}</script> (because <script type="math/tex; mode=display">\sqrt{num} \times \sqrt{num}=num</script>). Thus, we can get a significant reduction in the run-time by iterating only upto <script type="math/tex; mode=display">\sqrt{num}</script> and considering such <script type="math/tex; mode=display">n_i</script>'s and <script type="math/tex; mode=display">n_j</script>'s in a single pass directly.</p>
+<p>Further, if <script type="math/tex; mode=display">\sqrt{num}</script> is also a factor, we have to consider the factor only once while checking for the perfect number property.</p>
+<p>We sum up all such factors and check if the given number is a Perfect Number or not. Another point to be observed is that while considering 1 as such a factor, <script type="math/tex; mode=display">num</script> will also be considered as the other factor. Thus, we need to subtract <script type="math/tex; mode=display">num</script> from the <script type="math/tex; mode=display">sum</script>.</p>
+<iframe frameborder="0" height="377" name="ZpHuGfHj" src="https://leetcode.com/playground/ZpHuGfHj/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(\sqrt{n})</script>. We iterate only over the range <script type="math/tex; mode=display">1 < i &leq; \sqrt{num}</script>.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-4-euclid-euler-theorem-accepted">Approach #4 Euclid-Euler Theorem [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Euclid proved that <script type="math/tex; mode=display">2^{p−1}(2^p − 1)</script> is an even perfect number whenever <script type="math/tex; mode=display">2^p − 1</script> is prime, where <script type="math/tex; mode=display">p</script> is prime.</p>
+<p>For example, the first four perfect numbers are generated by the formula <script type="math/tex; mode=display">2^{p−1}(2^p − 1)</script>, with <script type="math/tex; mode=display">p</script> a prime number, as follows:</p>
+<div class="codehilite"><pre><span></span>for p = 2:   21(22 − 1) = 6
+for p = 3:   22(23 − 1) = 28
+for p = 5:   24(25 − 1) = 496
+for p = 7:   26(27 − 1) = 8128.
+</pre></div>
+<p>Prime numbers of the form <script type="math/tex; mode=display">2^p − 1</script> are known as Mersenne primes. For <script type="math/tex; mode=display">2^p − 1</script> to be prime, it is necessary that <script type="math/tex; mode=display">p</script> itself be prime. However, not all numbers of the form <script type="math/tex; mode=display">2^p − 1</script> with a prime <script type="math/tex; mode=display">p</script> are prime; for example, <script type="math/tex; mode=display">2^{11} − 1 = 2047 = 23 × 89</script> is not a prime number.</p>
+<p>You can see that for small value of <script type="math/tex; mode=display">p</script>, its related perfect number goes very high. So, we need to evaluate perfect numbers for some primes <script type="math/tex; mode=display">(2, 3, 5, 7, 13, 17, 19, 31)</script> only, as for bigger prime its perfect number will not fit in 64 bits.</p>
+<iframe frameborder="0" height="292" name="kBfJ6TtU" src="https://leetcode.com/playground/kBfJ6TtU/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(\log{n})</script>. Number of primes will be in order <script type="math/tex; mode=display">\log{num}</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(\log{n})</script>. Space used to store primes.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">17904</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">53702</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              29%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/fallible.html">Fallible</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

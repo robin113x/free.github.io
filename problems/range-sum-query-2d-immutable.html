@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).
+
+
+The above rectangle (with the red border) is defined by (row1, col1) = (2, 1) and (row2, col2) = (4, 3), which contains sum = 8.
+
+Example:
+
+Given matrix = [
+  [3, 0, 1, 4, 2],
+  [5, 6, 3, 2, 1],
+  [1, 2, 0, 1, 5],
+  [4, 1, 0, 1, 7],
+  [1, 0, 3, 0, 5]
+]
+
+sumRegion(2, 1, 4, 3) -&gt; 8
+sumRegion(1, 1, 2, 2) -&gt; 11
+sumRegion(1, 2, 2, 4) -&gt; 12
+
+
+Note:
+
+You may assume that the matrix does not change.
+There are many calls to sumRegion function.
+You may assume that row1 ≤ row2 and col1 ≤ col2.">
+  <meta name="keywords"
+        content="Range Sum Query 2D - Immutable, LC 304, leetcode 304, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>304. Range Sum Query 2D - Immutable</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a 2D matrix <i>matrix</i>, find the sum of the elements inside the rectangle defined by its upper left corner (<i>row</i>1, <i>col</i>1) and lower right corner (<i>row</i>2, <i>col</i>2).</p>
+
+<p>
+<img src="../static/images/courses/range_sum_query_2d.png.html" border="0" alt="Range Sum Query 2D" /><br />
+<small>The above rectangle (with the red border) is defined by (row1, col1) = <b>(2, 1)</b> and (row2, col2) = <b>(4, 3)</b>, which contains sum = <b>8</b>.</small>
+</p>
+
+<p><b>Example:</b><br>
+<pre>
+Given matrix = [
+  [3, 0, 1, 4, 2],
+  [5, 6, 3, 2, 1],
+  [1, 2, 0, 1, 5],
+  [4, 1, 0, 1, 7],
+  [1, 0, 3, 0, 5]
+]
+
+sumRegion(2, 1, 4, 3) -> 8
+sumRegion(1, 1, 2, 2) -> 11
+sumRegion(1, 2, 2, 4) -> 12
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>You may assume that the matrix does not change.</li>
+<li>There are many calls to <i>sumRegion</i> function.</li>
+<li>You may assume that <i>row</i>1 &le; <i>row</i>2 and <i>col</i>1 &le; <i>col</i>2.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 (Brute Force) [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-caching-memory-limit-exceeded">Approach #2 (Caching) [Memory Limit Exceeded]</a></li>
+<li><a href="#approach-3-caching-rows-accepted">Approach #3 (Caching Rows) [Accepted]</a></li>
+<li><a href="#approach-4-caching-smarter-accepted">Approach #4 (Caching Smarter) [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 (Brute Force) [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Each time <em>sumRegion</em> is called, we use a double for loop to sum all elements from <script type="math/tex; mode=display">(row1, col1) \rightarrow (row2, col2)</script>.</p>
+<div class="codehilite"><pre><span></span><span class="kd">private</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">data</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="nf">NumMatrix</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">sumRegion</span><span class="o">(</span><span class="kt">int</span> <span class="n">row1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">col1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">row2</span><span class="o">,</span> <span class="kt">int</span> <span class="n">col2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">row1</span><span class="o">;</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">row2</span><span class="o">;</span> <span class="n">r</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">col1</span><span class="o">;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="n">col2</span><span class="o">;</span> <span class="n">c</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">data</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">];</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(mn)</script> time per query.
+Assume that <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> represents the number of rows and columns respectively, each <em>sumRegion</em> query can go through at most <script type="math/tex; mode=display">m \times n</script> elements.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Note that <code>data</code> is a <em>reference</em> to <code>matrix</code> and is not a copy of it.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-caching-memory-limit-exceeded">Approach #2 (Caching) [Memory Limit Exceeded]</h4>
+<p><strong>Intuition</strong></p>
+<p>Since <em>sumRegion</em> could be called many times, we definitely need to do some pre-processing.</p>
+<p><strong>Algorithm</strong></p>
+<p>We could trade in extra space for speed by pre-calculating all possible rectangular region sum and store them in a hash table. Each <em>sumRegion</em> query now takes only constant time complexity.</p>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(1)</script> time per query, <script type="math/tex; mode=display">O(m^2n^2)</script> time pre-computation.
+Each <em>sumRegion</em> query takes <script type="math/tex; mode=display">O(1)</script> time as the hash table lookup's time complexity is constant. The pre-computation will take <script type="math/tex; mode=display">O(m^2n^2)</script> time as there are a total of <script type="math/tex; mode=display">m^2 \times n^2</script> possibilities need to be cached.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m^2n^2)</script>.
+Since there are <script type="math/tex; mode=display">mn</script> different possibilities for both top left and bottom right points of the rectangular region, the extra space required is <script type="math/tex; mode=display">O(m^2n^2)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-caching-rows-accepted">Approach #3 (Caching Rows) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Remember from the <a href="https://leetcode.com/course/chapters/leetcode-101/range-sum-query-immutable/">1D version</a> where we used a cumulative sum array? Could we apply that directly to solve this 2D version?</p>
+<p><strong>Algorithm</strong></p>
+<p>Try to see the 2D matrix as <script type="math/tex; mode=display">m</script> rows of 1D arrays. To find the region sum, we just accumulate the sum in the region row by row.</p>
+<div class="codehilite"><pre><span></span><span class="kd">private</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">dp</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="nf">NumMatrix</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">matrix</span><span class="o">.</span><span class="na">length</span><span class="o">][</span><span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">r</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">c</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">dp</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">]</span> <span class="o">+</span> <span class="n">matrix</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">];</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">sumRegion</span><span class="o">(</span><span class="kt">int</span> <span class="n">row1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">col1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">row2</span><span class="o">,</span> <span class="kt">int</span> <span class="n">col2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">row1</span><span class="o">;</span> <span class="n">row</span> <span class="o">&lt;=</span> <span class="n">row2</span><span class="o">;</span> <span class="n">row</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">dp</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">dp</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">col1</span><span class="o">];</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(m)</script> time per query, <script type="math/tex; mode=display">O(mn)</script> time pre-computation.
+The pre-computation in the constructor takes <script type="math/tex; mode=display">O(mn)</script> time. The <em>sumRegion</em> query takes <script type="math/tex; mode=display">O(m)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(mn)</script>.
+The algorithm uses <script type="math/tex; mode=display">O(mn)</script> space to store the cumulative sum of all rows.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-caching-smarter-accepted">Approach #4 (Caching Smarter) [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We used a cumulative sum array in the <a href="https://leetcode.com/course/chapters/leetcode-101/range-sum-query-immutable/">1D version</a>. We notice that the cumulative sum is computed with respect to the origin at index 0. Extending this analogy to the 2D case, we could pre-compute a cumulative region sum with respect to the origin at <script type="math/tex; mode=display">(0, 0)</script>.</p>
+<p><img alt="Sum OD" src="https://leetcode.com/static/images/courses/sum_od.png"/><br>
+<small>Sum(OD) is the cumulative region sum with respect to the origin at (0, 0).</small></br></p>
+<p>How do we derive <script type="math/tex; mode=display">Sum(ABCD)</script> using the pre-computed cumulative region sum?</p>
+<p><img alt="Sum OB" src="https://leetcode.com/static/images/courses/sum_ob.png"/><br>
+<small>Sum(OB) is the cumulative region sum on top of the rectangle.</small></br></p>
+<p><img alt="Sum OC" src="https://leetcode.com/static/images/courses/sum_oc.png"/><br/>
+<small>Sum(OC) is the cumulative region sum to the left of the rectangle.</small></p>
+<p><img alt="Sum OA" src="https://leetcode.com/static/images/courses/sum_oa.png"/><br/>
+<small>Sum(OA) is the cumulative region sum to the top left corner of the rectangle.</small></p>
+<p>Note that the region <script type="math/tex; mode=display">Sum(OA)</script> is covered twice by both <script type="math/tex; mode=display">Sum(OB)</script> and <script type="math/tex; mode=display">Sum(OC)</script>. We could use the principle of inclusion-exclusion to calculate <script type="math/tex; mode=display">Sum(ABCD)</script> as following:</p>
+<p>
+<script type="math/tex; mode=display">
+Sum(ABCD) = Sum(OD) - Sum(OB) - Sum(OC) + Sum(OA)
+</script>
+</p>
+<div class="codehilite"><pre><span></span><span class="kd">private</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">dp</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="nf">NumMatrix</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">+</span> <span class="mi">1</span><span class="o">][</span><span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">r</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">c</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">dp</span><span class="o">[</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="o">][</span><span class="n">c</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="o">][</span><span class="n">c</span><span class="o">]</span> <span class="o">+</span> <span class="n">dp</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">matrix</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">]</span> <span class="o">-</span> <span class="n">dp</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">];</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">sumRegion</span><span class="o">(</span><span class="kt">int</span> <span class="n">row1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">col1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">row2</span><span class="o">,</span> <span class="kt">int</span> <span class="n">col2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">dp</span><span class="o">[</span><span class="n">row2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">][</span><span class="n">col2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">dp</span><span class="o">[</span><span class="n">row1</span><span class="o">][</span><span class="n">col2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">dp</span><span class="o">[</span><span class="n">row2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">][</span><span class="n">col1</span><span class="o">]</span> <span class="o">+</span> <span class="n">dp</span><span class="o">[</span><span class="n">row1</span><span class="o">][</span><span class="n">col1</span><span class="o">];</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(1)</script> time per query, <script type="math/tex; mode=display">O(mn)</script> time pre-computation.
+The pre-computation in the constructor takes <script type="math/tex; mode=display">O(mn)</script> time. Each <em>sumRegion</em> query takes <script type="math/tex; mode=display">O(1)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(mn)</script>.
+The algorithm uses <script type="math/tex; mode=display">O(mn)</script> space to store the cumulative region sum.</p>
+</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">39287</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">148985</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              48%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

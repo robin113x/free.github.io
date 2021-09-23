@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Print a binary tree in an m*n 2D string array following these rules: 
+
+The row number m should be equal to the height of the given binary tree.
+The column number n should always be an odd number.
+The root node&#39;s value (in string format) should be put in the exactly middle of the first row it can be put. The column and the row where the root node belongs will separate the rest space into two parts (left-bottom part and right-bottom part). You should print the left subtree in the left-bottom part and print the right subtree in the right-bottom part. The left-bottom part and the right-bottom part should have the same size. Even if one subtree is none while the other is not, you don&#39;t need to print anything for the none subtree but still need to leave the space as large as that for the other subtree. However, if two subtrees are none, then you don&#39;t need to leave space for both of them. 
+Each unused space should contain an empty string &#34;&#34;.
+Print the subtrees following the same rules.
+
+Example 1:
+Input:
+     1
+    /
+   2
+Output:
+[[&#34;&#34;, &#34;1&#34;, &#34;&#34;],
+ [&#34;2&#34;, &#34;&#34;, &#34;&#34;]]
+
+
+Example 2:
+Input:
+     1
+    / \
+   2   3
+    \
+     4
+Output:
+[[&#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;1&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;],
+ [&#34;&#34;, &#34;2&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;3&#34;, &#34;&#34;],
+ [&#34;&#34;, &#34;&#34;, &#34;4&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;]]
+
+
+Example 3:
+Input:
+      1
+     / \
+    2   5
+   / 
+  3 
+ / 
+4 
+Output:
+
+[[&#34;&#34;,  &#34;&#34;,  &#34;&#34;, &#34;&#34;,  &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;1&#34;, &#34;&#34;,  &#34;&#34;,  &#34;&#34;,  &#34;&#34;,  &#34;&#34;, &#34;&#34;, &#34;&#34;]
+ [&#34;&#34;,  &#34;&#34;,  &#34;&#34;, &#34;2&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;,  &#34;&#34;,  &#34;&#34;,  &#34;&#34;,  &#34;5&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;]
+ [&#34;&#34;,  &#34;3&#34;, &#34;&#34;, &#34;&#34;,  &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;,  &#34;&#34;,  &#34;&#34;,  &#34;&#34;,  &#34;&#34;,  &#34;&#34;, &#34;&#34;, &#34;&#34;]
+ [&#34;4&#34;, &#34;&#34;,  &#34;&#34;, &#34;&#34;,  &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;,  &#34;&#34;,  &#34;&#34;,  &#34;&#34;,  &#34;&#34;,  &#34;&#34;, &#34;&#34;, &#34;&#34;]]
+
+
+Note:
+The height of binary tree is in the range of [1, 10].">
+  <meta name="keywords"
+        content="Print Binary Tree, LC 655, leetcode 655, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>655. Print Binary Tree</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Print a binary tree in an m*n 2D string array following these rules: </p>
+
+<ol>
+<li>The row number <code>m</code> should be equal to the height of the given binary tree.</li>
+<li>The column number <code>n</code> should always be an odd number.</li>
+<li>The root node's value (in string format) should be put in the exactly middle of the first row it can be put. The column and the row where the root node belongs will separate the rest space into two parts (<b>left-bottom part and right-bottom part</b>). You should print the left subtree in the left-bottom part and print the right subtree in the right-bottom part. The left-bottom part and the right-bottom part should have the same size. Even if one subtree is none while the other is not, you don't need to print anything for the none subtree but still need to leave the space as large as that for the other subtree. However, if two subtrees are none, then you don't need to leave space for both of them. </li>
+<li>Each unused space should contain an empty string <code>""</code>.</li>
+<li>Print the subtrees following the same rules.</li>
+</ol>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b>
+     1
+    /
+   2
+<b>Output:</b>
+[["", "1", ""],
+ ["2", "", ""]]
+</pre>
+</p>
+
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b>
+     1
+    / \
+   2   3
+    \
+     4
+<b>Output:</b>
+[["", "", "", "1", "", "", ""],
+ ["", "2", "", "", "", "3", ""],
+ ["", "", "4", "", "", "", ""]]
+</pre>
+</p>
+
+<p><b>Example 3:</b><br />
+<pre>
+<b>Input:</b>
+      1
+     / \
+    2   5
+   / 
+  3 
+ / 
+4 
+<b>Output:</b>
+
+[["",  "",  "", "",  "", "", "", "1", "",  "",  "",  "",  "", "", ""]
+ ["",  "",  "", "2", "", "", "", "",  "",  "",  "",  "5", "", "", ""]
+ ["",  "3", "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""]
+ ["4", "",  "", "",  "", "", "", "",  "",  "",  "",  "",  "", "", ""]]
+</pre>
+</p>
+
+<p><b>Note:</b>
+The height of binary tree is in the range of [1, 10].
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-recursive-solutionaccepted">Approach #1 Recursive Solution[Accepted]</a></li>
+<li><a href="#approach-2-using-queuebfsaccepted">Approach #2 Using queue(BFS)[Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-recursive-solutionaccepted">Approach #1 Recursive Solution[Accepted]</h4>
+<p>We start by initializing a <script type="math/tex; mode=display">res</script> array with the dimensions being <script type="math/tex; mode=display">height</script>x<script type="math/tex; mode=display">2^{height}-1</script>. Here, <script type="math/tex; mode=display">height</script> refers to the number of levels in the given tree. In order to fill this <script type="math/tex; mode=display">res</script> array with the required elements, initially, we fill the complete array with <code>""</code> .  After this we make use of a recursive function <code>fill(res, root, i, l, r)</code> which fills the <script type="math/tex; mode=display">res</script> array such that the current element has to be filled in <script type="math/tex; mode=display">i^{th}</script> row, and the column being the middle of the indices <script type="math/tex; mode=display">l</script> and <script type="math/tex; mode=display">r</script>, where <script type="math/tex; mode=display">l</script> and <script type="math/tex; mode=display">r</script> refer to the left and the right boundaries of the columns in which the current element can be filled.</p>
+<p>In every recursive call, we do as follows:</p>
+<ol>
+<li>
+<p>If we've reached the end of the tree, i.e. if root==null, return.</p>
+</li>
+<li>
+<p>Determine the column in which the current element(<script type="math/tex; mode=display">root</script>) needs to be filled, which is the middle of <script type="math/tex; mode=display">l</script> and <script type="math/tex; mode=display">r</script>, given by say, <script type="math/tex; mode=display">j</script>. The row number is same as <script type="math/tex; mode=display">i</script>. Put the current element at <script type="math/tex; mode=display">res[i][j]</script>.</p>
+</li>
+<li>
+<p>Make the recursive call for the left child of the <script type="math/tex; mode=display">root</script> using <code>fill(res, root.left, i + 1, l, (l + r) / 2)</code>.</p>
+</li>
+<li>
+<p>Make the recursive call for the right child of the <script type="math/tex; mode=display">root</script> using <code>fill(res, root.right, i + 1, (l + r + 1) / 2, r)</code>.</p>
+</li>
+</ol>
+<p>Note, that in the last two recursive calls, we update the row number(level of the tree). This ensures that the child nodes fit into the correct row. We also update the column boundaries appropriately based on the <script type="math/tex; mode=display">l</script> and <script type="math/tex; mode=display">r</script> values.</p>
+<p>Further, to determine the <script type="math/tex; mode=display">height</script> also, we make use of recursive funtion <code>getHeight(root)</code>, which returns the height of the tree starting from the <script type="math/tex; mode=display">root</script> node. We traverse into all the branches possible in the tree recursively and find the depth of the longest branch.</p>
+<p>At the end, we convert the <script type="math/tex; mode=display">res</script> array into the required list format, before returning the results.</p>
+<iframe frameborder="0" height="479" name="ncTFx4nd" src="https://leetcode.com/playground/ncTFx4nd/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(h*2^h)</script>. We need to fill the <script type="math/tex; mode=display">res</script> array of size <script type="math/tex; mode=display">h</script>x<script type="math/tex; mode=display">2^h - 1</script>. Here, <script type="math/tex; mode=display">h</script> refers to the height of the given tree.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(h*2^h)</script>.  <script type="math/tex; mode=display">res</script> array of size <script type="math/tex; mode=display">h</script>x<script type="math/tex; mode=display">2^h - 1</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-queuebfsaccepted">Approach #2 Using queue(BFS)[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can also solve the problem by making use of Breadth First Search's idea. For this, we make use of a class <script type="math/tex; mode=display">Params</script> which stores the parameters of a <script type="math/tex; mode=display">node</script> of  the tree, including its value, its level in the tree(<script type="math/tex; mode=display">i</script>), and the left(<script type="math/tex; mode=display">l</script>) and right(<script type="math/tex; mode=display">r</script>) boundaries of the columns in which this element can be filled in the result to be returned.</p>
+<p>We start by initializing a <script type="math/tex; mode=display">res</script> array as in the previous approach. After this, we add the parametrized <script type="math/tex; mode=display">root</script> of the tree into a <script type="math/tex; mode=display">queue</script>. After this, we do the following at every step.</p>
+<ol>
+<li>
+<p>Remove an element, $$p$,  from the front of the <script type="math/tex; mode=display">queue</script>. </p>
+</li>
+<li>
+<p>Add this element at its correct position in the <script type="math/tex; mode=display">res</script> array given by <script type="math/tex; mode=display">res[p.i][(p.l + p.r) / 2]</script>. Here, the values <script type="math/tex; mode=display">i</script>, <script type="math/tex; mode=display">l</script> and <script type="math/tex; mode=display">r</script> refer to the column/level number, and the left and right boundaries permissible for putting the current node into <script type="math/tex; mode=display">res</script>. These are obtained from the node's parameters, which have been associated with it before putting it into the <script type="math/tex; mode=display">queue</script>.</p>
+</li>
+<li>
+<p>If the left child of <script type="math/tex; mode=display">p</script> exists, put it at the back of the <script type="math/tex; mode=display">queue</script>, in a parametized form, by appropriately updating the level as the next level and the boundaries permissible as well.</p>
+</li>
+<li>
+<p>If the right child of <script type="math/tex; mode=display">p</script> exists, put it at the back of the <script type="math/tex; mode=display">queue</script>, in a parametized form, by appropriately updating the level as the next level and the boundaries permissible as well.</p>
+</li>
+<li>
+<p>Continue steps 1. to 4. till the <script type="math/tex; mode=display">queue</script> becomes empty. </p>
+</li>
+</ol>
+<p>At the end, we again convert the <script type="math/tex; mode=display">res</script> array into the required list format, before returning the results.</p>
+<iframe frameborder="0" height="515" name="jb3EALV4" src="https://leetcode.com/playground/jb3EALV4/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(h*2^h)</script>. We need to fill the <script type="math/tex; mode=display">res</script> array of size <script type="math/tex; mode=display">h</script>x<script type="math/tex; mode=display">2^h - 1</script>. Here, <script type="math/tex; mode=display">h</script> refers to the height of the given tree.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(h*2^h)</script>.  <script type="math/tex; mode=display">res</script> array of size <script type="math/tex; mode=display">h</script>x<script type="math/tex; mode=display">2^h - 1</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">6456</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">12945</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              35%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/poynt.html">Poynt</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array of scores that are non-negative integers. Player 1 picks one of the numbers from either end of the array followed by the player 2 and then player 1 and so on. Each time a player picks a number, that number will not be available for the next player. This continues until all the scores have been chosen. The player with the maximum score wins. 
+Given an array of scores, predict whether player 1 is the winner. You can assume each player plays to maximize his score. 
+Example 1:
+Input: [1, 5, 2]
+Output: False
+Explanation: Initially, player 1 can choose between 1 and 2. If he chooses 2 (or 1), then player 2 can choose from 1 (or 2) and 5. If player 2 chooses 5, then player 1 will be left with 1 (or 2). So, final score of player 1 is 1 + 2 = 3, and player 2 is 5. Hence, player 1 will never be the winner and you need to return False.
+
+
+Example 2:
+Input: [1, 5, 233, 7]
+Output: True
+Explanation: Player 1 first chooses 1. Then player 2 have to choose between 5 and 7. No matter which number player 2 choose, player 1 can choose 233.Finally, player 1 has more score (234) than player 2 (12), so you need to return True representing player1 can win.
+
+
+Note:
+
+1 &lt;= length of the array &lt;= 20. 
+Any scores in the given array are non-negative integers and will not exceed 10,000,000.
+If the scores of both players are equal, then player 1 is still the winner.">
+  <meta name="keywords"
+        content="Predict the Winner, LC 486, leetcode 486, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>486. Predict the Winner</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given an array of scores that are non-negative integers. Player 1 picks one of the numbers from either end of the array followed by the player 2 and then player 1 and so on. Each time a player picks a number, that number will not be available for the next player. This continues until all the scores have been chosen. The player with the maximum score wins. </p>
+
+<p>Given an array of scores, predict whether player 1 is the winner. You can assume each player plays to maximize his score. </p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> [1, 5, 2]
+<b>Output:</b> False
+<b>Explanation:</b> Initially, player 1 can choose between 1 and 2. <br/>If he chooses 2 (or 1), then player 2 can choose from 1 (or 2) and 5. If player 2 chooses 5, then player 1 will be left with 1 (or 2). <br/>So, final score of player 1 is 1 + 2 = 3, and player 2 is 5. <br/>Hence, player 1 will never be the winner and you need to return False.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> [1, 5, 233, 7]
+<b>Output:</b> True
+<b>Explanation:</b> Player 1 first chooses 1. Then player 2 have to choose between 5 and 7. No matter which number player 2 choose, player 1 can choose 233.<br />Finally, player 1 has more score (234) than player 2 (12), so you need to return True representing player1 can win.
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>1 <= length of the array <= 20. </li>
+<li>Any scores in the given array are non-negative integers and will not exceed 10,000,000.</li>
+<li>If the scores of both players are equal, then player 1 is still the winner.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-recursion-accepted">Approach #1 Using Recursion [Accepted]</a></li>
+<li><a href="#approach-2-similar-approach-accepted">Approach #2 Similar Approach [Accepted]</a></li>
+<li><a href="#approach-3-dynamic-programming-accepted">Approach #3 Dynamic Programming [Accepted]:</a></li>
+<li><a href="#approach-4-1-d-dynamic-programming-accepted">Approach #4 1-D Dynamic Programming [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-recursion-accepted">Approach #1 Using Recursion [Accepted]</h4>
+<p>The idea behind the recursive approach is simple. The two players Player 1 and Player 2 will be taking turns alternately. For the Player 1 to be the winner, we need <script type="math/tex; mode=display">score_{Player\_1} &geq; score_{Player\_2}</script>. Or in other terms, <script type="math/tex; mode=display">score_{Player\_1} - score_{Player\_2} &geq; 0</script>. </p>
+<p>Thus, for the turn of Player 1, we can add its score obtained to the total score and for Player 2's turn, we can substract its score from the total score. At the end, we can check if the total score is greater than or equal to zero(equal score of both players), to predict that Player 1 will be the winner.</p>
+<p>Thus, by making use of a recursive function <code>winner(nums,s,e,turn)</code> which predicts the winner for the <script type="math/tex; mode=display">nums</script> array as the score array with the elements in the range of indices <script type="math/tex; mode=display">[s,e]</script> currently being considered, given a particular player's turn, indicated by <script type="math/tex; mode=display">turn=1</script> being Player 1's turn and <script type="math/tex; mode=display">turn=-1</script> being the Player 2's turn, we can predict the winner of the given problem by making the function call <code>winner(nums,0,n-1,1)</code>. Here, <script type="math/tex; mode=display">n</script> refers to the length of <script type="math/tex; mode=display">nums</script> array.</p>
+<p>In every turn, we can either pick up the first(<script type="math/tex; mode=display">nums[s]</script>) or the last(<script type="math/tex; mode=display">nums[e]</script>) element of the current subarray. Since both the players are assumed to be playing smartly and making the best move at every step, both will tend to maximize their scores. Thus, we can make use of the same function <code>winner</code> to determine the maximum score possible for any of the players. </p>
+<p>Now, at every step of the recursive process, we determine the maximum score possible for the current player. It will be the maximum one possible out of the scores obtained by picking the first or the last element of the current subarray. </p>
+<p>To obtain the score possible from the remaining subarray, we can again make use of the same <code>winner</code> function and add the score corresponding to the point picked in the current function call. But, we need to take care of whether to add or subtract this score to the total score available. If it is Player 1's turn, we add the current number's score to the total score, otherwise, we need to subtract the same. </p>
+<p>Thus, at every step, we need update the search space appropriately based on the element chosen and also invert the <script type="math/tex; mode=display">turn</script>'s value to indicate the turn change among the players and either add or subtract the current player's score from the total score available to determine the end result.</p>
+<p>Further, note that the value returned at every step is given by <script type="math/tex; mode=display">turn *\text{max}(turn * a, turn * b)</script>. This is equivalent to the statement <script type="math/tex; mode=display">max(a,b)</script> for Player 1's turn and <script type="math/tex; mode=display">min(a,b)</script> for Player 2's turn. </p>
+<p>This is done because, looking from Player 1's perspective, for any move made by Player 1, it tends to leave the remaining subarray in a situation which minimizes the best score possible for Player 2, even if it plays in the best possible manner. But, when the turn passes to Player 1 again, for Player 1 to win, the remaining subarray should be left in a state such that the score obtained from this subarrray is maximum(for Player 1). </p>
+<p>This is a general criteria for any arbitrary two player game and is commonly known as the 
+<a href="https://en.wikipedia.org/wiki/Minimax">Min-Max algorithm</a>.</p>
+<p>The following image shows how the scores are passed to determine the end result for a simple example.</p>
+<p align="center"><img alt="Recursive_Tree" src="https://leetcode.com/articles/Figures/486/486_Predict_the_winner_new.PNG"/></p>
+<iframe frameborder="0" height="275" name="3SDSCR7V" src="https://leetcode.com/playground/3SDSCR7V/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(2^n)</script>. Size of recursion tree will be <script type="math/tex; mode=display">2^n</script>. Here, <script type="math/tex; mode=display">n</script> refers to the length of <script type="math/tex; mode=display">nums</script> array.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The depth of the recursion tree can go upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-similar-approach-accepted">Approach #2 Similar Approach [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can omit the use of <script type="math/tex; mode=display">turn</script> to keep a track of the player for the current turn. To do so, we can make use of a simple observation. If the current turn belongs to, say Player 1, we pick up an element, say <script type="math/tex; mode=display">x</script>, from either end, and give the turn to Player 2. Thus, if we obtain the score for the remaining elements(leaving <script type="math/tex; mode=display">x</script>), this score, now belongs to Player 2. Thus, since Player 2 is competing against Player 1, this score should be subtracted from Player 1's current(local) score(<script type="math/tex; mode=display">x</script>) to obtain the effective score of Player 1 at the current instant.</p>
+<p>Similar argument holds true for Player 2's turn as well i.e. we can subtract Player 1's score for the remaining subarray from Player 2's current score to obtain its effective score. By making use of this observation, we can omit the use of <script type="math/tex; mode=display">turn</script> from <code>winner</code> to find the required result by making the slight change discussed above in the <code>winner</code>'s implementation.</p>
+<p>While returning the result from <code>winner</code> for the current function call, we return the larger of the effective scores possible by choosing either the first or the last element from the currently available subarray. Rest of the process remains the same as the last approach.</p>
+<p>Now, in order to remove the duplicate function calls, we can make use of a 2-D memoization array, <script type="math/tex; mode=display">memo</script>, such that we can store the result obtained for the function call <code>winner</code> for a subarray with starting and ending indices being <script type="math/tex; mode=display">s</script> and <script type="math/tex; mode=display">e</script> ] at <script type="math/tex; mode=display">memo[s][e]</script>. This helps to prune the search space to a great extent.</p>
+<p>This approach is inspired by <a href="http://leetcode.com/chidong">@chidong</a></p>
+<iframe frameborder="0" height="326" name="RGPbqsDC" src="https://leetcode.com/playground/RGPbqsDC/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. The entire <script type="math/tex; mode=display">memo</script> array of size <script type="math/tex; mode=display">n</script>x<script type="math/tex; mode=display">n</script> is filled only once. Here, <script type="math/tex; mode=display">n</script> refers to the size of <script type="math/tex; mode=display">nums</script> array.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n^2)</script>. <script type="math/tex; mode=display">memo</script> array of size <script type="math/tex; mode=display">n</script>x<script type="math/tex; mode=display">n</script> is used for memoization.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-dynamic-programming-accepted">Approach #3 Dynamic Programming [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can observe that the effective score for the current player for any given subarray <script type="math/tex; mode=display">nums[x:y]</script> only depends on the elements within the range <script type="math/tex; mode=display">[x,y]</script> in the array <script type="math/tex; mode=display">nums</script>. It mainly depends on whether the element <script type="math/tex; mode=display">nums[x]</script> or <script type="math/tex; mode=display">nums[y]</script> is chosen in the current turn and also on the maximum score possible for the other player from the remaining subarray left after choosing the current element. Thus, it is certain that the current effective score isn't dependent on the elements outside the range <script type="math/tex; mode=display">[x,y]</script>. </p>
+<p>Based on the above observation, we can say that if know the maximum effective score possible for the subarray <script type="math/tex; mode=display">nums[x+1,y]</script> and <script type="math/tex; mode=display">nums[x,y-1]</script>, we can easily determine the maximum effective score possible for the subarray <script type="math/tex; mode=display">nums[x,y]</script> as <script type="math/tex; mode=display">\text{max}(nums[x]-score_{[x+1,y]}, nums[y]-score_{[x,y-1]})</script>. These equations are deduced based on the last approach. </p>
+<p>From this,  we conclude that we can make use of Dynamic Programming to determine the required maximum effective score for the array <script type="math/tex; mode=display">nums</script>. We can make use of a 2-D <script type="math/tex; mode=display">dp</script> array, such that <script type="math/tex; mode=display">dp[i][j]</script> is used to store the maximum effective score possible for the subarray <script type="math/tex; mode=display">nums[i,j]</script>. The <script type="math/tex; mode=display">dp</script> updation equation becomes: </p>
+<p>
+<script type="math/tex; mode=display">dp[i,j] = nums[i] - dp[i + 1][j], nums[j] - dp[i][j - 1]</script>.</p>
+<p>We can fill in the <script type="math/tex; mode=display">dp</script> array starting from the last row. At the end, the value for <script type="math/tex; mode=display">dp[0][n-1]</script> gives the required result. Here, <script type="math/tex; mode=display">n</script> refers to the length of <script type="math/tex; mode=display">nums</script> array.</p>
+<p>Look at the animation below to clearly understand the <script type="math/tex; mode=display">dp</script> filling process.</p>
+<p>!?!../Documents/486_Predict_the_winner.json:1000,563!?!</p>
+<iframe frameborder="0" height="275" name="EFGjsVXp" src="https://leetcode.com/playground/EFGjsVXp/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. <script type="math/tex; mode=display">((n+1)</script>x<script type="math/tex; mode=display">n)/2</script> entries in <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">(n+1)</script>x<script type="math/tex; mode=display">n</script> is filled once. Here, <script type="math/tex; mode=display">n</script> refers to the length of <script type="math/tex; mode=display">nums</script> array.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n^2)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">(n+1)</script>x<script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-1-d-dynamic-programming-accepted">Approach #4 1-D Dynamic Programming [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>From the last approach, we see that the <script type="math/tex; mode=display">dp</script> updation equation is: </p>
+<p>
+<script type="math/tex; mode=display">dp[i,j] = nums[i] - dp[i + 1][j], nums[j] - dp[i][j - 1]</script>. </p>
+<p>Thus, for filling in any entry in <script type="math/tex; mode=display">dp</script> array, only the entries in the next row(same column) and the previous column(same row) are needed.</p>
+<p>Instead of making use of a new row in <script type="math/tex; mode=display">dp</script> array for the current <script type="math/tex; mode=display">dp</script> row's updations, we can overwrite the values in the previous row itself and consider the values as belonging to the new row's entries, since the older values won't be needed ever in the future again. Thus, instead of making use of a 2-D <script type="math/tex; mode=display">dp</script> array, we can make use of a 1-D <script type="math/tex; mode=display">dp</script> array and make the updations appropriately.</p>
+<iframe frameborder="0" height="292" name="k9vrYN2X" src="https://leetcode.com/playground/k9vrYN2X/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. The elements of <script type="math/tex; mode=display">dp</script> array are updated <script type="math/tex; mode=display">1+2+3+...+n</script> times. Here, <script type="math/tex; mode=display">n</script> refers to the length of <script type="math/tex; mode=display">nums</script> array.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. 1-D <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">20224</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">44754</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              33%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

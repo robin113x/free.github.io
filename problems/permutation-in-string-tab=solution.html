@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given two strings s1 and s2, write a function to return true if s2 contains the permutation of s1. In other words, one of the first string&#39;s permutations is the substring of the second string.
+
+Example 1:
+Input:s1 = &#34;ab&#34; s2 = &#34;eidbaooo&#34;
+Output:True
+Explanation: s2 contains one permutation of s1 (&#34;ba&#34;).
+
+
+Example 2:
+Input:s1= &#34;ab&#34; s2 = &#34;eidboaoo&#34;
+Output: False
+
+
+Note:
+
+The input strings only contain lower case letters.
+The length of both given strings is in range [1, 10,000].">
+  <meta name="keywords"
+        content="Permutation in String, LC 567, leetcode 567, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>567. Permutation in String</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            Given two strings <b>s1</b> and <b>s2</b>, write a function to return true if <b>s2</b> contains the permutation of <b>s1</b>. In other words, one of the first string's permutations is the <b>substring</b> of the second string.
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b>s1 = "ab" s2 = "eidbaooo"
+<b>Output:</b>True
+<b>Explanation:</b> s2 contains one permutation of s1 ("ba").
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b>s1= "ab" s2 = "eidboaoo"
+<b>Output:</b> False
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The input strings only contain lower case letters.</li>
+<li>The length of both given strings is in range [1, 10,000].</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-sorting-time-limit-exceeded">Approach #2 Using sorting [Time Limit Exceeded]:</a></li>
+<li><a href="#approach-3-using-hashmap-time-limit-exceeded">Approach #3 Using Hashmap [Time Limit Exceeded]</a></li>
+<li><a href="#approach-4-using-array-accepted">Approach #4 Using Array [Accepted]</a></li>
+<li><a href="#approach-5-sliding-window-accepted">Approach #5 Sliding Window  [Accepted]:</a></li>
+<li><a href="#approach-6-optimized-sliding-window-accepted">Approach #6 Optimized Sliding Window [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The simplest method is to generate all the permutations of the short string  and to check if the generated permutation is a substring of the longer string.</p>
+<p>In order to generate all the possible pairings, we make use of a function <code>permute(string_1, string_2, current_index)</code>. This function creates all the possible permutations of the short string <script type="math/tex; mode=display">s1</script>.</p>
+<p>To do so, permute takes the index of the current element <script type="math/tex; mode=display">current_index</script> as one of the arguments. Then, it swaps the current element with every other element in the array, lying towards its right, so as to generate a new ordering of the array elements. After the swapping has been done, it makes another call to permute but this time with the index of the next element in the array. While returning back, we reverse the swapping done in the current function call.</p>
+<p>Thus, when we reach the end of the array, a new ordering of the array's elements is generated. The following animation depicts the process of generating the permutations.</p>
+<p>!?!../Documents/561_Array.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="p3HAqkFZ" src="https://leetcode.com/playground/p3HAqkFZ/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n!)</script>. We match all the permutations of the short string <script type="math/tex; mode=display">s1</script>, of length <script type="math/tex; mode=display">s1</script>, with <script type="math/tex; mode=display">s2</script>. Here, <script type="math/tex; mode=display">n</script> refers to the length of <script type="math/tex; mode=display">s1</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n^2)</script>. The depth of the recursion tree is <script type="math/tex; mode=display">n</script>(<script type="math/tex; mode=display">n</script> refers to the length of the short string <script type="math/tex; mode=display">s1</script>). Every node of the recursion tree contains a string of max. length <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-sorting-time-limit-exceeded">Approach #2 Using sorting [Time Limit Exceeded]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>The idea behind this approach is that one string will be a permutation of another string only if both of them contain the same characters the same number of times. One string <script type="math/tex; mode=display">x</script> is a permutation of other string <script type="math/tex; mode=display">y</script> only if <script type="math/tex; mode=display">sorted(x)=sorted(y)</script>. </p>
+<p>In order to check this, we can sort the two strings and compare them.  We sort the short string <script type="math/tex; mode=display">s1</script> and all the substrings of <script type="math/tex; mode=display">s2</script>, sort them and compare them with the sorted <script type="math/tex; mode=display">s1</script> string. If the two match completely, <script type="math/tex; mode=display">s1</script>'s permutation is a substring of <script type="math/tex; mode=display">s2</script>, otherwise not.</p>
+<iframe frameborder="0" height="326" name="zWvWj8oK" src="https://leetcode.com/playground/zWvWj8oK/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(l_1log(l_1)+(l_2-l_1)l_1log(l_1)\big)</script>. where <script type="math/tex; mode=display">l_1</script> is the length of string <script type="math/tex; mode=display">l_1</script> and <script type="math/tex; mode=display">l_2</script> is the length of string <script type="math/tex; mode=display">l_2</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(l_1)</script>. <script type="math/tex; mode=display">t</script> array is used .</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-hashmap-time-limit-exceeded">Approach #3 Using Hashmap [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>As discussed above, one string will be a permutation of another string only if both of them contain the same charaters with the same frequency. We can consider every possible substring in the long string <script type="math/tex; mode=display">s2</script> of the same length as that of <script type="math/tex; mode=display">s1</script> and check the frequency of occurence of the characters appearing in the two. If the frequencies of every letter match exactly, then only <script type="math/tex; mode=display">s1</script>'s permutation can be a substring of <script type="math/tex; mode=display">s2</script>. </p>
+<p>In order to implement this approach, instead of sorting and then comparing the elements for equality, we make use of a hashmap <script type="math/tex; mode=display">s1map</script> which stores the frequency of occurence of all the characters in the short string <script type="math/tex; mode=display">s1</script>. We consider every possible substring of <script type="math/tex; mode=display">s2</script> of the same length as that of <script type="math/tex; mode=display">s1</script>, find its corresponding hashmap as well, namely <script type="math/tex; mode=display">s2map</script>. Thus, the substrings considered can be viewed as a window of length as that of <script type="math/tex; mode=display">s1</script> iterating over <script type="math/tex; mode=display">s2</script>. If the two hashmaps obtained are identical for any such window, we can conclude that <script type="math/tex; mode=display">s1</script>'s permutation is a substring of <script type="math/tex; mode=display">s2</script>, otherwise not.</p>
+<iframe frameborder="0" height="513" name="SvwMjwJX" src="https://leetcode.com/playground/SvwMjwJX/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(l_1+26*l_1*(l_2-l_1))</script>. hashmap contains atmost 26 keys. where <script type="math/tex; mode=display">l_1</script> is the length of string <script type="math/tex; mode=display">l_1</script> and <script type="math/tex; mode=display">l_2</script> is the length of string <script type="math/tex; mode=display">l_2</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. hashmap contains atmost 26 key-value pairs.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-array-accepted">Approach #4 Using Array [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Instead of making use of a special HashMap datastructure just to store the frequency of occurence of characters, we can use a simpler array data structure to store the frequencies. Given strings contains only lowercase alphabets ('a' to 'z'). So we need to take an array of size 26.The rest of the process remains the same as the last approach.</p>
+<iframe frameborder="0" height="496" name="48H3F2LJ" src="https://leetcode.com/playground/48H3F2LJ/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(l_1+26*l_1*(l_2-l_1))</script>,  where <script type="math/tex; mode=display">l_1</script> is the length of string <script type="math/tex; mode=display">l_1</script> and <script type="math/tex; mode=display">l_2</script> is the length of string <script type="math/tex; mode=display">l_2</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. <script type="math/tex; mode=display">s1map</script> and <script type="math/tex; mode=display">s2map</script> of size 26 is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-sliding-window-accepted">Approach #5 Sliding Window  [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>Instead of generating the hashmap afresh for every window considered in <script type="math/tex; mode=display">s2</script>, we can create the hashmap just once for the first window in <script type="math/tex; mode=display">s2</script>. Then, later on when we slide the window, we know that we add one preceding character and add a new succeeding character to the new window considered. Thus, we can update the hashmap by just updating the indices associated with those two characters only. Again, for every updated hashmap, we compare all the elements of the hashmap for equality to get the required result.</p>
+<iframe frameborder="0" height="496" name="o4pqWwhn" src="https://leetcode.com/playground/o4pqWwhn/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(l_1+26*(l_2-l_1))</script>,  where <script type="math/tex; mode=display">l_1</script> is the length of string <script type="math/tex; mode=display">l_1</script> and <script type="math/tex; mode=display">l_2</script> is the length of string <script type="math/tex; mode=display">l_2</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-6-optimized-sliding-window-accepted">Approach #6 Optimized Sliding Window [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>The last approach can be optimized, if instead of comparing all the elements of the hashmaps for every updated <script type="math/tex; mode=display">s2map</script> corresponding to every window of <script type="math/tex; mode=display">s2</script> considered, we keep a track of the number of elements which were already matching in the earlier hashmap and update just the count of matching elements when we shift the window towards the right.</p>
+<p>To do so, we maintain a <script type="math/tex; mode=display">count</script> variable, which stores the number of characters(out of the 26 alphabets), which have the same frequency of occurence in <script type="math/tex; mode=display">s1</script> and the current window in <script type="math/tex; mode=display">s2</script>. When we slide the window, if the deduction of the last element and the addition of the new element leads to a new frequency match of any of the characters, we increment the <script type="math/tex; mode=display">count</script> by 1. If not, we keep the <script type="math/tex; mode=display">count</script> intact. But, if a character whose frequency was the same earlier(prior to addition and removal) is added, it now leads to a frequency mismatch which is taken into account by decrementing the same <script type="math/tex; mode=display">count</script> variable. If, after the shifting of the window, the <script type="math/tex; mode=display">count</script> evaluates to 26, it means all the characters match in frequency totally. So, we return a True in that case immediately.</p>
+<iframe frameborder="0" height="515" name="T5J3SxqR" src="https://leetcode.com/playground/T5J3SxqR/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(l_1+(l_2-l_1))</script>. where <script type="math/tex; mode=display">l_1</script> is the length of string <script type="math/tex; mode=display">l_1</script> and <script type="math/tex; mode=display">l_2</script> is the length of string <script type="math/tex; mode=display">l_2</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">15696</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">42902</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              19%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/microsoft.html">Microsoft</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

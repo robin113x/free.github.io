@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Implement regular expression matching with support for &#39;.&#39; and &#39;*&#39;.
+
+&#39;.&#39; Matches any single character.
+&#39;*&#39; Matches zero or more of the preceding element.
+
+The matching should cover the entire input string (not partial).
+
+The function prototype should be:
+bool isMatch(const char *s, const char *p)
+
+Some examples:
+isMatch(&#34;aa&#34;,&#34;a&#34;) → false
+isMatch(&#34;aa&#34;,&#34;aa&#34;) → true
+isMatch(&#34;aaa&#34;,&#34;aa&#34;) → false
+isMatch(&#34;aa&#34;, &#34;a*&#34;) → true
+isMatch(&#34;aa&#34;, &#34;.*&#34;) → true
+isMatch(&#34;ab&#34;, &#34;.*&#34;) → true
+isMatch(&#34;aab&#34;, &#34;c*a*b&#34;) → true">
+  <meta name="keywords"
+        content="Regular Expression Matching, LC 10, leetcode 10, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>10. Regular Expression Matching</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Implement regular expression matching with support for <code>'.'</code> and <code>'*'</code>.</p>
+
+<pre>
+'.' Matches any single character.
+'*' Matches zero or more of the preceding element.
+
+The matching should cover the <b>entire</b> input string (not partial).
+
+The function prototype should be:
+bool isMatch(const char *s, const char *p)
+
+Some examples:
+isMatch("aa","a") &rarr; false
+isMatch("aa","aa") &rarr; true
+isMatch("aaa","aa") &rarr; false
+isMatch("aa", "a*") &rarr; true
+isMatch("aa", ".*") &rarr; true
+isMatch("ab", ".*") &rarr; true
+isMatch("aab", "c*a*b") &rarr; true
+</pre>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-recursion-accepted">Approach #1: Recursion [Accepted]</a></li>
+<li><a href="#approach-2-dynamic-programming-accepted">Approach #2: Dynamic Programming [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-recursion-accepted">Approach #1: Recursion [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If there were no Kleene stars (the <code>*</code> wildcard character for regular expressions), the problem would be easier - we simply check from left to right if each character of the text matches the pattern.</p>
+<p>When a star is present, we may need to check many different suffixes of the text and see if they match the rest of the pattern.  A recursive solution is a straightforward way to represent this relationship.</p>
+<p><strong>Algorithm</strong></p>
+<p>Without a Kleene star, our solution would look like this:</p>
+<iframe frameborder="0" height="122" name="GRAo9oMi" src="https://leetcode.com/playground/GRAo9oMi/shared" width="100%"></iframe>
+<p>If a star is present in the pattern, it will be in the second position <script type="math/tex; mode=display">\text{pattern[1]}</script>.  Then, we may ignore this part of the pattern, or delete a matching character in the text.  If we have a match on the remaining strings after any of these operations, then the initial inputs matched.</p>
+<iframe frameborder="0" height="258" name="3H6fWLxB" src="https://leetcode.com/playground/3H6fWLxB/shared" width="100%"></iframe>
+<iframe frameborder="0" height="292" name="wu7MiqMW" src="https://leetcode.com/playground/wu7MiqMW/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: Let <script type="math/tex; mode=display">T, P</script> be the lengths of the text and the pattern respectively.  In the worst case, a call to <code>match(text[i:], pattern[2j:])</code> will be made <script type="math/tex; mode=display">\binom{i+j}{i}</script> times, and strings of the order <script type="math/tex; mode=display">O(T - i)</script> and <script type="math/tex; mode=display">O(P - 2*j)</script> will be made.  Thus, the complexity has the order <script type="math/tex; mode=display">\sum_{i = 0}^T \sum_{j = 0}^{P/2} \binom{i+j}{i} O(T+P-i-2j)</script>.  With some effort outside the scope of this article, we can show this is bounded by <script type="math/tex; mode=display">O\big((T+P)2^{T + \frac{P}{2}}\big)</script>.</p>
+</li>
+<li>
+<p>Space Complexity:  For every call to <code>match</code>, we will create those strings as described above, possibly creating duplicates.  If memory is not freed, this will also take a total of <script type="math/tex; mode=display">O\big((T+P)2^{T + \frac{P}{2}}\big)</script> space, even though there are only order <script type="math/tex; mode=display">O(T^2 + P^2)</script> unique suffixes of <script type="math/tex; mode=display">P</script> and  <script type="math/tex; mode=display">T</script> that are actually required.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-dynamic-programming-accepted">Approach #2: Dynamic Programming [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>As the problem has an <strong>optimal substructure</strong>, it is natural to cache intermediate results.  We ask the question <script type="math/tex; mode=display">\text{dp(i, j)}</script>: does <script type="math/tex; mode=display">\text{text[i:]}</script> and <script type="math/tex; mode=display">\text{pattern[j:]}</script> match?  We can describe our answer in terms of answers to questions involving smaller strings.</p>
+<p><strong>Algorithm</strong></p>
+<p>We proceed with the same recursion as in Approach #1, except because calls will only ever be made to <code>match(text[i:], pattern[j:])</code>, we use <script type="math/tex; mode=display">\text{dp(i, j)}</script> to handle those calls instead, saving us expensive string-building operations and allowing us to cache the intermediate results.</p>
+<p><em>Top-Down Variation</em>
+<iframe frameborder="0" height="515" name="cn5nKUtP" src="https://leetcode.com/playground/cn5nKUtP/shared" width="100%"></iframe></p>
+<p><em>Bottom-Up Variation</em></p>
+<iframe frameborder="0" height="394" name="bWZCQWWe" src="https://leetcode.com/playground/bWZCQWWe/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: Let <script type="math/tex; mode=display">T, P</script> be the lengths of the text and the pattern respectively.  The work for every call to <code>dp(i, j)</code> for <script type="math/tex; mode=display">i=0, ... ,T</script>; <script type="math/tex; mode=display">j=0, ... ,P</script> is done once, and it is <script type="math/tex; mode=display">O(1)</script> work.  Hence, the time complexity is <script type="math/tex; mode=display">O(TP)</script>.</p>
+</li>
+<li>
+<p>Space Complexity:  The only memory we use is the <script type="math/tex; mode=display">O(TP)</script> boolean entries in our cache.  Hence, the space complexity is <script type="math/tex; mode=display">O(TP)</script>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">172618</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">710863</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              89%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/uber.html">Uber</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/twitter.html">Twitter</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/airbnb.html">Airbnb</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>
