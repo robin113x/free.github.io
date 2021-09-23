@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="The set S originally contains numbers from 1 to n. But unfortunately, due to the data error, one of the numbers in the set got duplicated to another number in the set, which results in repetition of one number and loss of another number. 
+
+
+Given an array nums representing the data status of this set after the error. Your task is to firstly find the number occurs twice and then find the number that is missing. Return them in the form of an array.
+
+Example 1:
+Input: nums = [1,2,2,4]
+Output: [2,3]
+
+
+Note:
+
+The given array size will in the range [2, 10000].
+The given array&#39;s numbers won&#39;t have any order.">
+  <meta name="keywords"
+        content="Set Mismatch, LC 645, leetcode 645, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>645. Set Mismatch</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+The set <code>S</code> originally contains numbers from 1 to <code>n</code>. But unfortunately, due to the data error, one of the numbers in the set got duplicated to <b>another</b> number in the set, which results in repetition of one number and loss of another number. 
+</p>
+
+<p>
+Given an array <code>nums</code> representing the data status of this set after the error. Your task is to firstly find the number occurs twice and then find the number that is missing. Return them in the form of an array.
+</p>
+
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> nums = [1,2,2,4]
+<b>Output:</b> [2,3]
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The given array size will in the range [2, 10000].</li>
+<li>The given array's numbers won't have any order.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-using-sorting-accepted">Approach #3 Using Sorting [Accepted]</a></li>
+<li><a href="#approach-4-using-map-accepted">Approach #4 Using map [Accepted]</a></li>
+<li><a href="#approach-5-using-extra-arrayaccepted">Approach #5 Using Extra Array[Accepted]:</a></li>
+<li><a href="#approach-6-using-constant-spaceaccepted">Approach #6 Using Constant Space[Accepted]:</a></li>
+<li><a href="#approach-7-using-xor-accepted">Approach #7 Using XOR [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>The most naive solution is to consider each number from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script>, and traverse over the whole <script type="math/tex; mode=display">nums</script> array to check if the current number occurs twice in <script type="math/tex; mode=display">nums</script>
+or doesn't occur at all. We need to set the duplicate number, <script type="math/tex; mode=display">dup</script> and the missing number, <script type="math/tex; mode=display">missing</script>, appropriately in such cases respectively.</p>
+<iframe frameborder="0" height="343" name="XmJ9Tdi2" src="https://leetcode.com/playground/XmJ9Tdi2/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. We traverse over the <script type="math/tex; mode=display">nums</script> array of size <script type="math/tex; mode=display">n</script> for each of the numbers from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</h4>
+<p>In the last approach, we continued the search process, even when we've already found the duplicate and the missing number. But, as per the problem statement, 
+we know that only one number will be repeated and only one number will be missing. Thus, we can optimize the last approach to some extent, by stopping 
+the search process as soon as we find these two required numbers.</p>
+<iframe frameborder="0" height="394" name="XQ5or7QV" src="https://leetcode.com/playground/XQ5or7QV/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. We traverse over the <script type="math/tex; mode=display">nums</script> array of size <script type="math/tex; mode=display">n</script> for each of the numbers from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script>, in the worst case.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-sorting-accepted">Approach #3 Using Sorting [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>One way to further optimize the last approach is to sort the given <script type="math/tex; mode=display">nums</script> array. This way, the numbers which are equal will always lie together. 
+Further, we can easily identify the missing number by checking if every two consecutive elements in the sorted <script type="math/tex; mode=display">nums</script> array are just one count apart or not.</p>
+<iframe frameborder="0" height="292" name="5WFPjrzW" src="https://leetcode.com/playground/5WFPjrzW/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nlogn)</script>. Sorting takes <script type="math/tex; mode=display">O(nlogn)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(logn)</script>. Sorting takes <script type="math/tex; mode=display">O(logn)</script> space. </p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-map-accepted">Approach #4 Using map [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The given problem can also be solved easily if we can somehow keep a track of the number of times each element of the <script type="math/tex; mode=display">nums</script> array occurs. One way to 
+do so is to make an entry for each element of <script type="math/tex; mode=display">nums</script> in a HashMap <script type="math/tex; mode=display">map</script>. This <script type="math/tex; mode=display">map</script> stores the entries in the form <script type="math/tex; mode=display">(num_i, count_i)</script>. Here, <script type="math/tex; mode=display">num</script> refers to
+the <script type="math/tex; mode=display">i^{th}</script> element in <script type="math/tex; mode=display">nums</script> and <script type="math/tex; mode=display">count_i</script> refers to the number of times this element occurs in <script type="math/tex; mode=display">nums</script>.
+  Whenever, the same element occurs again, we can increment the count corresponding to the 
+same. </p>
+<p>After this, we can consider every number from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script>, and check for its presence in <script type="math/tex; mode=display">map</script>. If it isn't present, we can update the <script type="math/tex; mode=display">missing</script> variable 
+appropriately. But, if the <script type="math/tex; mode=display">count</script> corresponding to the current number is <script type="math/tex; mode=display">2</script>, we can update the <script type="math/tex; mode=display">dup</script> variable with the current number.</p>
+<iframe frameborder="0" height="343" name="NdSWUKGM" src="https://leetcode.com/playground/NdSWUKGM/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Traversing over <script type="math/tex; mode=display">nums</script> of size <script type="math/tex; mode=display">n</script> takes <script type="math/tex; mode=display">O(n)</script> time. Considering each number from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script> also takes <script type="math/tex; mode=display">O(n)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">map</script> can contain atmost <script type="math/tex; mode=display">n</script> entries for each of the numbers from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-using-extra-arrayaccepted">Approach #5 Using Extra Array[Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, we make use of a <script type="math/tex; mode=display">map</script> to store the elements of <script type="math/tex; mode=display">nums</script> along with their corresponding counts. But, we can note, that each entry in <script type="math/tex; mode=display">map</script> 
+requires two entries. Thus, putting up <script type="math/tex; mode=display">n</script> entries requires <script type="math/tex; mode=display">2n</script> space actually. We can reduce this space required to <script type="math/tex; mode=display">n</script> by making use of an array, <script type="math/tex; mode=display">arr</script> instead.
+Now, the indices of <script type="math/tex; mode=display">arr</script> can be used instead of storing the elements again. Thus, we make use of <script type="math/tex; mode=display">arr</script> in such a way that, <script type="math/tex; mode=display">arr[i]</script> is used to store 
+the number of occurences of the element <script type="math/tex; mode=display">i+1</script>. The rest of the process remains the same as in the last approach.</p>
+<iframe frameborder="0" height="326" name="362FM5TH" src="https://leetcode.com/playground/362FM5TH/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Traversing over <script type="math/tex; mode=display">nums</script> of size <script type="math/tex; mode=display">n</script> takes <script type="math/tex; mode=display">O(n)</script> time. Considering each number from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script> also takes <script type="math/tex; mode=display">O(n)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">arr</script> can contain atmost <script type="math/tex; mode=display">n</script> elements for each of the numbers from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-6-using-constant-spaceaccepted">Approach #6 Using Constant Space[Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can save the space used in the last approach, if we can somehow, include the information regarding the duplicacy of an element or absence of an element
+ in the <script type="math/tex; mode=display">nums</script> array. Let's see how this can be done.</p>
+<p>We know that all the elements in the given <script type="math/tex; mode=display">nums</script> array are positive, and lie in the range <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script> only. Thus, we can pick up each element <script type="math/tex; mode=display">i</script> 
+ from <script type="math/tex; mode=display">nums</script>. For every number <script type="math/tex; mode=display">i</script> picked up, we can invert the element at the index <script type="math/tex; mode=display">\left|i\right|</script>. By doing so,  if one of the elements <script type="math/tex; mode=display">j</script> occurs twice, 
+when this number is encountered the second time,  the element <script type="math/tex; mode=display">nums[\left|i\right|]</script> will be found to be negative. 
+Thus, while doing the inversions, we can check if a number found is already negative, to find the duplicate number.</p>
+<p>After the inversions have been done, if all the elements in <script type="math/tex; mode=display">nums</script> are present correctly, the resultant <script type="math/tex; mode=display">nums</script> array will have all the elements as 
+ negative now. But, if one of the numbers, <script type="math/tex; mode=display">j</script> is missing, the element at the <script type="math/tex; mode=display">j^{th}</script> index will be positive. This  can be used to determine the missing number.</p>
+<iframe frameborder="0" height="326" name="jNt2byCg" src="https://leetcode.com/playground/jNt2byCg/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Two traversals over the <script type="math/tex; mode=display">nums</script> array of size <script type="math/tex; mode=display">n</script> are done.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-7-using-xor-accepted">Approach #7 Using XOR [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>Before we dive into the solution to this problem, let's consider a simple problem. Consider an array with <script type="math/tex; mode=display">n-1</script> elements containing numbers from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script> with one number missing out of them. Now, how to we find out this missing element. One of the solutions is to take the XOR of all the elements of this array with all the numbers from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script>. By doing so, we get the required missing number. This works because XORing a number with itself results in a 0 result. Thus, only the number which is missing can't get cancelled with this XORing.</p>
+<p>Now, using this idea as the base, let's take it a step forward and use it for the current problem. By taking the XOR of all the elements of the given <script type="math/tex; mode=display">nums</script> array with all the numbers from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script>, we will get a result, <script type="math/tex; mode=display">xor</script>, as <script type="math/tex; mode=display">x^y</script>. Here, <script type="math/tex; mode=display">x</script> and <script type="math/tex; mode=display">y</script> refer to the repeated and the missing term in the given <script type="math/tex; mode=display">nums</script> array. This happens on the same grounds as in the first problem discussed above.</p>
+<p>Now, in the resultant <script type="math/tex; mode=display">xor</script>, we'll get a 1 in the binary representation only at those bit positions which have a 1 in one out of the numbers <script type="math/tex; mode=display">x</script> and <script type="math/tex; mode=display">y</script>, and a 0 at the same bit position in the other one. In the current solution, we consider the rightmost bit which is 1 in the <script type="math/tex; mode=display">xor</script>, although any bit would work. Let's say, this position is called the <script type="math/tex; mode=display">rightmostbit</script>. </p>
+<p>If we divide the elements of the given <script type="math/tex; mode=display">nums</script> array into two parts such that the first set contains the elements which have a 1 at the <script type="math/tex; mode=display">rightmostbit</script> position and the second set contains the elements having a 0 at the same position, we'll get one out of <script type="math/tex; mode=display">x</script> or <script type="math/tex; mode=display">y</script> in one set and the other one in the second set. Now, our problem has reduced somewhat to the simple problem discussed above.</p>
+<p>To solve this reduced problem, we can find out the elements from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script> and consider them as a part of the previous sets only, with the allocation of the set depending on a 1 or 0 at the <script type="math/tex; mode=display">righmostbit</script> position. </p>
+<p>Now, if we do the XOR of all the elements of the first set, all the elements will result in an XOR of 0, due to cancellation of the similar terms in both <script type="math/tex; mode=display">nums</script> and the numbers <script type="math/tex; mode=display">(1:n)</script>, except one term, which is either <script type="math/tex; mode=display">x</script> or <script type="math/tex; mode=display">y</script>. </p>
+<p>For the other term, we can do the XOR of all the elements in the second set as well.</p>
+<p>Consider the example <code>[1 2 4 4 5 6]</code></p>
+<p><img alt="XOR" src="https://leetcode.com/articles/Figures/645_Set_Mismatch.PNG"/></p>
+<p>One more traversal over the <script type="math/tex; mode=display">nums</script> can be used to identify the missing and the repeated number out of the two numbers found.</p>
+<iframe frameborder="0" height="515" name="WhhZovFh" src="https://leetcode.com/playground/WhhZovFh/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We iterate over <script type="math/tex; mode=display">n</script> elements five times.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">19014</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">47634</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              27%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/amazon.html">Amazon</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

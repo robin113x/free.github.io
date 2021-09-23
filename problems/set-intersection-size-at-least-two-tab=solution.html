@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="An integer interval [a, b] (for integers a &lt; b) is a set of all consecutive integers from a to b, including a and b.
+
+Find the minimum size of a set S such that for every integer interval A in intervals, the intersection of S with A has size at least 2.
+
+Example 1:
+Input: intervals = [[1, 3], [1, 4], [2, 5], [3, 5]]
+Output: 3
+Explanation:
+Consider the set S = {2, 3, 4}.  For each interval, there are at least 2 elements from S in the interval.
+Also, there isn&#39;t a smaller size set that fulfills the above condition.
+Thus, we output the size of this set, which is 3.
+
+
+Example 2:
+Input: intervals = [[1, 2], [2, 3], [2, 4], [4, 5]]
+Output: 5
+Explanation:
+An example of a minimum sized set is {1, 2, 3, 4, 5}.
+
+
+Note:
+intervals will have length in range [1, 3000].
+intervals[i] will have length 2, representing some integer interval.
+intervals[i][j] will be an integer in [0, 10^8].">
+  <meta name="keywords"
+        content="Set Intersection Size At Least Two, LC 757, leetcode 757, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>757. Set Intersection Size At Least Two</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+An integer interval <code>[a, b]</code> (for integers <code>a < b</code>) is a set of all consecutive integers from <code>a</code> to <code>b</code>, including <code>a</code> and <code>b</code>.
+</p><p>
+Find the minimum size of a set S such that for every integer interval A in <code>intervals</code>, the intersection of S with A has size at least 2.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> intervals = [[1, 3], [1, 4], [2, 5], [3, 5]]
+<b>Output:</b> 3
+<b>Explanation:</b>
+Consider the set S = {2, 3, 4}.  For each interval, there are at least 2 elements from S in the interval.
+Also, there isn't a smaller size set that fulfills the above condition.
+Thus, we output the size of this set, which is 3.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> intervals = [[1, 2], [2, 3], [2, 4], [4, 5]]
+<b>Output:</b> 5
+<b>Explanation:</b>
+An example of a minimum sized set is {1, 2, 3, 4, 5}.
+</pre>
+</p>
+
+<p><b>Note:</b><br><ol>
+<li><code>intervals</code> will have length in range <code>[1, 3000]</code>.</li>
+<li><code>intervals[i]</code> will have length <code>2</code>, representing some integer interval.</li>
+<li><code>intervals[i][j]</code> will be an integer in <code>[0, 10^8]</code>.</li>
+</ol></p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-greedy-accepted">Approach #1: Greedy [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-greedy-accepted">Approach #1: Greedy [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Let's try to solve a simpler problem: what is the answer when the set intersection size is at least <em>one</em>?</p>
+<p>Sort the points.  Take the last interval <code>[s, e]</code>, which point on this interval will be in <code>S</code>?  Since every other interval has start point <code>&lt;= s</code>, it is strictly better to choose <code>s</code> as the start.  So we can repeatedly take <code>s</code> in our set <code>S</code> and remove all intervals containing <code>s</code>.</p>
+<p>We will try to extend this solution to the case when we want an intersection of size two.</p>
+<p><strong>Algorithm</strong></p>
+<p>For each interval, we will perform the algorithm described above, storing a <code>todo</code> <em>multiplicity</em> which starts at <code>2</code>.  As we identify points in <code>S</code>, we will subtract from these multiplicities as appropriate.</p>
+<p>One case that is important to handle is the following:
+<code>[[1, 2], [2, 3], [2, 4], [4, 5]]</code>.  If we put <code>4, 5</code> in <code>S</code>, then we put <code>2</code> in <code>S</code>, when handling <code>[2, 3]</code> we need to put <code>3</code> in <code>S</code>, not <code>2</code> which was already put.</p>
+<p>We can handle this case succinctly by sorting intervals <code>[s, e]</code> by <code>s</code> ascending, then <code>e</code> descending.  This makes it so that any interval encountered with the same <code>s</code> has the lowest possible <code>e</code>, and so it has the highest <em>multiplicity</em>.  When at interval <code>[s, e]</code> and choosing points to be included into <code>S</code>, it will always be the case that the start of the interval (either <code>s</code> or <code>s, s+1</code>) will be unused.</p>
+<iframe frameborder="0" height="412" name="w4QM4e3U" src="https://leetcode.com/playground/w4QM4e3U/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N^2)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>intervals</code>.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">968</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">2876</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              8%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/drawbridge.html">Drawbridge</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

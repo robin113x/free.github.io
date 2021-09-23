@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an integer array, you need to find one continuous subarray that if you only sort this subarray in ascending order, then the whole array will be sorted in ascending order, too. 
+You need to find the shortest such subarray and output its length.
+Example 1:
+Input: [2, 6, 4, 8, 10, 9, 15]
+Output: 5
+Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
+
+
+Note:
+
+Then length of the input array is in range [1, 10,000].
+The input array may contain duplicates, so ascending order here means &lt;=.">
+  <meta name="keywords"
+        content="Shortest Unsorted Continuous Subarray, LC 581, leetcode 581, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>581. Shortest Unsorted Continuous Subarray</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given an integer array, you need to find one <b>continuous subarray</b> that if you only sort this subarray in ascending order, then the whole array will be sorted in ascending order, too. </p> 
+
+<p>You need to find the <b>shortest</b> such subarray and output its length.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> [2, 6, 4, 8, 10, 9, 15]
+<b>Output:</b> 5
+<b>Explanation:</b> You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>Then length of the input array is in range [1, 10,000].</li>
+<li>The input array may contain duplicates, so ascending order here means <b><=</b>. </li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-using-sorting-accepted">Approach #3 Using Sorting [Accepted]</a></li>
+<li><a href="#approach-4-using-stack-accepted">Approach #4 Using Stack [Accepted]:</a></li>
+<li><a href="#approach-5-without-using-extra-space-accepted">Approach #5 Without Using Extra Space [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the brute force approach, we consider every possible subarray that can be formed from the given array <script type="math/tex; mode=display">nums</script>. For every subarray <script type="math/tex; mode=display">nums[i:j]</script> considered, we need to check whether this is the smallest unsorted subarray or not. Thus, for every such subarray considered, we find out the maximum and minimum values lying in that subarray given by <script type="math/tex; mode=display">max</script> and <script type="math/tex; mode=display">min</script> respectively.</p>
+<p>If the subarrays <script type="math/tex; mode=display">nums[0:i-1]</script> and <script type="math/tex; mode=display">nums[j:n-1]</script> are correctly sorted, then only <script type="math/tex; mode=display">nums[i:j]</script> could be the required subrray. Further, the elements in <script type="math/tex; mode=display">nums[0:i-1]</script> all need to be lesser than the <script type="math/tex; mode=display">min</script> for satisfying the required condition. Similarly, all the elements in <script type="math/tex; mode=display">nums[j:n-1]</script> need to be larger than <script type="math/tex; mode=display">max</script>. We check for these conditions for every possible <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script> selected.</p>
+<p>Further, we also need to check if <script type="math/tex; mode=display">nums[0:i-1]</script> and <script type="math/tex; mode=display">nums[j:n-1]</script> are sorted correctly. If all the above conditions are satisfied, we determine the length of the unsorted subarray as <script type="math/tex; mode=display">j-i</script>. We do the same process for every subarray chosen and determine the length of the smallest unsorted subarray found.</p>
+<iframe frameborder="0" height="515" name="SdybCxt5" src="https://leetcode.com/playground/SdybCxt5/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. Three nested loops are there.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, we make use of an idea based on selection sort. We can traverse over the given <script type="math/tex; mode=display">nums</script> array choosing the elements <script type="math/tex; mode=display">nums[i]</script>. For every such element chosen, we try to determine its correct position in the sorted array. For this, we compare <script type="math/tex; mode=display">nums[i]</script> with every <script type="math/tex; mode=display">nums[j]</script>, such that <script type="math/tex; mode=display">i < j < n</script>. Here, <script type="math/tex; mode=display">n</script> refers to the length of <script type="math/tex; mode=display">nums</script> array.</p>
+<p>If any <script type="math/tex; mode=display">nums[j]</script> happens to be lesser than <script type="math/tex; mode=display">nums[i]</script>, it means both <script type="math/tex; mode=display">nums[i]</script> and <script type="math/tex; mode=display">nums[j]</script> aren't at their correct position for the sorted array. Thus, we need to swap the two elements to bring them at their correct positions. Here, instead of swapping, we just note the position of <script type="math/tex; mode=display">nums[i]</script>(given by <script type="math/tex; mode=display">i</script>) and <script type="math/tex; mode=display">nums[j]</script>(given by <script type="math/tex; mode=display">j</script>). These two elements now mark the boundary of the unsorted subarray(atleast for the time being).</p>
+<p>Thus, out of all the <script type="math/tex; mode=display">nums[i]</script> chosen, we determine the leftmost <script type="math/tex; mode=display">nums[i]</script> which isn't at its correct position. This marks the left boundary of the smallest unsorted subarray(<script type="math/tex; mode=display">l</script>). Similarly, out of all the <script type="math/tex; mode=display">nums[j]</script>'s considered for all <script type="math/tex; mode=display">nums[i]</script>'s we determine the rightmost <script type="math/tex; mode=display">nums[j]</script> which isn't at its correct position. This marks the right boundary of the smallest unsorted subarray(<script type="math/tex; mode=display">r</script>).</p>
+<p><img alt="Unsorted_subarray" src="https://leetcode.com/articles/Figures/581/Unsorted_subarray_1.PNG"/></p>
+<p>Thus, we can determine the length of the smallest unsorted subarray as <script type="math/tex; mode=display">r - l + 1</script>.</p>
+<iframe frameborder="0" height="292" name="g9YJRHj4" src="https://leetcode.com/playground/g9YJRHj4/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. Two nested loops are there.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-sorting-accepted">Approach #3 Using Sorting [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Another very simple idea is as follows. We can sort a copy of the given array <script type="math/tex; mode=display">nums</script>, say given by <script type="math/tex; mode=display">nums\_sorted</script>. Then, if we compare the elements of <script type="math/tex; mode=display">nums</script> and <script type="math/tex; mode=display">nums\_sorted</script>, we can determine the leftmost and rightmost elements which mismatch. The subarray lying between them is, then, the required shorted unsorted subarray.</p>
+<iframe frameborder="0" height="309" name="H3PB4vbF" src="https://leetcode.com/playground/H3PB4vbF/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nlogn)</script>. Sorting takes <script type="math/tex; mode=display">nlogn</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. We are making copy of original array.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-stack-accepted">Approach #4 Using Stack [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>The idea behind this approach is also based on selective sorting. We need to determine the correct position of the minimum and the maximum element in the unsorted subarray to determine the boundaries of the required unsorted subarray.</p>
+<p>To do so, in this implementation, we make use of a <script type="math/tex; mode=display">stack</script>. We traverse over the <script type="math/tex; mode=display">nums</script> array starting from the beginning. As we go on facing elements in ascending order(a rising slope), we keep on pushing the elements' indices over the <script type="math/tex; mode=display">stack</script>. This is done because such elements are in the correct sorted order(as it seems till now). As soon as we encounter a falling slope, i.e. an element <script type="math/tex; mode=display">nums[j]</script> which is smaller than the element on the top of the <script type="math/tex; mode=display">stack</script>, we know that <script type="math/tex; mode=display">nums[j]</script> isn't at its correct position.</p>
+<p>In order to determine the correct position of <script type="math/tex; mode=display">nums[j]</script>, we keep on popping the elemnents from the top of the <script type="math/tex; mode=display">stack</script> until we reach the stage where the element(corresponding to the index) on the top of the <script type="math/tex; mode=display">stack</script> is lesser than <script type="math/tex; mode=display">nums[j]</script>. Let's say the popping stops when the index on <script type="math/tex; mode=display">stack</script>'s top is <script type="math/tex; mode=display">k</script>. Now, <script type="math/tex; mode=display">nums[j]</script> has found its correct position. It needs to lie at an index <script type="math/tex; mode=display">k + 1</script>.</p>
+<p>We follow the same process while traversing over the whole array, and determine the value of minimum such <script type="math/tex; mode=display">k</script>. This marks the left boundary of the unsorted subarray.</p>
+<p>Similarly, to find the right boundary of the unsorted subarray, we traverse over the <script type="math/tex; mode=display">nums</script> array backwards. This time we keep on pushing the elements if we see a falling slope. As soon as we find a rising slope, we trace forwards now and determine the larger element's correct position. We do so for the complete array and thus, determine the right boundary.</p>
+<p>We can look at the figure below for reference. We can observe that the slopes directly indicate the relative ordering. We can also observe that the point <script type="math/tex; mode=display">b</script> needs to lie just after index 0 marking the left boundary and the point <script type="math/tex; mode=display">a</script> needs to lie just before index 7 marking the right boundary of the unsorted subarray.</p>
+<p><img alt="Unsorted_subarray" src="https://leetcode.com/articles/Figures/581/Unsorted_subarray_2.PNG"/></p>
+<p>Below code is inpired by <a href="http://leetcode.com/fallcreek">@fallcreek</a></p>
+<iframe frameborder="0" height="377" name="tjLosXGs" src="https://leetcode.com/playground/tjLosXGs/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Stack of size <script type="math/tex; mode=display">n</script> is filled.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Stack size grows upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-without-using-extra-space-accepted">Approach #5 Without Using Extra Space [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>The idea behind this method is that the correct position of the minimum element in the unsorted subarray helps to determine the required left boundary. Similarly, the correct position of the maximum element in the unsorted subarray helps to determine the required right boundary.</p>
+<p>Thus, firstly we need to determine when the correctly sorted array goes wrong. We keep a track of this by observing rising slope starting from the beginning of the array. Whenever the slope falls, we know that the unsorted array has surely started. Thus, now we determine the minimum element found till the end of the array <script type="math/tex; mode=display">nums</script>, given by <script type="math/tex; mode=display">min</script>.</p>
+<p>Similarly, we scan the array <script type="math/tex; mode=display">nums</script> in the reverse order and when the slope becomes rising instead of falling, we start looking for the maximum element till we reach the beginning of the array, given by <script type="math/tex; mode=display">max</script>.</p>
+<p>Then, we traverse over <script type="math/tex; mode=display">nums</script> and determine the correct position of <script type="math/tex; mode=display">min</script> and <script type="math/tex; mode=display">max</script> by comparing these elements with the other array elements. e.g. To determine the correct position of <script type="math/tex; mode=display">min</script>, we know the initial portion of <script type="math/tex; mode=display">nums</script> is already sorted. Thus, we need to find the first element which is just larger than <script type="math/tex; mode=display">min</script>. Similarly, for <script type="math/tex; mode=display">max</script>'s position, we need to find the first element which is just smaller than <script type="math/tex; mode=display">max</script> searching in <script type="math/tex; mode=display">nums</script> backwards.</p>
+<p>We can take this figure for reference again:</p>
+<p><img alt="Unsorted_subarray" src="https://leetcode.com/articles/Figures/581/Unsorted_subarray_2.PNG"/></p>
+<p>We can observe that the point <script type="math/tex; mode=display">b</script> needs to lie just after index 0 marking the left boundary and the point <script type="math/tex; mode=display">a</script> needs to lie just before index 7 marking the right boundary of the unsorted subarray.</p>
+<iframe frameborder="0" height="515" name="vgbmarrv" src="https://leetcode.com/playground/vgbmarrv/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Four <script type="math/tex; mode=display">O(n)</script> loops are used.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">24177</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">82393</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              26%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/liveramp.html">LiveRamp</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

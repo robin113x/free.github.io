@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array nums, we call (i, j) an important reverse pair if i &lt; j and nums[i] &gt; 2*nums[j].
+You need to return the number of important reverse pairs in the given array.
+Example1:
+Input: [1,3,2,3,1]
+Output: 2
+
+Example2:
+Input: [2,4,3,5,1]
+Output: 3
+
+Note:
+
+The length of the given array will not exceed 50,000.
+All the numbers in the input array are in the range of 32-bit integer.">
+  <meta name="keywords"
+        content="Reverse Pairs, LC 493, leetcode 493, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>493. Reverse Pairs</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given an array <code>nums</code>, we call <code>(i, j)</code> an <b><i>important reverse pair</i></b> if <code>i &lt; j</code> and <code>nums[i] &gt; 2*nums[j]</code>.</p>
+
+<p>You need to return the number of important reverse pairs in the given array.</p>
+
+<p><b>Example1:</b>
+<pre>
+<b>Input</b>: [1,3,2,3,1]
+<b>Output</b>: 2
+</pre></p>
+
+<p><b>Example2:</b>
+<pre>
+<b>Input</b>: [2,4,3,5,1]
+<b>Output</b>: 3
+</pre></p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The length of the given array will not exceed <code>50,000</code>.</li>
+<li>All the numbers in the input array are in the range of 32-bit integer.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-binary-search-tree-accepted">Approach #2 Binary Search Tree [Accepted]</a></li>
+<li><a href="#approach-3-bit-accepted">Approach #3 BIT [Accepted]</a></li>
+<li><a href="#approach-4-modified-merge-sort-accepted">Approach #4 Modified Merge Sort [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute force [Time Limit Exceeded]</h4>
+<p><strong>Intuition</strong></p>
+<p>Do as directed in the question. We can simply check all the pairs if they are important reverse pairs or not.</p>
+<p><strong>Algorithm</strong></p>
+<ul>
+<li>Iterate over <script type="math/tex; mode=display">i</script> from <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">\text{size} - 1</script>
+<ul>
+<li>Iterate over <script type="math/tex; mode=display">j</script> from <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">i - 1</script>
+<ul>
+<li>If <script type="math/tex; mode=display">\text{nums[j]} > 2 * \text{nums[i]}</script>, increment <script type="math/tex; mode=display">\text{count}</script>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<iframe frameborder="0" height="258" name="uASZfEgx" src="https://leetcode.com/playground/uASZfEgx/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity: <script type="math/tex; mode=display">O(n^2)</script>
+<ul>
+<li>We iterate over all the possible pairs wherein (<script type="math/tex; mode=display">i<j</script>) in the array which is <script type="math/tex; mode=display">O(n^2)</script>
+</li>
+</ul>
+</li>
+<li>Space complexity: <script type="math/tex; mode=display">O(1)</script> only constant extra space is required for <script type="math/tex; mode=display">n</script>, <script type="math/tex; mode=display">count</script> etc.</li>
+</ul>
+<p><strong>Trivia</strong></p>
+<p>The above code can be expressed as one-liner in Python:</p>
+<p><em>Python</em></p>
+<iframe frameborder="0" height="88" name="s5b8yGJS" src="https://leetcode.com/playground/s5b8yGJS/shared" width="100%"></iframe>
+<p>Herein, we iterate over all the pairs and store the boolean values for <script type="math/tex; mode=display">\text{nums[i]}>2*\text{nums[j]}</script>. Finally, we count the number of <script type="math/tex; mode=display">\text{true}</script> in the array and return the result.</p>
+<hr/>
+<h4 id="approach-2-binary-search-tree-accepted">Approach #2 Binary Search Tree [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>In Approach #1, for each element <script type="math/tex; mode=display">i</script>, we searched the subarray <script type="math/tex; mode=display">[0,i)</script> for elements such that their value is greater than <script type="math/tex; mode=display">2*\text{nums[i]}</script>. In the previous approach, the search is linear. However, we need to make the process efficient. Maybe, memoization can help, but since, we need to compare the elements, we cannot find a linear DP solution.</p>
+<p>Observe that the indices of the elements in subarray <script type="math/tex; mode=display">[0,i)</script> don't matter as we only require the count. So, we can sort the elements and perform binary search on the subarray. But, since the subarray keeps growing as we iterate to the next element, we need a data structure to store the previous result as well as to allow efficient searching(preferably <script type="math/tex; mode=display">O(log(n))</script>) - Binary Search Tree(BST) could be a good bet.   </p>
+<p><em>Refreshing BST</em></p>
+<p>BST is a rooted binary tree, wherein each node is associated with a value and has 2 distinguishable sub-trees namely <script type="math/tex; mode=display">left</script> and <script type="math/tex; mode=display">right</script> subtree. The left subtree contains only the nodes with lower values than the parent's value, while the right subtree conatins only the nodes with greater values than the parent's value.</p>
+<p><em>Voila!</em></p>
+<p>This is exactly what is required. So, if we store our elements in BST, then we can search the larger elements thus eliminating the search on smaller elements altogether.</p>
+<p><strong>Algorithm</strong></p>
+<p>Define the <script type="math/tex; mode=display">\text{Node}</script> of BST that stores the <script type="math/tex; mode=display">\text{val}</script> and pointers to the <script type="math/tex; mode=display">\text{left}</script> and <script type="math/tex; mode=display">\text{right}</script>. We also need a count of elements(say <script type="math/tex; mode=display">\text{count_ge}</script>) in the subtree rooted at the current node that are greater than or equal to the current node's <script type="math/tex; mode=display">\text{val}</script>. <script type="math/tex; mode=display">\text{count_ge}</script> is initialized to 1 for each node and <script type="math/tex; mode=display">\text{left}</script>, <script type="math/tex; mode=display">\text{right}</script> pointers are set to <script type="math/tex; mode=display">\text{NULL}</script>.</p>
+<p>We define the <script type="math/tex; mode=display">\text{insert}</script> routine that recursively adds the given <script type="math/tex; mode=display">\text{val}</script> as an appropriate leaf node based on comparisons with the <script type="math/tex; mode=display">Node.val</script>. Each time, the given <script type="math/tex; mode=display">val</script> is smaller than <script type="math/tex; mode=display">Node.val</script>, we increment the <script type="math/tex; mode=display">\text{count_ge}</script> and move the <script type="math/tex; mode=display">val</script> to the right subtree. While, if the <script type="math/tex; mode=display">val</script> is equal to the current <script type="math/tex; mode=display">Node</script>, we simply increment the <script type="math/tex; mode=display">\text{count_ge}</script> and exit. While, we move to the left subtree in case <script type="math/tex; mode=display">(\text{val}<\text{Node.val})</script>.</p>
+<p>We also require the <script type="math/tex; mode=display">search</script> routine that gives the count of number of elements greater than or equal to the <script type="math/tex; mode=display">\text{target}</script>. In the <script type="math/tex; mode=display">\text{search}</script> routine, if the <script type="math/tex; mode=display">head</script> is NULL, return 0. Otherwise, if <script type="math/tex; mode=display">\text{target}==\text{head.val}</script>, we know the count of values greater than or equal to the <script type="math/tex; mode=display">\text{target}</script>, hence simply return <script type="math/tex; mode=display">\text{head.count_ge}</script>. In case, <script type="math/tex; mode=display">\text{target}<\text{head.val}</script>, the ans is calculated by adding <script type="math/tex; mode=display">\text{Node.count_ge}</script> and recursively calling the <script type="math/tex; mode=display">\text{search}</script> routine with <script type="math/tex; mode=display">\text{head.left}</script>. And if <script type="math/tex; mode=display">\text{target}>\text{head.val}</script>, ans is obtained by recursively calling the <script type="math/tex; mode=display">\text{search}</script> routine with <script type="math/tex; mode=display">\text{head.right}</script>.</p>
+<p>Now, we can get to our main logic:</p>
+<ul>
+<li>Iterate over <script type="math/tex; mode=display">i</script> from <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">(size-1)</script> of <script type="math/tex; mode=display">\text{nums}</script> :<ul>
+<li>Search the existing BST for <script type="math/tex; mode=display">\text{nums[i]} * 2 + 1</script> and add the result to <script type="math/tex; mode=display">\text{count}</script>
+</li>
+<li>Insert <script type="math/tex; mode=display">\text{nums[i]}</script> to the BST, hence updating the <script type="math/tex; mode=display">\text{count_ge}</script> of the previous nodes</li>
+</ul>
+</li>
+</ul>
+<p>The algorithm can be better understood using the example below:
+!?!../Documents/493_reverse_pairs.json:1000,662!?!</p>
+<iframe frameborder="0" height="515" name="5xoZwFd2" src="https://leetcode.com/playground/5xoZwFd2/shared" width="100%"></iframe>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>Time complexity: <script type="math/tex; mode=display">O(n^2)</script>
+<ul>
+<li>The best case complexity for BST is <script type="math/tex; mode=display">O(log(n))</script> for search as well as insertion, wherein, the tree formed is complete binary tree</li>
+<li>Whereas, in case like [1,2,3,4,5,6,7,8,...], insertion as well as search for an element becomes <script type="math/tex; mode=display">O(n)</script> in time, since, the tree is skewed in only one direction, and hence, is no better than the array</li>
+<li>So, in worst case, for searching and insertion over n items, the complexity is <script type="math/tex; mode=display">O(n*n)</script>
+</li>
+</ul>
+</li>
+<li>Space complexity: <script type="math/tex; mode=display">O(n)</script> extra space for storing the BST in <script type="math/tex; mode=display">\text{Node}</script> class.</li>
+</ul>
+<hr/>
+<h4 id="approach-3-bit-accepted">Approach #3 BIT [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>The problem with BST is that the tree can be skewed hence, making it <script type="math/tex; mode=display">O(n^2)</script> in complexity. So, need a data structure that remains balanced. We could either use a Red-black or AVL tree to make a balanced BST, but the implementation would be an overkill for the solution. We can use BIT (Binary Indexed Tree, also called Fenwick Tree) to ensure that the complexity is <script type="math/tex; mode=display">O(nlog(n))</script> with only 12-15 lines of code.</p>
+<p><em>BIT Overview:</em></p>
+<p>Fenwick Tree or BIT provides a way to represent an array of numbers in an array(can be visualized as tree), allowing prefix/suffix sums to be calculated efficiently(<script type="math/tex; mode=display">O(log(n))</script>). BIT allows to update an element in <script type="math/tex; mode=display">O(log(n))</script> time.</p>
+<p>We recommend having a look at BIT from the following links before getting into details:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=CWDQJGaN1gY">https://www.youtube.com/watch?v=CWDQJGaN1gY</a></li>
+<li><a href="https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/">https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/</a></li>
+</ul>
+<p>So, BIT is very useful to accumulate information from front/back and hence, we can use it in the same way we used BST to get the count of elements that are greater than or equal to <script type="math/tex; mode=display">2 * \text{nums[i]} + 1</script> in the existing tree and then adding the current element to the tree.</p>
+<p><strong>Algorithm</strong></p>
+<p>First, lets review the BIT <script type="math/tex; mode=display">\text{query}</script> and <script type="math/tex; mode=display">\text{update}</script> routines of BIT. According to the convention, <script type="math/tex; mode=display">\text{query}</script> routine goes from <script type="math/tex; mode=display">\text{index}</script> to <script type="math/tex; mode=display">0</script>, i.e., <script type="math/tex; mode=display">\text{BIT[i]}</script> gives the sum for the range <script type="math/tex; mode=display">[0,index]</script>, and <script type="math/tex; mode=display">\text{update}</script> updates the values from current <script type="math/tex; mode=display">\text{index}</script> to the end of array. But, since, we require to find the numbers greater than the given index, as and when we update an index, we update all the ancestors of the node in the tree, and for <script type="math/tex; mode=display">\text{search}</script>, we go from the node to the end.   </p>
+<p>The modified <script type="math/tex; mode=display">\text{update}</script> algorithm is:</p>
+<div class="codehilite"><pre><span></span>update(BIT,index, val):
+  while(index&lt;0):
+    BIT[index]+=val
+    index-=(index&amp;(-index))
+</pre></div>
+<p>Herein, we find get the next index using: <script type="math/tex; mode=display">\text{index-=index&(-index)}</script>, which is essentially subtracting the rightmost 1 from the <script type="math/tex; mode=display">\text{index}</script> binary representation. We update the previous indices since, if an element is greater than the index</p>
+<p>And the modified <script type="math/tex; mode=display">\text{query}</script> algorithm is:</p>
+<div class="codehilite"><pre><span></span>query(BIT,index):
+  sum=0
+  while(index&lt;BIT.size):
+    sum+=BIT[index]
+    index+=(index&amp;(-index))
+</pre></div>
+<p>Herein, we find get the next index using: <script type="math/tex; mode=display">\text{index+=index&(-index)}</script>. This gives the suffix sum from <script type="math/tex; mode=display">index</script> to the end.</p>
+<p>So, the main idea is to count the number of elements greater than <script type="math/tex; mode=display">2*\text{nums[i]}</script> in range <script type="math/tex; mode=display">[0,i)</script> as we iterate from <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">\text{size-1}</script>. The steps are as follows:</p>
+<ul>
+<li>Create a copy of <script type="math/tex; mode=display">\text{nums}</script>, say <script type="math/tex; mode=display">\text{nums_copy}</script> ans sort <script type="math/tex; mode=display">\text{nums_copy}</script>. This array is actually used for creating the Binary indexed tree</li>
+<li>Initialize <script type="math/tex; mode=display">\text{count}=0</script> and <script type="math/tex; mode=display">\text{BIT}</script> array of size <script type="math/tex; mode=display">\text{size(nums)} + 1</script> to store the BIT</li>
+<li>Iterate over <script type="math/tex; mode=display">i</script> from <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">\text{size(nums)}-1</script> :<ul>
+<li>Search the index of element not less than <script type="math/tex; mode=display">2*\text{nums[i]}+1</script> in <script type="math/tex; mode=display">\text{nums_copy}</script> array. <script type="math/tex; mode=display">\text{query}</script> the obtained index+1 in the <script type="math/tex; mode=display">\text{BIT}</script>, and add the result to <script type="math/tex; mode=display">\text{count}</script>
+</li>
+<li>Search for the index of element not less than <script type="math/tex; mode=display">nums[i]</script> in <script type="math/tex; mode=display">\text{nums_copy}</script>. We need to <script type="math/tex; mode=display">\text{update}</script> the BIT for this index by 1. This essentially means that 1 is added to this index(or number of elements greater than this index is incremented). The effect of adding <script type="math/tex; mode=display">1</script> to the index is passed to the ancestors as shown in <script type="math/tex; mode=display">\text{update}</script> algorithm</li>
+</ul>
+</li>
+</ul>
+<iframe frameborder="0" height="515" name="ckjEGCCm" src="https://leetcode.com/playground/ckjEGCCm/shared" width="100%"></iframe>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>Time complexity: <script type="math/tex; mode=display">O(nlog(n))</script>
+<ul>
+<li>In <script type="math/tex; mode=display">\text{query}</script> and <script type="math/tex; mode=display">\text{update}</script> operations, we see that the loop iterates at most the number of bits in <script type="math/tex; mode=display">\text{index}</script> which can be at most <script type="math/tex; mode=display">n</script>. Hence, the complexity of both the operations is <script type="math/tex; mode=display">O(log(n))</script>(Number of bits in <script type="math/tex; mode=display">n</script> is <script type="math/tex; mode=display">log(n)</script>)</li>
+<li>The in-built operation <script type="math/tex; mode=display">\text{lower_bound}</script> is binary search hence <script type="math/tex; mode=display">O(log(n))</script>
+</li>
+<li>We perform the operations for <script type="math/tex; mode=display">n</script> elements, hence the total complexity is <script type="math/tex; mode=display">O(nlog(n))</script>
+</li>
+</ul>
+</li>
+<li>Space complexity: <script type="math/tex; mode=display">O(n)</script>. Additional space for <script type="math/tex; mode=display">\text{BITS}</script> array</li>
+</ul>
+<hr/>
+<h4 id="approach-4-modified-merge-sort-accepted">Approach #4 Modified Merge Sort [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>In BIT and BST, we iterate over the array, dividing the array into 3 sections: already visited and hence added to the tree, current node and section to be visited. Another approach could be divide the problem into smaller subproblems, solving them and combining these problems to get the final result - Divide and conquer. We see that the problem has a great resemblance to the merge sort routine. The question is to find the inversions such that <script type="math/tex; mode=display">\text{nums[i]}>2 * \text{nums[j]}</script> and <script type="math/tex; mode=display">i<j</script>. So, we can easily modify the merge sort to count the inversions as required.</p>
+<p><em>Mergesort</em></p>
+<p>Mergesort is a divide-and-conquer based sorting technique that operates in <script type="math/tex; mode=display">O(nlog(n))</script> time. The basic idea to divide the array into several sub-arrays until each sub-array is single element long and merging these sublists recursively that results in the final sorted array.</p>
+<p><strong>Algorithm</strong></p>
+<p>We define <script type="math/tex; mode=display">\text{mergesort_and_count}</script> routine that takes parameters an array say <script type="math/tex; mode=display">A</script> and <script type="math/tex; mode=display">\text{start}</script> and <script type="math/tex; mode=display">\text{end}</script> indices:</p>
+<ul>
+<li>If <script type="math/tex; mode=display">\text{start}</script>&gt;=<script type="math/tex; mode=display">\text{end}</script> this implies that elements can no longer be broken further and hence we return 0</li>
+<li>Otherwise, set <script type="math/tex; mode=display">\text{mid}=(\text{start} + \text{end})/2</script>
+</li>
+<li>Store <script type="math/tex; mode=display">count</script> by recursively calling <script type="math/tex; mode=display">\text{mergesort_and_count}</script> on range <script type="math/tex; mode=display">\text{[start,mid]}</script> and <script type="math/tex; mode=display">\text{[mid+1,end]}</script> and adding the results. This is the divide step on our routine, breaking it into the 2 ranges, and finding the results for each range separately</li>
+<li>Now, we that we have separately calculated the results for ranges <script type="math/tex; mode=display">\text{[start,mid]}</script> and <script type="math/tex; mode=display">\text{[mid+1,end]}</script>, but we still have to count the elements in <script type="math/tex; mode=display">\text{[start,mid]}</script> that are greater than 2 * elements in <script type="math/tex; mode=display">\text{[mid+1,end]}</script>. Count all such elements and add the result to <script type="math/tex; mode=display">\text{count}</script>
+</li>
+<li>Finally, <script type="math/tex; mode=display">\text{merge}</script> the array from <script type="math/tex; mode=display">\text{start}</script> to <script type="math/tex; mode=display">\text{end}</script>
+<ul>
+<li>Make 2 array : <script type="math/tex; mode=display">L</script> from elements in range <script type="math/tex; mode=display">\text{[start,mid]}</script> and <script type="math/tex; mode=display">R</script> from elements in range <script type="math/tex; mode=display">\text{R[mid+1,end]}</script>
+</li>
+<li>Keep pointers <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script> to <script type="math/tex; mode=display">L</script> and <script type="math/tex; mode=display">R</script> respectively both initialized to start to the arrays</li>
+<li>Iterate over <script type="math/tex; mode=display">k</script> from <script type="math/tex; mode=display">\text{start}</script> to <script type="math/tex; mode=display">\text{end}</script> and set <script type="math/tex; mode=display">\text{A[k]}</script> to the smaller of <script type="math/tex; mode=display">\text{L[i]}</script> or <script type="math/tex; mode=display">\text{R[j]}</script> and increment the respective index</li>
+</ul>
+</li>
+</ul>
+<iframe frameborder="0" height="515" name="PVpymxwQ" src="https://leetcode.com/playground/PVpymxwQ/shared" width="100%"></iframe>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>Time complexity: <script type="math/tex; mode=display">O(nlog(n))</script>
+<ul>
+<li>In each step we divide the array into 2 sub-arrays, and hence, the maximum times we need to divide is equal to <script type="math/tex; mode=display">O(log(n))</script>
+</li>
+<li>Additional <script type="math/tex; mode=display">O(n)</script> work needs to be done to count the inversions and to merge the 2 sub-arrays after sorting. Hence total time complexity is <script type="math/tex; mode=display">O(n * log(n))</script>
+</li>
+</ul>
+</li>
+<li>Space complexity: <script type="math/tex; mode=display">O(n)</script>. Additional space for storing <script type="math/tex; mode=display">L</script> and <script type="math/tex; mode=display">R</script> arrays</li>
+</ul>
+<hr/>
+<p>Analysis written by <a href="https://leetcode.com/abhinavbansal0">@abhinavbansal0</a>.</p>
+<p>Shoutout to <a href="https://discuss.leetcode.com/user/fun4leetcode">@FUN4LEETCODE</a> for the brilliant post!</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">8946</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">42750</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              17%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>
