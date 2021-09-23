@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="During the NBA playoffs, we always arrange the rather strong team to play with the rather weak team, like make the rank 1 team play with the rank nth team, which is a good strategy to make the contest more interesting. Now, you&#39;re given n teams, you need to output their final contest matches in the form of a string.
+
+The n teams are given in the form of positive integers from 1 to n, which represents their initial rank. (Rank 1 is the strongest team and Rank n is the weakest team.) We&#39;ll use parentheses(&#39;(&#39;, &#39;)&#39;) and commas(&#39;,&#39;) to represent the contest team pairing - parentheses(&#39;(&#39; , &#39;)&#39;) for pairing and commas(&#39;,&#39;) for partition. During the pairing process in each round, you always need to follow the strategy of making the rather strong one pair with the rather weak one.
+Example 1:
+Input: 2
+Output: (1,2)
+Explanation: 
+Initially, we have the team 1 and the team 2, placed like: 1,2.
+Then we pair the team (1,2) together with &#39;(&#39;, &#39;)&#39; and &#39;,&#39;, which is the final answer.
+
+
+Example 2:
+Input: 4
+Output: ((1,4),(2,3))
+Explanation: 
+In the first round, we pair the team 1 and 4, the team 2 and 3 together, as we need to make the strong team and weak team together.
+And we got (1,4),(2,3).
+In the second round, the winners of (1,4) and (2,3) need to play again to generate the final winner, so you need to add the paratheses outside them.
+And we got the final answer ((1,4),(2,3)).
+
+
+Example 3:
+Input: 8
+Output: (((1,8),(4,5)),((2,7),(3,6)))
+Explanation: 
+First round: (1,8),(2,7),(3,6),(4,5)
+Second round: ((1,8),(4,5)),((2,7),(3,6))
+Third round: (((1,8),(4,5)),((2,7),(3,6)))
+Since the third round will generate the final winner, you need to output the answer (((1,8),(4,5)),((2,7),(3,6))).
+
+
+Note:
+
+The n is in range [2, 212].
+We ensure that the input n can be converted into the form 2k, where k is a positive integer.">
+  <meta name="keywords"
+        content="Output Contest Matches, LC 544, leetcode 544, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>544. Output Contest Matches</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+During the NBA playoffs, we always arrange the rather strong team to play with the rather weak team, like make the rank 1 team play with the rank n<sub>th</sub> team, which is a good strategy to make the contest more interesting. Now, you're given <b>n</b> teams, you need to output their <b>final</b> contest matches in the form of a string.
+</p>
+
+<p>The <b>n</b> teams are given in the form of positive integers from 1 to n, which represents their initial rank. (Rank 1 is the strongest team and Rank n is the weakest team.) We'll use parentheses('(', ')') and commas(',') to represent the contest team pairing - parentheses('(' , ')') for pairing and commas(',') for partition. During the pairing process in each round, you always need to follow the strategy of making the rather strong one pair with the rather weak one.</p> 
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 2
+<b>Output:</b> (1,2)
+<b>Explanation:</b> 
+Initially, we have the team 1 and the team 2, placed like: 1,2.
+Then we pair the team (1,2) together with '(', ')' and ',', which is the final answer.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> 4
+<b>Output:</b> ((1,4),(2,3))
+<b>Explanation:</b> 
+In the first round, we pair the team 1 and 4, the team 2 and 3 together, as we need to make the strong team and weak team together.
+And we got (1,4),(2,3).
+In the second round, the winners of (1,4) and (2,3) need to play again to generate the final winner, so you need to add the paratheses outside them.
+And we got the final answer ((1,4),(2,3)).
+</pre>
+</p>
+
+<p><b>Example 3:</b><br />
+<pre>
+<b>Input:</b> 8
+<b>Output:</b> (((1,8),(4,5)),((2,7),(3,6)))
+<b>Explanation:</b> 
+First round: (1,8),(2,7),(3,6),(4,5)
+Second round: ((1,8),(4,5)),((2,7),(3,6))
+Third round: (((1,8),(4,5)),((2,7),(3,6)))
+Since the third round will generate the final winner, you need to output the answer (((1,8),(4,5)),((2,7),(3,6))).
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The <b>n</b> is in range [2, 2<sup>12</sup>].</li>
+<li>We ensure that the input <b>n</b> can be converted into the form 2<sup>k</sup>, where k is a positive integer.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-simulation-accepted">Approach #1: Simulation [Accepted]</a></li>
+<li><a href="#approach-2-linear-write-accepted">Approach #2: Linear Write [Accepted]</a></li>
+</ul>
+</div>
+<hr/>
+<h4 id="approach-1-simulation-accepted">Approach #1: Simulation [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Let <code>team[i]</code> be the correct team string of the <code>i</code>-th strongest team for that round.  We will maintain these correctly as the rounds progress.</p>
+<p><strong>Algorithm</strong></p>
+<p>In each round, the <code>i</code>-th team becomes <code>"(" + team[i] + "," + team[n-1-i] + ")"</code>, and then there are half as many teams.</p>
+<iframe frameborder="0" height="276" name="q4aFLoLB" src="https://leetcode.com/playground/q4aFLoLB/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N \log N)</script>.  Each of <script type="math/tex; mode=display">O(\log N)</script> rounds performs <script type="math/tex; mode=display">O(N)</script> work.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N \log N)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-linear-write-accepted">Approach #2: Linear Write [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Let's try to solve the problem in linear time.  We can treat this problem as two separate problems: outputting the correct sequence of parentheses and commas, and outputting the correct team number.  With a little effort, one can be convinced that a linear time solution probably exists.</p>
+<p><strong>Algorithm</strong></p>
+<p>Let's focus on the parentheses first.  We can use recursion to find the answer.  For example, when <code>N = 8</code>, let <code>R = log_2(N) = 3</code> be the number of rounds.  The parentheses and commas look like this:</p>
+<div class="codehilite"><pre><span></span><span class="p">(((</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)),((</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)))</span>
+</pre></div>
+<p>But this is just recursively</p>
+<div class="codehilite"><pre><span></span><span class="s2">"("</span> <span class="o">+</span> <span class="p">(</span><span class="n">sequence</span> <span class="k">for</span> <span class="n">R</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">","</span> <span class="o">+</span> <span class="p">(</span><span class="n">sequence</span> <span class="k">for</span> <span class="n">R</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">")"</span>
+<span class="o">=</span> <span class="s2">"("</span> <span class="o">+</span> <span class="s2">"((x,x),(x,x))"</span> <span class="o">+</span> <span class="s2">","</span> <span class="o">+</span> <span class="s2">"((x,x),(x,x))"</span> <span class="o">+</span> <span class="s2">")"</span>
+</pre></div>
+<p>Now let's look at the team numbers.  For <code>N = 16</code>, the team numbers are:</p>
+<p><code>team = [1, 16, 8, 9, 4, 13, 5, 12, 2, 15, 7, 10, 3, 14, 6, 11]</code></p>
+<p>One thing we might notice is that adjacent numbers sum to <code>17</code>.  More specifically, indices that are 0 and 1 (mod 2) sum to <code>17</code>.  Also, indices 0 and 2 (mod 4) sum to <code>9</code>, indices 0 and 4 (mod 8) sum to <code>5</code>, and so on.</p>
+<p>The pattern in general is: indices <code>0</code> and <code>2**r</code> (mod <code>2**(r+1)</code>) sum to <code>N * 2**-r + 1</code>.</p>
+<p>If we want to find the next <code>team[i]</code>, then the lowest bit of <code>i</code> will help determine it's lower neighbor.  For example, <code>team[12] = team[0b1100]</code> has lower bit <code>w = 4 = 0b100</code>, so <code>12</code> has lower neighbor <code>12 - w = 8</code>, and also those team numbers sum to <code>N / w + 1</code>.</p>
+<iframe frameborder="0" height="497" name="rHTkiGV4" src="https://leetcode.com/playground/rHTkiGV4/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N)</script>.  We print each of <script type="math/tex; mode=display">O(N)</script> characters in order.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>.  </p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">5710</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">8045</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              15%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

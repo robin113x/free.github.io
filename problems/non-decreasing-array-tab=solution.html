@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array with n integers, your task is to check if it could become non-decreasing by modifying at most 1 element.
+
+
+We define an array is non-decreasing if array[i] &lt;= array[i + 1] holds for every i (1 &lt;= i &lt; n).
+
+Example 1:
+Input: [4,2,3]
+Output: True
+Explanation: You could modify the first 4 to 1 to get a non-decreasing array.
+
+
+Example 2:
+Input: [4,2,1]
+Output: False
+Explanation: You can&#39;t get a non-decreasing array by modify at most one element.
+
+
+Note:
+The n belongs to [1, 10,000].">
+  <meta name="keywords"
+        content="Non-decreasing Array, LC 665, leetcode 665, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>665. Non-decreasing Array</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given an array with <code>n</code> integers, your task is to check if it could become non-decreasing by modifying <b>at most</b> <code>1</code> element.
+</p>
+
+<p>
+We define an array is non-decreasing if <code>array[i] <= array[i + 1]</code> holds for every <code>i</code> (1 <= i < n).
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> [4,2,3]
+<b>Output:</b> True
+<b>Explanation:</b> You could modify the first <code>4</code> to <code>1</code> to get a non-decreasing array.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> [4,2,1]
+<b>Output:</b> False
+<b>Explanation:</b> You can't get a non-decreasing array by modify at most one element.
+</pre>
+</p>
+
+<p><b>Note:</b>
+The <code>n</code> belongs to [1, 10,000].
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1: Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-reduce-to-smaller-problem-accepted">Approach #2: Reduce to Smaller Problem [Accepted]</a></li>
+<li><a href="#approach-3-locate-and-analyze-problem-index-accepted">Approach #3: Locate and Analyze Problem Index [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1: Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Intuition</strong></p>
+<p>For the given array <script type="math/tex; mode=display">\text{A}</script>, if we are changing at most one element <script type="math/tex; mode=display">\text{A[i]}</script>, we should change <script type="math/tex; mode=display">\text{A[i]}</script> to <script type="math/tex; mode=display">\text{A[i-1]}</script>, as it would be guaranteed that <script type="math/tex; mode=display">\text{A[i-1]} &leq; \text{A[i]}</script>, and <script type="math/tex; mode=display">\text{A[i]}</script> would be the smallest possible to try and achieve <script type="math/tex; mode=display">\text{A[i]} &leq; \text{A[i+1]}</script>.</p>
+<p><strong>Algorithm</strong></p>
+<p>For each possible change <script type="math/tex; mode=display">\text{A[i]}</script>, check if the sequence is monotone increasing.  We'll modify <script type="math/tex; mode=display">\text{new}</script>, a copy of the array <script type="math/tex; mode=display">\text{A}</script>.</p>
+<iframe frameborder="0" height="343" name="FK7JPfxR" src="https://leetcode.com/playground/FK7JPfxR/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: Let <script type="math/tex; mode=display">N</script> be the length of the given array.  For each element <script type="math/tex; mode=display">\text{A[i]}</script>, we check if some sequence is monotone increasing, which takes <script type="math/tex; mode=display">O(N)</script> steps.  In total, this is a complexity of <script type="math/tex; mode=display">O(N^2)</script>.</p>
+</li>
+<li>
+<p>Space Complexity: To hold our array <script type="math/tex; mode=display">\text{new}</script>, we need <script type="math/tex; mode=display">O(N)</script> space.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-reduce-to-smaller-problem-accepted">Approach #2: Reduce to Smaller Problem [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If <script type="math/tex; mode=display">\text{A[0]} &leq; \text{A[1]} &leq; \text{A[2]}</script>, then we may remove <script type="math/tex; mode=display">\text{A[0]}</script> without changing the answer.  Similarly, if <script type="math/tex; mode=display">\text{A}\big[\text{len(A)-3}\big] &leq; \text{A}\big[\text{len(A)-2}\big] &leq; \text{A}\big[\text{len(A)-1}\big]</script>, we may remove <script type="math/tex; mode=display">\text{A[len(A)-1]}</script> without changing the answer.</p>
+<p>If the problem is solvable, then after these removals, very few numbers will remain.</p>
+<p><strong>Algorithm</strong></p>
+<p>Consider the interval <script type="math/tex; mode=display">\text{[i, j]}</script> corresponding to the subarray <script type="math/tex; mode=display">\big[\text{A[i], A[i+1], ..., A[j]}\big]</script>.  When <script type="math/tex; mode=display">\text{A[i]} &leq; \text{A[i+1]} &leq; \text{A[i+2]}</script>, we know we do not need to modify <script type="math/tex; mode=display">\text{A[i]}</script>, and we can consider solving the problem on the interval <script type="math/tex; mode=display">\text{[i+1, j]}</script> instead.  We use a similar approach for <script type="math/tex; mode=display">j</script>.</p>
+<p>Afterwards, with the length of the interval under consideration being <script type="math/tex; mode=display">\text{j - i + 1}</script>, if the interval has size 2 or less, then we did not find any problem.  </p>
+<p>If our interval under consideration has 5 or more elements, then there are two disjoint problems that cannot be fixed with one replacement.  </p>
+<p>Otherwise, our problem size is now at most 4 elements, which we can easily brute force.</p>
+<iframe frameborder="0" height="343" name="4ypTHUiy" src="https://leetcode.com/playground/4ypTHUiy/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: Let <script type="math/tex; mode=display">N</script> be the length of the given array.  Our pointers <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script> move at most <script type="math/tex; mode=display">O(N)</script> times.  Our brute force is constant time as there are at most 4 elements in the array.  Hence, the complexity is <script type="math/tex; mode=display">O(N)</script>.</p>
+</li>
+<li>
+<p>Space Complexity:  The extra array <script type="math/tex; mode=display">\text{A[i: j+1]}</script> only has at most 4 elements, so it is constant space, and so is the space used by our auxillary brute force algorithm.  In total, the space complexity is <script type="math/tex; mode=display">O(1)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-locate-and-analyze-problem-index-accepted">Approach #3: Locate and Analyze Problem Index [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Consider all indices <script type="math/tex; mode=display">p</script> for which <script type="math/tex; mode=display">\text{A[p]} > \text{A[p+1]}</script>.  If there are zero, the answer is <code>True</code>.  If there are 2 or more, the answer is <code>False</code>, as more than one element of the array must be changed for <script type="math/tex; mode=display">\text{A}</script> to be monotone increasing.</p>
+<p>At the problem index <script type="math/tex; mode=display">p</script>, we only care about the surrounding elements.  Thus, immediately the problem is reduced to a very small size that can be analyzed by casework.</p>
+<p><strong>Algorithm</strong></p>
+<p>As before, let <script type="math/tex; mode=display">p</script> be the unique problem index for which <script type="math/tex; mode=display">\text{A[p]} > \text{A[p+1]}</script>.  If this is not unique or doesn't exist, the answer is <code>False</code> or <code>True</code> respectively.  We analyze the following cases:</p>
+<ul>
+<li>If <script type="math/tex; mode=display">\text{p = 0}</script>, then we could make the array good by setting <script type="math/tex; mode=display">\text{A[p] = A[p+1]}</script>.</li>
+<li>If <script type="math/tex; mode=display">\text{p = len(A) - 2}</script>, then we could make the array good by setting <script type="math/tex; mode=display">\text{A[p+1] = A[p]}</script>.</li>
+<li>Otherwise, <script type="math/tex; mode=display">\text{A[p-1], A[p], A[p+1], A[p+2]}</script> all exist, and:<ul>
+<li>We could change <script type="math/tex; mode=display">\text{A[p]}</script> to be between <script type="math/tex; mode=display">\text{A[p-1]}</script> and <script type="math/tex; mode=display">\text{A[p+1]}</script> if possible, or;</li>
+<li>We could change <script type="math/tex; mode=display">\text{A[p+1]}</script> to be between <script type="math/tex; mode=display">\text{A[p]}</script> and <script type="math/tex; mode=display">\text{A[p+2]}</script> if possible.</li>
+</ul>
+</li>
+</ul>
+<iframe frameborder="0" height="241" name="NGHYqESJ" src="https://leetcode.com/playground/NGHYqESJ/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: Let <script type="math/tex; mode=display">N</script> be the length of the given array.  We loop through the array once, so our time complexity is <script type="math/tex; mode=display">O(N)</script>.</p>
+</li>
+<li>
+<p>Space Complexity:  We only use <script type="math/tex; mode=display">p</script> and <script type="math/tex; mode=display">i</script>, and the answer itself as the additional space.  The additional space complexity is <script type="math/tex; mode=display">O(1)</script>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">14872</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">71318</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              33%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

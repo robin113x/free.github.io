@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a chemical formula (given as a string), return the count of each atom.
+
+An atomic element always starts with an uppercase character, then zero or more lowercase letters, representing the name.
+
+1 or more digits representing the count of that element may follow if the count is greater than 1.  If the count is 1, no digits will follow.  For example, H2O and H2O2 are possible, but H1O2 is impossible.
+
+Two formulas concatenated together produce another formula.  For example, H2O2He3Mg4 is also a formula.  
+
+A formula placed in parentheses, and a count (optionally added) is also a formula.  For example, (H2O2) and (H2O2)3 are formulas.
+
+Given a formula, output the count of all elements as a string in the following form: the first name (in sorted order), followed by its count (if that count is more than 1), followed by the second name (in sorted order), followed by its count (if that count is more than 1), and so on.
+Example 1:
+Input: 
+formula = &#34;H2O&#34;
+Output: &#34;H2O&#34;
+Explanation: 
+The count of elements are {&#39;H&#39;: 2, &#39;O&#39;: 1}.
+
+
+Example 2:
+Input: 
+formula = &#34;Mg(OH)2&#34;
+Output: &#34;H2MgO2&#34;
+Explanation: 
+The count of elements are {&#39;H&#39;: 2, &#39;Mg&#39;: 1, &#39;O&#39;: 2}.
+
+
+Example 3:
+Input: 
+formula = &#34;K4(ON(SO3)2)2&#34;
+Output: &#34;K4N2O14S4&#34;
+Explanation: 
+The count of elements are {&#39;K&#39;: 4, &#39;N&#39;: 2, &#39;O&#39;: 14, &#39;S&#39;: 4}.
+
+
+Note:
+All atom names consist of lowercase letters, except for the first character which is uppercase.
+The length of formula will be in the range [1, 1000].
+formula will only consist of letters, digits, and round parentheses, and is a valid formula as defined in the problem.">
+  <meta name="keywords"
+        content="Number of Atoms, LC 726, leetcode 726, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>726. Number of Atoms</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a chemical <code>formula</code> (given as a string), return the count of each atom.
+</p><p>
+An atomic element always starts with an uppercase character, then zero or more lowercase letters, representing the name.
+</p><p>
+1 or more digits representing the count of that element may follow if the count is greater than 1.  If the count is 1, no digits will follow.  For example, H2O and H2O2 are possible, but H1O2 is impossible.
+</p><p>
+Two formulas concatenated together produce another formula.  For example, H2O2He3Mg4 is also a formula.  
+</p><p>
+A formula placed in parentheses, and a count (optionally added) is also a formula.  For example, (H2O2) and (H2O2)3 are formulas.
+</p><p>
+Given a formula, output the count of all elements as a string in the following form: the first name (in sorted order), followed by its count (if that count is more than 1), followed by the second name (in sorted order), followed by its count (if that count is more than 1), and so on.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 
+formula = "H2O"
+<b>Output:</b> "H2O"
+<b>Explanation:</b> 
+The count of elements are {'H': 2, 'O': 1}.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> 
+formula = "Mg(OH)2"
+<b>Output:</b> "H2MgO2"
+<b>Explanation:</b> 
+The count of elements are {'H': 2, 'Mg': 1, 'O': 2}.
+</pre>
+</p>
+
+<p><b>Example 3:</b><br />
+<pre>
+<b>Input:</b> 
+formula = "K4(ON(SO3)2)2"
+<b>Output:</b> "K4N2O14S4"
+<b>Explanation:</b> 
+The count of elements are {'K': 4, 'N': 2, 'O': 14, 'S': 4}.
+</pre>
+</p>
+
+<p><b>Note:</b>
+<li>All atom names consist of lowercase letters, except for the first character which is uppercase.</li>
+<li>The length of <code>formula</code> will be in the range <code>[1, 1000]</code>.</li>
+<li><code>formula</code> will only consist of letters, digits, and round parentheses, and is a valid formula as defined in the problem.</li>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-recursion-accepted">Approach #1: Recursion [Accepted]</a></li>
+<li><a href="#approach-2-stack-accepted">Approach #2: Stack [Accepted]</a></li>
+<li><a href="#approach-3-regular-expressions-accepted">Approach #3: Regular Expressions [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-recursion-accepted">Approach #1: Recursion [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Write a function <code>parse</code> that parses the formula from index <code>i</code>, returning a map <code>count</code> from names to multiplicities (the number of times that name is recorded).</p>
+<p>We will put <code>i</code> in global state: our <code>parse</code> function increments <code>i</code> throughout any future calls to <code>parse</code>.</p>
+<ul>
+<li>
+<p>When we see a <code>'('</code>, we will parse whatever is inside the brackets (up to the closing ending bracket) and add it to our count.</p>
+</li>
+<li>
+<p>Otherwise, we should see an uppercase character: we will parse the rest of the letters to get the name, and add that (plus the multiplicity if there is one.)</p>
+</li>
+<li>
+<p>At the end, if there is a final multiplicity (representing the multiplicity of a bracketed sequence), we'll multiply our answer by this.</p>
+</li>
+</ul>
+<iframe frameborder="0" height="500" name="pdZAZ5dG" src="https://leetcode.com/playground/pdZAZ5dG/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N^2)</script>, where <script type="math/tex; mode=display">N</script> is the length of the formula.  It is <script type="math/tex; mode=display">O(N)</script> to parse through the formula, but each of <script type="math/tex; mode=display">O(N)</script> multiplicities after a bracket may increment the count of each name in the formula (inside those brackets), leading to an <script type="math/tex; mode=display">O(N^2)</script> complexity.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>.  We aren't recording more intermediate information than what is contained in the formula.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-stack-accepted">Approach #2: Stack [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Instead of recursion, we can simulate the call stack by using a stack of <code>count</code>s directly.</p>
+<iframe frameborder="0" height="500" name="KLEWBfKw" src="https://leetcode.com/playground/KLEWBfKw/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time Complexity <script type="math/tex; mode=display">O(N^2)</script>, and Space Complexity <script type="math/tex; mode=display">O(N)</script>.  The analysis is the same as <em>Approach #1</em>.</li>
+</ul>
+<hr/>
+<h4 id="approach-3-regular-expressions-accepted">Approach #3: Regular Expressions [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Whenever parsing is involved, we can use <em>regular expressions</em>, a language for defining patterns in text.</p>
+<p>Our regular expression will be <code>"([A-Z][a-z]*)(\d*)|(\()|(\))(\d*)"</code>.  Breaking this down by <em>capture group</em>, this is:</p>
+<ul>
+<li><code>([A-Z][a-z]*)</code> Match an uppercase character followed by any number of lowercase characters, then (<code>(\d*)</code>) match any number of digits.</li>
+<li>OR, <code>(\()</code> match a left bracket or <code>(\))</code> right bracket, then <code>(\d*)</code> match any number of digits.</li>
+</ul>
+<p>Now we can proceed as in <em>Approach #2</em>.</p>
+<ul>
+<li>
+<p>If we parsed a name and multiplicity <code>([A-Z][a-z]*)(\d*)</code>, we will add it to our current count.</p>
+</li>
+<li>
+<p>If we parsed a left bracket, we will append a new <code>count</code> to our stack, representing the nested depth of parentheses.</p>
+</li>
+<li>
+<p>If we parsed a right bracket (and possibly another multiplicity), we will multiply our deepest level <code>count</code>, <code>top = stack.pop()</code>, and add those entries to our current count.</p>
+</li>
+</ul>
+<iframe frameborder="0" height="500" name="rnaR7xpb" src="https://leetcode.com/playground/rnaR7xpb/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time Complexity <script type="math/tex; mode=display">O(N^2)</script>, and Space Complexity <script type="math/tex; mode=display">O(N)</script>.  The analysis is the same as <em>Approach #1</em>, as this regular expression did not look backwards when parsing.</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.  Approaches #1 and #2 inspired by <a href="https://leetcode.com/zestypanda/">@zestypanda</a>.  Java solution for #3 by <a href="https://discuss.leetcode.com/user/jianchao-li-fighter">@jianchao.li.fighter</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">2677</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">5962</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              29%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

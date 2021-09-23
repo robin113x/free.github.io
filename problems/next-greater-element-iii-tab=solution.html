@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a positive 32-bit integer n, you need to find the smallest 32-bit integer which has exactly the same digits existing in the integer n and is greater in value than n. If no such positive 32-bit integer exists, you need to return -1.
+Example 1:
+Input: 12
+Output: 21
+
+
+Example 2:
+Input: 21
+Output: -1">
+  <meta name="keywords"
+        content="Next Greater Element III, LC 556, leetcode 556, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>556. Next Greater Element III</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given a positive <b>32-bit</b> integer <b>n</b>, you need to find the smallest <b>32-bit</b> integer which has exactly the same digits existing in the integer <b>n</b> and is greater in value than n. If no such positive <b>32-bit</b> integer exists, you need to return -1.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 12
+<b>Output:</b> 21
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> 21
+<b>Output:</b> -1
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-linear-solution-accepted">Approach #2 Linear Solution [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>To solve the given problem, we treat the given number as a string, <script type="math/tex; mode=display">s</script>. In this approach, we find out every possible permutation of list formed by the elements of the string <script type="math/tex; mode=display">s</script> formed. We form a list of strings, <script type="math/tex; mode=display">list</script>, containing all the permutations possible. Then, we sort the given <script type="math/tex; mode=display">list</script> to find out the permutation which is just larger than the given one. But this one will be a very naive approach, since it requires us to find out every possible permutation which will take really long time.</p>
+<iframe frameborder="0" height="515" name="UBNhHzjo" src="https://leetcode.com/playground/UBNhHzjo/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n!)</script>. A total of <script type="math/tex; mode=display">n!</script> permutations are possible for a number consisting of <script type="math/tex; mode=display">n</script> digits.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n!)</script>. A total of <script type="math/tex; mode=display">n!</script> permutations are possible for a number consisting of <script type="math/tex; mode=display">n</script> digits, with each permutation consisting of <script type="math/tex; mode=display">n</script> digits.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-linear-solution-accepted">Approach #2 Linear Solution [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this case as well, we consider the given number <script type="math/tex; mode=display">n</script> as a character array <script type="math/tex; mode=display">a</script>.
+First, we observe that for any given sequence that is in descending order, no next larger permutation is possible.
+ For example, no next permutation is possible for the following array:
+ <code>[9, 5, 4, 3, 1]</code></p>
+<p>We need to find the first pair of two successive numbers <script type="math/tex; mode=display">a[i]</script> and <script type="math/tex; mode=display">a[i-1]</script>, from the right, which satisfy
+ <script type="math/tex; mode=display">a[i] > a[i-1]</script>. Now, no rearrangements to the right of <script type="math/tex; mode=display">a[i-1]</script> can create a larger permutation since that subarray consists of numbers in descending order.
+ Thus, we need to rearrange the numbers to the right of <script type="math/tex; mode=display">a[i-1]</script> including itself.</p>
+<p>Now, what kind of rearrangement will produce the next larger number? We want to create the permutation just larger than the current one. Therefore, we need to replace the number <script type="math/tex; mode=display">a[i-1]</script> with the number which is just larger than itself among the numbers lying to its right section, say <script type="math/tex; mode=display">a[j]</script>.</p>
+<p><img alt="Next Greater Element " src="https://leetcode.com/media/original_images/31_nums_graph.png"/></p>
+<p>We swap the numbers <script type="math/tex; mode=display">a[i-1]</script> and <script type="math/tex; mode=display">a[j]</script>. We now have the correct number at index <script type="math/tex; mode=display">i-1</script>. But still the current permutation isn't the permutation
+    that we are looking for. We need the smallest permutation that can be formed by using the numbers only to the right of <script type="math/tex; mode=display">a[i-1]</script>. Therefore, we need to place those
+     numbers in ascending order to get their smallest permutation.</p>
+<p>But, recall that while scanning the numbers from the right, we simply kept decrementing the index
+      until we found the pair <script type="math/tex; mode=display">a[i]</script> and <script type="math/tex; mode=display">a[i-1]</script> where,  <script type="math/tex; mode=display">a[i] > a[i-1]</script>. Thus, all numbers to the right of <script type="math/tex; mode=display">a[i-1]</script> were already sorted in descending order.
+      Furthermore, swapping <script type="math/tex; mode=display">a[i-1]</script> and <script type="math/tex; mode=display">a[j]</script> didn't change that order.
+      Therefore, we simply need to reverse the numbers following <script type="math/tex; mode=display">a[i-1]</script> to get the next smallest lexicographic permutation.</p>
+<p>The following animation will make things clearer:</p>
+<!--![Next Permutation](https://leetcode.com/media/original_images/31_Next_Permutation.gif)-->
+<p>!?!../Documents/556_Next_Greater_Element_III.json!?!</p>
+<iframe frameborder="0" height="515" name="uSrWDrPW" src="https://leetcode.com/playground/uSrWDrPW/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. In worst case, only two scans of the whole array are needed. Here, <script type="math/tex; mode=display">n</script> refers to the number of digits in the given number.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. An array <script type="math/tex; mode=display">a</script> of size <script type="math/tex; mode=display">n</script> is used, where <script type="math/tex; mode=display">n</script> is the number of digits in the given number.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">10434</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">35912</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              22%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/bloomberg.html">Bloomberg</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

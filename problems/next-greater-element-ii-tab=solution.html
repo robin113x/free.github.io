@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a circular array (the next element of the last element is the first element of the array), print the Next Greater Number for every element. The Next Greater Number of a number x is the first greater number to its traversing-order next in the array, which means you could search circularly to find its next greater number. If it doesn&#39;t exist, output -1 for this number.
+
+Example 1:
+Input: [1,2,1]
+Output: [2,-1,2]
+Explanation: The first 1&#39;s next greater number is 2;">
+  <meta name="keywords"
+        content="Next Greater Element II, LC 503, leetcode 503, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>503. Next Greater Element II</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given a circular array (the next element of the last element is the first element of the array), print the Next Greater Number for every element. The Next Greater Number of a number x is the first greater number to its traversing-order next in the array, which means you could search circularly to find its next greater number. If it doesn't exist, output -1 for this number.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> [1,2,1]
+<b>Output:</b> [2,-1,2]
+<b>Explanation:</b> The first 1's next greater number is 2; </br>The number 2 can't find next greater number; </br>The second 1's next greater number needs to search circularly, which is also 2.
+</pre>
+</p>
+
+<p><b>Note:</b>
+The length of given array won't exceed 10000.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-using-double-length-array-time-limit-exceeded">Approach #1 Brute Force (using Double Length Array) [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-force-accepted">Approach #2 Better Brute Force [Accepted]</a></li>
+<li><a href="#approach-3-using-stack-accepted">Approach #3 Using Stack [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-using-double-length-array-time-limit-exceeded">Approach #1 Brute Force (using Double Length Array) [Time Limit Exceeded]</h4>
+<p>In this method, we make use of an array <script type="math/tex; mode=display">doublenums</script> which is formed by concatenating two copies of the given <script type="math/tex; mode=display">nums</script> array one after the other. Now, when we need to find out the next greater element for <script type="math/tex; mode=display">nums[i]</script>, we can simply scan all the elements <script type="math/tex; mode=display">doublenums[j]</script>, such that <script type="math/tex; mode=display">i < j < length(doublenums)</script>. The first element found satisfying the given condition is the required result for <script type="math/tex; mode=display">nums[i]</script>. If no such element is found, we put a <script type="math/tex; mode=display">\text{-1}</script> at the appropriate position in the <script type="math/tex; mode=display">res</script> array.</p>
+<iframe frameborder="0" height="377" name="tRcR8Lx3" src="https://leetcode.com/playground/tRcR8Lx3/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. The complete <script type="math/tex; mode=display">doublenums</script> array(of size <script type="math/tex; mode=display">\text{2n}</script>) is scanned for all the elements of <script type="math/tex; mode=display">nums</script> in the worst case.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">doublenums</script> array of size <script type="math/tex; mode=display">\text{2n}</script> is used. <script type="math/tex; mode=display">res</script> array of size <script type="math/tex; mode=display">\text{n}</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-force-accepted">Approach #2 Better Brute Force [Accepted]</h4>
+<p>Instead of making a double length copy of <script type="math/tex; mode=display">nums</script> array , we can traverse circularly in the <script type="math/tex; mode=display">nums</script> array by making use of the <script type="math/tex; mode=display">\text{%(modulus)}</script> operator. For every element <script type="math/tex; mode=display">nums[i]</script>, we start searching in the <script type="math/tex; mode=display">nums</script> array(of length <script type="math/tex; mode=display">n</script>) from the index <script type="math/tex; mode=display">(i+1)%n</script> and look at the next(cicularly) <script type="math/tex; mode=display">n-1</script> elements. For <script type="math/tex; mode=display">nums[i]</script> we do so by scanning over <script type="math/tex; mode=display">nums[j]</script>, such that
+<script type="math/tex; mode=display">(i+1)%n &leq; j &leq; (i+(n-1))%n</script>, and we look for the first greater element found. If no such element is found, we put a <script type="math/tex; mode=display">\text{-1}</script> at the appropriate position in the <script type="math/tex; mode=display">res</script> array.</p>
+<iframe frameborder="0" height="309" name="LCG759JD" src="https://leetcode.com/playground/LCG759JD/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. The complete <script type="math/tex; mode=display">nums</script> array of size <script type="math/tex; mode=display">n</script> is scanned for all the elements of <script type="math/tex; mode=display">nums</script> in the worst case.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">res</script> array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-stack-accepted">Approach #3 Using Stack [Accepted]</h4>
+<p>This approach makes use of a stack. This stack stores the indices of the appropriate elements from <script type="math/tex; mode=display">nums</script> array.  The top of the stack refers to the index of the Next Greater Element found so far. We store the indices instead of the elements since there could be duplicates in the <script type="math/tex; mode=display">nums</script> array. The description of the method will make the above statement clearer.</p>
+<p>We start traversing the <script type="math/tex; mode=display">nums</script> array from right towards the left. For an element <script type="math/tex; mode=display">nums[i]</script> encountered, we pop all the elements
+<script type="math/tex; mode=display">stack[top]</script> from the stack such that <script type="math/tex; mode=display">nums\big[stack[top]\big] &le; nums[i]</script>. We continue the popping till we encounter a <script type="math/tex; mode=display">stack[top]</script> satisfying <script type="math/tex; mode=display">nums\big[stack[top]\big] > nums[i]</script>. Now, it is obvious that the current <script type="math/tex; mode=display">stack[top]</script> only can act as the
+Next Greater Element for <script type="math/tex; mode=display">nums[i]</script>(right now, considering only the elements lying to the right of <script type="math/tex; mode=display">nums[i]</script>).</p>
+<p>If no element remains on the top of the stack, it means no larger element than <script type="math/tex; mode=display">nums[i]</script> exists to its right. Along with this, we also push the index of the element just encountered(<script type="math/tex; mode=display">nums[i]</script>), i.e. <script type="math/tex; mode=display">i</script> over the top of the stack, so that <script type="math/tex; mode=display">nums[i]</script>(or <script type="math/tex; mode=display">stack[top</script>) now acts as the Next Greater Element for the elements lying to its left.</p>
+<p>We go through two such passes over the complete <script type="math/tex; mode=display">nums</script> array. This is done so as to complete a circular traversal over the <script type="math/tex; mode=display">nums</script> array. The first pass could make some wrong entries in the <script type="math/tex; mode=display">res</script> array since it considers only the elements lying to the right of <script type="math/tex; mode=display">nums[i]</script>, without a circular traversal. But, these entries are corrected in the second pass.  </p>
+<p>Further, to ensure the correctness of the method, let's look at the following cases.</p>
+<p>Assume that <script type="math/tex; mode=display">nums[j]</script> is the correct Next Greater Element for <script type="math/tex; mode=display">nums[i]</script>, such that <script type="math/tex; mode=display">i < j &le; stack[top]</script>. Now, whenever we encounter <script type="math/tex; mode=display">nums[j]</script>, if <script type="math/tex; mode=display">nums[j] > nums\big[stack[top]\big]</script>, it would have already popped the previous <script type="math/tex; mode=display">stack[top]</script> and <script type="math/tex; mode=display">j</script> would have become the topmost element. On the other hand, if  <script type="math/tex; mode=display">nums[j] < nums\big[stack[top]\big]</script>, it would have become the topmost element by being pushed above the previous <script type="math/tex; mode=display">stack[top]</script>. In both the cases, if <script type="math/tex; mode=display">nums[j] > nums[i]</script>, it will be correctly determined to be the Next Greater Element.</p>
+<p>The following example makes the procedure clear:</p>
+<!--![Next_Greater_Element_II](https://leetcode.com/articles/Figures/503_Next_Greater_Element_II.gif)-->
+<p>!?!../Documents/503_Next_Greater2.json:1000,563!?!</p>
+<p>As the animation above depicts, after the first pass, there are a number of wrong entries(marked as <script type="math/tex; mode=display">\text{-1}</script>) in the <script type="math/tex; mode=display">res</script> array, because only the elements lying to the corresponding right(non-circular) have been considered till now. But, after the second pass, the correct values are substituted.</p>
+<iframe frameborder="0" height="309" name="in37fqRd" src="https://leetcode.com/playground/in37fqRd/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Only two traversals of the <script type="math/tex; mode=display">nums</script> array are done. Further, atmost <script type="math/tex; mode=display">\text{2n}</script> elements are pushed and popped from the stack.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. A stack of size <script type="math/tex; mode=display">n</script> is used. <script type="math/tex; mode=display">res</script> array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">21031</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">44168</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              32%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="There is an m by n grid with a ball. Given the start coordinate (i,j) of the ball, you can move the ball to adjacent cell or cross the grid boundary in four directions (up, down, left, right). However, you can at most move N times. Find out the number of paths to move the ball out of grid boundary. The answer may be very large, return it after mod 109 + 7.
+Example 1:
+Input:m = 2, n = 2, N = 2, i = 0, j = 0
+Output: 6
+Explanation:
+
+
+
+Example 2:
+Input:m = 1, n = 3, N = 3, i = 0, j = 1
+Output: 12
+Explanation:
+
+
+
+Note:
+
+Once you move the ball out of boundary, you cannot move it back.
+The length and height of the grid is in range [1,50].
+N is in range [0,50].">
+  <meta name="keywords"
+        content="Out of Boundary Paths, LC 576, leetcode 576, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>576. Out of Boundary Paths</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>There is an <b>m</b> by <b>n</b> grid with a ball. Given the start coordinate <b>(i,j)</b> of the ball, you can move the ball to <b>adjacent</b> cell or cross the grid boundary in four directions (up, down, left, right). However, you can <b>at most</b> move <b>N</b> times. Find out the number of paths to move the ball out of grid boundary. The answer may be very large, return it after mod 10<sup>9</sup> + 7.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b>m = 2, n = 2, N = 2, i = 0, j = 0
+<b>Output:</b> 6
+<b>Explanation:</b>
+<img src="https://leetcode.com/static/images/problemset/out_of_boundary_paths_1.png" width = "40%" />
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b>m = 1, n = 3, N = 3, i = 0, j = 1
+<b>Output:</b> 12
+<b>Explanation:</b>
+<img src="https://leetcode.com/static/images/problemset/out_of_boundary_paths_2.png" width = "37%" />
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>Once you move the ball out of boundary, you cannot move it back.</li>
+<li>The length and height of the grid is in range [1,50].</li>
+<li>N is in range [0,50].</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-recursion-with-memoization-accepted">Approach #2 Recursion with memoization [Accepted]</a></li>
+<li><a href="#approach-3-dynamic-programming-accepted">Approach #3 Dynamic Programming [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the brute force approach, we try to take one step in every direction and decrement the number of pending moves for each step taken. Whenever we reach out of the boundary while taking the steps, we deduce that one extra path is available to take the ball out. </p>
+<p>In order to implement the same, we make use of a recursive function <code>findPaths(m,n,N,i,j)</code> which takes the current number of moves(<script type="math/tex; mode=display">N</script>) along with the current position(<script type="math/tex; mode=display">(i,j)</script> as some of the parameters and returns the number of moves possible to take the ball out with the current pending moves from the current position. Now, we take a step in every direction and update the corresponding indices involved along with the current number of pending moves. </p>
+<p>Further, if we run out of moves at any moment, we return a 0 indicating that the current set of moves doesn't take the ball out of boundary.</p>
+<iframe frameborder="0" height="224" name="Q7b3GKsJ" src="https://leetcode.com/playground/Q7b3GKsJ/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(4^n)</script>. Size of recursion tree will be <script type="math/tex; mode=display">4^n</script>. Here, <script type="math/tex; mode=display">n</script> refers to the number of moves allowed.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The depth of the recursion tree can go upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-recursion-with-memoization-accepted">Approach #2 Recursion with memoization [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the brute force approach, while going through the various branches of the recursion tree, we could reach the same position with the same number of moves left. </p>
+<p>Thus, a lot of redundant function calls are made with the same set of parameters leading to a useless increase in runtime. We can remove this redundancy by making use of a memoization array, <script type="math/tex; mode=display">memo</script>. <script type="math/tex; mode=display">memo[i][j][k]</script> is used to store the number of possible moves leading to a path out of the boundary if the current position is given by the indices <script type="math/tex; mode=display">(i, j)</script> and number of moves left is <script type="math/tex; mode=display">k</script>. </p>
+<p>Thus, now if a function call with some parameters is repeated, the <script type="math/tex; mode=display">memo</script> array will already contain valid values corresponding to that function call resulting in pruning of the search space.</p>
+<iframe frameborder="0" height="411" name="o22neiZb" src="https://leetcode.com/playground/o22neiZb/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(m*n*N)</script>. We need to fill the <script type="math/tex; mode=display">memo</script> array once with dimensions <script type="math/tex; mode=display">m</script>x<script type="math/tex; mode=display">n</script>x<script type="math/tex; mode=display">N</script>. Here, <script type="math/tex; mode=display">m</script>, <script type="math/tex; mode=display">n</script> refer to the number of rows and columns of the given grid respectively. <script type="math/tex; mode=display">N</script> refers to the total number of allowed moves.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m*n*N)</script>. <script type="math/tex; mode=display">memo</script> array of size <script type="math/tex; mode=display">m*n*N</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-dynamic-programming-accepted">Approach #3 Dynamic Programming [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The idea behind this approach is that if we can reach some position in <script type="math/tex; mode=display">x</script> moves, we can reach all its adjacent positions in <script type="math/tex; mode=display">x+1</script> moves. Based on this idea, we make use of a 2-D <script type="math/tex; mode=display">dp</script> array to store the number of ways in which a particular position can be reached. <script type="math/tex; mode=display">dp[i][j]</script> refers to the number of ways the position corresponding to the indices <script type="math/tex; mode=display">(i,j)</script> can be reached given some particular number of moves.</p>
+<p>Now, if the current <script type="math/tex; mode=display">dp</script> array stores the number of ways the various positions can be reached by making use of <script type="math/tex; mode=display">x-1</script> moves, in order to determine the number of ways the position <script type="math/tex; mode=display">(i,j)</script> can be reached by making use of <script type="math/tex; mode=display">x</script> moves, we need to update the corresponding <script type="math/tex; mode=display">dp</script> entry as <script type="math/tex; mode=display">dp[i][j] = dp[i-1][j] + dp[i+1][j] + dp[i][j-1] + dp[i][j+1]</script> taking care of boundary conditions. This happens because we can reach the index <script type="math/tex; mode=display">(i,j)</script> from any of the four adjacent positions and the total number of ways of reaching the index <script type="math/tex; mode=display">(i,j)</script> in <script type="math/tex; mode=display">x</script> moves is the sum of the ways of reaching the adjacent positions in <script type="math/tex; mode=display">x-1</script> moves. </p>
+<p>But, if we alter the <script type="math/tex; mode=display">dp</script> array, now some of the entries will correspond to <script type="math/tex; mode=display">x-1</script> moves and the updated ones will correspond to <script type="math/tex; mode=display">x</script> moves. Thus, we need to find a way to tackle this issue. So, instead of updating the <script type="math/tex; mode=display">dp</script> array for the current(<script type="math/tex; mode=display">x</script>) moves, we make use of a temporary 2-D array <script type="math/tex; mode=display">temp</script> to store the updated results for <script type="math/tex; mode=display">x</script> moves, making use of the results obtained for <script type="math/tex; mode=display">dp</script> array corresponding to <script type="math/tex; mode=display">x-1</script> moves. After all the entries for all the positions have been considered for <script type="math/tex; mode=display">x</script> moves, we update the <script type="math/tex; mode=display">dp</script> array based on <script type="math/tex; mode=display">temp</script>. Thus, <script type="math/tex; mode=display">dp</script> now contains the entries corresponding to <script type="math/tex; mode=display">x</script> moves.</p>
+<p>Thus, we start off by considering zero move available for which we make an initial entry of <script type="math/tex; mode=display">dp[x][y] = 1</script>(<script type="math/tex; mode=display">(x,y)</script> is the initial position), since we can reach only this position in zero move. Then, we increase the number of moves to 1 and update all the <script type="math/tex; mode=display">dp</script> entries appropriately. We do so for all the moves possible from 1 to N. </p>
+<p>In order to update <script type="math/tex; mode=display">count</script>, which indicates the total number of possible moves which lead an out of boundary path, we need to perform the update only when we reach the boundary. We update the count as <script type="math/tex; mode=display">count = count + dp[i][j]</script>, where <script type="math/tex; mode=display">(i,j)</script> corresponds to one of the boundaries. But, if <script type="math/tex; mode=display">(i,j)</script> is simultaneously a part of multiple boundaries, we need to add the <script type="math/tex; mode=display">dp[i][j]</script> factor multiple times(same as the number of boundaries to which <script type="math/tex; mode=display">(i,j)</script> belongs).</p>
+<p>After we are done with all the <script type="math/tex; mode=display">N</script> moves, <script type="math/tex; mode=display">count</script> gives the required result.</p>
+<p>The following animation illustrates the process:</p>
+<p>!?!../Documents/576_Boundary_Paths.json:1000,563!?!</p>
+<iframe frameborder="0" height="513" name="MvuV89Mf" src="https://leetcode.com/playground/MvuV89Mf/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(N*m*n)</script>. We need to fill the <script type="math/tex; mode=display">dp</script>$ array with dimensions <script type="math/tex; mode=display">m</script>x<script type="math/tex; mode=display">n</script>
+<script type="math/tex; mode=display">N</script> times. Here <script type="math/tex; mode=display">m</script>x<script type="math/tex; mode=display">n</script> refers to the size of the grid and <script type="math/tex; mode=display">N</script> refers to the number of moves available.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m*n)</script>. <script type="math/tex; mode=display">dp</script> and <script type="math/tex; mode=display">temp</script> array of size <script type="math/tex; mode=display">m</script>x<script type="math/tex; mode=display">n</script> are used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">7746</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">25151</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              8%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/baidu.html">Baidu</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

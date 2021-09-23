@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
+
+Example 1
+Input: [3,0,1]
+Output: 2
+
+
+Example 2
+Input: [9,6,4,2,3,5,7,0,1]
+Output: 8
+
+
+
+
+Note:
+Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
+
+Credits:Special thanks to @jianchao.li.fighter for adding this problem and creating all test cases.">
+  <meta name="keywords"
+        content="Missing Number, LC 268, leetcode 268, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>268. Missing Number</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given an array containing <i>n</i> distinct numbers taken from <code>0, 1, 2, ..., n</code>, find the one that is missing from the array.
+</p>
+
+<p><b>Example 1</b>
+<pre>
+<b>Input:</b> [3,0,1]
+<b>Output:</b> 2
+</pre>
+</p>
+
+<p><b>Example 2</b>
+<pre>
+<b>Input:</b> [9,6,4,2,3,5,7,0,1]
+<b>Output:</b> 8
+</pre>
+</p>
+
+<br />
+<p>
+<b>Note</b>:<br>
+Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
+</p>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://leetcode.com/discuss/user/jianchao.li.fighter">@jianchao.li.fighter</a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-sorting-accepted">Approach #1 Sorting [Accepted]</a></li>
+<li><a href="#approach-2-hashset-accepted">Approach #2 HashSet [Accepted]</a></li>
+<li><a href="#approach-3-bit-manipulation-accepted">Approach #3 Bit Manipulation [Accepted]</a></li>
+<li><a href="#approach-4-gauss-formula-accepted">Approach #4 Gauss' Formula [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-sorting-accepted">Approach #1 Sorting [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If <code>nums</code> were in order, it would be easy to see which number is missing.</p>
+<p><strong>Algorithm</strong></p>
+<p>First, we sort <code>nums</code>. Then, we check the two special cases that can be
+handled in constant time - ensuring that 0 is at the beginning and that <script type="math/tex; mode=display">n</script>
+is at the end. Given that those assumptions hold, the missing number must
+somewhere between (but not including) 0 and <script type="math/tex; mode=display">n</script>. To find it, we ensure that
+the number we expect to be at each index is indeed there. Because we handled
+the edge cases, this is simply the previous number plus 1. Thus, as soon as
+we find an unexpected number, we can simply return the expected number.</p>
+<iframe frameborder="0" height="480" name="k9GaBbiy" src="https://leetcode.com/playground/k9GaBbiy/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nlgn)</script>
+</p>
+<p>The only elements of the algorithm that have asymptotically nonconstant
+time complexity are the main <code>for</code> loop (which runs in <script type="math/tex; mode=display">O(n)</script> time), and
+the <code>sort</code> invocation (which runs in <script type="math/tex; mode=display">O(nlgn)</script> time for Python and Java).
+Therefore, the runtime is dominated by <code>sort</code>, and the entire runtime is
+<script type="math/tex; mode=display">O(nlgn)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script> (or <script type="math/tex; mode=display">O(n)</script>)</p>
+<p>In the sample code, we sorted <code>nums</code> in place, allowing us to avoid
+allocating additional space. If modifying <code>nums</code> is forbidden, we can
+allocate an <script type="math/tex; mode=display">O(n)</script> size copy and sort that instead.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-hashset-accepted">Approach #2 HashSet [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>A brute force method for solving this problem would be to simply check for
+the presence of each number that we expect to be present. The naive
+implementation might use a linear scan of the array to check for containment,
+but we can use a <code>HashSet</code> to get constant time containment queries and
+overall linear runtime.</p>
+<p><strong>Algorithm</strong></p>
+<p>This algorithm is almost identical to the brute force approach, except we
+first insert each element of <code>nums</code> into a set, allowing us to later query
+for containment in <script type="math/tex; mode=display">O(1)</script> time.</p>
+<iframe frameborder="0" height="293" name="Pn2pJK6y" src="https://leetcode.com/playground/Pn2pJK6y/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>Because the set allows for <script type="math/tex; mode=display">O(1)</script> containment queries, the main loop
+runs in <script type="math/tex; mode=display">O(n)</script> time. Creating <code>num_set</code> costs <script type="math/tex; mode=display">O(n)</script> time, as each set insertion
+runs in amortized <script type="math/tex; mode=display">O(1)</script> time, so the overall runtime is <script type="math/tex; mode=display">O(n + n) = O(n)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p><code>nums</code> contains <script type="math/tex; mode=display">n-1</script> distinct elements, so it costs <script type="math/tex; mode=display">O(n)</script> space to
+store a set containing all of them.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-bit-manipulation-accepted">Approach #3 Bit Manipulation [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>We can harness the fact that XOR is its own inverse to find the missing
+element in linear time.</p>
+<p><strong>Algorithm</strong></p>
+<p>Because we know that <code>nums</code> contains <script type="math/tex; mode=display">n</script> numbers and that it is missing
+exactly one number on the range <script type="math/tex; mode=display">[0..n-1]</script>, we know that <script type="math/tex; mode=display">n</script> definitely
+replaces the missing number in <code>nums</code>. Therefore, if we initialize an integer
+to <script type="math/tex; mode=display">n</script> and XOR it with every index and value, we will be left with the
+missing number. Consider the following example (the values have been sorted
+for intuitive convenience, but need not be):</p>
+<p><table>
+<tr>
+<th>Index</th>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<th>Value</th>
+<td>0</td>
+<td>1</td>
+<td>3</td>
+<td>4</td>
+</tr>
+</table> </p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+    missing &= 4 \wedge (0 \wedge 0) \wedge (1 \wedge 1) \wedge (2 \wedge 3) \wedge (3 \wedge 4) \\
+            &= (4 \wedge 4) \wedge (0 \wedge 0) \wedge (1 \wedge 1) \wedge (3 \wedge 3) \wedge 2 \\
+            &= 0 \wedge 0 \wedge 0 \wedge 0 \wedge 2 \\ 
+            &= 2
+\end{align}
+</script>
+</p>
+<iframe frameborder="0" height="208" name="kpQGEsFG" src="https://leetcode.com/playground/kpQGEsFG/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>Assuming that XOR is a constant-time operation, this algorithm does
+constant work on <script type="math/tex; mode=display">n</script> iterations, so the runtime is overall linear.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>
+</p>
+<p>This algorithm allocates only constant additional space.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-gauss-formula-accepted">Approach #4 Gauss' Formula [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>One of the most well-known stories in mathematics is of a young Gauss, forced
+to find the sum of the first 100 natural numbers by a lazy teacher. Rather
+than add the numbers by hand, he deduced a <a href="https://brilliant.org/wiki/sum-of-n-n2-or-n3/">closed-form
+expression</a> for the sum, or so
+the story goes. You can see the formula below:</p>
+<p>
+<script type="math/tex; mode=display">
+    \sum_{i=0}^{n}i = \frac{n(n+1)}{2}
+</script>
+</p>
+<p><strong>Algorithm</strong></p>
+<p>We can compute the sum of <code>nums</code> in linear time, and by Gauss' formula, we
+can compute the sum of the first <script type="math/tex; mode=display">n</script> natural numbers in constant time. Therefore,
+the number that is missing is simply the result of Gauss' formula minus the sum of <code>nums</code>,
+as <code>nums</code> consists of the first <script type="math/tex; mode=display">n</script> natural numbers minus some number.</p>
+<iframe frameborder="0" height="191" name="EZoHRZgg" src="https://leetcode.com/playground/EZoHRZgg/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>Although Gauss' formula can be computed in <script type="math/tex; mode=display">O(1)</script> time, summing <code>nums</code>
+costs us <script type="math/tex; mode=display">O(n)</script> time, so the algorithm is overall linear. Because we have
+no information about <em>which</em> number is missing, an adversary could always
+design an input for which any algorithm that examines fewer than <script type="math/tex; mode=display">n</script>
+numbers fails. Therefore, this solution is asymptotically optimal.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>
+</p>
+<p>This approach only pushes a few integers around, so it has constant
+memory usage.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/emptyset">@emptyset</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">146470</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">329706</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              77%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/microsoft.html">Microsoft</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/bloomberg.html">Bloomberg</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

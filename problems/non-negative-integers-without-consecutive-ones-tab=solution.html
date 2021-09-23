@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a positive integer n, find the number of non-negative integers less than or equal to n, whose binary representations do NOT contain consecutive ones.
+Example 1:
+Input: 5
+Output: 5
+Explanation: 
+Here are the non-negative integers &lt;= 5 with their corresponding binary representations:
+0 : 0
+1 : 1
+2 : 10
+3 : 11
+4 : 100
+5 : 101
+Among them, only integer 3 disobeys the rule (two consecutive ones) and the other 5 satisfy the rule. 
+
+
+Note:
+1 &lt;= n &lt;= 109">
+  <meta name="keywords"
+        content="Non-negative Integers without Consecutive Ones, LC 600, leetcode 600, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>600. Non-negative Integers without Consecutive Ones</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a positive integer n, find the number of <b>non-negative</b> integers less than or equal to n, whose binary representations do NOT contain <b>consecutive ones</b>.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 5
+<b>Output:</b> 5
+<b>Explanation:</b> 
+Here are the non-negative integers <= 5 with their corresponding binary representations:
+0 : 0
+1 : 1
+2 : 10
+3 : 11
+4 : 100
+5 : 101
+Among them, only integer 3 disobeys the rule (two consecutive ones) and the other 5 satisfy the rule. 
+</pre>
+</p>
+
+<p><b>Note:</b>
+1 <= n <= 10<sup>9</sup>
+</p>
+
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-using-bit-manipulation-accepted">Approach #3 Using Bit Manipulation [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>The brute force approach is simple. We can traverse through all the numbers from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">num</script>. For every current number chosen, we can check all the consecutive positions in this number to check if the number contains two consecutive ones or not. If not, we increment the <script type="math/tex; mode=display">count</script> of the resultant numbers with no consecutive ones. </p>
+<p>To check if a <script type="math/tex; mode=display">1</script> exists at the position <script type="math/tex; mode=display">x</script>(counting from the LSB side), in the current number <script type="math/tex; mode=display">n</script>, we can proceed as follows. We can shift a binary <script type="math/tex; mode=display">1</script>
+<script type="math/tex; mode=display">x-1</script> times towards the left to get a number <script type="math/tex; mode=display">y</script> which has a <script type="math/tex; mode=display">1</script> only at the <script type="math/tex; mode=display">x^{th}</script> position. Now, logical ANDing of <script type="math/tex; mode=display">n</script> and <script type="math/tex; mode=display">y</script> will result in a logical <script type="math/tex; mode=display">1</script> output only if <script type="math/tex; mode=display">n</script> contains <script type="math/tex; mode=display">1</script> at the <script type="math/tex; mode=display">x^{th}</script> position.</p>
+<iframe frameborder="0" height="377" name="EvkBtbbs" src="https://leetcode.com/playground/EvkBtbbs/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(32*n)</script>. We test  the 32 consecutive positions of every number from <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">n</script>. Here, <script type="math/tex; mode=display">n</script> refers to given number. </p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, we generated every number and then checked if it contains consecutive ones at any position or not. Instead of this, we can generate only the required kind of numbers. e.g. If we genearte numbers in the order of the number of bits in the current number, if we get a binary number <code>110</code> on the way at the step of 3-bit number generation. Now, since this number already contains two consecutive ones, it is useless to generate number with more number of bits with the current bitstream as the suffix(e.g. numbers of the form <code>1110</code> and <code>0110</code>).</p>
+<p>The current approach is based on the above idea. We can start with the LSB position, by placing a <code>0</code> and a <code>1</code> at the LSB. These two initial numbers correspond to the 1-bit numbers which don't contain any consecutive ones. Now, taking <code>0</code> as the initial suffix, if we want to generate two bit numbers with no two consecutive 1's, we can append a <code>1</code> and a <code>0</code> both in front of the initial <code>0</code> generating the numbers <code>10</code> and <code>00</code> as the two bit numbers ending with a <code>0</code> with no two consecutive 1's.</p>
+<p>But, when we take <code>1</code> as the initial suffix, we can append a <code>0</code> to it to generate <code>01</code> which doesn't contain any consecutive ones. But, adding a <code>1</code> won't satisfy this criteria(<code>11</code> will be generated). Thus, while generating the current number, we need to keep a track of the point that whether a <code>1</code> was added as the last prefix or not. If yes, we can't append a new <code>1</code> and only <code>0</code> can be appended. If a <code>0</code> was appended as the last prefix, both <code>0</code> and <code>1</code> can be appended in the new bit-pattern without creating a violating number.
+Thus, we can continue forward with the 3-bit number generation only with <code>00</code>, <code>01</code> and <code>10</code> as the new suffixes  in the same manner. </p>
+<p>To get a count of numbers lesser than <script type="math/tex; mode=display">num</script>, with no two consecutive 1's, based on the above discussion, we make use of a recursive function <code>find(i, sum, num, prev)</code>. This function returns the count of binary numbers with <script type="math/tex; mode=display">i</script> bits with no two consecutive 1's. Here, <script type="math/tex; mode=display">sum</script> refers to the binary number generated till now(the prefix obtained as the input). <script type="math/tex; mode=display">num</script> refers to the given number. <script type="math/tex; mode=display">prev</script> is a boolean variable that indicates whether the last prefix added was a <code>1</code> or a <code>0</code>.</p>
+<p>If the last prefix was a <code>0</code>, we can add both <code>1</code> and <code>0</code> as the new prefix. Thus, we need to make a function call <code>find(i + 1, sum, num, false) + find(i + 1, sum + (1 &lt;&lt; i), num, true)</code>. Here, the first sub-part refers to a <code>0</code> being added at the <script type="math/tex; mode=display">i^{th}</script> position. Thus, we pass a <code>false</code> as the prefix in this case. The second sub-part refers to a <code>1</code> being added at the <script type="math/tex; mode=display">i^{th}</script> position. Thus, we pass <code>true</code> as the prefix in this case. </p>
+<p>If the last prefix was a <code>1</code>, we can add only a <code>0</code> as the new prefix. Thus, only one function call <code>find(i + 1, sum, num, false)</code> is made in this case. </p>
+<p>Further, we need to stop the number generation whenver the current input number(<script type="math/tex; mode=display">sum</script>) exceeds the given number <script type="math/tex; mode=display">num</script>. </p>
+<p><img alt="Tree" src="https://leetcode.com/articles/Figures/600_Non_Negative_2.PNG"/></p>
+<iframe frameborder="0" height="292" name="QN3EABd5" src="https://leetcode.com/playground/QN3EABd5/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(x)</script>. Only <script type="math/tex; mode=display">x</script> numbers are generated. Here, <script type="math/tex; mode=display">x</script> refers to the resultant count to be returned.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(log(max\_int)=32)</script>. The depth of recursion tree can go upto <script type="math/tex; mode=display">32</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-bit-manipulation-accepted">Approach #3 Using Bit Manipulation [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Before we discuss the idea behind this approach, we consider another simple idea that will be used in the current approach. </p>
+<p>Suppose, we need to find the count of binary numbers with <script type="math/tex; mode=display">n</script> bits such that these numbers don't contain consecutive 1's. In order to do so, we can look at the problem in a recursive fashion. Suppose <script type="math/tex; mode=display">f[i]</script> gives the count of such binary numbers with <script type="math/tex; mode=display">i</script> bits. In order to determine the value of <script type="math/tex; mode=display">f[n]</script>, which is the requirement, we can consider the cases shown below:</p>
+<p><img alt="Recursive_Function" src="https://leetcode.com/articles/Figures/600_Non_Negative_1.png"/></p>
+<p>From the above figure, we can see that if we know the value of <script type="math/tex; mode=display">f[n-1]</script> and <script type="math/tex; mode=display">f[n-2]</script>, in order to generate the required binary numbers with <script type="math/tex; mode=display">n</script> bits, we can append a <code>0</code> to all the binary numbers contained in <script type="math/tex; mode=display">f[n-1]</script> without creating an invalid number. These numbers give a factor of <script type="math/tex; mode=display">f[n-1]</script> to be included in <script type="math/tex; mode=display">f[n]</script>. But, we can't append a <code>1</code> to all these numbers, since it could lead to the presence of two consecutive ones in the newly generated numbers. Thus, for the currently generated numbers to end with a <code>1</code>, we need to ensure that the second last position is always <code>0</code>. Thus, we need to fix a <code>01</code> at the end of all the numbers contained in <script type="math/tex; mode=display">f[n-2]</script>. This gives a factor of <script type="math/tex; mode=display">f[n-2]</script> to be included in <script type="math/tex; mode=display">f[n]</script>. Thus, in total, we get <script type="math/tex; mode=display">f[n] = f[n-1] + f[n-2]</script>.</p>
+<p>Now, let's look into the current approach. We'll try to understand the idea behind the approach by taking two simple examples. Firstly, we look at the case where the given number doesn't contain any consecutive 1's.Say, <script type="math/tex; mode=display">num = \text{1010100}</script>(7 bit number). Now, we'll see how we can find the numbers lesser than <script type="math/tex; mode=display">num</script> with no two consecutive 1's. We start off with the MSB of <script type="math/tex; mode=display">nums</script>. If we fix a <script type="math/tex; mode=display">\text{0}</script> at the MSB position, and find out the count of 6 bit numbers(corresponding to the 6 LSBs) with no two consecutive 1's, these 6-bit numbers will lie in the range <script type="math/tex; mode=display">\textbf{0}\text{000000} -> \textbf{0}\text{111111}</script>. For finding this count we can make use of <script type="math/tex; mode=display">f[6]</script> which we'll have already calculated based on the discussion above. </p>
+<p>But, even after doing this, all the numbers in the required range haven't been covered yet. Now, if we try to fix <script type="math/tex; mode=display">\text{1}</script> at the MSB, the numbers considered will lie in the range <script type="math/tex; mode=display">\textbf{1}\text{000000} -> \textbf{1}\text{111111}</script>. As we can see, this covers the numbers in the range <script type="math/tex; mode=display">\textbf{1}\text{000000} -> \textbf{1}\text{010100}</script>, but it covers the numbers in the range beyond limit as well. Thus, we can't fix <script type="math/tex; mode=display">\text{1}</script> at the MSB and consider all the 6-bit numbers at the LSBs. </p>
+<p>For covering the pending range, we fix <script type="math/tex; mode=display">\text{1}</script> at the MSB, and move forward to proceed with the second digit(counting from MSB). Now, since we've already got a <script type="math/tex; mode=display">\text{0}</script> at this position, we can't substitute a <script type="math/tex; mode=display">\text{1}</script> here, since doing so will lead to generation of numbers exceeding <script type="math/tex; mode=display">num</script>. Thus, the only option left here is to substitute a <script type="math/tex; mode=display">\text{0}</script> at the second position. But, if we do so, and consider the 5-bit numbers(at the 5 LSBs) with no two consecutive 1's, these new numbers will fall in the range <script type="math/tex; mode=display">\textbf{10}\text{00000} -> \textbf{10}\text{11111}</script>. But, again we can observe that considering these numbers leads to exceeding the required range. Thus, we can't consider all the 5-bit numbers for the required count by fixing <script type="math/tex; mode=display">\text{0}</script> at the second position. </p>
+<p>Thus, now, we fix <script type="math/tex; mode=display">\text{0}</script> at the second position and proceed further. Again, we encounter a <script type="math/tex; mode=display">\text{1}</script> at the third position. Thus, as discussed above, we can fix a <script type="math/tex; mode=display">\text{0}</script> at this position and find out the count of 4-bit consecutive numbers with no two consecutive 1's(by varying only the 4 LSB bits). We can obtain this value from <script type="math/tex; mode=display">f[4]</script>. Thus, now the numbers in the range <script type="math/tex; mode=display">\textbf{100}\text{0000} -> \textbf{100}\text{1111}</script> have been covered up. </p>
+<p>Again, as discussed above, now we fix a <script type="math/tex; mode=display">\text{1}</script> at the third position, and proceed with the fourth bit. It is a <script type="math/tex; mode=display">\text{0}</script>. So, we need to fix it as such as per the above discussion, and proceed with the fifth bit. It is a <script type="math/tex; mode=display">\text{1}</script>. So, we fix a <script type="math/tex; mode=display">\text{0}</script> here and consider all the numbers by varying the two LSBs for finding the required count of numbers in the range <script type="math/tex; mode=display">\textbf{10101}\text{00} -> \textbf{10101}\text{11}</script>. Now, we proceed to the sixth bit, find a <script type="math/tex; mode=display">\text{0}</script> there. So, we fix <script type="math/tex; mode=display">\text{0}</script> at the sixth position and proceed to the seventh bit which is again <script type="math/tex; mode=display">\text{0}</script>. So, we fix a <script type="math/tex; mode=display">\text{0}</script> at the seventh position as well.</p>
+<p>Now, we can see, that based on the above procedure, the numbers in the range <script type="math/tex; mode=display">\textbf{1}\text{000000} -> \textbf{1}\text{111111}</script>, <script type="math/tex; mode=display">\textbf{100}\text{0000} -> \textbf{100}\text{1111}</script>,  <script type="math/tex; mode=display">\textbf{100}\text{0000} -> \textbf{100}\text{1111}</script> have been considered and the counts for these ranges have been obtained as <script type="math/tex; mode=display">f[6]</script>, <script type="math/tex; mode=display">f[4]</script> and <script type="math/tex; mode=display">f[2]</script> respectively. Now, only <script type="math/tex; mode=display">\text{1010100}</script> is pending to be considered in the required count. Since, it doesn't contain any consecutive 1's, we add a 1 to the total count obtained till now to consider this number. Thus, the result returned is <script type="math/tex; mode=display">f[6] + f[4] + f[2] + 1</script>.</p>
+<p>!?!../Documents/600_Non_Negative1.json:1000,563!?!</p>
+<p>Now, we look at the case, where <script type="math/tex; mode=display">num</script> contains some consecutive 1's. The idea will be the same as the last example, with the only exception taken when the two consecutive 1's are encountered. Let's say, <script type="math/tex; mode=display">num = \text{1011010}</script>(7 bit number). Now, as per the last discussion, we start with the MSB. We find a <script type="math/tex; mode=display">\text{1}</script> at this position. Thus, we initially fix a <script type="math/tex; mode=display">\text{0}</script> at this position to consider the numbers in the range <script type="math/tex; mode=display">\textbf{0}\text{000000} -> \textbf{0}\text{111111}</script>, by varying the 6 LSB bits only. The count of the required numbers in this range is again given by <script type="math/tex; mode=display">f[6]</script>.</p>
+<p>Now, we fix a <script type="math/tex; mode=display">\text{1}</script> at the MSB and move on to the second bit. It is a <script type="math/tex; mode=display">\text{0}</script>, so we have no choice but to fix <script type="math/tex; mode=display">\text{0}</script> at this position and to proceed with the third bit. It is a <script type="math/tex; mode=display">\text{1}</script>, so we fix a <script type="math/tex; mode=display">\text{0}</script> here, considering the numbers in the range <script type="math/tex; mode=display">\textbf{100}\text{0000} -> \textbf{100}\text{1111}</script>. This accounts for a factor of <script type="math/tex; mode=display">f[4]</script>. Now, we fix a <script type="math/tex; mode=display">\text{1}</script> at the third positon, and proceed with the fourth bit. It is a <script type="math/tex; mode=display">\text{1}</script>(consecutive to the previous <script type="math/tex; mode=display">\text{1}</script>). Now, initially we fix a <script type="math/tex; mode=display">\text{0}</script> at the fourth position, considering the numbers in the range <script type="math/tex; mode=display">\textbf{1010}\text{000} -> \textbf{1010}\text{111}</script>. This adds a factor of <script type="math/tex; mode=display">f[3]</script> to the required count. </p>
+<p>Now, we can see that till now the numbers in the range <script type="math/tex; mode=display">\textbf{0}\text{000000} -> \textbf{0}\text{111111}</script>, <script type="math/tex; mode=display">\textbf{100}\text{0000} -> \textbf{100}\text{1111}</script>, <script type="math/tex; mode=display">\textbf{1010}\text{000} -> \textbf{1010}\text{111}</script> have been considered. But, if we try to consider any number larger than <script type="math/tex; mode=display">\text{1010111}</script>, it leads to the presence of two consecutive 1's in the new number at the third and fourth position. Thus, all the valid numbers upto <script type="math/tex; mode=display">num</script> have been considered with this, giving a resultant count of <script type="math/tex; mode=display">f[6] + f[4] + f[3]</script>.</p>
+<p>!?!../Documents/600_Non_Negative2.json:1000,563!?!</p>
+<p>Thus, summarizing the above discussion, we can say that we start scanning the given number <script type="math/tex; mode=display">num</script> from its MSB. For every 1 encountered at the <script type="math/tex; mode=display">i^{th}</script> bit position(counting from 0 from LSB), we add a factor of <script type="math/tex; mode=display">f[i]</script> to the resultant count. For every 0 encountered, we don't add any factor. We also keep a track of the last bit checked. If we happen to find two consecutive 1's at any time, we add the factors for the positions of both the 1's and stop the traversal immediately. If we don't find any two consecutive 1's, we proceed till reaching the LSB and add an extra 1 to account for the given number <script type="math/tex; mode=display">num</script> as well, since the procedure discussed above considers numbers upto <script type="math/tex; mode=display">num</script> without including itself.</p>
+<iframe frameborder="0" height="462" name="NbrrZGdh" src="https://leetcode.com/playground/NbrrZGdh/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(log_2(max\_int)=32)</script>. One loop to fill <script type="math/tex; mode=display">f</script> array and one loop to check all bits of <script type="math/tex; mode=display">num</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(log_2(max\_int)=32)</script>. <script type="math/tex; mode=display">f</script> array of size 32 is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">4475</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">14388</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              12%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/pocket-gems.html">Pocket Gems</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

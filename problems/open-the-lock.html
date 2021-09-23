@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="You have a lock in front of you with 4 circular wheels.  Each wheel has 10 slots: &#39;0&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;.  The wheels can rotate freely and wrap around: for example we can turn &#39;9&#39; to be &#39;0&#39;, or &#39;0&#39; to be &#39;9&#39;.  Each move consists of turning one wheel one slot.
+
+The lock initially starts at &#39;0000&#39;, a string representing the state of the 4 wheels.
+
+You are given a list of deadends dead ends, meaning if the lock displays any of these codes, the wheels of the lock will stop turning and you will be unable to open it.
+
+Given a target representing the value of the wheels that will unlock the lock, return the minimum total number of turns required to open the lock, or -1 if it is impossible.
+
+Example 1:
+Input: deadends = [&#34;0201&#34;,&#34;0101&#34;,&#34;0102&#34;,&#34;1212&#34;,&#34;2002&#34;], target = &#34;0202&#34;
+Output: 6
+Explanation:
+A sequence of valid moves would be &#34;0000&#34; -&gt; &#34;1000&#34; -&gt; &#34;1100&#34; -&gt; &#34;1200&#34; -&gt; &#34;1201&#34; -&gt; &#34;1202&#34; -&gt; &#34;0202&#34;.
+Note that a sequence like &#34;0000&#34; -&gt; &#34;0001&#34; -&gt; &#34;0002&#34; -&gt; &#34;0102&#34; -&gt; &#34;0202&#34; would be invalid,
+because the wheels of the lock become stuck after the display becomes the dead end &#34;0102&#34;.
+
+
+Example 2:
+Input: deadends = [&#34;8888&#34;], target = &#34;0009&#34;
+Output: 1
+Explanation:
+We can turn the last wheel in reverse to move from &#34;0000&#34; -&gt; &#34;0009&#34;.
+
+
+Example 3:
+Input: deadends = [&#34;8887&#34;,&#34;8889&#34;,&#34;8878&#34;,&#34;8898&#34;,&#34;8788&#34;,&#34;8988&#34;,&#34;7888&#34;,&#34;9888&#34;], target = &#34;8888&#34;
+Output: -1
+Explanation:
+We can&#39;t reach the target without getting stuck.
+
+
+Example 4:
+Input: deadends = [&#34;0000&#34;], target = &#34;8888&#34;
+Output: -1
+
+
+Note:
+
+The length of deadends will be in the range [1, 500].
+target will not be in the list deadends.
+Every string in deadends and the string target will be a string of 4 digits from the 10,000 possibilities &#39;0000&#39; to &#39;9999&#39;.">
+  <meta name="keywords"
+        content="Open the Lock, LC 752, leetcode 752, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>752. Open the Lock</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+You have a lock in front of you with 4 circular wheels.  Each wheel has 10 slots: <code>'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'</code>.  The wheels can rotate freely and wrap around: for example we can turn <code>'9'</code> to be <code>'0'</code>, or <code>'0'</code> to be <code>'9'</code>.  Each move consists of turning one wheel one slot.
+</p><p>
+The lock initially starts at <code>'0000'</code>, a string representing the state of the 4 wheels.
+</p><p>
+You are given a list of <code>deadends</code> dead ends, meaning if the lock displays any of these codes, the wheels of the lock will stop turning and you will be unable to open it.
+</p><p>
+Given a <code>target</code> representing the value of the wheels that will unlock the lock, return the minimum total number of turns required to open the lock, or -1 if it is impossible.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> deadends = ["0201","0101","0102","1212","2002"], target = "0202"
+<b>Output:</b> 6
+<b>Explanation:</b>
+A sequence of valid moves would be "0000" -> "1000" -> "1100" -> "1200" -> "1201" -> "1202" -> "0202".
+Note that a sequence like "0000" -> "0001" -> "0002" -> "0102" -> "0202" would be invalid,
+because the wheels of the lock become stuck after the display becomes the dead end "0102".
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> deadends = ["8888"], target = "0009"
+<b>Output:</b> 1
+<b>Explanation:</b>
+We can turn the last wheel in reverse to move from "0000" -> "0009".
+</pre>
+</p>
+
+<p><b>Example 3:</b><br />
+<pre>
+<b>Input:</b> deadends = ["8887","8889","8878","8898","8788","8988","7888","9888"], target = "8888"
+<b>Output:</b> -1
+<b>Explanation:</b>
+We can't reach the target without getting stuck.
+</pre>
+</p>
+
+<p><b>Example 4:</b><br />
+<pre>
+<b>Input:</b> deadends = ["0000"], target = "8888"
+<b>Output:</b> -1
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The length of <code>deadends</code> will be in the range <code>[1, 500]</code>.</li>
+<li><code>target</code> will not be in the list <code>deadends</code>.</li>
+<li>Every string in <code>deadends</code> and the string <code>target</code> will be a string of 4 digits from the 10,000 possibilities <code>'0000'</code> to <code>'9999'</code>.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-breadth-first-search-accepted">Approach #1: Breadth-First Search [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-breadth-first-search-accepted">Approach #1: Breadth-First Search [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>We can think of this problem as a shortest path problem on a graph: there are <code>10000</code> nodes (strings <code>'0000'</code> to <code>'9999'</code>), and there is an edge between two nodes if they differ in one digit, that digit differs by 1 (wrapping around, so <code>'0'</code> and <code>'9'</code> differ by 1), and if both nodes are not in <code>deadends</code>.</p>
+<p><strong>Algorithm</strong></p>
+<p>To solve a shortest path problem, we use a breadth-first search.  The basic structure uses a Queue <code>queue</code> plus a Set <code>seen</code> that records if a node has ever been enqueued.  This pushes all the work to the <code>neighbors</code> function - in our Python implementation, all the code after <code>while queue:</code> is template code, except for <code>if node in dead: continue</code>.</p>
+<p>As for the <code>neighbors</code> function, for each position in the lock <code>i = 0, 1, 2, 3</code>, for each of the turns <code>d = -1, 1</code>, we determine the value of the lock after the <code>i</code>-th wheel has been turned in the direction <code>d</code>.</p>
+<p>Care should be taken in our algorithm, as the graph does not have an edge unless <em>both</em> nodes are not in <code>deadends</code>.  If our <code>neighbors</code> function checks only the <code>target</code> for being in <code>deadends</code>, we also need to check whether <code>'0000'</code> is in <code>deadends</code> at the beginning.  In our implementation, we check at the visitor level so as to neatly handle this problem in all cases.</p>
+<p>In Java, our implementation also inlines the neighbors function for convenience, and uses <code>null</code> inputs in the <code>queue</code> to represent a layer change.  When the layer changes, we <code>depth++</code> our global counter, and <code>queue.peek() != null</code> checks if there are still nodes enqueued.</p>
+<iframe frameborder="0" height="500" name="bCLjzEUu" src="https://leetcode.com/playground/bCLjzEUu/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(\mathcal{A}^N + D)</script> where <script type="math/tex; mode=display">\mathcal{A}</script> is the number of digits in our alphabet, <script type="math/tex; mode=display">N</script> is the number of digits in the lock, and <script type="math/tex; mode=display">D</script> is the size of <code>deadends</code>.  We might visit every lock combination, plus we need to instantiate our set <code>dead</code>.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(\mathcal{A}^N + D)</script>, for the <code>queue</code> and the set <code>dead</code>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">2339</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">6310</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              2%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

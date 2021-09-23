@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a non-empty 2D array grid of 0&#39;s and 1&#39;s, an island is a group of 1&#39;s (representing land) connected 4-directionally (horizontal or vertical.)  You may assume all four edges of the grid are surrounded by water.
+Count the number of distinct islands.  An island is considered to be the same as another if they have the same shape, or have the same shape after rotation (90, 180, or 270 degrees only) or reflection (left/right direction or up/down direction).
+Example 1:
+
+11000
+10000
+00001
+00011
+
+Given the above grid map, return 1.
+
+Notice that:
+
+11
+1
+
+and
+
+ 1
+11
+
+are considered same island shapes. Because if we make a 180 degrees clockwise rotation on the first island, then two islands will have the same shapes.
+
+Example 2:
+
+11100
+10001
+01001
+01110
+Given the above grid map, return 2.
+
+Here are the two distinct islands:
+
+111
+1
+
+and
+
+1
+1
+
+
+Notice that:
+
+111
+1
+
+and
+
+1
+111
+
+are considered same island shapes. Because if we flip the first array in the up/down direction, then they have the same shapes.
+
+Note:
+The length of each dimension in the given grid does not exceed 50.">
+  <meta name="keywords"
+        content="Number of Distinct Islands II, LC 711, leetcode 711, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>711. Number of Distinct Islands II</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a non-empty 2D array <code>grid</code> of 0's and 1's, an <b>island</b> is a group of <code>1</code>'s (representing land) connected 4-directionally (horizontal or vertical.)  You may assume all four edges of the grid are surrounded by water.</p>
+
+<p>Count the number of <b>distinct</b> islands.  An island is considered to be the same as another if they have the same shape, or have the same shape after <b>rotation</b> (90, 180, or 270 degrees only) or <b>reflection</b> (left/right direction or up/down direction).</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+11000
+10000
+00001
+00011
+</pre>
+Given the above grid map, return <code>1</code>.
+<br><br>
+Notice that:
+<pre>
+11
+1
+</pre>
+and
+<pre>
+ 1
+11
+</pre>
+are considered <b>same</b> island shapes. Because if we make a 180 degrees clockwise rotation on the first island, then two islands will have the same shapes.
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+11100
+10001
+01001
+01110</pre>
+Given the above grid map, return <code>2</code>.<br />
+<br>
+Here are the two distinct islands:
+<pre>
+111
+1
+</pre>
+and
+<pre>
+1
+1
+</pre>
+<br />
+Notice that:
+<pre>
+111
+1
+</pre>
+and
+<pre>
+1
+111
+</pre>
+are considered <b>same</b> island shapes. Because if we flip the first array in the up/down direction, then they have the same shapes.
+</p>
+
+<p><b>Note:</b>
+The length of each dimension in the given <code>grid</code> does not exceed 50.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-canonical-hash-accepted">Approach #1: Canonical Hash [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-canonical-hash-accepted">Approach #1: Canonical Hash [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>As in <em>Approach #1</em> to the sister problem <a href="https://leetcode.com/articles/number-of-distinct-islands/">Number of Distinct Islands</a>, we determine local coordinates for each island.</p>
+<p>Afterwards, we will rotate and reflect the coordinates about the origin and translate the shape so that the bottom-left-most coordinate is (0, 0).  At the end, the smallest of these lists coordinates will be the <em>canonical representation</em> of the shape.</p>
+<p><strong>Algorithm</strong></p>
+<p>We feature two different implementations, but the core idea is the same.  We start with the code from the previous problem, <em>Number of Distinct Islands</em>.</p>
+<p>For each of 8 possible rotations and reflections of the shape, we will perform the transformation and then translate the shape so that the bottom-left-most coordinate is (0, 0).  Afterwards, we will consider the canonical hash of the shape to be the maximum of these 8 intermediate hashes.</p>
+<p>In Python, the motivation to use complex numbers is that rotation by 90 degrees is the same as multiplying by the imaginary unit, <code>1j</code>.  In Java, we manipulate the coordinates directly.  The 8 rotations and reflections of each point are <code>(x, y), (-x, y), (x, -y), (-x, -y), (y, x), (-y, x), (y, -x), (-y, -x)</code>.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">numDistinctIslands2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+        <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">def</span> <span class="nf">explore</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">and</span>
+                    <span class="n">grid</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="ow">and</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">):</span>
+                <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span>
+                <span class="n">shape</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span>
+                <span class="n">explore</span><span class="p">(</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+                <span class="n">explore</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+                <span class="n">explore</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">explore</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">canonical</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+            <span class="k">def</span> <span class="nf">translate</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">),</span>
+                            <span class="nb">min</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">))</span>
+                <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">z</span><span class="o">-</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">)</span>
+
+            <span class="n">ans</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">translate</span><span class="p">([</span><span class="n">z</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1j</span><span class="p">)</span><span class="o">**</span><span class="n">k</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">]))</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span>  <span class="n">translate</span><span class="p">([</span><span class="nb">complex</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">real</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1j</span><span class="p">)</span><span class="o">**</span><span class="n">k</span>
+                                           <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">]))</span>
+            <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+
+        <span class="n">shapes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+                <span class="n">shape</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+                <span class="n">explore</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">shape</span><span class="p">:</span>
+                    <span class="n">shapes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">canonical</span><span class="p">(</span><span class="n">shape</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">shapes</span><span class="p">)</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kt">int</span><span class="o">[][]</span> <span class="n">grid</span><span class="o">;</span>
+    <span class="kt">boolean</span><span class="o">[][]</span> <span class="n">seen</span><span class="o">;</span>
+    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">shape</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">explore</span><span class="o">(</span><span class="kt">int</span> <span class="n">r</span><span class="o">,</span> <span class="kt">int</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="o">&amp;&amp;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span> <span class="o">&amp;&amp;</span>
+                <span class="n">grid</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">seen</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">])</span> <span class="o">{</span>
+            <span class="n">seen</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="n">shape</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span> <span class="o">+</span> <span class="n">c</span><span class="o">);</span>
+            <span class="n">explore</span><span class="o">(</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
+            <span class="n">explore</span><span class="o">(</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
+            <span class="n">explore</span><span class="o">(</span><span class="n">r</span><span class="o">,</span> <span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span>
+            <span class="n">explore</span><span class="o">(</span><span class="n">r</span><span class="o">,</span> <span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">canonical</span><span class="o">(</span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">shape</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">ans</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">lift</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="na">length</span> <span class="o">+</span> <span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">shape</span><span class="o">.</span><span class="na">size</span><span class="o">()];</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">xs</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">shape</span><span class="o">.</span><span class="na">size</span><span class="o">()];</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">ys</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">shape</span><span class="o">.</span><span class="na">size</span><span class="o">()];</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="o">;</span> <span class="o">++</span><span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">z</span><span class="o">:</span> <span class="n">shape</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">z</span> <span class="o">/</span> <span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span>
+                <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span> <span class="o">%</span> <span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span>
+                <span class="c1">//x y, x -y, -x y, -x -y</span>
+                <span class="c1">//y x, y -x, -y x, -y -x</span>
+                <span class="n">xs</span><span class="o">[</span><span class="n">t</span><span class="o">]</span> <span class="o">=</span> <span class="n">c</span><span class="o">&lt;=</span><span class="mi">1</span> <span class="o">?</span> <span class="n">x</span> <span class="o">:</span> <span class="n">c</span><span class="o">&lt;=</span><span class="mi">3</span> <span class="o">?</span> <span class="o">-</span><span class="n">x</span> <span class="o">:</span> <span class="n">c</span><span class="o">&lt;=</span><span class="mi">5</span> <span class="o">?</span> <span class="n">y</span> <span class="o">:</span> <span class="o">-</span><span class="n">y</span><span class="o">;</span>
+                <span class="n">ys</span><span class="o">[</span><span class="n">t</span><span class="o">++]</span> <span class="o">=</span> <span class="n">c</span><span class="o">&lt;=</span><span class="mi">3</span> <span class="o">?</span> <span class="o">(</span><span class="n">c</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span> <span class="o">?</span> <span class="n">y</span> <span class="o">:</span> <span class="o">-</span><span class="n">y</span><span class="o">)</span> <span class="o">:</span> <span class="o">(</span><span class="n">c</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span> <span class="o">?</span> <span class="n">x</span> <span class="o">:</span> <span class="o">-</span><span class="n">x</span><span class="o">);</span>
+            <span class="o">}</span>
+
+            <span class="kt">int</span> <span class="n">mx</span> <span class="o">=</span> <span class="n">xs</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">my</span> <span class="o">=</span> <span class="n">ys</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">:</span> <span class="n">xs</span><span class="o">)</span> <span class="n">mx</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">mx</span><span class="o">,</span> <span class="n">x</span><span class="o">);</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">y</span><span class="o">:</span> <span class="n">ys</span><span class="o">)</span> <span class="n">my</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">my</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">shape</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">out</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="n">xs</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">-</span> <span class="n">mx</span><span class="o">)</span> <span class="o">*</span> <span class="n">lift</span> <span class="o">+</span> <span class="o">(</span><span class="n">ys</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">-</span> <span class="n">my</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">out</span><span class="o">);</span>
+            <span class="n">String</span> <span class="n">candidate</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">out</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">ans</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">candidate</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">candidate</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">numDistinctIslands2</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">grid</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">grid</span> <span class="o">=</span> <span class="n">grid</span><span class="o">;</span>
+        <span class="n">seen</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="n">grid</span><span class="o">.</span><span class="na">length</span><span class="o">][</span><span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">];</span>
+        <span class="n">Set</span> <span class="n">shapes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">grid</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">shape</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
+                <span class="n">explore</span><span class="o">(</span><span class="n">r</span><span class="o">,</span> <span class="n">c</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">shape</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="n">shapes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">canonical</span><span class="o">(</span><span class="n">shape</span><span class="o">));</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">shapes</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(R*C \log{(R*C)})</script>, where <script type="math/tex; mode=display">R</script> is the number of rows in the given <code>grid</code>, and <script type="math/tex; mode=display">C</script> is the number of columns.  We visit every square once, and each square belongs to at most one shape.  The log factor comes from sorting the shapes.</p>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(R*C)</script>, the space used to keep track of the shapes.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">661</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">1643</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              18%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/amazon.html">Amazon</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

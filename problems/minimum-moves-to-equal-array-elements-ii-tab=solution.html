@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a non-empty integer array, find the minimum number of moves required to make all array elements equal, where a move is incrementing a selected element by 1 or decrementing a selected element by 1.
+You may assume the array&#39;s length is at most 10,000.
+Example:
+Input:
+[1,2,3]
+
+Output:
+2
+
+Explanation:
+Only two moves are needed (remember each move increments or decrements one element):
+
+[1,2,3]  =&gt;  [2,2,3]  =&gt;  [2,2,2]">
+  <meta name="keywords"
+        content="Minimum Moves to Equal Array Elements II, LC 462, leetcode 462, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>462. Minimum Moves to Equal Array Elements II</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p><p>Given a <b>non-empty</b> integer array, find the minimum number of moves required to make all array elements equal, where a move is incrementing a selected element by 1 or decrementing a selected element by 1.</p>
+
+<p>You may assume the array's length is at most 10,000.</p>
+
+<p><b>Example:</b>
+<pre>
+<b>Input:</b>
+[1,2,3]
+
+<b>Output:</b>
+2
+
+<b>Explanation:</b>
+Only two moves are needed (remember each move increments or decrements one element):
+
+[1,2,3]  =>  [2,2,3]  =>  [2,2,2]
+</pre>
+</p></p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-forceaccepted">Approach #2 Better Brute Force[Accepted]</a></li>
+<li><a href="#approach-3-using-sorting-accepted">Approach #3 Using Sorting [Accepted]</a></li>
+<li><a href="#approach-4-using-median-and-sorting-accepted">Approach #4 Using Median and Sorting [Accepted]</a></li>
+<li><a href="#approach-5-without-finding-median-accepted">Approach #5 Without finding Median [Accepted]</a></li>
+<li><a href="#approach-6-using-quick-select-accepted">Approach #6 Using quick-select [Accepted]</a></li>
+<li><a href="#approach-7-using-median-of-medians-accepted">Approach #7 Using Median of Medians [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>In the brute force approach, we consider every possible number to which all the array elements should be equated so as to minimize the number of moves required. One point is obvious that the number to which all the elements are equated at the end should lie between the minimum and the maximum elements present in the array. Thus, we first find the minimum and the maximum element in the array. Suppose <script type="math/tex; mode=display">k</script> is the number to which all the elements are equated. Then, we iterate <script type="math/tex; mode=display">k</script> over the range between the minimum and maximum values and find the number of moves required for each <script type="math/tex; mode=display">k</script>, simultaneously finding the minimum moves, which will be the end result.</p>
+<iframe frameborder="0" height="377" name="zoXHVMT9" src="https://leetcode.com/playground/zoXHVMT9/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n*diff)</script>, where <script type="math/tex; mode=display">n</script> is the length of the array and <script type="math/tex; mode=display">diff</script> is the difference between maximum element and minimum element.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space required.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-forceaccepted">Approach #2 Better Brute Force[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, rather than choosing every possible <script type="math/tex; mode=display">k</script> between the minimum and the maximum values in the array,
+we can simply consider <script type="math/tex; mode=display">k</script> as every element of the array. To understand why we need not iterate over all the complete range but only the elements of the array, consider the
+following example.</p>
+<p>Say the array is:</p>
+<p>
+<script type="math/tex; mode=display">mums = [x_1 x_2 x_3 x_4 x_5 x_6 x_7]</script>. Now, if we try to equalize all the elements to <script type="math/tex; mode=display">x_4</script>, which by the way, may or may not be the final number required to be settled down to.</p>
+<p>The total number of moves for doing this is given by: <script type="math/tex; mode=display">moves_1 = (x_4 - x_1) + (x_4 - x_2) + (x_4 - x_3) + (x_5 - x_4) + (x_6 - x_4) + (x_7 - x_4)</script>
+</p>
+<p>Suppose, now, instead of <script type="math/tex; mode=display">x_4</script>, we try to equalize all the elements to a number <script type="math/tex; mode=display">x'</script>, which is not present in the given array, but is slightly larger than <script type="math/tex; mode=display">x_4</script> and is thus given by
+ say <script type="math/tex; mode=display">x' =  x_4 + \delta x</script>, where <script type="math/tex; mode=display">\delta x</script> is an integer. Thus, the total number of moves required now will be given by:</p>
+<p>
+<script type="math/tex; mode=display">moves_2 = (x' - x_1) + (x' - x_2) + (x' - x_3) + (x' - x_4) + (x_5 - x') + (x_6 - x') + (x_7 - x')</script>
+</p>
+<p>
+<script type="math/tex; mode=display">moves_2 = ((x_4 + \delta x) - x_1) + ((x_4 + \delta x) - x_2) + ((x_4 + \delta x) - x_3) + ((x_4 + \delta x) - x_4) + (x_5 - (x_4 + \delta x)) + (x_6 - (x_4 + \delta x)) + (x_7 - (x_4 + \delta x))</script>
+</p>
+<p>
+<script type="math/tex; mode=display">moves_2 = (x_4 - x_1) + \delta x + (x_4 - x_2) + \delta x + (x_4 - x_3) + \delta x + 0 + \delta x + (x_5 - x_4) - \delta x + (x_6 - x_4) - \delta x + (x_7 - x_4) - \delta x</script>
+</p>
+<p>
+<script type="math/tex; mode=display">moves_2 = (x_4 - x_1) + (x_4 - x_2) + (x_4 - x_3) + (x_5 - x_4) + (x_6 - x_4) + (x_7 - x_4) + 4\delta x - 3\delta x</script>
+</p>
+<p>
+<script type="math/tex; mode=display">moves_2 = moves_1 + \delta x</script>      ...using <script type="math/tex; mode=display">moves_1</script> from above</p>
+<p>From this equation, it is clear that the number of moves required to settle to some arbitrary number present in the array <script type="math/tex; mode=display">x_4</script> is always lesser than the number of moves
+  required to settle down to some arbitrary number <script type="math/tex; mode=display">x' = x_4 + \delta x</script>. This completes the proof.</p>
+<iframe frameborder="0" height="292" name="5gKgkRs6" src="https://leetcode.com/playground/5gKgkRs6/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. Two nested loops are there.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space required.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-sorting-accepted">Approach #3 Using Sorting [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the previous approach, we needed to find the number of moves required for every <script type="math/tex; mode=display">k</script> chosen from the array, by iterating over the whole array. We can optimize this approach to sum extent by sorting the array and observing the following fact. The number of moves required to raise the elements smaller than <script type="math/tex; mode=display">k</script> to equalize them to <script type="math/tex; mode=display">k</script> will be given by: <script type="math/tex; mode=display">(k*countBefore_k) - (sumBefore_k)</script>(The meanings of the keywords are given below) .
+ Similarly, the number of moves required to decrement the elements larger than <script type="math/tex; mode=display">k</script> to equalize them to <script type="math/tex; mode=display">k</script> will be: <script type="math/tex; mode=display">(sumAfter_k) - (k*countAfter_k)</script>.
+The total number of moves required will, thus, be the sum of these two parts.
+Hence, for a particular <script type="math/tex; mode=display">k</script> chosen, the total number of moves required will be given by:</p>
+<p>
+<script type="math/tex; mode=display">numberOfMoves_k = [(k*countBefore_k) - (sumBefore_k)] + [(sumAfter_k) - (k*countAfter_k)]</script>
+</p>
+<p>where, <script type="math/tex; mode=display">k</script> = The number to which all the elements are equalized at the end.</p>
+<p>
+<script type="math/tex; mode=display">countBefore_k</script> = The number of elements which are lesser than <script type="math/tex; mode=display">k</script>.</p>
+<p>
+<script type="math/tex; mode=display">sumBefore_k</script> =  The sum of elements which are lesser than <script type="math/tex; mode=display">k</script>.</p>
+<p>
+<script type="math/tex; mode=display">countAfter_k</script> = The number of elements which are larger than <script type="math/tex; mode=display">k</script>.</p>
+<p>
+<script type="math/tex; mode=display">sumAfter_k</script> =  The sum of elements which are larger than <script type="math/tex; mode=display">k</script>.</p>
+<p>
+<script type="math/tex; mode=display">numberOfMoves_k</script> = The total number of moves required to equalize all the elements of the array to <script type="math/tex; mode=display">k</script>.</p>
+<p>Let's say that the index of the element corresponding to the element <script type="math/tex; mode=display">k</script> be given by <script type="math/tex; mode=display">index_k</script>. Instead of iterating over the array for calculating <script type="math/tex; mode=display">sumBefore_k</script> and
+<script type="math/tex; mode=display">sumAfter_k</script>, we can keep on calculating them while traversing the array since the array is sorted. We calculate the total sum of the given array <script type="math/tex; mode=display">nums</script> once, given
+by <script type="math/tex; mode=display">total</script>. We start by choosing <script type="math/tex; mode=display">sumBefore_k=0</script> and <script type="math/tex; mode=display">sumAfter_k</script> as <script type="math/tex; mode=display">total</script>.
+To calculate <script type="math/tex; mode=display">sumBefore_k</script>, we just add the element <script type="math/tex; mode=display">nums[index_k - 1]</script> to the previous <script type="math/tex; mode=display">sumBefore_k</script>.
+To calculate <script type="math/tex; mode=display">sumAfter_k</script>, we subtract the element <script type="math/tex; mode=display">k</script> from the previous <script type="math/tex; mode=display">sumAfter_k</script>.</p>
+<iframe frameborder="0" height="343" name="8RLhocE9" src="https://leetcode.com/playground/8RLhocE9/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(nlog(n)\big)</script>. Sorting will take <script type="math/tex; mode=display">O\big(nlog(n)\big)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space required.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-median-and-sorting-accepted">Approach #4 Using Median and Sorting [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The problem of finding the number <script type="math/tex; mode=display">k</script> to which all the other numbers eventually settle can also be viewed as: Given a set of points in 1-d.
+ Find a point <script type="math/tex; mode=display">k</script> such that the cumulative sum of distances between <script type="math/tex; mode=display">k</script> and the rest of the points is minimum. This is a very common mathematical problem whose answer is known.
+  The point <script type="math/tex; mode=display">k</script> is the median of the given points. The reason behind choosing the median is given after the algorithm.</p>
+<p>We can simply sort the given points and find the <script type="math/tex; mode=display">median</script> as the element in the middle of the array. Thus, the total number of moves required to equalize all the array elements is given by
+  the sum of differences of all the elements from the <script type="math/tex; mode=display">median</script>. In mathematical terms, the solution is given by:</p>
+<p>
+<script type="math/tex; mode=display">moves = \sum_{i=0}^{n-1} |median - nums[i]|</script> , where <script type="math/tex; mode=display">n</script> is the size of the given array.</p>
+<!--![Median_Partition](https://leetcode.com/articles/Figures/462_Minimum_Moves_Median.gif)-->
+<p>!?!../Documents/462_Minimum_Moves1.json:1000,563!?!</p>
+<p>Now, we'll look at the mathematical reasoning behind choosing the median as the number <script type="math/tex; mode=display">k</script> to which we'll settle. As discussed in the previous approach, the total number of moves
+required is given by:</p>
+<p>
+<script type="math/tex; mode=display">numberOfMoves_k = [(k*countBefore_k) - (sumBefore_k)] + [(sumAfter_k) - (k*countAfter_k)]</script>, where all the variables have the same definition.</p>
+<p>Now, as we know, in order to maximize this term w.r.t. the changes in <script type="math/tex; mode=display">k</script>, we can take the derivative of the above term w.r.t. <script type="math/tex; mode=display">k</script>. Thus, we proceed as:</p>
+<p>
+<script type="math/tex; mode=display">\frac{d(numberOfMoves_k)}{dk} = \frac{[(k*countBefore_k) - (sumBefore_k)] + [(sumAfter_k) - (k*countAfter_k)]}{dk}</script>
+</p>
+<p>
+<script type="math/tex; mode=display">\frac{d(numberOfMoves_k)}{dk} = \frac{(k*countBefore_k)}{dk} - \frac{d(sumBefore_k)}{dk} + \frac{d(sumAfter_k)}{dk} - \frac{(k*countAfter_k)}{dk}</script>
+</p>
+<p>
+<script type="math/tex; mode=display">\frac{d(numberOfMoves_k)}{dk} = countBefore_k - countAfter_k</script>
+</p>
+<p>Setting derivative <script type="math/tex; mode=display">\frac{d(numberOfMoves_k)}{dk}</script> equal to <script type="math/tex; mode=display">0</script>, we get:</p>
+<p>
+<script type="math/tex; mode=display">countBefore_k - countAfter_k = 0</script> or <script type="math/tex; mode=display">countBefore_k = countAfter_k</script>. This property is satisfied by the median only, which completes the proof.</p>
+<iframe frameborder="0" height="241" name="87ETNbXm" src="https://leetcode.com/playground/87ETNbXm/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(nlog(n)\big)</script>. Sorting will take <script type="math/tex; mode=display">O\big(nlog(n)\big)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Only single extra variable is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-without-finding-median-accepted">Approach #5 Without finding Median [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the previous approach, we went for finding the median after sorting and then calculated the number of moves required. But, if we observe properly, we'll find that if the array is sorted, we can
+do the same task without actually finding the median or the number <script type="math/tex; mode=display">k</script> to which we need to settle at the end. To proceed with this, let's look at the maximum(<script type="math/tex; mode=display">max</script>) and the minimum
+numbers(<script type="math/tex; mode=display">min</script>) in the array, which currently lie at its extreme positions. We know, at the end, both these numbers should be equalized to <script type="math/tex; mode=display">k</script>. For the number <script type="math/tex; mode=display">max</script>, the number of moves
+required to do this is given by <script type="math/tex; mode=display">max - k</script>. Similarly, for the number <script type="math/tex; mode=display">min</script>, the number of moves is given by <script type="math/tex; mode=display">k - min</script>. Thus, the total number of moves for both <script type="math/tex; mode=display">max</script> and <script type="math/tex; mode=display">min</script> is given by
+<script type="math/tex; mode=display">max - k + (k - min) = max - min</script>, which is independent of the number <script type="math/tex; mode=display">k</script>. Thus, we can continue now, with the next maximum and the next minimum number in the array, until the complete array is exhausted.</p>
+<p>Therefore, the equation becomes:</p>
+<p>
+<script type="math/tex; mode=display">moves = \sum_{i=0}^{\left \lceil{\frac{n}{2}} \right \rceil - 1} |nums[n-i] - nums[i]|</script>, where <script type="math/tex; mode=display">n</script> is the number of elements in the array <script type="math/tex; mode=display">nums</script>.</p>
+<iframe frameborder="0" height="258" name="BjSKEzdE" src="https://leetcode.com/playground/BjSKEzdE/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(nlog(n)\big)</script>. Sorting will take <script type="math/tex; mode=display">O\big(nlog(n)\big)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space required.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-6-using-quick-select-accepted">Approach #6 Using quick-select [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In order to find the median, we need not necessarily sort the given array. But we can find the median directly using the Quick-Select method to find the median, which
+doesn't use sorting.</p>
+<p>The quick-select method is similar to the Quick-Sort method. In a single iteration, we choose a pivot and somehow bring it to its correct position in the array.
+If the correct position happens to be the central position(corresponding to the median), we can return the median directly from there. Now, let's look at the implementation of quick-select.</p>
+<p>Quick-Select makes use of two functions <script type="math/tex; mode=display">partition</script> and <script type="math/tex; mode=display">select</script>. <script type="math/tex; mode=display">select</script> function takes the leftmost and the rightmost indices of the given array and the central index as well. If the element reaching the
+ correct position in the current function call to <script type="math/tex; mode=display">select</script> function happens to be the median(i.e. it reaches the central position), we return the element(since it is the median).
+ The function <script type="math/tex; mode=display">partition</script> takes the leftmost and the rightmost indices of the array and returns the correct position of the current pivot(which is chosen as the rightmost element of the array).
+ This function makes use of two pointers <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script>. Both the pointers initially point to the leftmost element of the array.</p>
+<p>At every step, we compare the element at the
+ <script type="math/tex; mode=display">j^{th}</script> index(<script type="math/tex; mode=display">list[j]</script>) with the pivot element(<script type="math/tex; mode=display">pivot</script>). If <script type="math/tex; mode=display">list[j]<pivot</script>, we swap the elements <script type="math/tex; mode=display">list[i]</script> and <script type="math/tex; mode=display">list[j]</script> and increment <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script>. Otherwise,
+ only <script type="math/tex; mode=display">j</script> is incremented. When <script type="math/tex; mode=display">j</script> reaches the end of the array, we swap the <script type="math/tex; mode=display">pivot</script> with <script type="math/tex; mode=display">list[i]</script>. In this way, now, all the elements lesser than <script type="math/tex; mode=display">pivot</script> lie to the
+ left of the <script type="math/tex; mode=display">i^{th}</script> index, and all the elements larger than <script type="math/tex; mode=display">pivot</script> lie to the right of the <script type="math/tex; mode=display">i^{th}</script> index and thus, the <script type="math/tex; mode=display">pivot</script> reaches at its correct position in the array.
+ If this position isn't the central index of the array, we again make use of the <script type="math/tex; mode=display">select</script> functions passing the left and the right subarrays relative to the <script type="math/tex; mode=display">i^{th}</script> index.</p>
+<p>For more clarification, look at the animation below for this example:
+ <code>[3 8 2 5 1 4 7 6]</code></p>
+<p><!--<img alt="Median_Partition" src="https://leetcode.com/articles/Figures/462_Minimum_Moves_Partition.gif" />-->
+ !?!../Documents/462_Minimum_Moves2.json:1000,563!?!</p>
+<p>After finding the median, we can find the sum of absolute differences of all the elements from the median to determine the number of moves required. Mathematically, we use:</p>
+<p>
+<script type="math/tex; mode=display">moves = \sum_{i=0}^{n-1} |median - list[i]|</script> , where <script type="math/tex; mode=display">n</script> is the size of the given array.</p>
+<iframe frameborder="0" height="515" name="BaPB5Gde" src="https://leetcode.com/playground/BaPB5Gde/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity :
+Average Case: <script type="math/tex; mode=display">O(n)</script>. Quick-Select average case time complexity is <script type="math/tex; mode=display">O(n)</script>.
+Worst Case: <script type="math/tex; mode=display">O(n^2)</script>. In worst case quick-select can go upto <script type="math/tex; mode=display">n^2</script>
+</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space required.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-7-using-median-of-medians-accepted">Approach #7 Using Median of Medians [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>It isn't hard to see that, in quick-select, if we naively choose the pivot element, this
+algorithm has a worst case performance of <script type="math/tex; mode=display">O(n^2)</script>. To guarantee the linear running
+time in order to find the median, however we need a strategy for choosing the pivot element that
+guarantees that we partition the list into two sublists of
+relatively comparable size. Obviously the median of the values
+in the list would be the optimal choice, but if we could find the
+ median in linear time, we would already have a solution to our problem.</p>
+<p>The median-of-medians algorithm chooses its pivot in the following clever way:</p>
+<p>
+<script type="math/tex; mode=display">kthSmallest(arr[0..n-1], k)</script>
+</p>
+<ol>
+<li>
+<p>Divide <script type="math/tex; mode=display">arr[]</script> into <script type="math/tex; mode=display">\left \lceil{\frac{n}{5}}\right\rceil</script> groups where size of each group is 5 elements,
+   except possibly the last group which may have less than 5 elements.  </p>
+</li>
+<li>
+<p>Sort the above created <script type="math/tex; mode=display">\left \lceil{\frac{n}{5}}\right\rceil</script> groups and find median
+   of all groups. Create an auxiliary array <script type="math/tex; mode=display">median[]</script> and store medians
+   of all <script type="math/tex; mode=display">\left \lceil{\frac{n}{5}}\right\rceil</script> groups in this median array.
+   Also, recursively call this method to find median of median[0...<script type="math/tex; mode=display">(\left \lceil{\frac{n}{5}}\right\rceil - 1)</script>]</p>
+</li>
+<li>
+<p>
+<script type="math/tex; mode=display">medOfMed</script> = <script type="math/tex; mode=display">kthSmallest\big(median[0...(\left \lceil{\frac{n}{5}}\right\rceil - 1)], \left \lceil{\frac{n}{10}}\right\rceil\big)</script>
+</p>
+</li>
+<li>
+<p>Partition <script type="math/tex; mode=display">arr[]</script> around <script type="math/tex; mode=display">medOfMed</script> and obtain its position(i.e. use <script type="math/tex; mode=display">medOfMedians</script> as the pivot element).
+     <script type="math/tex; mode=display">pos = partition(arr, n, medOfMed)</script>
+</p>
+</li>
+<li>
+<p>If <script type="math/tex; mode=display">pos == k</script> return <script type="math/tex; mode=display">medOfMed</script>
+</p>
+</li>
+<li>If <script type="math/tex; mode=display">pos < k</script> return <script type="math/tex; mode=display">kthSmallest(arr[l..pos-1], k)</script>
+</li>
+<li>If <script type="math/tex; mode=display">pos > k</script> return <script type="math/tex; mode=display">kthSmallest(arr[pos+1..r], k-pos+l-1)</script>
+</li>
+</ol>
+<p>Using the above method ensures that the chosen pivot, in the worst case, has atmost 70% elements which are larger/smaller than the pivot.
+ The proof of the same as well as the reason behind choosing the group size of 5 is given
+in the explanation of time complexity.</p>
+<iframe frameborder="0" height="515" name="nJGDyFut" src="https://leetcode.com/playground/nJGDyFut/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Worst case time complexity is <script type="math/tex; mode=display">O(n)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space required.</p>
+</li>
+</ul>
+<p><strong>Proof: Time Complexity <script type="math/tex; mode=display">O(n)</script></strong>:</p>
+<p>The worst case time complexity of the above algorithm is <script type="math/tex; mode=display">O(n)</script>. Let us analyze all steps.</p>
+<p>The steps 1. and 2. take <script type="math/tex; mode=display">O(n)</script> time as finding median of an array of size 5 takes O(1) time and there are <script type="math/tex; mode=display">\left \lceil{\frac{n}{5}}\right\rceil</script> such arrays.
+The step 3. takes <script type="math/tex; mode=display">T(n/5)</script> time(if the whole algorithm takes <script type="math/tex; mode=display">T(n)</script> time). The step 4. is standard partition and takes <script type="math/tex; mode=display">O(n)</script> time.
+The interesting steps are 6. and 7. At most, one of them is executed. These are recursive steps. What is the worst case size of these recursive calls?
+The answer is maximum number of elements greater than medOfMed (obtained in step 3) or maximum number of elements smaller than <script type="math/tex; mode=display">medOfMed</script>.</p>
+<p>How many elements are greater than <script type="math/tex; mode=display">medOfMed</script> and how many are smaller?</p>
+<p>Let's assume that the list of medians obtained from step 2. in the sorted order be
+ <script type="math/tex; mode=display">m_1, m_2, m_3,....,m_{x-1}, m_x, m_{x+1} ...m_{n-2}, m_{n-1}, m_n</script>, where <script type="math/tex; mode=display">m_x</script> is the median chosen as the pivot. To find an upper bound on the number of elements in
+ the given array smaller than our pivot, first consider the half of the medians from step 2(<script type="math/tex; mode=display">m_1, m_2, ..., m_{x-1}</script>) which are smaller than
+ the pivot. It is possible for all five of the elements in the sublists corresponding to these medians to be smaller than the pivot(<script type="math/tex; mode=display">m_x</script>, which leads to an upper
+ bound of <script type="math/tex; mode=display">\left \lceil{\frac{n}{5}}\right\rceil*5*\frac{1}{2}</script> such elements. Now consider the half of the medians from step 2 which are larger than the pivot
+ (<script type="math/tex; mode=display">m_{x+1}, ..., m_{n-1}, m_n</script>). It is only possible for two of the
+ elements(which are smaller than the respective medians) in the sublists corresponding to these medians to be smaller than the pivot(<script type="math/tex; mode=display">m_x</script>), which leads to an upper bound of
+ <script type="math/tex; mode=display">\left \lceil{\frac{n}{5}}\right\rceil*2*\frac{1}{2} = \left \lceil{\frac{n}{5}}\right\rceil</script> such elements. In addition, the sublist containing the pivot(<script type="math/tex; mode=display">m_x</script>) contributes
+ exactly two elements smaller than the pivot. It total, we may have at most:</p>
+<p>
+<script type="math/tex; mode=display">\frac{5}{2}\left \lceil{\frac{n}{5}}\right\rceil + \left \lceil{\frac{n}{5}}\right\rceil + 2 = \frac{7}{2}\left \lceil{\frac{n}{5}}\right\rceil + 2 \leq \frac{7n}{10} + 6</script>
+</p>
+<p>elements smaller than the pivot, or approximately 70% of the list. The same upper bound applies the the number of elements in the list larger than the pivot. It is this
+ guarantee that the partitions cannot be too lopsided that leads to linear run time.</p>
+<p>Thus, the minimum number of elements which are smaller or larger than the chosen pivot(<script type="math/tex; mode=display">medOfMed</script>) is given by <script type="math/tex; mode=display">n - (\frac{7n}{10} + 6) = \frac{3n}{10} - 6</script> or nearly
+30% of the elements.</p>
+<p>In the worst case, the function recurs for at most <script type="math/tex; mode=display">\frac{7n}{10} + 6</script> times.</p>
+<p>Note that <script type="math/tex; mode=display">\frac{7n}{10} + 6 < n</script> for <script type="math/tex; mode=display">n > 20</script> and that any input of 80 or fewer elements requires <script type="math/tex; mode=display">O(1)</script> time. We can therefore obtain the recurrence:</p>
+<p>$$T(n)  &lt;= <script type="math/tex; mode=display">\begin{cases} \Theta(1), & n\leq80 \\ T\left \lceil\frac{n}{5}\right\rceil + T(\frac{7n}{10} + 6) + O(n), & n>80 \end{cases}</script>
+</p>
+<p>We show that the running time is linear by substitution. Assume that <script type="math/tex; mode=display">T(n) = cn </script>for some constant <script type="math/tex; mode=display">c</script> and all <script type="math/tex; mode=display">n > 80</script>. Substituting this inductive hypothesis into the right-hand side of the recurrence yields</p>
+<p>
+<script type="math/tex; mode=display">T(n) \leq \frac{cn}{5} + c(\frac{7n}{10} + 6) + O(n)</script>
+<script type="math/tex; mode=display">\leq \frac{cn}{5} + c + \frac{7cn}{10} + 6c + O(n)</script>
+<script type="math/tex; mode=display">\leq \frac{9cn}{10} + 7c + O(n)</script>
+<script type="math/tex; mode=display">\leq cn</script>
+since we can pick c large enough so that <script type="math/tex; mode=display">c(\frac{n}{10} - 7)</script> is larger than the function described by the <script type="math/tex; mode=display">O(n)</script> term for all <script type="math/tex; mode=display">n > 80</script>. The worst-case running time of is therefore linear.</p>
+<p>Choosing the group size of 3 leads to at least half of the n/3 blocks having at least 2 elements <script type="math/tex; mode=display">\geq medOfMed</script>, hence this gives a n/3 split, or 2n/3 in the worst case.</p>
+<p>This gives <script type="math/tex; mode=display">T(n)</script> = <script type="math/tex; mode=display">T(\frac{n}{3}) + T(\frac{2n}{3}) + O(n)</script>, which reduces to <script type="math/tex; mode=display">O(nlogn)</script> in the worst case.</p>
+<p>There is no reason why you should not use something greater than five; for example with seven the inequality would be</p>
+<p>
+<script type="math/tex; mode=display">T(n) \leq T(\frac{n}{7})+T(\frac{5n}{7})+O(n)</script>
+</p>
+<p>
+<script type="math/tex; mode=display">T(n) \leq T(\frac{n}{7})+T(\frac{5n}{7})+O(n)</script>
+</p>
+<p>which also works, but five is the smallest odd number (useful for medians) which works.</p>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">21145</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">40757</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              26%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

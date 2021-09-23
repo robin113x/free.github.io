@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Write a function that takes an unsigned integer and returns the number of ’1&#39; bits it has (also known as the Hamming weight).
+For example, the 32-bit integer ’11&#39; has binary representation 00000000000000000000000000001011, so the function should return 3.
+Credits:Special thanks to @ts for adding this problem and creating all test cases.">
+  <meta name="keywords"
+        content="Number of 1 Bits, LC 191, leetcode 191, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>191. Number of 1 Bits</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Write a function that takes an unsigned integer and returns the number of ’1' bits it has (also known as the <a href="http://en.wikipedia.org/wiki/Hamming_weight">Hamming weight</a>).</p>
+
+<p>For example, the 32-bit integer ’11' has binary representation <code>00000000000000000000000000001011</code>, so the function should return 3.</p>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://oj.leetcode.com/discuss/user/ts">@ts</a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-loop-and-flip-accepted">Approach #1 (Loop and Flip) [Accepted]</h4>
+<p><strong> Algorithm</strong></p>
+<p>The solution is straight-forward. We check each of the <script type="math/tex; mode=display">32</script> bits of the number. If the bit is <script type="math/tex; mode=display">1</script>, we add one to the number of <script type="math/tex; mode=display">1</script>-bits.</p>
+<p>We can check the <script type="math/tex; mode=display">i^{th}</script> bit of a number using a <em>bit mask</em>. We start with a mask <script type="math/tex; mode=display">m=1</script>, because the binary representation of <script type="math/tex; mode=display">1</script> is,</p>
+<p>
+<script type="math/tex; mode=display">
+0000\ 0000\ 0000\ 0000\ 0000\ 0000\ 0000\ 0001
+</script>
+Clearly, a logical AND between any number and the mask <script type="math/tex; mode=display">1</script> gives us the least significant bit of this number. To check the next bit, we shift the mask to the left by one.</p>
+<p>
+<script type="math/tex; mode=display">
+0000\ 0000\ 0000\ 0000\ 0000\ 0000\ 0000\ 0010
+</script>
+</p>
+<p>And so on.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">hammingWeight</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">bits</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">mask</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">((</span><span class="n">n</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">bits</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="n">mask</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">bits</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<p>The run time depends on the number of bits in <script type="math/tex; mode=display">n</script>. Because <script type="math/tex; mode=display">n</script> in this piece of code is a 32-bit integer, the time complexity is <script type="math/tex; mode=display">O(1)</script>.</p>
+<p>The space complexity is <script type="math/tex; mode=display">O(1)</script>, since no additional space is allocated.</p>
+<hr/>
+<h4 id="approach-2-bit-manipulation-trick-accepted">Approach #2 (Bit Manipulation Trick) [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can make the previous algorithm simpler and a little faster. Instead of checking every bit of the number, we repeatedly flip the least-significant <script type="math/tex; mode=display">1</script>-bit of the number to <script type="math/tex; mode=display">0</script>, and add <script type="math/tex; mode=display">1</script> to the sum. As soon as the number becomes <script type="math/tex; mode=display">0</script>, we know that it does not have any more <script type="math/tex; mode=display">1</script>-bits, and we return the sum.</p>
+<p>The key idea here is to realize that for any number <script type="math/tex; mode=display">n</script>, doing a bit-wise AND of <script type="math/tex; mode=display">n</script> and <script type="math/tex; mode=display">n - 1</script> flips the least-significant <script type="math/tex; mode=display">1</script>-bit in <script type="math/tex; mode=display">n</script> to <script type="math/tex; mode=display">0</script>. Why? Consider the binary representations of <script type="math/tex; mode=display">n</script> and <script type="math/tex; mode=display">n - 1</script>.</p>
+<p align="center"><img alt="Number of 1 Bits" src="https://leetcode.com/media/original_images/191_Number_Of_Bits.png" width="400px"/></p>
+<p align="center"><em>Figure 1. AND-ing <script type="math/tex; mode=display">n</script> and <script type="math/tex; mode=display">n-1</script> flips the least-significant <script type="math/tex; mode=display">1</script>-bit to 0.</em></p>
+<p>In the binary representation, the least significant <script type="math/tex; mode=display">1</script>-bit in <script type="math/tex; mode=display">n</script> always corresponds to a <script type="math/tex; mode=display">0</script>-bit in <script type="math/tex; mode=display">n - 1</script>. Therefore, anding the two numbers <script type="math/tex; mode=display">n</script> and <script type="math/tex; mode=display">n - 1</script> always flips the least significant <script type="math/tex; mode=display">1</script>-bit in <script type="math/tex; mode=display">n</script> to <script type="math/tex; mode=display">0</script>, and keeps all other bits the same.</p>
+<p>Using this trick, the code becomes very simple.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">hammingWeight</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">n</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">sum</span><span class="o">++;</span>
+        <span class="n">n</span> <span class="o">&amp;=</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<p>The run time depends on the number of <script type="math/tex; mode=display">1</script>-bits in <script type="math/tex; mode=display">n</script>. In the worst case, all bits in <script type="math/tex; mode=display">n</script> are <script type="math/tex; mode=display">1</script>-bits. In case of a 32-bit integer, the run time is <script type="math/tex; mode=display">O(1)</script>.</p>
+<p>The space complexity is <script type="math/tex; mode=display">O(1)</script>, since no additional space is allocated.</p>
+<p>Analysis written by: @noran.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">174494</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">436058</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              93%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/microsoft.html">Microsoft</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/apple.html">Apple</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

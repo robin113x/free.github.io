@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Implement a MyCalendar class to store your events. A new event can be added if adding the event will not cause a double booking.
+
+Your class will have the method, book(int start, int end).  Formally, this represents a booking on the half open interval [start, end), the range of real numbers x such that start &lt;= x &lt; end.
+
+A double booking happens when two events have some non-empty intersection (ie., there is some time that is common to both events.)
+
+For each call to the method MyCalendar.book, return true if the event can be added to the calendar successfully without causing a double booking.  Otherwise, return false and do not add the event to the calendar.
+
+
+Your class will be called like this:
+MyCalendar cal = new MyCalendar();
+MyCalendar.book(start, end)
+Example 1:
+
+MyCalendar();
+MyCalendar.book(10, 20); // returns true
+MyCalendar.book(15, 25); // returns false
+MyCalendar.book(20, 30); // returns true
+Explanation: 
+The first event can be booked.  The second can&#39;t because time 15 is already booked by another event.
+The third event can be booked, as the first event takes every time less than 20, but not including 20.
+
+
+Note:
+The number of calls to MyCalendar.book per test case will be at most 1000.
+In calls to MyCalendar.book(start, end), start and end are integers in the range [0, 10^9].">
+  <meta name="keywords"
+        content="My Calendar I, LC 729, leetcode 729, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>729. My Calendar I</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Implement a <code>MyCalendar</code> class to store your events. A new event can be added if adding the event will not cause a double booking.
+</p><p>
+Your class will have the method, <code>book(int start, int end)</code>.  Formally, this represents a booking on the half open interval <code>[start, end)</code>, the range of real numbers <code>x</code> such that <code>start <= x < end</code>.
+</p><p>
+A <i>double booking</i> happens when two events have some non-empty intersection (ie., there is some time that is common to both events.)
+</p><p>
+For each call to the method <code>MyCalendar.book</code>, return <code>true</code> if the event can be added to the calendar successfully without causing a double booking.  Otherwise, return <code>false</code> and do not add the event to the calendar.
+</p>
+
+Your class will be called like this:
+<code>MyCalendar cal = new MyCalendar();</code>
+<code>MyCalendar.book(start, end)</code>
+
+<p><b>Example 1:</b><br />
+<pre>
+MyCalendar();
+MyCalendar.book(10, 20); // returns true
+MyCalendar.book(15, 25); // returns false
+MyCalendar.book(20, 30); // returns true
+<b>Explanation:</b> 
+The first event can be booked.  The second can't because time 15 is already booked by another event.
+The third event can be booked, as the first event takes every time less than 20, but not including 20.
+</pre>
+</p>
+
+<p><b>Note:</b>
+<li>The number of calls to <code>MyCalendar.book</code> per test case will be at most <code>1000</code>.</li>
+<li>In calls to <code>MyCalendar.book(start, end)</code>, <code>start</code> and <code>end</code> are integers in the range <code>[0, 10^9]</code>.</li>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-brute-force-accepted">Approach #1: Brute Force [Accepted]</a></li>
+<li><a href="#approach-2-balanced-tree-accepted">Approach #2: Balanced Tree [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-brute-force-accepted">Approach #1: Brute Force [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>When booking a new event <code>[start, end)</code>, check if every current event conflicts with the new event.  If none of them do, we can book the event.</p>
+<p><strong>Algorithm</strong></p>
+<p>We will maintain a list of interval <em>events</em> (not necessarily sorted).  Evidently, two events <code>[s1, e1)</code> and <code>[s2, e2)</code> do <em>not</em> conflict if and only if one of them starts after the other one ends: either <code>e1 &lt;= s2</code> OR <code>e2 &lt;= s1</code>.  By De Morgan's laws, this means the events conflict when <code>s1 &lt; e2</code> AND <code>s2 &lt; e1</code>.</p>
+<iframe frameborder="0" height="310" name="RbxQb2Zj" src="https://leetcode.com/playground/RbxQb2Zj/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N^2)</script>, where <script type="math/tex; mode=display">N</script> is the number of events booked.  For each new event, we process every previous event to decide whether the new event can be booked.  This leads to <script type="math/tex; mode=display">\sum_k^N O(k) = O(N^2)</script> complexity.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>, the size of the <code>calendar</code>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-balanced-tree-accepted">Approach #2: Balanced Tree [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If we maintained our events in <em>sorted</em> order, we could check whether an event could be booked in <script type="math/tex; mode=display">O(\log N)</script> time (where <script type="math/tex; mode=display">N</script> is the number of events already booked) by binary searching for where the event should be placed.  We would also have to insert the event in our sorted structure.</p>
+<p><strong>Algorithm</strong></p>
+<p>We need a data structure that keeps elements sorted and supports fast insertion.  In Java, a <code>TreeMap</code> is the perfect candidate.  In Python, we can build our own binary tree structure.</p>
+<p>For Java, we will have a <code>TreeMap</code> where the keys are the start of each interval, and the values are the ends of those intervals.  When inserting the interval <code>[start, end)</code>, we check if there is a conflict on each side with neighboring intervals: we would like <code>calendar.get(prev)) &lt;= start &lt;= end &lt;= next</code> for the booking to be valid (or for <code>prev</code> or <code>next</code> to be null respectively.)</p>
+<p>For Python, we will create a binary tree.  Each node represents some interval <code>[self.start, self.end)</code> while <code>self.left, self.right</code> represents nodes that are smaller or larger than the current node.</p>
+<iframe frameborder="0" height="500" name="huRxLsMu" src="https://leetcode.com/playground/huRxLsMu/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity (Java): <script type="math/tex; mode=display">O(N \log N)</script>, where <script type="math/tex; mode=display">N</script> is the number of events booked.  For each new event, we search that the event is legal in <script type="math/tex; mode=display">O(\log N)</script> time, then insert it in <script type="math/tex; mode=display">O(1)</script> time.</p>
+</li>
+<li>
+<p>Time Complexity (Python): <script type="math/tex; mode=display">O(N^2)</script> worst case, with <script type="math/tex; mode=display">O(N \log N)</script> on random data.  For each new event, we insert the event into our binary tree.  As this tree may not be balanced, it may take a linear number of steps to add each event.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>, the size of the data structures used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.  Solutions in Approach #2 inspired by <a href="https://discuss.leetcode.com/topic/111205/java-8-liner-treemap">@shawngao</a> and  <a href="https://discuss.leetcode.com/topic/111203/binary-search-tree-python">@persianPanda</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">5143</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">12756</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              9%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

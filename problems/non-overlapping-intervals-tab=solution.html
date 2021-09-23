@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a collection of intervals, find the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.
+
+Note:
+
+You may assume the interval&#39;s end point is always bigger than its start point.
+Intervals like [1,2] and [2,3] have borders &#34;touching&#34; but they don&#39;t overlap each other.
+
+
+Example 1:
+Input: [ [1,2], [2,3], [3,4], [1,3] ]
+
+Output: 1
+
+Explanation: [1,3] can be removed and the rest of intervals are non-overlapping.
+
+
+Example 2:
+Input: [ [1,2], [1,2], [1,2] ]
+
+Output: 2
+
+Explanation: You need to remove two [1,2] to make the rest of intervals non-overlapping.
+
+
+Example 3:
+Input: [ [1,2], [2,3] ]
+
+Output: 0
+
+Explanation: You don&#39;t need to remove any of the intervals since they&#39;re already non-overlapping.">
+  <meta name="keywords"
+        content="Non-overlapping Intervals, LC 435, leetcode 435, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>435. Non-overlapping Intervals</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given a collection of intervals, find the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.
+</p>
+
+<p><b>Note:</b><br />
+<ol>
+<li>You may assume the interval's end point is always bigger than its start point.</li>
+<li>Intervals like [1,2] and [2,3] have borders "touching" but they don't overlap each other.</li>
+</ol>
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> [ [1,2], [2,3], [3,4], [1,3] ]
+
+<b>Output:</b> 1
+
+<b>Explanation:</b> [1,3] can be removed and the rest of intervals are non-overlapping.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> [ [1,2], [1,2], [1,2] ]
+
+<b>Output:</b> 2
+
+<b>Explanation:</b> You need to remove two [1,2] to make the rest of intervals non-overlapping.
+</pre>
+</p>
+
+<p><b>Example 3:</b><br />
+<pre>
+<b>Input:</b> [ [1,2], [2,3] ]
+
+<b>Output:</b> 0
+
+<b>Explanation:</b> You don't need to remove any of the intervals since they're already non-overlapping.
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-dp-based-on-starting-point-accepted">Approach #2 Using DP based on starting point [Accepted]</a></li>
+<li><a href="#approach-3-using-dp-based-on-the-end-points-accepted">Approach #3 Using DP based on the end points [Accepted]</a></li>
+<li><a href="#approach-4-using-greedy-approach-based-on-starting-points-accepted">Approach #4 Using Greedy Approach based on starting points [Accepted]</a></li>
+<li><a href="#approach-5-using-greedy-approach-based-on-end-points-accepted">Approach #5 Using Greedy Approach based on end points [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>Given a collection of intervals, we need to find the minimum number of intervals to be removed to make the rest of the intervals non-overlapping.</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>In the brute force approach, we try to remove the overlapping intervals in different combinations and then check which combination needs the minimum number of removals. To do this, firstly we sort the given intervals based on the starting point. Then, we make use of a recursive function <code>eraseOverlapIntervals</code> which takes the index of the previous interval <script type="math/tex; mode=display">prev</script> and the index of the current interval <script type="math/tex; mode=display">curr</script> (which we try to add to the list of intervals not removed), and returns the count of intervals that need to be removed from the current index onwards.</p>
+<p>We start by using <script type="math/tex; mode=display">prev=-1</script> and <script type="math/tex; mode=display">curr=0</script>. In each recursive call, we check if the current interval overlaps with the previous interval. If not, we need not remove the current interval from the final list and we can call the function <code>eraseOverlapIntervals</code> with <script type="math/tex; mode=display">prev=curr</script> and <script type="math/tex; mode=display">curr=curr + 1</script>. The result of this function call in which we have included the current element is stored in <script type="math/tex; mode=display">taken</script> variable.</p>
+<p>We also make another function call by removing the current interval because this could be overlapping with the upcoming intervals in the next function call and thus, its removal could eventually require lesser total number of removals. Thus, the recursive call takes the arguments <script type="math/tex; mode=display">prev=prev</script> and <script type="math/tex; mode=display">curr=curr + 1</script>. Since, we have removed one interval, the result if the current interval isn't included is the sum of the value returned by the function call incremented by 1, which is stored in <script type="math/tex; mode=display">notTaken</script> variable. While returning the count of removals following a particular index, we return the minimum of <script type="math/tex; mode=display">taken</script> and <script type="math/tex; mode=display">notTaken</script>.</p>
+<iframe frameborder="0" height="428" name="QtauivZC" src="https://leetcode.com/playground/QtauivZC/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(2^n)</script>. Total possible number of Combinations of subsets are <script type="math/tex; mode=display">2^n</script> .</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Depth of recursion is <script type="math/tex; mode=display">n</script>.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-dp-based-on-starting-point-accepted">Approach #2 Using DP based on starting point [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The given problem can be simplified to a great extent if we sort the given interval list based on the starting points. Once it's done, we can make use of a <script type="math/tex; mode=display">dp</script> array, scuh that <script type="math/tex; mode=display">dp[i]</script> stores the maximum number of valid intervals that can be included in the final list if the intervals upto the <script type="math/tex; mode=display">i^{th}</script> interval only are considered, including itself. Now, while finding <script type="math/tex; mode=display">dp[i+1]</script>, we can't consider the value of <script type="math/tex; mode=display">dp[i]</script> only, because it could be possible that the <script type="math/tex; mode=display">i^{th}</script> or any previous interval could be overlapping with the <script type="math/tex; mode=display">(i+1)^{th}</script> interval. Thus, we need to consider the maximum of all <script type="math/tex; mode=display">dp[j]</script>'s such that <script type="math/tex; mode=display">j \leq i</script> and <script type="math/tex; mode=display">j^{th}</script> interval and <script type="math/tex; mode=display">i^{th}</script> don't overlap, to evaluate <script type="math/tex; mode=display">dp[i+1]</script>. Therefore, the equation for <script type="math/tex; mode=display">dp[i+1]</script> becomes:</p>
+<p>
+<script type="math/tex; mode=display">
+dp[i+1]= \max(dp[j]) + 1,
+</script>
+</p>
+<p>such that <script type="math/tex; mode=display">j^{th}</script> interval and <script type="math/tex; mode=display">i^{th}</script> don't overlap, for all <script type="math/tex; mode=display">j \leq i</script>.</p>
+<p>In the end, to obtain the maximum number of intervals that can be included in the final list(<script type="math/tex; mode=display">ans</script>) we need to find the maximum value in the <script type="math/tex; mode=display">dp</script> array. The final result will be the total number of intervals given less the result just obtained(<script type="math/tex; mode=display">intervals.length-ans</script>).</p>
+<p>The animation below illustrates the approach more clearly:</p>
+<p>!?!../Documents/435_Non_Overlapping_Intervalsdp1.json:866,487!?!</p>
+<iframe frameborder="0" height="515" name="9SpbjLHA" src="https://leetcode.com/playground/9SpbjLHA/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. Two nested loops are required to fill <script type="math/tex; mode=display">dp</script> array.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-dp-based-on-the-end-points-accepted">Approach #3 Using DP based on the end points [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the DP approach just discussed above, for calculating the value of every <script type="math/tex; mode=display">dp[i]</script>, we need to traverse the <script type="math/tex; mode=display">dp</script> array back till the starting index. This overhead can be removed, if we use an interval list sorted on the basis of the end points. Thus, now, again we use the same kind of <script type="math/tex; mode=display">dp</script> array, where <script type="math/tex; mode=display">dp[i]</script> is used to store the maximum number of intervals that can be included in the final list if the intervals only upto the <script type="math/tex; mode=display">i^{th}</script> index in the sorted list are considered. Thus, in order to find <script type="math/tex; mode=display">dp[i+1]</script> now, we've to consider two cases:</p>
+<p><strong>Case 1:</strong></p>
+<blockquote>
+<p>The interval corresponding to <script type="math/tex; mode=display">(i+1)^{th}</script> interval needs to be included in the final list to obtain the minimum number of removals:</p>
+</blockquote>
+<p>In this case, we need to traverse back in the sorted interval array form the <script type="math/tex; mode=display">(i+1)^{th}</script> index upto the starting index to find the first interval which is non-overlapping. This is because, if we are including the current interval, we need to remove all the intervals which are overlapping with the current interval. But, we need not go back till the starting index everytime. Instead we can stop the traversal as soon as we hit the first non-overlapping interval and use its <script type="math/tex; mode=display">dp[j] + 1</script> to fill in <script type="math/tex; mode=display">dp[i+1]</script>, since <script type="math/tex; mode=display">dp[j]</script> will be the element storing the maximum number of intervals that can be included considering elements upto the <script type="math/tex; mode=display">j^{th}</script> index.</p>
+<p><strong>Case 2:</strong></p>
+<blockquote>
+<p>The interval corresponding to <script type="math/tex; mode=display">(i+1)^{th}</script> interval needs to be removed from the final list to obtain the minimum number of removals:</p>
+</blockquote>
+<p>In this case, the current element won't be included in the final list. So, the count of intervals to be included upto <script type="math/tex; mode=display">(i+1)^{th}</script> index is the same as the count of intervals upto the <script type="math/tex; mode=display">i^{th}</script> index. Thus, we can use <script type="math/tex; mode=display">dp[i]</script>'s value to fill in <script type="math/tex; mode=display">dp[i+1]</script>.</p>
+<p>The value finally entered in <script type="math/tex; mode=display">dp[i+1]</script> will be the maximum of the above two values.</p>
+<p>The final result will again be the total count of intervals less the result obtained at the end from the <script type="math/tex; mode=display">dp</script> array.</p>
+<p>The animation below illustrates the approach more clearly:</p>
+<!--![Non_overlapping_dp](https://leetcode.com/articles/Figures/435_NonOverlapping_Intervalsdp2.gif)-->
+<p>!?!../Documents/435_Non.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="McmA5f64" src="https://leetcode.com/playground/McmA5f64/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. Two nested loops are required to fill <script type="math/tex; mode=display">dp</script> array.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-greedy-approach-based-on-starting-points-accepted">Approach #4 Using Greedy Approach based on starting points [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>If we sort the given intervals based on starting points, the greedy approach works very well. While considering the intervals in the ascending order of starting points, we make use of a pointer <script type="math/tex; mode=display">prev</script> pointer to keep track of the interval just included in the final list. While traversing, we can encounter 3 possibilities as shown in the figure:</p>
+<p><img alt="Non_overlapping" src="https://leetcode.com/articles/Figures/435_NonOverlapping_greedy1.JPG"/></p>
+<p><strong>Case 1:</strong></p>
+<blockquote>
+<p>The two intervals currently considered are non-overlapping:</p>
+</blockquote>
+<p>In this case, we need not remove any interval and we can continue by simply assigning the <script type="math/tex; mode=display">prev</script> pointer to the later interval and the count of intervals removed remains unchanged.</p>
+<p><strong>Case 2:</strong></p>
+<blockquote>
+<p>The two intervals currently considered are overlapping and the end point of the later interval falls before the end point of the previous interval:</p>
+</blockquote>
+<p>In this case, we can simply take the later interval. The choice is obvious since choosing an interval of smaller width will lead to more available space labelled as <script type="math/tex; mode=display">A</script> and <script type="math/tex; mode=display">B</script>, in which more intervals can be accommodated. Hence, the <script type="math/tex; mode=display">prev</script> pointer is updated to current interval and the count of intervals removed is incremented by 1.</p>
+<p><strong>Case 3:</strong></p>
+<blockquote>
+<p>The two intervals currently considered are overlapping and the end point of the later interval falls after the end point of the previous interval:</p>
+</blockquote>
+<p>In this case, we can work in a greedy manner and directly remove the later interval. To understand why this greedy approach works, we need to see the figure below, which includes all the subcases possible. It is clear from the figures that we choosing interval 1 always leads to a better solution in the future. Thus, the <script type="math/tex; mode=display">prev</script> pointer remains unchanged and the count of intervals removed is incremented by 1.</p>
+<p><img alt="Non_overlapping" src="https://leetcode.com/articles/Figures/435_NonOverlapping_greedy2.JPG"/></p>
+<iframe frameborder="0" height="479" name="nv3azNFK" src="https://leetcode.com/playground/nv3azNFK/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(n \log(n)\big)</script>. Sorting takes <script type="math/tex; mode=display">O\big(n \log(n)\big)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-using-greedy-approach-based-on-end-points-accepted">Approach #5 Using Greedy Approach based on end points [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The Greedy approach just discussed was based on choosing intervals greedily based on the starting points. But in this approach, we go for choosing points greedily based on the end points. For this, firstly we sort the given intervals based on the end points. Then, we traverse over the sorted intervals. While traversing, if there is no overlapping between the previous interval and the current interval, we need not remove any interval. But, if an overlap exists between the previous interval and the current interval, we always drop the current interval.</p>
+<p>To explain how it works, again we consider every possible arrangement of the intervals.</p>
+<p><img alt="Non_overlapping" src="https://leetcode.com/articles/Figures/435_NonOverlapping_greedy3.JPG"/></p>
+<p><strong>Case 1:</strong></p>
+<blockquote>
+<p>The two intervals currently considered are non-overlapping:</p>
+</blockquote>
+<p>In this case, we need not remove any interval and for the next iteration the current interval becomes the previous interval.</p>
+<p><strong>Case 2:</strong></p>
+<blockquote>
+<p>The two intervals currently considered are overlapping and the starting point of the later interval falls before the starting point of the previous interval:</p>
+</blockquote>
+<p>In this case, as shown in the figure below, it is obvious that the later interval completely subsumes the previous interval. Hence, it is advantageous to remove the later interval so that we can get more range available to accommodate future intervals. Thus, previous interval remains unchanged and the current interval is updated.</p>
+<p><strong>Case 3:</strong></p>
+<blockquote>
+<p>The two intervals currently considered are overlapping and the starting point of the later interval falls before the starting point of the previous interval:</p>
+</blockquote>
+<p>In this case, the only opposition to remove the current interval arises because it seems that more intervals could be accommodated by removing the previous interval in the range marked by <script type="math/tex; mode=display">A</script>. But that won't be possible as can be visualized with a case similar to Case 3a and 3b shown above. But, if we remove the current interval, we can save the range <script type="math/tex; mode=display">B</script> to accommodate further intervals. Thus, previous interval remains unchanged and the current interval is updated.</p>
+<iframe frameborder="0" height="428" name="23TqSoF7" src="https://leetcode.com/playground/23TqSoF7/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(n \log(n)\big)</script>. Sorting takes <script type="math/tex; mode=display">O\big(n \log(n)\big)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">18052</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">43516</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              24%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

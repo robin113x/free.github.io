@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a non-empty integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n - 1 elements by 1.
+Example:
+Input:
+[1,2,3]
+
+Output:
+3
+
+Explanation:
+Only three moves are needed (remember each move increments two elements):
+
+[1,2,3]  =&gt;  [2,3,3]  =&gt;  [3,4,3]  =&gt;  [4,4,4]">
+  <meta name="keywords"
+        content="Minimum Moves to Equal Array Elements, LC 453, leetcode 453, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>453. Minimum Moves to Equal Array Elements</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a <b>non-empty</b> integer array of size <i>n</i>, find the minimum number of moves required to make all array elements equal, where a move is incrementing <i>n</i> - 1 elements by 1.</p>
+
+<p><b>Example:</b>
+<pre>
+<b>Input:</b>
+[1,2,3]
+
+<b>Output:</b>
+3
+
+<b>Explanation:</b>
+Only three moves are needed (remember each move increments two elements):
+
+[1,2,3]  =>  [2,3,3]  =>  [3,4,3]  =>  [4,4,4]
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-forcetime-limit-exceeded">Approach #2 Better Brute Force[Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-using-sorting-accepted">Approach #3 Using Sorting [Accepted]</a></li>
+<li><a href="#approach-4-using-dp-accepted">Approach #4 Using DP [Accepted]</a></li>
+<li><a href="#approach-5-using-mathaccepted">Approach #5 Using Math[Accepted]</a></li>
+<li><a href="#approach-6-modified-approach-using-mathsaccepted">Approach #6 Modified Approach Using Maths[Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>Firstly, we know that in order to make all the elements equal to each other with minimum moves, we need to do the increments in all but the maximum element of the array.
+ Thus, in the brute force approach, we scan the complete array to find the maximum and the minimum element. After this, we add 1 to all the elements except the maximum element, and
+increment the count for the number of moves done. Again, we repeat the same process, and this continues until the maximum and the minimum element become equal to each other.</p>
+<iframe frameborder="0" height="479" name="zDzVEUkJ" src="https://leetcode.com/playground/zDzVEUkJ/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n^2 k)</script>, where <script type="math/tex; mode=display">n</script> is the length of the array and <script type="math/tex; mode=display">k</script> is the difference between maximum element and minimum element.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space required.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-forcetime-limit-exceeded">Approach #2 Better Brute Force[Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the previous approach, we added 1 to every element in a single step. But, we can modify this approach to some extent. In order to make the minimum element equal to the maximum element, we need to add 1 atleast <script type="math/tex; mode=display">k</script> times,
+after which, the maximum element could change. Thus, instead of incrementing in steps of 1,we increment in bursts, where each burst will be of size <script type="math/tex; mode=display">k=max-min</script>.
+Thus, we scan the complete array to find the maximum and minimum element. Then, we increment every element by <script type="math/tex; mode=display">k</script> units and add <script type="math/tex; mode=display">k</script> to the count of moves. Again we
+repeat the same process, until the maximum and minimum element become equal.</p>
+<iframe frameborder="0" height="496" name="FG9JKTT6" src="https://leetcode.com/playground/FG9JKTT6/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. In every iteration two elements are equalized.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space required.</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-sorting-accepted">Approach #3 Using Sorting [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The problem gets simplified if we sort the given array in order to obtain a sorted array <script type="math/tex; mode=display">a</script>. Now, similar to Approach 2,we use the difference <script type="math/tex; mode=display">diff=max-min</script> to update the elements of the array, but we need not traverse the whole array to find the maximum and minimum element every time,
+since if the array is sorted, we can make use of this property to find the maximum and minimum element after updation in <script type="math/tex; mode=display">O(1)</script> time. Further, we need not actually update all the elements of the array.
+To understand how this works, we'll go in a stepwise manner.</p>
+<p>Firstly, assume that we are updating the elements of the sorted array after every step of calculating the difference <script type="math/tex; mode=display">diff</script>. We'll see how to find the maximum and minimum element without
+traversing the array. In the first step, the last element is the largest element. Therefore, <script type="math/tex; mode=display">diff=a[n-1]-a[0]</script>. We add <script type="math/tex; mode=display">diff</script> to all the elements except the last one i.e. <script type="math/tex; mode=display">a[n-1]</script>.
+ Now, the updated element at index 0 ,<script type="math/tex; mode=display">a'[0]</script> will be <script type="math/tex; mode=display">a[0]+diff=a[n-1]</script>. Thus, the smallest element <script type="math/tex; mode=display">a'[0]</script> is now equal to the previous largest element <script type="math/tex; mode=display">a[n-1]</script>. Since, the
+ elements of the array are sorted, the elements upto index <script type="math/tex; mode=display">i-2</script> satisfy the property <script type="math/tex; mode=display">a[j]>=a[j-1]</script>. Thus, after updation, the element <script type="math/tex; mode=display">a'[n-2]</script> will become the largest element, which is obvious due to the sorted array property. Also, a[0]
+ is still the smallest element.</p>
+<p>Thus, for the second updation, we consider the difference <script type="math/tex; mode=display">diff</script> as <script type="math/tex; mode=display">diff=a[n-2]-a[0]</script>. After updation, <script type="math/tex; mode=display">a''[0]</script> will become equal to <script type="math/tex; mode=display">a'[n-2]</script> similar to the first iteration.
+ Further, since <script type="math/tex; mode=display">a'[0]</script> and <script type="math/tex; mode=display">a'[n-1]</script> were equal. After the second updation, we get <script type="math/tex; mode=display">a''[0]=a''[n-1]=a'[n-2]</script>. Thus, now the largest element will be <script type="math/tex; mode=display">a[n-3]</script>.
+ Thus, we can continue in this fashion, and keep on incrementing the number of moves with the difference found at every step.</p>
+<p>Now, let's come to step 2. In the first step, we assumed that we are updating the elements of the array <script type="math/tex; mode=display">a</script> at every step, but we need not do this. This is because, even after updating
+ the elements the difference which we consider to add to the number of moves required remains the same because both the elements <script type="math/tex; mode=display">max</script> and <script type="math/tex; mode=display">min</script> required to find the <script type="math/tex; mode=display">diff</script> get updated by the
+ same amount everytime.</p>
+<p>Thus, we can simply sort the given array once and use <script type="math/tex; mode=display">moves=\sum_{i=1}^{n-1} (a[i]-a[0])</script>.</p>
+<iframe frameborder="0" height="224" name="RaVVUTFL" src="https://leetcode.com/playground/RaVVUTFL/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(nlog(n)\big)</script>. Sorting will take <script type="math/tex; mode=display">O\big(nlog(n)\big)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space required.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-dp-accepted">Approach #4 Using DP [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The given problem can be simplified if we sort the given array once. If we consider a sorted array <script type="math/tex; mode=display">a</script>, instead of trying to work on the complete problem of
+equalizing every element of the array, we can break the problem for array of size <script type="math/tex; mode=display">n</script> into problems of solving arrays of smaller sizes. Assuming, the elements upto
+index <script type="math/tex; mode=display">i-1</script> have been equalized, we can simply consider the element at index <script type="math/tex; mode=display">i</script> and add the difference <script type="math/tex; mode=display">diff=a[i]-a[i-1]</script> to the total number of moves for the array upto index <script type="math/tex; mode=display">i</script> to be equalized i.e. <script type="math/tex; mode=display">moves=moves+diff</script>.
+ But when we try to proceed with this step, as per a valid move, the elements following <script type="math/tex; mode=display">a[i]</script> will also be incremented by the amount <script type="math/tex; mode=display">diff</script> i.e. <script type="math/tex; mode=display">a[j]=a[j]+diff</script>, for <script type="math/tex; mode=display">j>i</script>.
+ But while implementing this approach, we need not increment all such <script type="math/tex; mode=display">a[j]</script>'s. Instead, we'll add the number of <script type="math/tex; mode=display">moves</script> done so far to the current element i.e. <script type="math/tex; mode=display">a[i]</script> and update it to <script type="math/tex; mode=display">a'[i]=a[i]+moves</script>.</p>
+<p>In short, we sort the given array, and keep on updating the <script type="math/tex; mode=display">moves</script> required so far in order to equalize the elements upto the current index without actually changing the elements of the
+  array except the current element. After the complete array has been scanned <script type="math/tex; mode=display">moves</script> gives the required solution.</p>
+<p>The following animation will make the process more clear for this example:</p>
+<p><code>[13 18 3 10 35 68 50 20 50]</code></p>
+<p><!-- <img alt="Minimum_Moves_dp" src="https://leetcode.com/articles/Figures/453_Minimum_Moves.gif" />-->
+  !?!../Documents/453_Minimum_Moves.json:1000,563!?!</p>
+<iframe frameborder="0" height="258" name="ZeTzTVy6" src="https://leetcode.com/playground/ZeTzTVy6/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(nlog(n)\big)</script>. Sorting will take <script type="math/tex; mode=display">O\big(nlog(n)\big)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Only single extra variable is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-using-mathaccepted">Approach #5 Using Math[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>This approach is based on the idea that adding 1 to all the elements except one is equivalent to decrementing 1 from a single element, since we are interested in the relative levels of the
+ elements which need to be equalized. Thus, the problem is simplified to find the number of decrement operations required to equalize all the elements of the given array.
+ For finding this, it is obvious that we'll reduce all the elements of the array to the minimum element. But, in order to find the solution, we need not actually decrement the elements. We can find the
+ number of moves required as <script type="math/tex; mode=display">moves=\sum_{i=0}^{n-1} a[i] - min(a)*n</script>, where <script type="math/tex; mode=display">n</script> is the length of the array.</p>
+<iframe frameborder="0" height="241" name="n9x34Fi5" src="https://leetcode.com/playground/n9x34Fi5/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We traverse the complete array once.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space required.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-6-modified-approach-using-mathsaccepted">Approach #6 Modified Approach Using Maths[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>There could be a problem with the above approach. The value <script type="math/tex; mode=display">\sum_{i=0}^{n-1} a[i]</script> could be very large and hence could lead to integer overflow if the <script type="math/tex; mode=display">a[i]</script>'s are
+very large. To avoid this problem, we can calculate the required number of <script type="math/tex; mode=display">moves</script> on the fly. <script type="math/tex; mode=display">\sum_{i=0}^{n-1} (a[i]-min(a))</script>.</p>
+<iframe frameborder="0" height="258" name="9udsqVkr" src="https://leetcode.com/playground/9udsqVkr/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. One pass for finding minimum and one pass for calculating moves.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space required.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">35592</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">74452</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              63%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/indeed.html">Indeed</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/coursera.html">Coursera</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

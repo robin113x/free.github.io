@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="In the computer world, use restricted resource you have to generate maximum benefit is what we always want to pursue.
+For now, suppose you are a dominator of m 0s and n 1s respectively. On the other hand, there is an array with strings consisting of only 0s and 1s.
+
+Now your task is to find the maximum number of strings that you can form with given m 0s and n 1s. Each 0 and 1 can be used at most once.
+
+Note:
+
+The given numbers of 0s and 1s will both not exceed 100
+The size of given string array won&#39;t exceed 600.
+
+
+Example 1:
+Input: Array = {&#34;10&#34;, &#34;0001&#34;, &#34;111001&#34;, &#34;1&#34;, &#34;0&#34;}, m = 5, n = 3
+Output: 4
+
+Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3 1s, which are “10,”0001”,”1”,”0”
+
+
+Example 2:
+Input: Array = {&#34;10&#34;, &#34;0&#34;, &#34;1&#34;}, m = 1, n = 1
+Output: 2
+
+Explanation: You could form &#34;10&#34;, but then you&#39;d have nothing left. Better form &#34;0&#34; and &#34;1&#34;.">
+  <meta name="keywords"
+        content="Ones and Zeroes, LC 474, leetcode 474, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>474. Ones and Zeroes</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>In the computer world, use restricted resource you have to generate maximum benefit is what we always want to pursue.</p>
+<p>For now, suppose you are a dominator of <b>m</b> <code>0s</code> and <b>n</b> <code>1s</code> respectively. On the other hand, there is an array with strings consisting of only <code>0s</code> and <code>1s</code>.</p>
+
+<p>
+Now your task is to find the maximum number of strings that you can form with given <b>m</b> <code>0s</code> and <b>n</b> <code>1s</code>. Each <code>0</code> and <code>1</code> can be used at most <b>once</b>.
+</p>
+
+
+<p><b>Note:</b><br>
+<ol>
+<li>The given numbers of <code>0s</code> and <code>1s</code> will both not exceed <code>100</code></li>
+<li>The size of given string array won't exceed <code>600</code>.</li>
+</ol>
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> Array = {"10", "0001", "111001", "1", "0"}, m = 5, n = 3
+<b>Output:</b> 4
+
+<b>Explanation:</b> This are totally 4 strings can be formed by the using of 5 0s and 3 1s, which are “10,”0001”,”1”,”0”
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> Array = {"10", "0", "1"}, m = 1, n = 1
+<b>Output:</b> 2
+
+<b>Explanation:</b> You could form "10", but then you'd have nothing left. Better form "0" and "1".
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-using-recursion-time-limit-exceeded">Approach #3 Using Recursion [Time Limit Exceeded]</a></li>
+<li><a href="#approach-4-using-memoization-accepted">Approach #4 Using Memoization [Accepted]</a></li>
+<li><a href="#approach-5-dynamic-programming-accepted">Approach #5 Dynamic Programming [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>In the brute force approach we will consider every subset of <script type="math/tex; mode=display">strs</script> array and count the total number of zeroes and ones in that subset. The subset with zeroes less than equal to <script type="math/tex; mode=display">m</script> and ones less than equal to <script type="math/tex; mode=display">n</script> will be considered as the valid subsets. The maximum length subset among all valid subsets will be  our required subset.</p>
+<p>Obviously, there are <script type="math/tex; mode=display">2^n</script> subsets possible for the list of length <script type="math/tex; mode=display">n</script> and here we are using int(32 bits) for iterating every subset. So this method will not work for the list having length greater than 32.</p>
+<iframe frameborder="0" height="515" name="PB4G7F5Z" src="https://leetcode.com/playground/PB4G7F5Z/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(2^l*x)</script>. <script type="math/tex; mode=display">2^l</script> possible subsets, where <script type="math/tex; mode=display">l</script> is the length of the list <script type="math/tex; mode=display">strs</script> and <script type="math/tex; mode=display">x</script> is the average string length.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant Space required.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the previous approach we were considering every possible subset and then we were counting its zeroes and ones. We can limit the number of subsets by breaking the loop when total number of zeroes exceed <script type="math/tex; mode=display">m</script> or total number of ones exceed <script type="math/tex; mode=display">n</script>. This will reduce little computation not the complexity.</p>
+<iframe frameborder="0" height="515" name="XyDP2sRL" src="https://leetcode.com/playground/XyDP2sRL/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(2^l*x)</script>. <script type="math/tex; mode=display">2^l</script> possible subsets, where <script type="math/tex; mode=display">l</script> is the length of the list <script type="math/tex; mode=display">strs</script> and <script type="math/tex; mode=display">x</script> is the average string length.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant Space required.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-recursion-time-limit-exceeded">Approach #3 Using Recursion [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the above approaches we were considering every subset iteratively. The subset formation can also be done in a recursive manner. For this, we make use of a function <code>calculate(strs, i, ones, zeroes)</code>. This function takes the given list of strings <script type="math/tex; mode=display">strs</script> and gives the size of the largest subset with <script type="math/tex; mode=display">ones</script> 1's and <script type="math/tex; mode=display">zeroes</script>  0's considering the strings lying after the <script type="math/tex; mode=display">i^{th}</script> index(including itself) in <script type="math/tex; mode=display">strs</script>.</p>
+<p>Now, in every function call of <code>calculate(...)</code>, we can:</p>
+<ol>
+<li>
+<p>Include the current string in the subset currently being considered. But if we include the current string, we'll need to deduct the number of 0's and 1's in the current string from the total available respective counts. Thus, we make a function call of the form <script type="math/tex; mode=display">calculate(strs,i+1,zeroes-zeroes_{current\_string},ones-ones_{current\_string})</script>. We also need to increment the total number of strings considered so far by 1. We store the result obtained from this call(including the +1) in <script type="math/tex; mode=display">taken</script> variable.</p>
+</li>
+<li>
+<p>Not include the current string in the current subset. In this case, we need not update the count of <script type="math/tex; mode=display">ones</script> and <script type="math/tex; mode=display">zeroes</script>. Thus, the new function call takes the form <script type="math/tex; mode=display">calculate(strs,i+1,zeroes,ones)</script>. The result obtained from this function call is stored in <script type="math/tex; mode=display">notTaken</script> variable.</p>
+</li>
+</ol>
+<p>The larger value out of <script type="math/tex; mode=display">taken</script> and <script type="math/tex; mode=display">notTaken</script> represents the required result to be returned for the current function call.</p>
+<p>Thus, the function call <script type="math/tex; mode=display">calculate(strs, 0, m, n)</script> gives us the required maximum number of subsets possible satisfying the given constraints.</p>
+<iframe frameborder="0" height="428" name="SjPQE6wg" src="https://leetcode.com/playground/SjPQE6wg/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong>
+* Time complexity : <script type="math/tex; mode=display">O(2^l*x)</script>. <script type="math/tex; mode=display">2^l</script> possible subsets, where <script type="math/tex; mode=display">l</script> is the length of the list <script type="math/tex; mode=display">strs</script> and <script type="math/tex; mode=display">x</script> is the average string length.</p>
+<ul>
+<li>Space complexity : <script type="math/tex; mode=display">O(l)</script>. Depth of recursion tree grows upto <script type="math/tex; mode=display">l</script>.</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-memoization-accepted">Approach #4 Using Memoization [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the recursive approach just discussed, a lot of redundant function calls will be made taking the same values of <script type="math/tex; mode=display">(i, zeroes, ones)</script>. This redundancy in the recursive tree can be pruned off by making use of a 3-D memoization array, <script type="math/tex; mode=display">memo</script>.</p>
+<p>
+<script type="math/tex; mode=display">memo[i][j][k]</script> is used to store the result obtained for the function call <code>calculate(strs, i, j, k)</code>. Or in other words, it stores the maximum number of subsets possible considering the strings starting from the <script type="math/tex; mode=display">i^{th}</script> index onwards, provided only <script type="math/tex; mode=display">j</script> 0's and <script type="math/tex; mode=display">k</script> 1's are available to be used.</p>
+<p>Thus, whenever <script type="math/tex; mode=display">memo[i][j][k]</script> already contains a valid entry, we need not make use of the function calls again, but we can pick up the result directly from the <script type="math/tex; mode=display">memo</script> array.</p>
+<p>The rest of the procedure remains the same as that of the recursive approach.</p>
+<iframe frameborder="0" height="515" name="oVimjcfS" src="https://leetcode.com/playground/oVimjcfS/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(l*m*n)</script>. <script type="math/tex; mode=display">memo</script> array of size <script type="math/tex; mode=display">l*m*n</script> is filled, where <script type="math/tex; mode=display">l</script> is the length of <script type="math/tex; mode=display">strs</script>, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> are the number of zeroes and ones respectively.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(l*m*n)</script>. 3D array <script type="math/tex; mode=display">memo</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-dynamic-programming-accepted">Approach #5 Dynamic Programming [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>This problem can be solved by using 2-D Dynamic Programming. We can make use of a <script type="math/tex; mode=display">dp</script> array, such that an entry <script type="math/tex; mode=display">dp[i][j]</script> denotes the maximum number of strings that can be included in the subset given only <script type="math/tex; mode=display">i</script> 0's and <script type="math/tex; mode=display">j</script> 1's are available.</p>
+<p>Now, let's look at the process by which we'll fill the <script type="math/tex; mode=display">dp</script> array. We traverse the given list of strings one by one. Suppose, at some point, we pick up any string <script type="math/tex; mode=display">s_k</script> consisting of <script type="math/tex; mode=display">x</script> zeroes and <script type="math/tex; mode=display">y</script> ones. Now, choosing to put this string in any of the subset possible by using the previous strings traversed so far will impact the element denoted by <script type="math/tex; mode=display">dp[i][j]</script> for <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script> satisfying <script type="math/tex; mode=display">x &leq; i &leq; m</script>, <script type="math/tex; mode=display">y &leq; j &leq; n</script>. This is because for entries <script type="math/tex; mode=display">dp[i][j]</script> with <script type="math/tex; mode=display">i < x</script> or <script type="math/tex; mode=display">j < y</script>, there won't be sufficient number of 1's and 0's available to accomodate the current string in any subset.</p>
+<p>Thus, for every string encountered, we need to appropriately update the <script type="math/tex; mode=display">dp</script> entries within the correct range.</p>
+<p>Further, while updating the <script type="math/tex; mode=display">dp</script> values, if we consider choosing the current string to be a part of the subset, the updated result will depend on whether it is profitable to include the current string in any subset or not. If included in the subset, the <script type="math/tex; mode=display">dp[i][j]</script> entry needs to be updated as <script type="math/tex; mode=display">dp[i][j]=1 + dp[i - zeroes_{current\_string}][j - ones_{current\_string}]</script>, where the factor of +1 takes into account the number of elements in the current subset being increased due to a new entry.</p>
+<p>But, it could be possible that the current string could be so long that it could be profitable not to include it in any of the subsets. Thus, the correct equation for <script type="math/tex; mode=display">dp</script> updation becomes:</p>
+<p>
+<script type="math/tex; mode=display">dp[i][j]= max(1+dp[i - zeroes_{current\_string}][j - ones_{current\_string}],dp[i][j])</script>
+</p>
+<p>Thus, after the complete list of strings has been traversed, <script type="math/tex; mode=display">dp[m][n]</script> gives the required size of the largest subset.</p>
+<p>Watch this animation for clear understanding:</p>
+<p>!?!../Documents/474_Ones_Zeroes.json:1000,563!?!</p>
+<iframe frameborder="0" height="411" name="uSvKvaat" src="https://leetcode.com/playground/uSvKvaat/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(l*m*n)</script>. Three nested loops are their, where <script type="math/tex; mode=display">l</script> is the length of <script type="math/tex; mode=display">strs</script>, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> are the number of zeroes and ones respectively.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m*n)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">m*n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">16931</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">43403</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              35%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>
