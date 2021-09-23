@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="You are given several logs that each log contains a unique id and timestamp. Timestamp is a string that has the following format: Year:Month:Day:Hour:Minute:Second, for example, 2017:01:01:23:59:59. All domains are zero-padded decimal numbers. 
+Design a log storage system to implement the following functions:
+void Put(int id, string timestamp): Given a log&#39;s unique id and timestamp, store the log in your storage system.
+
+int[] Retrieve(String start, String end, String granularity): Return the id of logs whose timestamps are within the range from start to end. Start and end all have the same format as timestamp. However, granularity means the time level for consideration. For example, start = &#34;2017:01:01:23:59:59&#34;, end = &#34;2017:01:02:23:59:59&#34;, granularity = &#34;Day&#34;, it means that we need to find the logs within the range from Jan. 1st 2017 to Jan. 2nd 2017.
+Example 1:
+
+put(1, &#34;2017:01:01:23:59:59&#34;);
+put(2, &#34;2017:01:01:22:59:59&#34;);
+put(3, &#34;2016:01:01:00:00:00&#34;);
+retrieve(&#34;2016:01:01:01:01:01&#34;,&#34;2017:01:01:23:00:00&#34;,&#34;Year&#34;); // return [1,2,3], because you need to return all logs within 2016 and 2017.
+retrieve(&#34;2016:01:01:01:01:01&#34;,&#34;2017:01:01:23:00:00&#34;,&#34;Hour&#34;); // return [1,2], because you need to return all logs start from 2016:01:01:01 to 2017:01:01:23, where log 3 is left outside the range.
+
+
+Note:
+
+There will be at most 300 operations of Put or Retrieve.
+Year ranges from [2000,2017]. Hour ranges from [00,23].
+Output for Retrieve has no order required.">
+  <meta name="keywords"
+        content="Design Log Storage System, LC 635, leetcode 635, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>635. Design Log Storage System</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>You are given several logs that each log contains a unique id and timestamp. Timestamp is a string that has the following format: <code>Year:Month:Day:Hour:Minute:Second</code>, for example, <code>2017:01:01:23:59:59</code>. All domains are zero-padded decimal numbers. </p>
+
+<p>Design a log storage system to implement the following functions:</p>
+
+<p><code>void Put(int id, string timestamp)</code>: Given a log's unique id and timestamp, store the log in your storage system.</p>
+<br>
+<p><code>int[] Retrieve(String start, String end, String granularity)</code>: Return the id of logs whose timestamps are within the range from start to end. Start and end all have the same format as timestamp. However, granularity means the time level for consideration. For example, start = "2017:01:01:23:59:59", end = "2017:01:02:23:59:59", granularity = "Day", it means that we need to find the logs within the range from Jan. 1st 2017 to Jan. 2nd 2017.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+put(1, "2017:01:01:23:59:59");
+put(2, "2017:01:01:22:59:59");
+put(3, "2016:01:01:00:00:00");
+retrieve("2016:01:01:01:01:01","2017:01:01:23:00:00","Year"); // return [1,2,3], because you need to return all logs within 2016 and 2017.
+retrieve("2016:01:01:01:01:01","2017:01:01:23:00:00","Hour"); // return [1,2], because you need to return all logs start from 2016:01:01:01 to 2017:01:01:23, where log 3 is left outside the range.
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>There will be at most 300 operations of Put or Retrieve.</li>
+<li>Year ranges from [2000,2017]. Hour ranges from [00,23].</li>
+<li>Output for Retrieve has no order required.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-converting-timestamp-into-a-number-accepted">Approach #1 Converting timestamp into a number [Accepted]</a></li>
+<li><a href="#approach-2-better-retrieval-accepted">Approach #2 Better Retrieval [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-converting-timestamp-into-a-number-accepted">Approach #1 Converting timestamp into a number [Accepted]</h4>
+<p>This solution is based on converting the given timestap into a number. This can help because retrieval of Logs lying
+within a current range can be very easily done if the range to be used can be represented in the form of a single number.
+Let's look at the individual implementations directly.</p>
+<ol>
+<li>
+<p><code>put</code>: Firstly, we split the given timestamp based on <code>:</code> and store the individual components obtained into an <script type="math/tex; mode=display">st</script> array.
+Now, in order to put this log's entry into the storage, firstly, we convert this timestamp, now available as individual components 
+in the <script type="math/tex; mode=display">st</script> array into a single number. To obtain a number which is unique for each timestamp, the number chosen is such that 
+it represents the timestamp in terms of seconds. But, doing so for the Year values can lead to very large numbers, which could 
+lead to a potential overflow. Since, we know that the Year's value can start from 2000 only, we subtract 1999 from the Year's value 
+before doing the conversion of the given timestamp into seconds. We store this timestamp(in the form of a number now), along with the 
+Log's id, in s <script type="math/tex; mode=display">list</script>, which stores data in the form <script type="math/tex; mode=display">[converted\_timestamp, id]</script>. </p>
+</li>
+<li>
+<p><code>retrieve</code>: In order to retrieve the logs' ids lying within the timestamp <script type="math/tex; mode=display">s</script> and <script type="math/tex; mode=display">e</script>, with a granularity <script type="math/tex; mode=display">gra</script>, firstly, we 
+need to convert the given timestamps into seconds. But, since, we need to take care of granularity, before doing the conversion, we 
+need to consider the effect of granularity. Granularity, in a way, depicts the precision of the results. Thus, for a granularity corresponding to 
+a Day, we need to consider the portion of the timestamp considering the precision upto Day only. The rest of the fields 
+can be assumed to be all 0's. After doing this for both the start and end timestamp, we do the conversion of the timestamp with the 
+required precision into seconds. Once this has been done, we iterate over all the logs in the <script type="math/tex; mode=display">list</script> to obtain the ids of those 
+logs which lie within the required range. We keep on adding these ids to a <script type="math/tex; mode=display">res</script> list which is returned at the end of this function call.</p>
+</li>
+</ol>
+<iframe frameborder="0" height="515" name="zHbRZ2y6" src="https://leetcode.com/playground/zHbRZ2y6/shared" width="100%"></iframe>
+<p><strong>Performance Analysis</strong></p>
+<ul>
+<li>
+<p>The <code>put</code>method takes <script type="math/tex; mode=display">O(1)</script> time to insert a new entry into the given set of logs.</p>
+</li>
+<li>
+<p>The <code>retrieve</code> method takes <script type="math/tex; mode=display">O(n)</script> time to retrieve the logs in the required range. Determining the granularity takes <script type="math/tex; mode=display">O(1)</script> time. But, to find the logs lying in the required range, we need to iterate over the set of logs atleast once. Here, <script type="math/tex; mode=display">n</script> refers to the number of entries in the current set of logs.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-retrieval-accepted">Approach #2 Better Retrieval [Accepted]</h4>
+<p>This method remains almost the same as the last approach, except that, in order to store the timestamp data, we make use 
+of a TreeMap instead of a list, with the key values being the timestamps converted in seconds form and the values being the 
+ids of the corresponding logs.</p>
+<p>Thus, the <code>put</code> method remains the same as the last approach. However, we can save some time in <code>retrieve</code> approach by making use 
+of <code>tailMap</code> function of TreeMap, which stores the entries in the form of a sorted navigable binary tree. By making use of this function, instead of iterating over all the timestamps in 
+the storage to find the timestamps lying within the required range(after considering the granularity as in the last approach),
+we can reduce the search space to only those elements whose timestamp is larger than(or equal to) the starting timestamp value.</p>
+<iframe frameborder="0" height="515" name="5bhZzaNE" src="https://leetcode.com/playground/5bhZzaNE/shared" width="100%"></iframe>
+<p><strong>Performance Analysis</strong></p>
+<ul>
+<li>
+<p>The TreeMap is maintained internally as a Red-Black(balanced) tree. Thus, the <code>put</code>method takes <script type="math/tex; mode=display">O\big(log(n)\big)</script> time to insert a new entry into the given set of logs. Here, <script type="math/tex; mode=display">n</script> refers to the number of entries currently present in the given set of logs.</p>
+</li>
+<li>
+<p>The <code>retrieve</code> method takes <script type="math/tex; mode=display">O(m_{start})</script> time to retrieve the logs in the required range. Determining the granularity takes <script type="math/tex; mode=display">O(1)</script> time. To find the logs in the required range, we only need to iterate over those elements which already lie in the required range. Here, <script type="math/tex; mode=display">m_{start}</script> refers to the number of entries in the current set of logs which have a timestamp greater than the current <script type="math/tex; mode=display">start</script> value.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">3910</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">8003</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              17%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/snapchat.html">Snapchat</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

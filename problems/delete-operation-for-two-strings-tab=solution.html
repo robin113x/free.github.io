@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given two words word1 and word2, find the minimum number of steps required to make word1 and word2 the same, where in each step you can delete one character in either string.
+
+Example 1:
+Input: &#34;sea&#34;, &#34;eat&#34;
+Output: 2
+Explanation: You need one step to make &#34;sea&#34; to &#34;ea&#34; and another step to make &#34;eat&#34; to &#34;ea&#34;.
+
+
+Note:
+
+The length of given words won&#39;t exceed 500.
+Characters in given words can only be lower-case letters.">
+  <meta name="keywords"
+        content="Delete Operation for Two Strings, LC 583, leetcode 583, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>583. Delete Operation for Two Strings</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given two words <i>word1</i> and <i>word2</i>, find the minimum number of steps required to make <i>word1</i> and <i>word2</i> the same, where in each step you can delete one character in either string.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> "sea", "eat"
+<b>Output:</b> 2
+<b>Explanation:</b> You need one step to make "sea" to "ea" and another step to make "eat" to "ea".
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The length of given words won't exceed 500.</li>
+<li>Characters in given words can only be lower-case letters.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-longest-common-subsequence-time-limit-exceeded">Approach #1 Using Longest Common Subsequence [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-longest-common-subsequence-with-memoization-accepted">Approach #2 Longest Common Subsequence with Memoization [Accepted]</a></li>
+<li><a href="#approach-3-using-longest-common-subsequence-dynamic-programming-accepted">Approach #3 Using Longest Common Subsequence- Dynamic Programming [Accepted]</a></li>
+<li><a href="#approach-4-without-using-lcs-dynamic-programmming-accepted">Approach #4 Without using LCS Dynamic Programmming [Accepted]:</a></li>
+<li><a href="#approach-5-1-d-dynamic-programming-accepted">Approach #5 1-D Dynamic Programming [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-longest-common-subsequence-time-limit-exceeded">Approach #1 Using Longest Common Subsequence [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In order to determine the minimum number of delete operations needed, we can make use of the length of the longest common sequence among the two given strings <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script>, say given by <script type="math/tex; mode=display">lcs</script>. If we can find this <script type="math/tex; mode=display">lcs</script> value, we can easily determine the required result as <script type="math/tex; mode=display">m + n - 2*lcs</script>. Here, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> refer to the length of the two given strings <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script>.</p>
+<p>The above equation works because in case of complete mismatch(i.e. if the two strings can't be equalized at all), the total number of delete operations required will be <script type="math/tex; mode=display">m + n</script>. Now, if there is a common sequence among the two strings of length <script type="math/tex; mode=display">lcs</script>, we need to do <script type="math/tex; mode=display">lcs</script> lesser deletions in both the strings leading to a total of <script type="math/tex; mode=display">2lcs</script> lesser deletions, which then leads to the above equation.</p>
+<p>In order to find the length of the longest common sequence, we make use of a recursive function <code>lcs(s1,s2,i,j)</code> which returns the length of the longest common sequence among the strings <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> considering their lengths upto <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script> respectively. For evaluating the function, we check if the characters <script type="math/tex; mode=display">s1[m-1]</script> and <script type="math/tex; mode=display">s2[n-1]</script> for equality. If they match, we can consider the corresponding strings upto 1 lesser lengths since the last characters have already been considered and add 1 to the result to be returned for strings of 1 lesser lengths. Thus, we make the function call <code>lcs(s1, s2, i-1, j-1)</code>. </p>
+<p>If the last characters don't match, we have two options, either we can consider the second last character of <script type="math/tex; mode=display">s1</script> and the last character of <script type="math/tex; mode=display">s2</script>, or we can consider the second last character of <script type="math/tex; mode=display">s2</script> and the last character of <script type="math/tex; mode=display">s1</script>. We need to consider the larger result obtained out of the two considerations for getting the required length. </p>
+<p>Thus, the function call <code>lcs(s1,s2,m,n)</code> returns the required <script type="math/tex; mode=display">lcs</script> value.</p>
+<iframe frameborder="0" height="309" name="QCLZ3ajV" src="https://leetcode.com/playground/QCLZ3ajV/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(2^{max(m,n)})</script>. Size of recursion tree will be <script type="math/tex; mode=display">2^(m+n)</script>. Here, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> refer to the lengths of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> respectively.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(\text{max}(m,n))</script>. The depth of the recursion tree will go upto <script type="math/tex; mode=display">\text{max}(m,n)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-longest-common-subsequence-with-memoization-accepted">Approach #2 Longest Common Subsequence with Memoization [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can observe that in the last approach, while determining the <script type="math/tex; mode=display">lcs</script> value, a lot of redundant function calls are made, since the same <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> values to be used for the function calls could be obtained going through many different paths. We can remove this redundancy by making use of a <script type="math/tex; mode=display">memo</script> array to store the value to be returned for these function calls if they have been called once with the corresponding parameters. Thus, <script type="math/tex; mode=display">memo[i][j]</script> is used to store the result for the function call <code>lcs(s1,s2,i,j)</code>.</p>
+<p>Thus, by returning the already stored values from the <script type="math/tex; mode=display">memo</script> array, we can prune the search space to a great extent.</p>
+<iframe frameborder="0" height="377" name="dPT69gpC" src="https://leetcode.com/playground/dPT69gpC/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(m*n)</script>. <script type="math/tex; mode=display">memo</script> array of size <script type="math/tex; mode=display">m</script>x<script type="math/tex; mode=display">n</script> needs to be filled once. Here, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> refer to the length of the strings <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> respectively.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m*n)</script>. <script type="math/tex; mode=display">memo</script> array of size <script type="math/tex; mode=display">m</script>x<script type="math/tex; mode=display">n</script> is used. Also, The depth of the recursion tree will go upto <script type="math/tex; mode=display">\text{max}(m,n)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-longest-common-subsequence-dynamic-programming-accepted">Approach #3 Using Longest Common Subsequence- Dynamic Programming [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Another method to obtain the value of <script type="math/tex; mode=display">lcs</script> is to make use of Dynamic Programming. We'll look at the implemenation and carry-on alongside the idea behind it.</p>
+<p>We make use of a 2-D <script type="math/tex; mode=display">dp</script>, in which <script type="math/tex; mode=display">dp[i][j]</script> represents the length of the longest common subsequence among the strings <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> considering their lengths upto <script type="math/tex; mode=display">(i-1)^{th}</script> index and <script type="math/tex; mode=display">(j-1)^{th}</script> index only respectively. We fill the <script type="math/tex; mode=display">dp</script> array in row-by-row order.</p>
+<p>In order to fill the entry for <script type="math/tex; mode=display">dp[i][j]</script>, we can have two cases:</p>
+<ol>
+<li>
+<p>The characters <script type="math/tex; mode=display">s1[i-1]</script> and <script type="math/tex; mode=display">s2[j-1]</script> match with each other. In this case, the entry for <script type="math/tex; mode=display">dp[i][j]</script> will be one more than the entry obtained for the strings considering their lengths upto one lesser index, since the matched character adds one to the length of LCS formed till the current indices. Thus, the <script type="math/tex; mode=display">dp[i][j]</script> entry is updated as <script type="math/tex; mode=display">dp[i][j] = 1 + dp[i-1][j-1]</script>. Note that <script type="math/tex; mode=display">dp[i-1][j-1]</script> has been used because the matched character belongs to both <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script>.</p>
+</li>
+<li>
+<p>The characters <script type="math/tex; mode=display">s1[i-1]</script> and <script type="math/tex; mode=display">s2[j-1]</script> don't match with each other. In this case, we can't increment the current entry as compared to entries corresponding to the previous indices, but we need to replicate the previous entry again to indicate that the length of LCS upto the current indices also remains the same. But, which entry to pick up? Now, since the current character hasn't matched, we have got two options. We can remove the current character from consideration from either <script type="math/tex; mode=display">s1</script> or <script type="math/tex; mode=display">s2</script> and use the corresponding <script type="math/tex; mode=display">dp</script> entries given by <script type="math/tex; mode=display">dp[i-1][j]</script> and <script type="math/tex; mode=display">dp[i][j-1]</script> respectively. Since we are considering the length of LCS upto the current indices we need to pick up the larger entry out of these two to update the current <script type="math/tex; mode=display">dp</script> entry.</p>
+</li>
+</ol>
+<p>At the end, again, we obtain the number of deletions required as <script type="math/tex; mode=display">m + n - 2*dp[m][n]</script>, where <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> refer to the lengths of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script>. <script type="math/tex; mode=display">dp[m][n]</script> now refers to the length of LCS among the two given strings.</p>
+<p>!?!../Documents/583_Delete1.json:1000,563!?!</p>
+<iframe frameborder="0" height="326" name="xQZCgSyw" src="https://leetcode.com/playground/xQZCgSyw/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(m*n)</script>. We need to fill in the <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">m</script>x<script type="math/tex; mode=display">n</script>. Here, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> refer to the lengths of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m*n)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">m</script>x<script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-without-using-lcs-dynamic-programmming-accepted">Approach #4 Without using LCS Dynamic Programmming [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>Instead of finding the length of LCS and then determining the number of deletions required, we can make use of Dynamic Programming to directly determine the number of deletions required till the current indices of the strings.</p>
+<p>In order to do so, we make use of a 2-D <script type="math/tex; mode=display">dp</script> array. Now, <script type="math/tex; mode=display">dp[i][j]</script> refers to the number of deletions required to equalize the two strings if we consider the strings' length upto <script type="math/tex; mode=display">(i-1)^{th}</script> index and <script type="math/tex; mode=display">(j-1)^{th}</script> index for <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> respectively. Again, we fill in the <script type="math/tex; mode=display">dp</script> array in a row-by-row order. Now, in order to fill the entry for <script type="math/tex; mode=display">dp[i][j]</script>, we need to consider two cases only:</p>
+<ol>
+<li>
+<p>The characters <script type="math/tex; mode=display">s1[i-1]</script> and <script type="math/tex; mode=display">s2[j-1]</script> match with each other. In this case, we need to replicate the entry corresponding to <script type="math/tex; mode=display">dp[i-1][j-1]</script> itself. This is because, the matched character doesn't need to be deleted from any of the strings.</p>
+</li>
+<li>
+<p>The characters <script type="math/tex; mode=display">s1[i-1]</script> and <script type="math/tex; mode=display">s2[j-1]</script> don't match with each other. In this case, we need to delete either the current character of <script type="math/tex; mode=display">s1</script> or <script type="math/tex; mode=display">s2</script>. Thus, an increment of 1 needs to be done relative to the entries corresponding to the previous indices. The two options available at this moment are <script type="math/tex; mode=display">dp[i-1][j]</script> and <script type="math/tex; mode=display">dp[i][j-1]</script>. Since, we are keeping track of the minimum number of deletions required, we pick up the minimum out of these two values.</p>
+</li>
+</ol>
+<p>At the end, <script type="math/tex; mode=display">dp[m][n]</script> gives the required minimum number of deletions. Here, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> refer to the lengths of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script>.</p>
+<p>!?!../Documents/583_Delete2.json:1000,563!?!</p>
+<iframe frameborder="0" height="326" name="aPU8b3Fd" src="https://leetcode.com/playground/aPU8b3Fd/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(m*n)</script>. We need to fill in the <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">m</script>x<script type="math/tex; mode=display">n</script>. Here, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> refer to the lengths of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m*n)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">m</script>x<script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-1-d-dynamic-programming-accepted">Approach #5 1-D Dynamic Programming [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can observe that in the last approach, in order to update the current <script type="math/tex; mode=display">dp</script> entries, we need only the values of the previous row of <script type="math/tex; mode=display">dp</script>. Thus, rather than using a 2-D array, we can do the same job by making use of a 1-D <script type="math/tex; mode=display">dp</script> array.</p>
+<p>Thus, now, <script type="math/tex; mode=display">dp[i]</script> refers to the number of deletions that need to be made in order to equalize the strings <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> if we consider string <script type="math/tex; mode=display">s1</script> upto the <script type="math/tex; mode=display">(i-1)^{th}</script> index and string <script type="math/tex; mode=display">s2</script> upto the last to current index of <script type="math/tex; mode=display">s2</script>. </p>
+<p>Now, we make the updations for the current row in an array <script type="math/tex; mode=display">temp</script> of the same size as <script type="math/tex; mode=display">dp</script>, and use the <script type="math/tex; mode=display">dp</script> entries as if they correspond to the previous row's entries. When, the whole <script type="math/tex; mode=display">temp</script> array has been filled, we copy it the <script type="math/tex; mode=display">dp</script> array so that <script type="math/tex; mode=display">dp</script> array now reflects the new row's entries.</p>
+<iframe frameborder="0" height="360" name="jfeuFUeS" src="https://leetcode.com/playground/jfeuFUeS/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(m*n)</script>. We need to fill in the <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n</script>, <script type="math/tex; mode=display">m</script> times. Here, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> refer to the lengths of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">12874</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">29058</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              28%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

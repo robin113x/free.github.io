@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a list of daily temperatures, produce a list that, for each day in the input, tells you how many days you would have to wait until a warmer temperature.  If there is no future day for which this is possible, put 0 instead.
+
+For example, given the list temperatures = [73, 74, 75, 71, 69, 72, 76, 73], your output should be [1, 1, 4, 2, 1, 1, 0, 0].
+
+Note:
+The length of temperatures will be in the range [1, 30000].
+Each temperature will be an integer in the range [30, 100].">
+  <meta name="keywords"
+        content="Daily Temperatures, LC 739, leetcode 739, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>739. Daily Temperatures</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given a list of daily <code>temperatures</code>, produce a list that, for each day in the input, tells you how many days you would have to wait until a warmer temperature.  If there is no future day for which this is possible, put <code>0</code> instead.
+</p><p>
+For example, given the list <code>temperatures = [73, 74, 75, 71, 69, 72, 76, 73]</code>, your output should be <code>[1, 1, 4, 2, 1, 1, 0, 0]</code>.
+</p>
+
+<p><b>Note:</b>
+The length of <code>temperatures</code> will be in the range <code>[1, 30000]</code>.
+Each temperature will be an integer in the range <code>[30, 100]</code>.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-next-array-accepted">Approach #1: Next Array [Accepted]</a></li>
+<li><a href="#approach-2-stack-accepted">Approach #2: Stack [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-next-array-accepted">Approach #1: Next Array [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>The problem statement asks us to find the next occurrence of a warmer temperature.  Because temperatures can only be in <code>[30, 100]</code>, if the temperature right now is say, <code>T[i] = 50</code>, we only need to check for the next occurrence of <code>51</code>, <code>52</code>, ..., <code>100</code> and take the one that occurs soonest.</p>
+<p><strong>Algorithm</strong></p>
+<p>Let's process each <code>i</code> in reverse (decreasing order).  At each <code>T[i]</code>, to know when the next occurrence of say, temperature <code>100</code> is, we should just remember the last one we've seen, <code>next[100]</code>.</p>
+<p>Then, the first occurrence of a warmer value occurs at <code>warmer_index</code>, the minimum of <code>next[T[i]+1], next[T[i]+2], ..., next[100]</code>.</p>
+<iframe frameborder="0" height="361" name="zXoveQ5r" src="https://leetcode.com/playground/zXoveQ5r/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(NW)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>T</code> and <script type="math/tex; mode=display">W</script> is the number of allowed values for <code>T[i]</code>.  Since <script type="math/tex; mode=display">W = 71</script>, we can consider this complexity <script type="math/tex; mode=display">O(N)</script>.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N + W)</script>, the size of the answer and the next array.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-stack-accepted">Approach #2: Stack [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Consider trying to find the next warmer occurrence at <code>T[i]</code>.  What information (about <code>T[j]</code> for <code>j &gt; i</code>) must we remember?</p>
+<p>Say we are trying to find <code>T[0]</code>.  If we remembered <code>T[10] = 50</code>, knowing <code>T[20] = 50</code> wouldn't help us, as any <code>T[i]</code> that has its next warmer ocurrence at <code>T[20]</code> would have it at <code>T[10]</code> instead.  However, <code>T[20] = 100</code> would help us, since if <code>T[0]</code> were <code>80</code>, then <code>T[20]</code> might be its next warmest occurrence, while <code>T[10]</code> couldn't.</p>
+<p>Thus, we should remember a list of indices representing a strictly increasing list of temperatures.  For example, <code>[10, 20, 30]</code> corresponding to temperatures <code>[50, 80, 100]</code>.  When we get a new temperature like <code>T[i] = 90</code>, we will have <code>[5, 30]</code> as our list of indices (corresponding to temperatures <code>[90, 100]</code>).  The most basic structure that will satisfy our requirements is a <em>stack</em>, where the top of the stack is the first value in the list, and so on.</p>
+<p><strong>Algorithm</strong></p>
+<p>As in <em>Approach #1</em>, process indices <code>i</code> in descending order.  We'll keep a <code>stack</code> of indices such that <code>T[stack[-1]] &lt; T[stack[-2]] &lt; ...</code>, where <code>stack[-1]</code> is the top of the stack, <code>stack[-2]</code> is second from the top, and so on; and where <code>stack[-1] &gt; stack[-2] &gt; ...</code>; and we will maintain this invariant as we process each temperature.</p>
+<p>After, it is easy to know the next occurrence of a warmer temperature: it's simply the top index in the stack.</p>
+<p>Here is a worked example of the contents of the <code>stack</code> as we work through <code>T = [73, 74, 75, 71, 69, 72, 76, 73]</code> in reverse order, at the end of the loop (after we add <code>T[i]</code>).  For clarity, <code>stack</code> only contains indices <code>i</code>, but we will write the value of <code>T[i]</code> beside it in brackets, such as <code>0 (73)</code>.</p>
+<ul>
+<li>When <code>i = 7</code>, <code>stack = [7 (73)]</code>.  <code>ans[i] = 0</code>.</li>
+<li>When <code>i = 6</code>, <code>stack = [6 (76)]</code>.  <code>ans[i] = 0</code>.</li>
+<li>When <code>i = 5</code>, <code>stack = [5 (72), 6 (76)]</code>.  <code>ans[i] = 1</code>.</li>
+<li>When <code>i = 4</code>, <code>stack = [4 (69), 5 (72), 6 (76)]</code>.  <code>ans[i] = 1</code>.</li>
+<li>When <code>i = 3</code>, <code>stack = [3 (71), 5 (72), 6 (76)]</code>.  <code>ans[i] = 2</code>.</li>
+<li>When <code>i = 2</code>, <code>stack = [2 (75), 6 (76)]</code>.  <code>ans[i] = 4</code>.</li>
+<li>When <code>i = 1</code>, <code>stack = [1 (74), 2 (75), 6 (76)]</code>.  <code>ans[i] = 1</code>.</li>
+<li>When <code>i = 0</code>, <code>stack = [0 (73), 1 (74), 2 (75), 6 (76)]</code>.  <code>ans[i] = 1</code>.</li>
+</ul>
+<iframe frameborder="0" height="259" name="GrKNCrcf" src="https://leetcode.com/playground/GrKNCrcf/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>T</code> and <script type="math/tex; mode=display">W</script> is the number of allowed values for <code>T[i]</code>.  Each index gets pushed and popped at most once from the stack.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(W)</script>.  The size of the stack is bounded as it represents strictly increasing temperatures.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">4664</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">8809</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              42%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

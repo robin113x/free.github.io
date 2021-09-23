@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Design a search autocomplete system for a search engine. Users may input a sentence (at least one word and end with a special character &#39;#&#39;). For each character they type except &#39;#&#39;, you need to return the top 3 historical hot sentences that have prefix the same as the part of sentence already typed. Here are the specific rules:
+
+The hot degree for a sentence is defined as the number of times a user typed the exactly same sentence before. 
+The returned top 3 hot sentences should be sorted by hot degree (The first is the hottest one). If several sentences have the same degree of hot, you need to use ASCII-code order (smaller one appears first). 
+If less than 3 hot sentences exist, then just return as many as you can.
+When the input is a special character, it means the sentence ends, and in this case, you need to return an empty list.
+
+Your job is to implement the following functions:
+The constructor function:
+AutocompleteSystem(String[] sentences, int[] times): This is the constructor. The input is historical data. Sentences is a string array consists of previously typed sentences. Times is the corresponding times a sentence has been typed. Your system should record these historical data.
+Now, the user wants to input a new sentence. The following function will provide the next character the user types: 
+List&lt;String&gt; input(char c): The input c is the next character typed by the user. The character will only be lower-case letters (&#39;a&#39; to &#39;z&#39;), blank space (&#39; &#39;) or a special character (&#39;#&#39;). Also, the previously typed sentence should be recorded in your system. The output will be the top 3 historical hot sentences that have prefix the same as the part of sentence already typed.
+
+Example:
+Operation: AutocompleteSystem([&#34;i love you&#34;, &#34;island&#34;,&#34;ironman&#34;, &#34;i love leetcode&#34;], [5,3,2,2])
+
+The system have already tracked down the following sentences and their corresponding times:
+
+&#34;i love you&#34; : 5 times
+
+&#34;island&#34; : 3 times
+
+&#34;ironman&#34; : 2 times
+
+&#34;i love leetcode&#34; : 2 times
+
+Now, the user begins another search:
+
+Operation: input(&#39;i&#39;)
+
+Output: [&#34;i love you&#34;, &#34;island&#34;,&#34;i love leetcode&#34;]
+
+Explanation:
+
+There are four sentences that have prefix &#34;i&#34;. Among them, &#34;ironman&#34; and &#34;i love leetcode&#34; have same hot degree. Since &#39; &#39; has ASCII code 32 and &#39;r&#39; has ASCII code 114, &#34;i love leetcode&#34; should be in front of &#34;ironman&#34;. Also we only need to output top 3 hot sentences, so &#34;ironman&#34; will be ignored.
+
+Operation: input(&#39; &#39;)
+
+Output: [&#34;i love you&#34;,&#34;i love leetcode&#34;]
+
+Explanation:
+
+There are only two sentences that have prefix &#34;i &#34;.
+
+Operation: input(&#39;a&#39;)
+
+Output: []
+
+Explanation:
+
+There are no sentences that have prefix &#34;i a&#34;.
+
+Operation: input(&#39;#&#39;)
+
+Output: []
+
+Explanation:
+
+The user finished the input, the sentence &#34;i a&#34; should be saved as a historical sentence in system. And the following input will be counted as a new search.
+
+
+
+Note:
+
+The input sentence will always start with a letter and end with &#39;#&#39;, and only one blank space will exist between two words. 
+The number of complete sentences that to be searched won&#39;t exceed 100. The length of each sentence including those in the historical data won&#39;t exceed 100. 
+Please use double-quote instead of single-quote when you write test cases even for a character input.
+Please remember to RESET your class variables declared in class AutocompleteSystem, as static/class variables are persisted across multiple test cases. Please see here for more details.">
+  <meta name="keywords"
+        content="Design Search Autocomplete System, LC 642, leetcode 642, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>642. Design Search Autocomplete System</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Design a search autocomplete system for a search engine. Users may input a sentence (at least one word and end with a special character <code>'#'</code>). For <b>each character</b> they type <b>except '#'</b>, you need to return the <b>top 3</b> historical hot sentences that have prefix the same as the part of sentence already typed. Here are the specific rules:</p>
+<ol>
+<li>The hot degree for a sentence is defined as the number of times a user typed the exactly same sentence before. </li>
+<li>The returned top 3 hot sentences should be sorted by hot degree (The first is the hottest one). If several sentences have the same degree of hot, you need to use ASCII-code order (smaller one appears first). </li>
+<li>If less than 3 hot sentences exist, then just return as many as you can.</li>
+<li>When the input is a special character, it means the sentence ends, and in this case, you need to return an empty list.</li>
+</ol>
+
+<p>Your job is to implement the following functions:</p>
+
+<p>The constructor function:</p>
+
+<p><code>AutocompleteSystem(String[] sentences, int[] times):</code> This is the constructor. The input is <b>historical data</b>. <code>Sentences</code> is a string array consists of previously typed sentences. <code>Times</code> is the corresponding times a sentence has been typed. Your system should record these historical data.</p>
+
+<p>Now, the user wants to input a new sentence. The following function will provide the next character the user types: </p>
+
+<p><code>List&lt;String&gt; input(char c):</code> The input <code>c</code> is the next character typed by the user. The character will only be lower-case letters (<code>'a'</code> to <code>'z'</code>), blank space (<code>' '</code>) or a special character (<code>'#'</code>). Also, the previously typed sentence should be recorded in your system. The output will be the <b>top 3</b> historical hot sentences that have prefix the same as the part of sentence already typed.</p>
+
+<br>
+<p><b>Example:</b><br />
+
+<b>Operation:</b> AutocompleteSystem(["i love you", "island","ironman", "i love leetcode"], [5,3,2,2])
+<br>
+The system have already tracked down the following sentences and their corresponding times:
+<br>
+<code>"i love you"</code> : <code>5</code> times
+<br>
+<code>"island"</code> : <code>3</code> times
+<br>
+<code>"ironman"</code> : <code>2</code> times
+<br>
+<code>"i love leetcode"</code> : <code>2</code> times
+<br>
+Now, the user begins another search:
+<br><br>
+<b>Operation:</b> input('i')
+<br>
+<b>Output:</b> ["i love you", "island","i love leetcode"]
+<br>
+<b>Explanation:</b> 
+<br>
+There are four sentences that have prefix <code>"i"</code>. Among them, "ironman" and "i love leetcode" have same hot degree. Since <code>' '</code> has ASCII code 32 and <code>'r'</code> has ASCII code 114, "i love leetcode" should be in front of "ironman". Also we only need to output top 3 hot sentences, so "ironman" will be ignored.
+<br><br>
+<b>Operation:</b> input(' ')
+<br>
+<b>Output:</b> ["i love you","i love leetcode"]
+<br>
+<b>Explanation:</b> 
+<br>
+There are only two sentences that have prefix <code>"i "</code>.
+<br><br>
+<b>Operation:</b> input('a')
+<br>
+<b>Output:</b> []
+<br>
+<b>Explanation:</b> 
+<br>
+There are no sentences that have prefix <code>"i a"</code>.
+<br><br>
+<b>Operation:</b> input('#')
+<br>
+<b>Output:</b> []
+<br>
+<b>Explanation:</b> 
+<br>
+The user finished the input, the sentence <code>"i a"</code> should be saved as a historical sentence in system. And the following input will be counted as a new search.
+<br>
+
+</p>
+<br>
+<p><b>Note:</b><br>
+
+<ol>
+
+<li>The input sentence will always start with a letter and end with '#', and only one blank space will exist between two words. </li>
+<li>The number of <b>complete sentences</b> that to be searched won't exceed 100. The length of each sentence including those in the historical data won't exceed 100. </li>
+<li>Please use double-quote instead of single-quote when you write test cases even for a character input.</li>
+<li>Please remember to <b>RESET</b> your class variables declared in class AutocompleteSystem, as static/class variables are <b>persisted across multiple test cases</b>. Please see <a href="https://leetcode.com/faq/#different-output">here</a> for more details.</li>
+</ol>
+
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-one-level-indexingaccepted">Approach #2 Using One level Indexing[Accepted]</a></li>
+<li><a href="#approach-3-using-trieaccepted">Approach #3 Using Trie[Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>In this solution, we make use of a HashMap <script type="math/tex; mode=display">map</script> which stores entries in the form <script type="math/tex; mode=display">(sentence_i, times_i)</script>. Here, <script type="math/tex; mode=display">times_i</script> refers to the number of times the <script type="math/tex; mode=display">sentence_i</script> has been typed earlier.</p>
+<p><code>AutocompleteSystem</code>: We pick up each sentence from <script type="math/tex; mode=display">sentences</script> and their corresponding times from the <script type="math/tex; mode=display">times</script>, and make their entries in the <script type="math/tex; mode=display">map</script> appropriately.</p>
+<p><code>input(c)</code>: We make use of a current sentence tracker variable, <script type="math/tex; mode=display">cur_sen</script>, which is used to store the sentence entered till now as the input. For <script type="math/tex; mode=display">c</script> as the current input, firstly, we append this <script type="math/tex; mode=display">c</script> to <script type="math/tex; mode=display">cur_sen</script> and then iterate over all the keys of <script type="math/tex; mode=display">map</script> to check if a key exists whose initial characters match with <script type="math/tex; mode=display">cur_sen</script>. We add all such keys to a <script type="math/tex; mode=display">list</script>. Then, we sort this <script type="math/tex; mode=display">list</script> as per our requirements, and obtain the first three values from this <script type="math/tex; mode=display">list</script>.</p>
+<iframe frameborder="0" height="515" name="aHjFCN7k" src="https://leetcode.com/playground/aHjFCN7k/shared" width="100%"></iframe>
+<p><strong>Performance Analysis</strong></p>
+<ul>
+<li>
+<p><code>AutocompleteSystem()</code> takes <script type="math/tex; mode=display">O(k*l)</script> time. This is because, putting an entry in a hashMap takes <script type="math/tex; mode=display">O(1)</script> time. But, to create a hash value for a sentence of average length <script type="math/tex; mode=display">k</script>, it will be scanned atleast once. We need to put <script type="math/tex; mode=display">l</script> such entries in the <script type="math/tex; mode=display">map</script>.</p>
+</li>
+<li>
+<p><code>input()</code> takes <script type="math/tex; mode=display">O\big(n+mlog(m)\big)</script> time. We need to iterate over the list of sentences, in <script type="math/tex; mode=display">map</script>, entered till now(say with a count <script type="math/tex; mode=display">n</script>), taking <script type="math/tex; mode=display">O(n)</script> time, to populate the <script type="math/tex; mode=display">list</script> used for finding the hot sentences. Then, we need to sort the <script type="math/tex; mode=display">list</script> of length <script type="math/tex; mode=display">m</script>, taking <script type="math/tex; mode=display">O\big(mlog(m)\big)</script> time.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-one-level-indexingaccepted">Approach #2 Using One level Indexing[Accepted]</h4>
+<p>This method is almost the same as that of the last approach except that instead of making use of simply a HashMap to store the sentences along with their number of occurences, we make use of a Two level HashMap. </p>
+<p>Thus, we make use of an array <script type="math/tex; mode=display">arr</script> of HashMapsEach element of this array, <script type="math/tex; mode=display">arr</script>, is used to refer to one of the alphabets possible. Each element is a HashMap itself, which stores the sentences and their number of occurences similar to the last approach. e.g. <script type="math/tex; mode=display">arr[0]</script> is used to refer to a HashMap which stores the sentences starting with an 'a'. </p>
+<p>The process of adding the data in <code>AutocompleteSystem</code> and retrieving the data remains the same as in the last approach, except the one level indexing using <script type="math/tex; mode=display">arr</script> which needs to be done prior to accessing the required HashMap.</p>
+<iframe frameborder="0" height="515" name="PWdCczhB" src="https://leetcode.com/playground/PWdCczhB/shared" width="100%"></iframe>
+<p><strong>Performance Analysis</strong></p>
+<ul>
+<li>
+<p><code>AutocompleteSystem()</code> takes <script type="math/tex; mode=display">O(k*l+26)</script> time. Putting an entry in a hashMap takes <script type="math/tex; mode=display">O(1)</script> time. But, to create a hash value for a sentence of average length <script type="math/tex; mode=display">k</script>, it will be scanned atleast once. We need to put <script type="math/tex; mode=display">l</script> such entries in the <script type="math/tex; mode=display">map</script>.</p>
+</li>
+<li>
+<p><code>input()</code> takes <script type="math/tex; mode=display">O\big(s+mlog(m)\big)</script> time. We need to iterate only over one hashmap corresponding to the sentences starting with the first character of the current sentence, to populate the <script type="math/tex; mode=display">list</script> for finding the hot sentences. Here, <script type="math/tex; mode=display">s</script> refers to the size of this corresponding hashmap. Then, we need to sort the <script type="math/tex; mode=display">list</script> of length <script type="math/tex; mode=display">m</script>, taking <script type="math/tex; mode=display">O\big(mlog(m)\big)</script> time.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-trieaccepted">Approach #3 Using Trie[Accepted]</h4>
+<p>A Trie is a special data structure used to store strings that can be visualized like a tree. It consists of nodes and edges. Each node consists of at max 26 children and edges connect each parent node to its children. These 26 pointers are nothing but pointers for each of the 26 letters of the English alphabet A separate edge is maintained for every edge.</p>
+<p>Strings are stored in a top to bottom manner on the basis of their prefix in a trie. All prefixes of length 1 are stored at until level 1, all prefixes of length 2 are sorted at until level 2 and so on. </p>
+<p>A Trie data structure is very commonly used for representing the words stored in a dictionary. Each level represents one character of the word being formed. A word available in the dictionary can be read off from the Trie by starting from the root and going till the leaf. </p>
+<p>By doing a small modification to this structure, we can also include an entry, <script type="math/tex; mode=display">times</script>, for the number of times the current word has been previously typed. This entry can be stored in the leaf node corresponding to the particular word.</p>
+<p>Now, for implementing the <code>AutoComplete</code> function, we need to consider each character of the every word given in <script type="math/tex; mode=display">sentences</script> array, and add an entry corresponding to each such character at one level of the trie. At the leaf node of every word, we can update the <script type="math/tex; mode=display">times</script> section of the node with the corresponding number of times this word has been typed. </p>
+<p>The following figure shows a trie structure for the words  "A","to", "tea", "ted", "ten", "i", "in", and "inn", occuring 15, 7, 3, 4, 12, 11, 5 and 9 times respectively.</p>
+<p><img alt="Trie" src="https://leetcode.com/articles/Figures/642/642_Trie.PNG"/></p>
+<p>Similarly, to implement the <code>input(c)</code> function, for every input character <script type="math/tex; mode=display">c</script>, we need to add this character to the word being formed currently, i.e. to <script type="math/tex; mode=display">cur_sent</script>. Then, we need to traverse in the current trie till all the characters in the current word, <script type="math/tex; mode=display">cur_sent</script>, have been exhausted. </p>
+<p>From this point onwards, we traverse all the branches possible in the Trie, put the sentences/words formed by these branches to a <script type="math/tex; mode=display">list</script> along with their corresponding number of occurences, and find the best 3 out of them similar to the last approach. The following animation shows a typical illustration.</p>
+<p>!?!../Documents/642_Design_Autocomplete.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="AEzkJpCD" src="https://leetcode.com/playground/AEzkJpCD/shared" width="100%"></iframe>
+<p><strong>Performance Analysis</strong></p>
+<ul>
+<li>
+<p><code>AutocompleteSystem()</code> takes <script type="math/tex; mode=display">O(k*l)</script> time. We need to iterate over <script type="math/tex; mode=display">l</script> sentences each of average length <script type="math/tex; mode=display">k</script>, to create the trie for the given set of <script type="math/tex; mode=display">sentences</script>.</p>
+</li>
+<li>
+<p><code>input()</code> takes <script type="math/tex; mode=display">O\big(p+q+mlog(m)\big)</script> time. Here, <script type="math/tex; mode=display">p</script> refers to the length of the sentence formed till now, <script type="math/tex; mode=display">cur_sen</script>. <script type="math/tex; mode=display">q</script> refers to the number of nodes in the trie considering the sentence formed till now as the root node. Again, we need to sort the <script type="math/tex; mode=display">list</script> of length <script type="math/tex; mode=display">m</script> indicating the options available for the hot sentences, which takes <script type="math/tex; mode=display">O\big(mlog(m)\big)</script> time.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">3840</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">12391</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              22%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/microsoft.html">Microsoft</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given the running logs of n functions that are executed in a nonpreemptive single threaded CPU, find the exclusive time of these functions. 
+Each function has a unique id, start from 0 to n-1. A function may be called recursively or by another function.
+A log is a string has this format : function_id:start_or_end:timestamp. For example, &#34;0:start:0&#34; means function 0 starts from the very beginning of time 0. &#34;0:end:0&#34; means function 0 ends to the very end of time 0. 
+Exclusive time of a function is defined as the time spent within this function, the time spent by calling other functions should not be considered as this function&#39;s exclusive time. You should return the exclusive time of each function sorted by their function id.
+Example 1:
+Input:
+n = 2
+logs = 
+[&#34;0:start:0&#34;,
+ &#34;1:start:2&#34;,
+ &#34;1:end:5&#34;,
+ &#34;0:end:6&#34;]
+Output:[3, 4]
+Explanation:
+Function 0 starts at time 0, then it executes 2 units of time and reaches the end of time 1. 
+Now function 0 calls function 1, function 1 starts at time 2, executes 4 units of time and end at time 5.
+Function 0 is running again at time 6, and also end at the time 6, thus executes 1 unit of time. 
+So function 0 totally execute 2 + 1 = 3 units of time, and function 1 totally execute 4 units of time.
+
+
+Note:
+
+Input logs will be sorted by timestamp, NOT log id.
+Your output should be sorted by function id, which means the 0th element of your output corresponds to the exclusive time of function 0.
+Two functions won&#39;t start or end at the same time.
+Functions could be called recursively, and will always end.
+1 &lt;= n &lt;= 100">
+  <meta name="keywords"
+        content="Exclusive Time of Functions, LC 636, leetcode 636, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>636. Exclusive Time of Functions</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given the running logs of <b>n</b> functions that are executed in a nonpreemptive single threaded CPU, find the exclusive time of these functions. </p>
+
+<p>Each function has a unique id, start from <b>0</b> to <b>n-1</b>. A function may be called recursively or by another function.</p>
+
+<p>A log is a string has this format : <code>function_id:start_or_end:timestamp</code>. For example, <code>"0:start:0"</code> means function 0 starts from the very beginning of time 0. <code>"0:end:0"</code> means function 0 ends to the very end of time 0. </p>
+
+<p>Exclusive time of a function is defined as the time spent within this function, the time spent by calling other functions should not be considered as this function's exclusive time. You should return the exclusive time of each function sorted by their function id.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b>
+n = 2
+logs = 
+["0:start:0",
+ "1:start:2",
+ "1:end:5",
+ "0:end:6"]
+<b>Output:</b>[3, 4]
+<b>Explanation:</b>
+Function 0 starts at time 0, then it executes 2 units of time and reaches the end of time 1. 
+Now function 0 <b>calls function 1</b>, function 1 starts at time 2, executes 4 units of time and end at time 5.
+Function 0 is running again at time 6, and also end at the time 6, thus executes 1 unit of time. 
+So function 0 totally execute 2 + 1 = 3 units of time, and function 1 totally execute 4 units of time.
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>Input logs will be sorted by timestamp, NOT log id.</li>
+<li>Your output should be sorted by function id, which means the 0th element of your output corresponds to the exclusive time of function 0.</li>
+<li>Two functions won't start or end at the same time.</li>
+<li>Functions could be called recursively, and will always end.</li>
+<li>1 <= n <= 100</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-stack-time-limit-exceeded">Approach #1 Using Stack [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-approach-accepted">Approach #2 Better Approach [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-stack-time-limit-exceeded">Approach #1 Using Stack [Time Limit Exceeded]</h4>
+<p>Before starting off with the solution, let's discuss a simple idea. Suppose we have three functions <script type="math/tex; mode=display">func_1</script>, <script type="math/tex; mode=display">func_2</script> and <script type="math/tex; mode=display">func_3</script> such that <script type="math/tex; mode=display">func_1</script> calls <script type="math/tex; mode=display">func_2</script> and then <script type="math/tex; mode=display">func_2</script> calls <script type="math/tex; mode=display">func_3</script>. In this case, <script type="math/tex; mode=display">func_3</script> starts at the end and ends first, <script type="math/tex; mode=display">func_2</script> starts at 2nd position and ends at the 2nd last step. Similarly, <script type="math/tex; mode=display">func_1</script> starts first and ends at the last position. Thus, we can conclude that the function which is entered at the end finishes first and the one which is entered first ends at the last position. </p>
+<p>From the above discussion, we can conclude that we can make use of a <script type="math/tex; mode=display">stack</script> to solve the given problem. We can start by pushing the first function's id from the given <script type="math/tex; mode=display">logs</script> list onto the array. We also keep a track of the current <script type="math/tex; mode=display">time</script>. We also make use of a <script type="math/tex; mode=display">res</script> array, such that <script type="math/tex; mode=display">res[i]</script> is to keep a track of the exclusive time spent by the Fucntion with function id <script type="math/tex; mode=display">i</script> till the current time. </p>
+<p>Now, we can move on to the next function in <script type="math/tex; mode=display">logs</script>. The start/end time of the next function will obviously be larger than the start time of the function on the <script type="math/tex; mode=display">stack</script>. We keep on incrementing the current <script type="math/tex; mode=display">time</script> and the exclusive time for the function on the top of the <script type="math/tex; mode=display">stack</script> till the current time becomes equal to the start/end time of the next function in the <script type="math/tex; mode=display">logs</script> list. </p>
+<p>Thus, now, we've reached a point, where the control shifts from the last function to a new function, due to a function call(indicated by a start label for the next function), or the last function could exit(indicated by the end label for the next function). Thus, we can no longer continue with the same old function. </p>
+<p>If the next function includes a start label, we push this function on the top of the <script type="math/tex; mode=display">stack</script>, since the last function would need to be revisited again in the future. On the other hand, if the next function includes an end label, it means the last function on the top of the <script type="math/tex; mode=display">stack</script> is terminating.</p>
+<p>We also know that an end label indicates that this function executes till the end of the given time. Thus, we need to increment the current <script type="math/tex; mode=display">time</script> and the exclusive time of the last function as well to account for this fact. Now, we can remove(pop) this function from the <script type="math/tex; mode=display">stack</script>.  We can continue this process for every function in the <script type="math/tex; mode=display">logs</script> list. </p>
+<p>At the end, the <script type="math/tex; mode=display">res</script> array gives the exclusive times for each function.</p>
+<p>Summarizing the above process, we need to do the following:</p>
+<ol>
+<li>
+<p>Push the function id of the first function in the <script type="math/tex; mode=display">logs</script> list on the <script type="math/tex; mode=display">stack</script>.</p>
+</li>
+<li>
+<p>Keep incrementing the exlusive time(along with the current time) corresponding to the function on the top of the <script type="math/tex; mode=display">stack</script>(in the <script type="math/tex; mode=display">res</script> array), till the current time equals the start/end time corresponding to the next function in the <script type="math/tex; mode=display">logs</script> list.</p>
+</li>
+<li>
+<p>If the next function has a 'start' label, push this function's id onto the stack. Otherwise, increment the last function's exclusive time(along with the current time), and pop the function id from the top of the stack.</p>
+</li>
+<li>
+<p>Repeat steps 2 and 3 till all the functions in the <script type="math/tex; mode=display">logs</script> list have been considered.</p>
+</li>
+<li>
+<p>Return the resultant exlcusive time(<script type="math/tex; mode=display">res</script>).</p>
+</li>
+</ol>
+<iframe frameborder="0" height="496" name="RqRjdFmv" src="https://leetcode.com/playground/RqRjdFmv/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(t)</script>. We increment the time till all the functions are done with the execution. Here, <script type="math/tex; mode=display">t</script> refers to the end time of the last function in the <script type="math/tex; mode=display">logs</script> list.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The <script type="math/tex; mode=display">stack</script> can grow upto a depth of atmost <script type="math/tex; mode=display">n/2</script>. Here, <script type="math/tex; mode=display">n</script> refers to the number of elements in the given <script type="math/tex; mode=display">logs</script> list.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-approach-accepted">Approach #2 Better Approach [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, for every function on the top of the <script type="math/tex; mode=display">stack</script>, we incremented the current time and the exclusive time of this same function till the current time became equal to the start/end time of the next function. </p>
+<p>Instead of doing this incrementing step by step, we can directly use the difference between the next function's start/stop time and the current function's start/stop time. The rest of the process remains the same as in the last approach. </p>
+<p>The following animation illustrates the process.</p>
+<p>!?!../Documents/636_Exclusive_Time_of_Functions.json:1000,563!?!</p>
+<iframe frameborder="0" height="462" name="rZkuT7RU" src="https://leetcode.com/playground/rZkuT7RU/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We iterate over the entire <script type="math/tex; mode=display">logs</script> array just once. Here, <script type="math/tex; mode=display">n</script> refers to the number of elements in the <script type="math/tex; mode=display">logs</script> list.</p>
+</li>
+<li>
+<p>Space complexity : The <script type="math/tex; mode=display">stack</script> can grow upto a depth of atmost <script type="math/tex; mode=display">n/2</script>. Here, <script type="math/tex; mode=display">n</script> refers to the number of elements in the given <script type="math/tex; mode=display">logs</script> list.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">10060</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">22841</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              25%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/uber.html">Uber</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

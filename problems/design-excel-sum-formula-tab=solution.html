@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Your task is to design the basic function of Excel and implement the function of sum formula.  Specifically, you need to implement the following functions:
+Excel(int H, char W): This is the constructor. The inputs represents the height and width of the Excel form. H is a positive integer, range from 1 to 26. It represents the height. W is a character range from &#39;A&#39; to &#39;Z&#39;. It represents that the width is the number of characters from &#39;A&#39; to W. The Excel form content is represented by a height * width 2D integer array C, it should be initialized to zero. You should assume that the first row of C starts from 1, and the first column of C starts from &#39;A&#39;.
+
+void Set(int row, char column, int val): Change the value at C(row, column) to be val.
+
+int Get(int row, char column): Return the value at C(row, column).
+
+int Sum(int row, char column, List of Strings : numbers): This function calculate and set the value at C(row, column), where the value should be the sum of cells represented by numbers. This function return the sum result at C(row, column). This sum formula should exist until this cell is overlapped by another value or another sum formula.
+numbers is a list of strings that each string represent a cell or a range of cells. If the string represent a single cell, then it has the following format : ColRow. For example, &#34;F7&#34; represents the cell at (7, F). 
+If the string represent a range of cells, then it has the following format : ColRow1:ColRow2. The range will always be a rectangle, and ColRow1 represent the position of the top-left cell, and ColRow2 represents the position of the bottom-right cell. 
+
+Example 1:
+
+Excel(3,&#34;C&#34;); 
+// construct a 3*3 2D array with all zero.
+//   A B C
+// 1 0 0 0
+// 2 0 0 0
+// 3 0 0 0
+
+Set(1, &#34;A&#34;, 2);
+// set C(1,&#34;A&#34;) to be 2.
+//   A B C
+// 1 2 0 0
+// 2 0 0 0
+// 3 0 0 0
+
+Sum(3, &#34;C&#34;, [&#34;A1&#34;, &#34;A1:B2&#34;]);
+// set C(3,&#34;C&#34;) to be the sum of value at C(1,&#34;A&#34;) and the values sum of the rectangle range whose top-left cell is C(1,&#34;A&#34;) and bottom-right cell is C(2,&#34;B&#34;). Return 4. 
+//   A B C
+// 1 2 0 0
+// 2 0 0 0
+// 3 0 0 4
+
+Set(2, &#34;B&#34;, 2);
+// set C(2,&#34;B&#34;) to be 2. Note C(3, &#34;C&#34;) should also be changed.
+//   A B C
+// 1 2 0 0
+// 2 0 2 0
+// 3 0 0 6
+
+
+Note:
+
+You could assume that there won&#39;t be any circular sum reference. For example, A1 = sum(B1) and B1 = sum(A1).
+ The test cases are using double-quotes to represent a character.
+Please remember to RESET your class variables declared in class Excel, as static/class variables are persisted across multiple test cases. Please see here for more details.">
+  <meta name="keywords"
+        content="Design Excel Sum Formula, LC 631, leetcode 631, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>631. Design Excel Sum Formula</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Your task is to design the basic function of Excel and implement the function of sum formula.  Specifically, you need to implement the following functions:</p>
+
+
+
+<p><code>Excel(int H, char W):</code> This is the constructor. The inputs represents the height and width of the Excel form. <b>H</b> is a positive integer, range from 1 to 26. It represents the height. <b>W</b> is a character range from 'A' to 'Z'. It represents that the width is the number of characters from 'A' to <b>W</b>. The Excel form content is represented by a height * width 2D integer array <code>C</code>, it should be initialized to zero. You should assume that the first row of <code>C</code> starts from 1, and the first column of <code>C</code> starts from 'A'.</p>
+
+<br>
+
+<p><code>void Set(int row, char column, int val):</code> Change the value at <code>C(row, column)</code> to be val.</p>
+<br>
+<p><code>int Get(int row, char column):</code> Return the value at <code>C(row, column)</code>.</p>
+<br>
+<p><code>int Sum(int row, char column, List of Strings : numbers):</code> This function calculate and set the value at <code>C(row, column)</code>, where the value should be the sum of cells represented by <code>numbers</code>. This function return the sum result at <code>C(row, column)</code>. This sum formula should exist until this cell is overlapped by another value or another sum formula.</p>
+
+<p><code>numbers</code> is a list of strings that each string represent a cell or a range of cells. If the string represent a single cell, then it has the following format : <code>ColRow</code>. For example, "F7" represents the cell at (7, F). </p>
+
+<p>If the string represent a range of cells, then it has the following format : <code>ColRow1:ColRow2</code>. The range will always be a rectangle, and ColRow1 represent the position of the top-left cell, and ColRow2 represents the position of the bottom-right cell. </p>
+<br>
+<p><b>Example 1:</b><br />
+<pre>
+Excel(3,"C"); 
+// construct a 3*3 2D array with all zero.
+//   A B C
+// 1 0 0 0
+// 2 0 0 0
+// 3 0 0 0
+
+Set(1, "A", 2);
+// set C(1,"A") to be 2.
+//   A B C
+// 1 2 0 0
+// 2 0 0 0
+// 3 0 0 0
+
+Sum(3, "C", ["A1", "A1:B2"]);
+// set C(3,"C") to be the sum of value at C(1,"A") and the values sum of the rectangle range whose top-left cell is C(1,"A") and bottom-right cell is C(2,"B"). Return 4. 
+//   A B C
+// 1 2 0 0
+// 2 0 0 0
+// 3 0 0 4
+
+Set(2, "B", 2);
+// set C(2,"B") to be 2. Note C(3, "C") should also be changed.
+//   A B C
+// 1 2 0 0
+// 2 0 2 0
+// 3 0 0 6
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>You could assume that there won't be any circular sum reference. For example, A1 = sum(B1) and B1 = sum(A1).</li>
+<li> The test cases are using double-quotes to represent a character.</li>
+<li>Please remember to <b>RESET</b> your class variables declared in class Excel, as static/class variables are <b>persisted across multiple test cases</b>. Please see <a href="https://leetcode.com/faq/#different-output">here</a> for more details.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-topological-sortaccepted">Approach #1 Using Topological Sort[Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-topological-sortaccepted">Approach #1 Using Topological Sort[Accepted]</h4>
+<p>Before discussing the required design, we'll discuss some prerequisites to help ease the understanding of the solution. </p>
+<p>Firstly, we can note that once a formula is applied to any cell in excel, let's say <script type="math/tex; mode=display">C1 = C2 + C3</script>, if any change is made to <script type="math/tex; mode=display">C2</script> or <script type="math/tex; mode=display">C3</script>, the result to be put into <script type="math/tex; mode=display">C1</script> needs to be evaluated again based on the new values of <script type="math/tex; mode=display">C2</script> and <script type="math/tex; mode=display">C3</script>. Further, suppose some other cell, say <script type="math/tex; mode=display">D2</script> is also dependent on <script type="math/tex; mode=display">C1</script> due to some prior formula applied to <script type="math/tex; mode=display">D2</script>. Then, when any change is made to, say, <script type="math/tex; mode=display">C2</script>, we re-evaluate <script type="math/tex; mode=display">C1</script>'s value. Furhter, since <script type="math/tex; mode=display">D2</script> is dependent on <script type="math/tex; mode=display">C1</script>, we need to re-evaluate <script type="math/tex; mode=display">D2</script>'s value as well. </p>
+<p>Thus, whenever, we make any change to any cell, <script type="math/tex; mode=display">x</script>,  we need to determine the cells which are dependent on <script type="math/tex; mode=display">x</script>, and update these cells, and further determine the cells which are dependent on the changed cells and so on. We can assume that no cycles are present in the formulas, i.e. Any cell's value won't directly or indirectly be dependent on its own value. </p>
+<p>But, while doing these set of evaluations of the cells to determine their updated values, we need to update the cells in such an order that the cell on which some other cell is dependent is always evaluated prior to the cell which is dependent on the former cell.</p>
+<p>In order to do so, we can view the dependence between the cells in the form of a dependency graph, which can be a Directed Graph. Since, no cycles are allowed between the formulas, the graph reduces to a Directed Acyclic Graph. Now, to solve the problem of evaluating the cells in the required order, we can make use of a very well known method specifically used for such problems in Directed Acyclic Graphs, known as the Topological Sorting. </p>
+<p>Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge <script type="math/tex; mode=display">uv</script>, vertex <script type="math/tex; mode=display">u</script> comes before <script type="math/tex; mode=display">v</script> in the ordering. For example, a topological sorting of the following graph is <code>5 4 2 3 1 0</code>. </p>
+<p>There can be more than one topological sorting for a graph. For example, another topological sorting of the following graph is <code>4 5 2 3 1 0</code>. The first vertex in topological sorting is always a vertex with in-degree as 0 (a vertex with no in-coming edges).</p>
+<p align="center"><img alt="Topological_Sort_Graph" src="https://leetcode.com/articles/Figures/631/631_Design_Excel.PNG"/></p>
+<p>Topological Sorting can be done if we modify the Depth First Search to some extent.  In Depth First Search, we start from a vertex, we first print it and then recursively call DFS for its adjacent vertices. Thus, the DFS obtained for the graph above, starting from node 5, will be <code>5 2 3 1 0 4</code>. But, in the case of a topological sort, we can't print a node until all the nodes on which it is dependent have already been printed. </p>
+<p>To solve this problem, we make use of a temporary stack. We do the traversals in the same manner as in DFS, but  we don’t print the current node immediately. Instead, for the current node we do as follows:</p>
+<ul>
+<li>
+<p>Recursively call topological sorting for all the nodes adjacent to the current node.</p>
+</li>
+<li>
+<p>Push the current node onto a stack. </p>
+</li>
+<li>
+<p>Repeat the above process till all the nodes have been considered atleast once. </p>
+</li>
+<li>
+<p>Print the contents of the stack. </p>
+</li>
+</ul>
+<p>Note that a vertex is pushed to stack only when all of its adjacent(dependent) vertices (and their adjacent(dependent) vertices and so on) are already in stack. Thus, we obtain the correct ordering of the vertices. </p>
+<p>The following animation shows an example of topological sorting for the graph above.</p>
+<p>!?!../Documents/631_Topological.json:1000,563!?!</p>
+<p>We can make use of the same concept while evaluating the cell values to determine the order in which they need to be evaluated. </p>
+<p>Now, let's discuss how we implement the various required functions. We make use of a simple structure(Class), <script type="math/tex; mode=display">Formula</script>, which contains two elements. First, the value of the cell which it represents, <script type="math/tex; mode=display">val</script>, and a HashMap, <script type="math/tex; mode=display">cells</script>. It is a list of cells on which the current cell's value is dependent. This <script type="math/tex; mode=display">cells</script> hashmap stores the data in the form <script type="math/tex; mode=display">(cellName, count)</script>.  <script type="math/tex; mode=display">cellName</script> has the format <script type="math/tex; mode=display">ColRow</script>. <script type="math/tex; mode=display">count</script> refers to the number of times the current cell directly or indirectly comes in the current cell's formulas. e.g. <script type="math/tex; mode=display">C1 = C2 + C3 + C2</script>. In this case, the frequency of <script type="math/tex; mode=display">C3</script> is 1 and that of <script type="math/tex; mode=display">C2</script> is 2.</p>
+<ul>
+<li>
+<p><code>Excel(int H, char W)</code> : We simply need to initialize an array of <script type="math/tex; mode=display">Formula</script> with <script type="math/tex; mode=display">H</script> rows and the required number of columns corresponding to <script type="math/tex; mode=display">W</script>.</p>
+</li>
+<li>
+<p><code>set(int row, char column, int val)</code> : For setting the value of the cell corresponding to the given <script type="math/tex; mode=display">row</script> and <script type="math/tex; mode=display">column</script>, we can simply change the value , <script type="math/tex; mode=display">val</script>, in the <script type="math/tex; mode=display">Formulas</script> array at the indices corresponding to the current cell. Further, if any new formula is applied to a particular cell, we need to remove  the previously applied formulas on the same cell. This is because two formulas can't be used to determine the value of a cell simultaneously. Now, setting a cell to a particular value can also be seen as a formula e.g. <script type="math/tex; mode=display">C1 = 2</script>. Thus, we remove all the <script type="math/tex; mode=display">cells</script> in the <script type="math/tex; mode=display">Formulas</script> for the current cell. Further, when the current cell's value is changed, all the other cells which are dependent on it also need to be evaluated in the correct order. Thus, we make use of Topological Sorting starting with the current cell. We make use of a function <code>topologicalSort(r, c)</code> for this purpose.</p>
+</li>
+</ul>
+<p>       <code>topologicalSort(r, c)</code>: In every call to this function, we traverse over all the cells in the <script type="math/tex; mode=display">Formulas</script> array and further apply topological sorting to all the        cells which are dependent on the current cell(row=r, column=c). To find these cells, we can check the <script type="math/tex; mode=display">cells</script> in the <script type="math/tex; mode=display">Formulas</script> associated with each cell        and check if the current cell lies in it. After applying Topological sorting to all these dependent cells, we put the current cell onto a <script type="math/tex; mode=display">stack</script>. </p>
+<p>       After doing the topological sorting, the cells on the <script type="math/tex; mode=display">stack</script> lie in the order in which their values should be evaluated given the current dependency chain        based on the formulas applied. Thus, we pick up these cells one by one, and evaluate their values. To do the evaluation, we make use of        <code>calculate_sum(r, c, cells)</code>. In this function, we traverse over all the <script type="math/tex; mode=display">cells</script> in the <script type="math/tex; mode=display">Formulas</script> of the current cell(row=r, column=c), and keep on adding        their values. When this summing has been done, we update the current cell's value, <script type="math/tex; mode=display">val</script>, to the sum just obtained. We keep on doing so till all the cells in        the <script type="math/tex; mode=display">stack</script> have been evaluated.</p>
+<ul>
+<li>
+<p><code>get(int row, char column)</code> : We can simply obtain the value(<script type="math/tex; mode=display">val</script>) associated with the current cell's <script type="math/tex; mode=display">Formulas</script>. If the cell has never been initialized previously, we can return a 0 value.</p>
+</li>
+<li>
+<p><code>sum(int row, char column, List of Strings : numbers)</code> : To implement this function, firstly, we need to expand the given <script type="math/tex; mode=display">numbers</script> to obtain all the cells which need to be added in the current formula. We obtain them, by making use of a <code>convert</code> function, which extracts all these cells by doing appropriate expansions based on <code>:</code> values. We put all these cells in the <script type="math/tex; mode=display">cells</script> associated with the current cell's <script type="math/tex; mode=display">Formulas</script>. We also need to set the current cell's value to a new value based on the current formula added. For this, we make use of <code>calculate_sum</code> function as discussed above. We also need to do the topological sorting and evaluate all the cells dependent on the current cell. This is done in the same manner as in the <code>set</code> function discussed above. We also need to return the value to which the current cell has been set.</p>
+</li>
+</ul>
+<iframe frameborder="0" height="515" name="Bxcqy2c6" src="https://leetcode.com/playground/Bxcqy2c6/shared" width="100%"></iframe>
+<p><strong>Performance Analysis</strong></p>
+<ul>
+<li>
+<p><code>set</code> takes <script type="math/tex; mode=display">O\big((r*c)^2\big)</script> time. Here, <script type="math/tex; mode=display">r</script> and <script type="math/tex; mode=display">c</script> refer to the number of rows and columns in the current Excel Form. There can be a maximum of <script type="math/tex; mode=display">O(r*c)</script> formulas for an Excel Form with <script type="math/tex; mode=display">r</script> rows and <script type="math/tex; mode=display">c</script> columns. For each formula, <script type="math/tex; mode=display">r*c</script> time will be needed to find the dependent nodes. Thus, in the worst case, a total of <script type="math/tex; mode=display">O\big((r*c)^2\big)</script> will be needed.</p>
+</li>
+<li>
+<p><code>sum</code> takes <script type="math/tex; mode=display">O\big((r*c)^2 + 2*r*c*l\big)</script> time. Here, <script type="math/tex; mode=display">l</script> refers to the number of elements in the  the list of strings used for obtaining the cells required for the current sum. In the worst case, the expansion of each such element requires <script type="math/tex; mode=display">O(r*c)</script> time, leading to <script type="math/tex; mode=display">O(l*r*c)</script> time for expanding <script type="math/tex; mode=display">l</script> such elements. After doing the expansion, <code>calculate_sum</code> itself requires <script type="math/tex; mode=display">O(l*r*c)</script> time for traversing over the required elements for obtaining the sum. After this, we need to update all the dependent cells, which requires the use of <code>set</code> which itself requires <script type="math/tex; mode=display">O\big((r*c)^2\big)</script> time.</p>
+</li>
+<li>
+<p><code>get</code> takes <script type="math/tex; mode=display">O(1)</script> time. </p>
+</li>
+<li>
+<p>The space required will be <script type="math/tex; mode=display">O\big((r*c)^2\big)</script> in the worst case. <script type="math/tex; mode=display">O(r*c)</script> space will be required for the Excel Form itself. For each cell in this form, the <script type="math/tex; mode=display">cells</script> list can contain <script type="math/tex; mode=display">O(r*c)</script> cells.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">1472</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">5383</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              8%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/microsoft.html">Microsoft</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

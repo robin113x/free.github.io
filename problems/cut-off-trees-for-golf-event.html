@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="You are asked to cut off trees in a forest for a golf event. The forest is represented as a non-negative 2D map, in this map:
+
+0 represents the obstacle can&#39;t be reached.
+1 represents the ground can be walked through.
+The place with number bigger than 1 represents a tree can be walked through, and this positive number represents the tree&#39;s height.
+
+
+
+You are asked to cut off all the trees in this forest in the order of tree&#39;s height - always cut off the tree with lowest height first. And after cutting, the original place has the tree will become a grass (value 1). 
+
+
+You will start from the point (0, 0) and you should output the minimum steps you need to walk to cut off all the trees. If you can&#39;t cut off all the trees, output -1 in that situation.
+
+
+You are guaranteed that no two trees have the same height and there is at least one tree needs to be cut off.
+
+Example 1:
+Input: 
+[
+ [1,2,3],
+ [0,0,4],
+ [7,6,5]
+]
+Output: 6
+
+
+Example 2:
+Input: 
+[
+ [1,2,3],
+ [0,0,0],
+ [7,6,5]
+]
+Output: -1
+
+
+Example 3:
+Input: 
+[
+ [2,3,4],
+ [0,0,5],
+ [8,7,6]
+]
+Output: 6
+Explanation: You started from the point (0,0) and you can cut off the tree in (0,0) directly without walking.
+
+
+
+Hint: size of the given matrix will not exceed 50x50.">
+  <meta name="keywords"
+        content="Cut Off Trees for Golf Event, LC 675, leetcode 675, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>675. Cut Off Trees for Golf Event</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+You are asked to cut off trees in a forest for a golf event. The forest is represented as a non-negative 2D map, in this map:
+<ol>
+<li><code>0</code> represents the <code>obstacle</code> can't be reached.</li>
+<li><code>1</code> represents the <code>ground</code> can be walked through.</li>
+<li><code>The place with number bigger than 1</code> represents a <code>tree</code> can be walked through, and this positive number represents the tree's height.</li>
+</ol>
+</p>
+
+<p>
+You are asked to cut off <b>all</b> the trees in this forest in the order of tree's height - always cut off the tree with lowest height first. And after cutting, the original place has the tree will become a grass (value 1). 
+</p>
+
+<p>
+You will start from the point (0, 0) and you should output the minimum steps <b>you need to walk</b> to cut off all the trees. If you can't cut off all the trees, output -1 in that situation.
+</p>
+
+<p>
+You are guaranteed that no two <code>trees</code> have the same height and there is at least one tree needs to be cut off.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 
+[
+ [1,2,3],
+ [0,0,4],
+ [7,6,5]
+]
+<b>Output:</b> 6
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> 
+[
+ [1,2,3],
+ [0,0,0],
+ [7,6,5]
+]
+<b>Output:</b> -1
+</pre>
+</p>
+
+<p><b>Example 3:</b><br />
+<pre>
+<b>Input:</b> 
+[
+ [2,3,4],
+ [0,0,5],
+ [8,7,6]
+]
+<b>Output:</b> 6
+<b>Explanation:</b> You started from the point (0,0) and you can cut off the tree in (0,0) directly without walking.
+</pre>
+</p>
+
+<p>
+<b>Hint</b>: size of the given matrix will not exceed 50x50.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-framework">Approach Framework</a></li>
+<li><a href="#approach-1-bfs-accepted">Approach #1: BFS [Accepted]</a></li>
+<li><a href="#approach-2-a-search-accepted">Approach #2: A* Search [Accepted]</a></li>
+<li><a href="#approach-3-hadlocks-algorithm-accepted">Approach #3: Hadlock's Algorithm [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-framework">Approach Framework</h4>
+<p><strong>Explanation</strong></p>
+<p>Starting from <code>(0, 0)</code>, for each tree in height order, we will calculate the distance from where we are to the next tree (and move there), adding that distance to the answer.</p>
+<p>We frame the problem as providing some distance function <code>dist(forest, sr, sc, tr, tc)</code> that calculates the path distance from source <code>(sr, sc)</code> to target <code>(tr, tc)</code> through obstacles <code>dist[i][j] == 0</code>.  (This distance function will return <code>-1</code> if the path is impossible.)</p>
+<p>What follows is code and complexity analysis that is common to all three approaches.  After, the algorithms presented in our approaches will focus on only providing our <code>dist</code> function.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">cutOffTree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">forest</span><span class="p">):</span>
+        <span class="n">trees</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">forest</span><span class="p">)</span>
+                       <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">sr</span> <span class="o">=</span> <span class="n">sc</span> <span class="o">=</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">tr</span><span class="p">,</span> <span class="n">tc</span> <span class="ow">in</span> <span class="n">trees</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">dist</span><span class="p">(</span><span class="n">forest</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">tr</span><span class="p">,</span> <span class="n">tc</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">d</span>
+            <span class="n">sr</span><span class="p">,</span> <span class="n">sc</span> <span class="o">=</span> <span class="n">tr</span><span class="p">,</span> <span class="n">tc</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">dr</span> <span class="o">=</span> <span class="o">{-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">};</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">dc</span> <span class="o">=</span> <span class="o">{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">};</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">cutOffTree</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">forest</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">trees</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">forest</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="o">++</span><span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">forest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">size</span><span class="o">();</span> <span class="o">++</span><span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">forest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">r</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">)</span> <span class="n">trees</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">v</span><span class="o">,</span> <span class="n">r</span><span class="o">,</span> <span class="n">c</span><span class="o">});</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">trees</span><span class="o">,</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">Integer</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]));</span>
+
+        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">sc</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">tree</span><span class="o">:</span> <span class="n">trees</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">dist</span><span class="o">(</span><span class="n">forest</span><span class="o">,</span> <span class="n">sr</span><span class="o">,</span> <span class="n">sc</span><span class="o">,</span> <span class="n">tree</span><span class="o">[</span><span class="mi">1</span><span class="o">],</span> <span class="n">tree</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">d</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">d</span><span class="o">;</span>
+            <span class="n">sr</span> <span class="o">=</span> <span class="n">tree</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span> <span class="n">sc</span> <span class="o">=</span> <span class="n">tree</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<p>All three algorithms have similar worst case complexities, but in practice each successive algorithm presented performs faster on random data.</p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O((RC)^2)</script> where there are <script type="math/tex; mode=display">R</script> rows and <script type="math/tex; mode=display">C</script> columns in the given <code>forest</code>.  We walk to <script type="math/tex; mode=display">R*C</script> trees, and each walk could spend <script type="math/tex; mode=display">O(R*C)</script> time searching for the tree.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(R*C)</script>, the maximum size of the data structures used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-1-bfs-accepted">Approach #1: BFS [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>We perform a breadth-first-search, processing nodes (grid positions) in a queue.  <code>seen</code> keeps track of nodes that have already been added to the queue at some point - those nodes will be already processed or are in the queue awaiting processing.</p>
+<p>For each node that is next to be processed, we look at it's neighbors.  If they are in the forest (grid), they haven't been enqueued, and they aren't an obstacle, we will enqueue that neighbor.</p>
+<p>We also keep a side count of the distance travelled for each node.  If the node we are processing is our destination 'target' <code>(tr, tc)</code>, we'll return the answer.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">forest</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">tr</span><span class="p">,</span> <span class="n">tc</span><span class="p">):</span>
+    <span class="n">R</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">forest</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">forest</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">([(</span><span class="n">sr</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="p">{(</span><span class="n">sr</span><span class="p">,</span> <span class="n">sc</span><span class="p">)}</span>
+    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="n">tr</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">==</span> <span class="n">tc</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">d</span>
+        <span class="k">for</span> <span class="n">nr</span><span class="p">,</span> <span class="n">nc</span> <span class="ow">in</span> <span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="p">(</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">nr</span> <span class="o">&lt;</span> <span class="n">R</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">nc</span> <span class="o">&lt;</span> <span class="n">C</span> <span class="ow">and</span>
+                    <span class="p">(</span><span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span> <span class="ow">and</span> <span class="n">forest</span><span class="p">[</span><span class="n">nr</span><span class="p">][</span><span class="n">nc</span><span class="p">]):</span>
+                <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">))</span>
+                <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">bfs</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">forest</span><span class="o">,</span> <span class="kt">int</span> <span class="n">sr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">sc</span><span class="o">,</span> <span class="kt">int</span> <span class="n">tr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">tc</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">R</span> <span class="o">=</span> <span class="n">forest</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span> <span class="n">C</span> <span class="o">=</span> <span class="n">forest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">size</span><span class="o">();</span>
+    <span class="n">Queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">();</span>
+    <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">sr</span><span class="o">,</span> <span class="n">sc</span><span class="o">,</span> <span class="mi">0</span><span class="o">});</span>
+    <span class="kt">boolean</span><span class="o">[][]</span> <span class="n">seen</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="n">R</span><span class="o">][</span><span class="n">C</span><span class="o">];</span>
+    <span class="n">seen</span><span class="o">[</span><span class="n">sr</span><span class="o">][</span><span class="n">sc</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(!</span><span class="n">queue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">cur</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="n">tr</span> <span class="o">&amp;&amp;</span> <span class="n">cur</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">tc</span><span class="o">)</span> <span class="k">return</span> <span class="n">cur</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">di</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">di</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="o">;</span> <span class="o">++</span><span class="n">di</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="n">dr</span><span class="o">[</span><span class="n">di</span><span class="o">];</span>
+            <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">dc</span><span class="o">[</span><span class="n">di</span><span class="o">];</span>
+            <span class="k">if</span> <span class="o">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="o">&amp;&amp;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">R</span> <span class="o">&amp;&amp;</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">C</span> <span class="o">&amp;&amp;</span>
+                    <span class="o">!</span><span class="n">seen</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="n">forest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">r</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">c</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">seen</span><span class="o">[</span><span class="n">r</span><span class="o">][</span><span class="n">c</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">r</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="n">cur</span><span class="o">[</span><span class="mi">2</span><span class="o">]+</span><span class="mi">1</span><span class="o">});</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<hr/>
+<h4 id="approach-2-a-search-accepted">Approach #2: A* Search [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>The A<em> star algorithm is another path-finding algorithm.  For every node at position <code>(r, c)</code>, we have some estimated cost <code>node.f = node.g + node.h</code>, where <code>node.g</code> is the actual distance from <code>(sr, sc)</code> to <code>(r, c)</code>, and <code>node.h</code> is our </em>heuristic* (guess) of the distance from <code>(r, c)</code> to <code>(tr, tc)</code>.  In this case, our guess will be the taxicab distance, <code>node.h = abs(r-tr) + abs(c-tc)</code>.</p>
+<p>We keep a priority queue to decide what node to search in (<em>expand</em>) next.  We can prove that if we find the target node, we must have travelled the lowest possible distance <code>node.g</code>.  By considering the last time where two backwards paths are the same, without loss of generality we could suppose the the penultimate square of the two paths are different, and then in this case <code>node.f = node.g + 1</code>, showing the path with less actual distance travelled is expanded first as desired.</p>
+<p>It might be useful for solvers familiar with <em>Dijkstra's Algorithm</em> to know that <em>A* Search</em> is a special case of <em>Dijkstra's</em> with <code>node.h = 0</code> always.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">astar</span><span class="p">(</span><span class="n">forest</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">tr</span><span class="p">,</span> <span class="n">tc</span><span class="p">):</span>
+    <span class="n">R</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">forest</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">forest</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">heap</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">sc</span><span class="p">)]</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="p">{(</span><span class="n">sr</span><span class="p">,</span> <span class="n">sc</span><span class="p">):</span> <span class="mi">0</span><span class="p">}</span>
+    <span class="k">while</span> <span class="n">heap</span><span class="p">:</span>
+        <span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="n">tr</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">==</span> <span class="n">tc</span><span class="p">:</span> <span class="k">return</span> <span class="n">g</span>
+        <span class="k">for</span> <span class="n">nr</span><span class="p">,</span> <span class="n">nc</span> <span class="ow">in</span> <span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="p">),</span> <span class="p">(</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="p">),</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">nr</span> <span class="o">&lt;</span> <span class="n">R</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">nc</span> <span class="o">&lt;</span> <span class="n">C</span> <span class="ow">and</span> <span class="n">forest</span><span class="p">[</span><span class="n">nr</span><span class="p">][</span><span class="n">nc</span><span class="p">]:</span>
+                <span class="n">ncost</span> <span class="o">=</span> <span class="n">g</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">nr</span> <span class="o">-</span> <span class="n">tr</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">nc</span> <span class="o">-</span> <span class="n">tc</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">ncost</span> <span class="o">&lt;</span> <span class="n">cost</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">),</span> <span class="mi">9999</span><span class="p">):</span>
+                    <span class="n">cost</span><span class="p">[</span><span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">]</span> <span class="o">=</span> <span class="n">ncost</span>
+                    <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="p">(</span><span class="n">ncost</span><span class="p">,</span> <span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">cutOffTree</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">forest</span><span class="o">,</span> <span class="kt">int</span> <span class="n">sr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">sc</span><span class="o">,</span> <span class="kt">int</span> <span class="n">tr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">tc</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">R</span> <span class="o">=</span> <span class="n">forest</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span> <span class="n">C</span> <span class="o">=</span> <span class="n">forest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">size</span><span class="o">();</span>
+    <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">heap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;(</span>
+        <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">Integer</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">b</span><span class="o">[</span><span class="mi">0</span><span class="o">]));</span>
+    <span class="n">heap</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">sr</span><span class="o">,</span> <span class="n">sc</span><span class="o">});</span>
+
+    <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">cost</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+    <span class="n">cost</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">sr</span> <span class="o">*</span> <span class="n">C</span> <span class="o">+</span> <span class="n">sc</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+
+    <span class="k">while</span> <span class="o">(!</span><span class="n">heap</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">heap</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">g</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">1</span><span class="o">],</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">2</span><span class="o">],</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">r</span> <span class="o">==</span> <span class="n">tr</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">==</span> <span class="n">tc</span><span class="o">)</span> <span class="k">return</span> <span class="n">g</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">di</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">di</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="o">;</span> <span class="o">++</span><span class="n">di</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">nr</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">dr</span><span class="o">[</span><span class="n">di</span><span class="o">],</span> <span class="n">nc</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="n">dc</span><span class="o">[</span><span class="n">di</span><span class="o">];</span>
+            <span class="k">if</span> <span class="o">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">nr</span> <span class="o">&amp;&amp;</span> <span class="n">nr</span> <span class="o">&lt;</span> <span class="n">R</span> <span class="o">&amp;&amp;</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">nc</span> <span class="o">&amp;&amp;</span> <span class="n">nc</span> <span class="o">&lt;</span> <span class="n">C</span> <span class="o">&amp;&amp;</span> <span class="n">forest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">nr</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">nc</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">ncost</span> <span class="o">=</span> <span class="n">g</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">nr</span><span class="o">-</span><span class="n">tr</span><span class="o">)</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">nc</span><span class="o">-</span><span class="n">tr</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">ncost</span> <span class="o">&lt;</span> <span class="n">cost</span><span class="o">.</span><span class="na">getOrDefault</span><span class="o">(</span><span class="n">nr</span> <span class="o">*</span> <span class="n">C</span> <span class="o">+</span> <span class="n">nc</span><span class="o">,</span> <span class="mi">9999</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">cost</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">nr</span> <span class="o">*</span> <span class="n">C</span> <span class="o">+</span> <span class="n">nc</span><span class="o">,</span> <span class="n">ncost</span><span class="o">);</span>
+                    <span class="n">heap</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">ncost</span><span class="o">,</span> <span class="n">g</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">nr</span><span class="o">,</span> <span class="n">nc</span><span class="o">});</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<hr/>
+<h4 id="approach-3-hadlocks-algorithm-accepted">Approach #3: Hadlock's Algorithm [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Without any obstacles, the distance from <code>source = (sr, sc)</code> to <code>target = (tr, tc)</code> is simply <code>taxi(source, target) = abs(sr-tr) + abs(sc-tc)</code>.  This represents a sort of minimum distance that must be travelled.  Whenever we walk "away" from the target, we increase this minimum by 2, as we stepped 1 move, plus the taxicab distance from our new location has increased by one.</p>
+<p>Let's call such a move that walks away from the target a <em>detour</em>.  It can be proven that the distance from source to target is simply <code>taxi(source, target) + 2 * detours</code>, where <code>detours</code> is the smallest number of detours in any path from <code>source</code> to <code>target</code>.</p>
+<p><strong>Algorithm</strong></p>
+<p>With respect to a <code>source</code> and <code>target</code>, call the <em>detour number</em> of a square to be the lowest number of detours possible in any path from <code>source</code> to that square.  (Here, detours are defined with respect to <code>target</code> - the number of away steps from that target.)</p>
+<p>We will perform a priority-first-search in order of detour number.  If the target is found, it was found with the lowest detour number and therefore the lowest corresponding distance.  This motivates using <code>processed</code>, keeping track of when nodes are expanded, not visited - nodes could potentially be visited twice.</p>
+<p>As each neighboring node can only have the same detour number or a detour number one higher, we will only consider at most 2 priority classes at a time.  Thus, we can use a deque (double ended queue) to perform this implementation.  We will place nodes with the same detour number to be expanded first, and nodes with a detour number one higher to be expanded after all nodes with the current number are done.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">hadlocks</span><span class="p">(</span><span class="n">forest</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">tr</span><span class="p">,</span> <span class="n">tc</span><span class="p">):</span>
+    <span class="n">R</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">forest</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">forest</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">processed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">deque</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">sc</span><span class="p">)])</span>
+    <span class="k">while</span> <span class="n">deque</span><span class="p">:</span>
+        <span class="n">detours</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">deque</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">processed</span><span class="p">:</span>
+            <span class="n">processed</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="n">tr</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">==</span> <span class="n">tc</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sr</span><span class="o">-</span><span class="n">tr</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sc</span><span class="o">-</span><span class="n">tc</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">detours</span>
+            <span class="k">for</span> <span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">closer</span> <span class="ow">in</span> <span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="n">tr</span><span class="p">),</span> <span class="p">(</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">tr</span><span class="p">),</span>
+                                   <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">tc</span><span class="p">),</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">tc</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">nr</span> <span class="o">&lt;</span> <span class="n">R</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">nc</span> <span class="o">&lt;</span> <span class="n">C</span> <span class="ow">and</span> <span class="n">forest</span><span class="p">[</span><span class="n">nr</span><span class="p">][</span><span class="n">nc</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">closer</span><span class="p">:</span>
+                        <span class="n">deque</span><span class="o">.</span><span class="n">appendleft</span><span class="p">((</span><span class="n">detours</span><span class="p">,</span> <span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">deque</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">detours</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">hadlocks</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">forest</span><span class="o">,</span> <span class="kt">int</span> <span class="n">sr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">sc</span><span class="o">,</span> <span class="kt">int</span> <span class="n">tr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">tc</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">R</span> <span class="o">=</span> <span class="n">forest</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span> <span class="n">C</span> <span class="o">=</span> <span class="n">forest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">size</span><span class="o">();</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">processed</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">();</span>
+    <span class="n">Deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">deque</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayDeque</span><span class="o">();</span>
+    <span class="n">deque</span><span class="o">.</span><span class="na">offerFirst</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="n">sr</span><span class="o">,</span> <span class="n">sc</span><span class="o">});</span>
+    <span class="k">while</span> <span class="o">(!</span><span class="n">deque</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">deque</span><span class="o">.</span><span class="na">pollFirst</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">detours</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">1</span><span class="o">],</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cur</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">processed</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">r</span><span class="o">*</span><span class="n">C</span> <span class="o">+</span> <span class="n">c</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">processed</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">r</span><span class="o">*</span><span class="n">C</span> <span class="o">+</span> <span class="n">c</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">r</span> <span class="o">==</span> <span class="n">tr</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">==</span> <span class="n">tc</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">sr</span><span class="o">-</span><span class="n">tr</span><span class="o">)</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">sc</span><span class="o">-</span><span class="n">tc</span><span class="o">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">detours</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">di</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">di</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="o">;</span> <span class="o">++</span><span class="n">di</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">nr</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">dr</span><span class="o">[</span><span class="n">di</span><span class="o">];</span>
+                <span class="kt">int</span> <span class="n">nc</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="n">dc</span><span class="o">[</span><span class="n">di</span><span class="o">];</span>
+                <span class="kt">boolean</span> <span class="n">closer</span><span class="o">;</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">di</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="o">)</span> <span class="n">closer</span> <span class="o">=</span> <span class="n">di</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="n">tr</span> <span class="o">:</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">tr</span><span class="o">;</span>
+                <span class="k">else</span> <span class="n">closer</span> <span class="o">=</span> <span class="n">di</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">?</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="n">tc</span> <span class="o">:</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">tc</span><span class="o">;</span>
+                <span class="k">if</span> <span class="o">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">nr</span> <span class="o">&amp;&amp;</span> <span class="n">nr</span> <span class="o">&lt;</span> <span class="n">R</span> <span class="o">&amp;&amp;</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">nc</span> <span class="o">&amp;&amp;</span> <span class="n">nc</span> <span class="o">&lt;</span> <span class="n">C</span> <span class="o">&amp;&amp;</span> <span class="n">forest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">nr</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">nc</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">closer</span><span class="o">)</span> <span class="n">deque</span><span class="o">.</span><span class="na">offerFirst</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">detours</span><span class="o">,</span> <span class="n">nr</span><span class="o">,</span> <span class="n">nc</span><span class="o">});</span>
+                    <span class="k">else</span> <span class="n">deque</span><span class="o">.</span><span class="na">offerLast</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">detours</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">nr</span><span class="o">,</span> <span class="n">nc</span><span class="o">});</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">3924</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">14704</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              19%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/amazon.html">Amazon</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

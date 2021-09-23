@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="On an infinite number line (x-axis), we drop given squares in the order they are given.
+The i-th square dropped (positions[i] = (left, side_length)) is a square with the left-most point being positions[i][0] and sidelength positions[i][1].
+The square is dropped with the bottom edge parallel to the number line, and from a higher height than all currently landed squares.  We wait for each square to stick before dropping the next.
+The squares are infinitely sticky on their bottom edge, and will remain fixed to any positive length surface they touch (either the number line or another square).  Squares dropped adjacent to each other will not stick together prematurely.
+
+Return a list ans of heights.  Each height ans[i] represents the current highest height of any square we have dropped, after dropping squares represented by positions[0], positions[1], ..., positions[i].
+
+Example 1:
+Input: [[1, 2], [2, 3], [6, 1]]
+Output: [2, 5, 5]
+Explanation:
+
+After the first drop of positions[0] = [1, 2]:
+_aa
+_aa
+-------
+The maximum height of any square is 2.
+
+After the second drop of positions[1] = [2, 3]:
+__aaa
+__aaa
+__aaa
+_aa__
+_aa__
+--------------
+The maximum height of any square is 5.  
+The larger square stays on top of the smaller square despite where its center
+of gravity is, because squares are infinitely sticky on their bottom edge.
+
+After the third drop of positions[1] = [6, 1]:
+__aaa
+__aaa
+__aaa
+_aa
+_aa___a
+--------------
+The maximum height of any square is still 5.
+
+Thus, we return an answer of [2, 5, 5].
+
+
+
+Example 2:
+Input: [[100, 100], [200, 100]]
+Output: [100, 100]
+Explanation: Adjacent squares don&#39;t get stuck prematurely - only their bottom edge can stick to surfaces.
+
+
+Note:
+1 &lt;= positions.length &lt;= 1000.
+1 &lt;= positions[i][0] &lt;= 10^8.
+1 &lt;= positions[i][1] &lt;= 10^6.">
+  <meta name="keywords"
+        content="Falling Squares, LC 699, leetcode 699, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>699. Falling Squares</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>On an infinite number line (x-axis), we drop given squares in the order they are given.</p>
+<p>The <code>i</code>-th square dropped (<code>positions[i] = (left, side_length)</code>) is a square with the left-most point being <code>positions[i][0]</code> and sidelength <code>positions[i][1]</code>.</p>
+<p>The square is dropped with the bottom edge parallel to the number line, and from a higher height than all currently landed squares.  We wait for each square to stick before dropping the next.</p>
+<p>The squares are infinitely sticky on their bottom edge, and will remain fixed to any positive length surface they touch (either the number line or another square).  Squares dropped adjacent to each other will not stick together prematurely.</p>
+
+<br>
+<p>Return a list <code>ans</code> of heights.  Each height <code>ans[i]</code> represents the current highest height of any square we have dropped, after dropping squares represented by <code>positions[0], positions[1], ..., positions[i]</code>.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> [[1, 2], [2, 3], [6, 1]]
+<b>Output:</b> [2, 5, 5]
+<b>Explanation:</b>
+<p>
+After the first drop of <code>positions[0] = [1, 2]:
+_aa
+_aa
+-------
+</code>The maximum height of any square is 2.
+</p><p>
+After the second drop of <code>positions[1] = [2, 3]:
+__aaa
+__aaa
+__aaa
+_aa__
+_aa__
+--------------
+</code>The maximum height of any square is 5.  
+The larger square stays on top of the smaller square despite where its center
+of gravity is, because squares are infinitely sticky on their bottom edge.
+</p><p>
+After the third drop of <code>positions[1] = [6, 1]:
+__aaa
+__aaa
+__aaa
+_aa
+_aa___a
+--------------
+</code>The maximum height of any square is still 5.
+
+Thus, we return an answer of <code>[2, 5, 5]</code>.
+</pre>
+</p>
+
+<br>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> [[100, 100], [200, 100]]
+<b>Output:</b> [100, 100]
+<b>Explanation:</b> Adjacent squares don't get stuck prematurely - only their bottom edge can stick to surfaces.
+</pre>
+</p>
+
+<p><b>Note:</b>
+<li><code>1 <= positions.length <= 1000</code>.</li>
+<li><code>1 <= positions[i][0] <= 10^8</code>.</li>
+<li><code>1 <= positions[i][1] <= 10^6</code>.</li>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-framework">Approach Framework</a></li>
+<li><a href="#approach-1-offline-propagation-accepted">Approach #1: Offline Propagation [Accepted]</a></li>
+<li><a href="#approach-2-brute-force-with-coordinate-compression-accepted">Approach #2: Brute Force with Coordinate Compression [Accepted]</a></li>
+<li><a href="#approach-3-block-square-root-decomposition-accepted">Approach #3: Block (Square Root) Decomposition [Accepted]</a></li>
+<li><a href="#approach-4-segment-tree-with-lazy-propagation-accepted">Approach #4: Segment Tree with Lazy Propagation [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-framework">Approach Framework</h4>
+<p><strong>Intuition</strong></p>
+<p>Intuitively, there are two operations: <code>update</code>, which updates our notion of the board (number line) after dropping a square; and <code>query</code>, which finds the largest height in the current board on some interval.  We will work on implementing these operations.</p>
+<p><strong>Coordinate Compression</strong></p>
+<p>In the below approaches, since there are only up to <code>2 * len(positions)</code> critical points, namely the left and right edges of each square, we can use a technique called <em>coordinate compression</em> to map these critical points to adjacent integers, as shown in the code snippets below.  </p>
+<p>For brevity, these snippets are omitted from the remaining solutions.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="n">coords</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">left</span><span class="p">,</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+    <span class="n">coords</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+    <span class="n">coords</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">index</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">coords</span><span class="p">))}</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">coords</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">();</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">pos</span><span class="o">:</span> <span class="n">positions</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">coords</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">pos</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+    <span class="n">coords</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">pos</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="n">pos</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">sortedCoords</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">(</span><span class="n">coords</span><span class="o">);</span>
+<span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">sortedCoords</span><span class="o">);</span>
+
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">index</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+<span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">coord</span><span class="o">:</span> <span class="n">sortedCoords</span><span class="o">)</span> <span class="n">index</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">coord</span><span class="o">,</span> <span class="n">t</span><span class="o">++);</span>
+</pre></div>
+<hr/>
+<h4 id="approach-1-offline-propagation-accepted">Approach #1: Offline Propagation [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Instead of asking the question "what squares affect this query?", lets ask the question "what queries are affected by this square?"</p>
+<p><strong>Algorithm</strong></p>
+<p>Let <code>qans[i]</code> be the maximum height of the interval specified by <code>positions[i]</code>.  At the end, we'll return a running max of <code>qans</code>.</p>
+<p>For each square <code>positions[i]</code>, the maximum height will get higher by the size of the square we drop.  Then, for any future squares that intersect the interval <code>[left, right)</code> (where <code>left = positions[i][0], right = positions[i][0] + positions[i][1]</code>), we'll update the maximum height of that interval.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">fallingSquares</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">positions</span><span class="p">):</span>
+        <span class="n">qans</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">positions</span><span class="p">):</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="n">size</span>
+            <span class="n">qans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">size</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">)):</span>
+                <span class="n">left2</span><span class="p">,</span> <span class="n">size2</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">right2</span> <span class="o">=</span> <span class="n">left2</span> <span class="o">+</span> <span class="n">size2</span>
+                <span class="k">if</span> <span class="n">left2</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right2</span><span class="p">:</span> <span class="c1">#intersect</span>
+                    <span class="n">qans</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">qans</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">qans</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">qans</span><span class="p">:</span>
+            <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">ans</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">fallingSquares</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">positions</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">qans</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">positions</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">positions</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">positions</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">];</span>
+            <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">positions</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">1</span><span class="o">];</span>
+            <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="n">size</span><span class="o">;</span>
+            <span class="n">qans</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+=</span> <span class="n">size</span><span class="o">;</span>
+
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">positions</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">left2</span> <span class="o">=</span> <span class="n">positions</span><span class="o">[</span><span class="n">j</span><span class="o">][</span><span class="mi">0</span><span class="o">];</span>
+                <span class="kt">int</span> <span class="n">size2</span> <span class="o">=</span> <span class="n">positions</span><span class="o">[</span><span class="n">j</span><span class="o">][</span><span class="mi">1</span><span class="o">];</span>
+                <span class="kt">int</span> <span class="n">right2</span> <span class="o">=</span> <span class="n">left2</span> <span class="o">+</span> <span class="n">size2</span><span class="o">;</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">left2</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="o">&amp;&amp;</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right2</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//intersect</span>
+                    <span class="n">qans</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">qans</span><span class="o">[</span><span class="n">j</span><span class="o">],</span> <span class="n">qans</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">ans</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">:</span> <span class="n">qans</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">cur</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">cur</span><span class="o">,</span> <span class="n">x</span><span class="o">);</span>
+            <span class="n">ans</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">cur</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N^2)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>positions</code>.  We use two for-loops, each of complexity <script type="math/tex; mode=display">O(N)</script>.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>, the space used by <code>qans</code> and <code>ans</code>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-brute-force-with-coordinate-compression-accepted">Approach #2: Brute Force with Coordinate Compression [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Let <code>N = len(positions)</code>.  After mapping the board to a board of length at most <script type="math/tex; mode=display">2* N \leq 2000</script>, we can brute force the answer by simulating each square's drop directly.</p>
+<p>Our answer is either the current answer or the height of the square that was just dropped, and we'll update it appropriately.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">fallingSquares</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">positions</span><span class="p">):</span>
+        <span class="c1">#Coordinate Compression</span>
+        <span class="c1">#index = ...</span>
+
+        <span class="n">heights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+        <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">heights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">h</span><span class="p">)</span>
+
+        <span class="n">best</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">left</span><span class="p">,</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+            <span class="n">L</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="n">left</span><span class="p">]</span>
+            <span class="n">R</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="n">left</span> <span class="o">+</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">query</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span> <span class="o">+</span> <span class="n">size</span>
+            <span class="n">update</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+            <span class="n">best</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">best</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+            <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">best</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">heights</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">query</span><span class="o">(</span><span class="kt">int</span> <span class="n">L</span><span class="o">,</span> <span class="kt">int</span> <span class="n">R</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">L</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">R</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">heights</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">(</span><span class="kt">int</span> <span class="n">L</span><span class="o">,</span> <span class="kt">int</span> <span class="n">R</span><span class="o">,</span> <span class="kt">int</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">L</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">R</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">heights</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">heights</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">h</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">fallingSquares</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">positions</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//Coordinate Compression</span>
+        <span class="c1">//HashMap&lt;Integer, Integer&gt; index = ...;</span>
+        <span class="c1">//int t = ...;</span>
+
+        <span class="n">heights</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">t</span><span class="o">];</span>
+        <span class="kt">int</span> <span class="n">best</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">ans</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">pos</span><span class="o">:</span> <span class="n">positions</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">L</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">pos</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+            <span class="kt">int</span> <span class="n">R</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">pos</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="n">pos</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">query</span><span class="o">(</span><span class="n">L</span><span class="o">,</span> <span class="n">R</span><span class="o">)</span> <span class="o">+</span> <span class="n">pos</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+            <span class="n">update</span><span class="o">(</span><span class="n">L</span><span class="o">,</span> <span class="n">R</span><span class="o">,</span> <span class="n">h</span><span class="o">);</span>
+            <span class="n">best</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">best</span><span class="o">,</span> <span class="n">h</span><span class="o">);</span>
+            <span class="n">ans</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">best</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N^2)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>positions</code>.  We use two for-loops, each of complexity <script type="math/tex; mode=display">O(N)</script> (because of coordinate compression.)</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>, the space used by <code>heights</code>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-block-square-root-decomposition-accepted">Approach #3: Block (Square Root) Decomposition [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Whenever we perform operations (like <code>update</code> and <code>query</code>) on some interval in a domain, we could segment that domain with size <script type="math/tex; mode=display">W</script> into blocks of size <script type="math/tex; mode=display">\sqrt{W}</script>.  </p>
+<p>Then, instead of a typical brute force where we update our array <code>heights</code> representing the board, we will also hold another array <code>blocks</code>, where <code>blocks[i]</code> represents the <script type="math/tex; mode=display">B = \lfloor \sqrt{W} \rfloor</script> elements <code>heights[B*i], heights[B*i + 1], ..., heights[B*i + B-1]</code>.  This allows us to write to the array in <script type="math/tex; mode=display">O(B)</script> operations.</p>
+<p><strong>Algorithm</strong></p>
+<p>Let's get into the details.  We actually need another array, <code>blocks_read</code>.  When we update some element <code>i</code> in block <code>b = i / B</code>, we'll also update <code>blocks_read[b]</code>.  If later we want to read the entire block, we can read from here (and stuff written to the whole block in <code>blocks[b]</code>.)</p>
+<p>When we write to a block, we'll write in <code>blocks[b]</code>.  Later, when we want to read from an element <code>i</code> in block <code>b = i / B</code>, we'll read from <code>heights[i]</code> and <code>blocks[b]</code>.</p>
+<p>Our process for managing <code>query</code> and <code>update</code> will be similar.  While <code>left</code> isn't a multiple of <code>B</code>, we'll proceed with a brute-force-like approach, and similarly for <code>right</code>.  At the end, <code>[left, right+1)</code> will represent a series of contiguous blocks: the interval will have length which is a multiple of <code>B</code>, and <code>left</code> will also be a multiple of <code>B</code>.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">fallingSquares</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">positions</span><span class="p">):</span>
+        <span class="c1">#Coordinate compression</span>
+        <span class="c1">#index = ...</span>
+
+        <span class="n">W</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">W</span><span class="o">**.</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">heights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">W</span>
+        <span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">B</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">blocks_read</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">B</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="n">left</span> <span class="o">%</span> <span class="n">B</span> <span class="ow">and</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">heights</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="n">blocks</span><span class="p">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="p">])</span>
+                <span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">right</span> <span class="o">%</span> <span class="n">B</span> <span class="o">!=</span> <span class="n">B</span><span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">heights</span><span class="p">[</span><span class="n">right</span><span class="p">],</span> <span class="n">blocks</span><span class="p">[</span><span class="n">right</span> <span class="o">/</span> <span class="n">B</span><span class="p">])</span>
+                <span class="n">right</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">blocks</span><span class="p">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="p">],</span> <span class="n">blocks_read</span><span class="p">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="p">])</span>
+                <span class="n">left</span> <span class="o">+=</span> <span class="n">B</span>
+            <span class="k">return</span> <span class="n">ans</span>
+
+        <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+            <span class="k">while</span> <span class="n">left</span> <span class="o">%</span> <span class="n">B</span> <span class="ow">and</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+                <span class="n">heights</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="n">h</span><span class="p">)</span>
+                <span class="n">blocks_read</span><span class="p">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">blocks_read</span><span class="p">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="p">],</span> <span class="n">h</span><span class="p">)</span>
+                <span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">right</span> <span class="o">%</span> <span class="n">B</span> <span class="o">!=</span> <span class="n">B</span><span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+                <span class="n">heights</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="n">right</span><span class="p">],</span> <span class="n">h</span><span class="p">)</span>
+                <span class="n">blocks_read</span><span class="p">[</span><span class="n">right</span> <span class="o">/</span> <span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">blocks_read</span><span class="p">[</span><span class="n">right</span> <span class="o">/</span> <span class="n">B</span><span class="p">],</span> <span class="n">h</span><span class="p">)</span>
+                <span class="n">right</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+                <span class="n">blocks</span><span class="p">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">blocks</span><span class="p">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="p">],</span> <span class="n">h</span><span class="p">)</span>
+                <span class="n">left</span> <span class="o">+=</span> <span class="n">B</span>
+
+        <span class="n">best</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">left</span><span class="p">,</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+            <span class="n">L</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="n">left</span><span class="p">]</span>
+            <span class="n">R</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="n">left</span> <span class="o">+</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">query</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span> <span class="o">+</span> <span class="n">size</span>
+            <span class="n">update</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+            <span class="n">best</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">best</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+            <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">best</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">heights</span><span class="o">;</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">blocks</span><span class="o">;</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">blocks_read</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">B</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">query</span><span class="o">(</span><span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">%</span> <span class="n">B</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">heights</span><span class="o">[</span><span class="n">left</span><span class="o">]);</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">blocks</span><span class="o">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="o">]);</span>
+            <span class="n">left</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">right</span> <span class="o">%</span> <span class="n">B</span> <span class="o">!=</span> <span class="n">B</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">heights</span><span class="o">[</span><span class="n">right</span><span class="o">]);</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">blocks</span><span class="o">[</span><span class="n">right</span> <span class="o">/</span> <span class="n">B</span><span class="o">]);</span>
+            <span class="n">right</span><span class="o">--;</span>
+        <span class="o">}</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">blocks</span><span class="o">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="o">]);</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">blocks_read</span><span class="o">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="o">]);</span>
+            <span class="n">left</span> <span class="o">+=</span> <span class="n">B</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">(</span><span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">,</span> <span class="kt">int</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">%</span> <span class="n">B</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">heights</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">heights</span><span class="o">[</span><span class="n">left</span><span class="o">],</span> <span class="n">h</span><span class="o">);</span>
+            <span class="n">blocks_read</span><span class="o">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">blocks_read</span><span class="o">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="o">],</span> <span class="n">h</span><span class="o">);</span>
+            <span class="n">left</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">right</span> <span class="o">%</span> <span class="n">B</span> <span class="o">!=</span> <span class="n">B</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">heights</span><span class="o">[</span><span class="n">right</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">heights</span><span class="o">[</span><span class="n">right</span><span class="o">],</span> <span class="n">h</span><span class="o">);</span>
+            <span class="n">blocks_read</span><span class="o">[</span><span class="n">right</span> <span class="o">/</span> <span class="n">B</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">blocks_read</span><span class="o">[</span><span class="n">right</span> <span class="o">/</span> <span class="n">B</span><span class="o">],</span> <span class="n">h</span><span class="o">);</span>
+            <span class="n">right</span><span class="o">--;</span>
+        <span class="o">}</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">blocks</span><span class="o">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">blocks</span><span class="o">[</span><span class="n">left</span> <span class="o">/</span> <span class="n">B</span><span class="o">],</span> <span class="n">h</span><span class="o">);</span>
+            <span class="n">left</span> <span class="o">+=</span> <span class="n">B</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">fallingSquares</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">positions</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//Coordinate Compression</span>
+        <span class="c1">//HashMap&lt;Integer, Integer&gt; index = ...;</span>
+        <span class="c1">//int t = ...;</span>
+
+        <span class="n">heights</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">t</span><span class="o">];</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
+        <span class="n">blocks</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">B</span><span class="o">+</span><span class="mi">2</span><span class="o">];</span>
+        <span class="n">blocks_read</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">B</span><span class="o">+</span><span class="mi">2</span><span class="o">];</span>
+
+        <span class="kt">int</span> <span class="n">best</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">ans</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">pos</span><span class="o">:</span> <span class="n">positions</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">L</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">pos</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+            <span class="kt">int</span> <span class="n">R</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">pos</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="n">pos</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">query</span><span class="o">(</span><span class="n">L</span><span class="o">,</span> <span class="n">R</span><span class="o">)</span> <span class="o">+</span> <span class="n">pos</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+            <span class="n">update</span><span class="o">(</span><span class="n">L</span><span class="o">,</span> <span class="n">R</span><span class="o">,</span> <span class="n">h</span><span class="o">);</span>
+            <span class="n">best</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">best</span><span class="o">,</span> <span class="n">h</span><span class="o">);</span>
+            <span class="n">ans</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">best</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N\sqrt{N})</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>positions</code>.  Each <code>query</code> and <code>update</code> has complexity <script type="math/tex; mode=display">O(\sqrt{N})</script>.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>, the space used by <code>heights</code>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-segment-tree-with-lazy-propagation-accepted">Approach #4: Segment Tree with Lazy Propagation [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If we were familiar with the idea of a segment tree (which supports queries and updates on intervals), we can immediately crack the problem.  </p>
+<p><strong>Algorithm</strong></p>
+<p>Segment trees work by breaking intervals into a disjoint sum of component intervals, whose number is at most <code>log(width)</code>.  The motivation is that when we change an element, we only need to change <code>log(width)</code> many intervals that aggregate on an interval containing that element.</p>
+<p>When we want to update an interval all at once, we need to use <em>lazy propagation</em> to ensure good run-time complexity.  This topic is covered in more depth <a href="https://leetcode.com/articles/recursive-approach-segment-trees-range-sum-queries-lazy-propagation/">here</a>.</p>
+<p>With such an implementation in hand, the problem falls out immediately.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">SegmentTree</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">update_fn</span><span class="p">,</span> <span class="n">query_fn</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_fn</span> <span class="o">=</span> <span class="n">update_fn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query_fn</span> <span class="o">=</span> <span class="n">query_fn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">N</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lazy</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">N</span>
+
+    <span class="k">def</span> <span class="nf">_apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_fn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">val</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lazy</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_fn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lazy</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">val</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_pull</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">/=</span> <span class="mi">2</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_fn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_fn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">lazy</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">_push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">h</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lazy</span><span class="p">[</span><span class="n">y</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_apply</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lazy</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_apply</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="mi">2</span><span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lazy</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">lazy</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+        <span class="n">L</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        <span class="n">R</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        <span class="n">L0</span><span class="p">,</span> <span class="n">R0</span> <span class="o">=</span> <span class="n">L</span><span class="p">,</span> <span class="n">R</span>
+        <span class="k">while</span> <span class="n">L</span> <span class="o">&lt;=</span> <span class="n">R</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">L</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_apply</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+                <span class="n">L</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">R</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_apply</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+                <span class="n">R</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">L</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">R</span> <span class="o">/=</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pull</span><span class="p">(</span><span class="n">L0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pull</span><span class="p">(</span><span class="n">R0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+        <span class="n">L</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        <span class="n">R</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_push</span><span class="p">(</span><span class="n">L</span><span class="p">);</span> <span class="bp">self</span><span class="o">.</span><span class="n">_push</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">L</span> <span class="o">&lt;=</span> <span class="n">R</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">L</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_fn</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">L</span><span class="p">])</span>
+                <span class="n">L</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">R</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">query_fn</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">R</span><span class="p">])</span>
+                <span class="n">R</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">L</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">R</span> <span class="o">/=</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">ans</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">fallingSquares</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">positions</span><span class="p">):</span>
+        <span class="c1">#Coordinate compression</span>
+        <span class="c1">#index = ...</span>
+
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">SegmentTree</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">),</span> <span class="nb">max</span><span class="p">,</span> <span class="nb">max</span><span class="p">)</span>
+        <span class="n">best</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">left</span><span class="p">,</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+            <span class="n">L</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="n">index</span><span class="p">[</span><span class="n">left</span> <span class="o">+</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span> <span class="o">+</span> <span class="n">size</span>
+            <span class="n">tree</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+            <span class="n">best</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">best</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+            <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">best</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">fallingSquares</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">positions</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//Coordinate Compression</span>
+        <span class="c1">//HashMap&lt;Integer, Integer&gt; index = ...;</span>
+
+        <span class="n">SegmentTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SegmentTree</span><span class="o">(</span><span class="n">sortedCoords</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+        <span class="kt">int</span> <span class="n">best</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">ans</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">pos</span><span class="o">:</span> <span class="n">positions</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">L</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">pos</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+            <span class="kt">int</span> <span class="n">R</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">pos</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="n">pos</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="n">L</span><span class="o">,</span> <span class="n">R</span><span class="o">)</span> <span class="o">+</span> <span class="n">pos</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+            <span class="n">tree</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">L</span><span class="o">,</span> <span class="n">R</span><span class="o">,</span> <span class="n">h</span><span class="o">);</span>
+            <span class="n">best</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">best</span><span class="o">,</span> <span class="n">h</span><span class="o">);</span>
+            <span class="n">ans</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">best</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">SegmentTree</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">N</span><span class="o">,</span> <span class="n">H</span><span class="o">;</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">tree</span><span class="o">,</span> <span class="n">lazy</span><span class="o">;</span>
+
+    <span class="n">SegmentTree</span><span class="o">(</span><span class="kt">int</span> <span class="n">N</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">N</span> <span class="o">=</span> <span class="n">N</span><span class="o">;</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">((</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">N</span><span class="o">)</span> <span class="n">H</span><span class="o">++;</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">N</span><span class="o">];</span>
+        <span class="n">lazy</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">N</span><span class="o">];</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">apply</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">tree</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">tree</span><span class="o">[</span><span class="n">x</span><span class="o">],</span> <span class="n">val</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">N</span><span class="o">)</span> <span class="n">lazy</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">lazy</span><span class="o">[</span><span class="n">x</span><span class="o">],</span> <span class="n">val</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">pull</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="o">;</span>
+            <span class="n">tree</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">tree</span><span class="o">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="o">],</span> <span class="n">tree</span><span class="o">[</span><span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]);</span>
+            <span class="n">tree</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">tree</span><span class="o">[</span><span class="n">x</span><span class="o">],</span> <span class="n">lazy</span><span class="o">[</span><span class="n">x</span><span class="o">]);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">push</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">H</span><span class="o">;</span> <span class="n">h</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">h</span><span class="o">--)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">h</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">lazy</span><span class="o">[</span><span class="n">y</span><span class="o">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">apply</span><span class="o">(</span><span class="n">y</span> <span class="o">*</span> <span class="mi">2</span><span class="o">,</span> <span class="n">lazy</span><span class="o">[</span><span class="n">y</span><span class="o">]);</span>
+                <span class="n">apply</span><span class="o">(</span><span class="n">y</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">lazy</span><span class="o">[</span><span class="n">y</span><span class="o">]);</span>
+                <span class="n">lazy</span><span class="o">[</span><span class="n">y</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">(</span><span class="kt">int</span> <span class="n">L</span><span class="o">,</span> <span class="kt">int</span> <span class="n">R</span><span class="o">,</span> <span class="kt">int</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">L</span> <span class="o">+=</span> <span class="n">N</span><span class="o">;</span> <span class="n">R</span> <span class="o">+=</span> <span class="n">N</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">L0</span> <span class="o">=</span> <span class="n">L</span><span class="o">,</span> <span class="n">R0</span> <span class="o">=</span> <span class="n">R</span><span class="o">,</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">L</span> <span class="o">&lt;=</span> <span class="n">R</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">((</span><span class="n">L</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="n">apply</span><span class="o">(</span><span class="n">L</span><span class="o">++,</span> <span class="n">h</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">((</span><span class="n">R</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="n">apply</span><span class="o">(</span><span class="n">R</span><span class="o">--,</span> <span class="n">h</span><span class="o">);</span>
+            <span class="n">L</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">R</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">pull</span><span class="o">(</span><span class="n">L0</span><span class="o">);</span> <span class="n">pull</span><span class="o">(</span><span class="n">R0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">query</span><span class="o">(</span><span class="kt">int</span> <span class="n">L</span><span class="o">,</span> <span class="kt">int</span> <span class="n">R</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">L</span> <span class="o">+=</span> <span class="n">N</span><span class="o">;</span> <span class="n">R</span> <span class="o">+=</span> <span class="n">N</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">push</span><span class="o">(</span><span class="n">L</span><span class="o">);</span> <span class="n">push</span><span class="o">(</span><span class="n">R</span><span class="o">);</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">L</span> <span class="o">&lt;=</span> <span class="n">R</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">((</span><span class="n">L</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">tree</span><span class="o">[</span><span class="n">L</span><span class="o">++]);</span>
+            <span class="k">if</span> <span class="o">((</span><span class="n">R</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">tree</span><span class="o">[</span><span class="n">R</span><span class="o">--]);</span>
+            <span class="n">L</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">R</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N \log N)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>positions</code>.  This is the run-time complexity of using a segment tree.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>, the space used by our tree.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">2398</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">6434</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              2%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/uber.html">Uber</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/square.html">Square</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Design an in-memory file system to simulate the following functions:
+ls: Given a path in string format. If it is a file path, return a list that only contains this file&#39;s name. If it is a directory path, return the list of file and directory names in this directory. Your output (file and directory names together) should in lexicographic order.
+mkdir: Given a directory path that does not exist, you should make a new directory according to the path. If the middle directories in the path don&#39;t exist either, you should create them as well. This function has void return type. 
+addContentToFile: Given a file path and file content in string format. If the file doesn&#39;t exist, you need to create that file containing given content. If the file already exists, you need to append given content to original content. This function has void return type.
+readContentFromFile: Given a file path, return its content in string format.
+Example:
+Input: 
+[&#34;FileSystem&#34;,&#34;ls&#34;,&#34;mkdir&#34;,&#34;addContentToFile&#34;,&#34;ls&#34;,&#34;readContentFromFile&#34;]
+[[],[&#34;/&#34;],[&#34;/a/b/c&#34;],[&#34;/a/b/c/d&#34;,&#34;hello&#34;],[&#34;/&#34;],[&#34;/a/b/c/d&#34;]]
+Output:
+[null,[],null,null,[&#34;a&#34;],&#34;hello&#34;]
+Explanation:
+
+
+
+Note:
+
+You can assume all file or directory paths are absolute paths which begin with / and do not end with / except that the path is just &#34;/&#34;.
+You can assume that all operations will be passed valid parameters and users will not attempt to retrieve file content or list a directory or file that does not exist.
+You can assume that all directory names and file names only contain lower-case letters, and same names won&#39;t exist in the same directory.">
+  <meta name="keywords"
+        content="Design In-Memory File System, LC 588, leetcode 588, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>588. Design In-Memory File System</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Design an in-memory file system to simulate the following functions:</p>
+
+<p><code>ls</code>: Given a path in string format. If it is a file path, return a list that only contains this file's name. If it is a directory path, return the list of file and directory names <b>in this directory</b>. Your output (file and directory names together) should in <b>lexicographic order</b>.</p>
+
+<p><code>mkdir</code>: Given a <b>directory path</b> that does not exist, you should make a new directory according to the path. If the middle directories in the path don't exist either, you should create them as well. This function has void return type. </p>
+
+<p><code>addContentToFile</code>: Given a <b>file path</b> and <b>file content</b> in string format. If the file doesn't exist, you need to create that file containing given content. If the file already exists, you need to <b>append</b> given content to original content. This function has void return type.</p>
+
+<p><code>readContentFromFile</code>: Given a <b>file path</b>, return its <b>content</b> in string format.</p>
+
+<p><b>Example:</b><br />
+<pre>
+<b>Input:</b> 
+["FileSystem","ls","mkdir","addContentToFile","ls","readContentFromFile"]
+[[],["/"],["/a/b/c"],["/a/b/c/d","hello"],["/"],["/a/b/c/d"]]
+<b>Output:</b>
+[null,[],null,null,["a"],"hello"]
+<b>Explanation:</b>
+<img src="https://leetcode.com/static/images/problemset/filesystem.png" width = "66%" alt="filesystem"/>
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>You can assume all file or directory paths are absolute paths which begin with <code>/</code> and do not end with <code>/</code> except that the path is just <code>"/"</code>.</li>
+<li>You can assume that all operations will be passed valid parameters and users will not attempt to retrieve file content or list a directory or file that does not exist.</li>
+<li>You can assume that all directory names and file names only contain lower-case letters, and same names won't exist in the same directory.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-separate-directory-and-file-listaccepted">Approach #1 Using separate Directory and File List[Accepted]</a></li>
+<li><a href="#approach-2-using-unified-directory-and-file-listaccepted">Approach #2 Using unified Directory and File List[Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-separate-directory-and-file-listaccepted">Approach #1 Using separate Directory and File List[Accepted]</h4>
+<p>We start our discussion by looking at the directory structure used. The root directory acts as the base of the directory structure. Each directory contains two hashmaps namely <script type="math/tex; mode=display">dirs</script> and <script type="math/tex; mode=display">files</script>. The <script type="math/tex; mode=display">dirs</script> contains data in the form <script type="math/tex; mode=display">[(subdirectory_1\_name: subdirectory_{1\_structure}), (subdirectory_2\_name: subdirectory_{2\_structure})...]</script>. The <script type="math/tex; mode=display">files</script> contains data in the form <script type="math/tex; mode=display">[(file_1: file_{1\_contents}), (file_2: file_{2\_contents})...]</script>. This directory structure is shown below with a sample showing just the first two levels.</p>
+<p><img alt="Design_Memory" src="https://leetcode.com/articles/Figures/588_Design_In_Memory.PNG"/></p>
+<p>Now, we'll discuss how we implement the various commands required.</p>
+<ol>
+<li>
+<p><code>ls</code>: In this case, we start off by initializing <script type="math/tex; mode=display">t</script>, a temporary directory pointer, to the root directory. We split the input directory path based on <code>/</code> and obtain the individual levels of directory names in a <script type="math/tex; mode=display">d</script> array. Then, we traverse over the tree directory structure based on the individual directories found and we keep on updating the <script type="math/tex; mode=display">t</script> directory pointer to point to the new level of directory(child) as we go on entering deeper into the directory structure. At the end, we will stop at either the end level directory or at the file name depending upon the input given. If the last level in the input happens to be a file name, we simply need to return the file name. So, we directly return the last entry in the <script type="math/tex; mode=display">d</script> array. If the last level entry happens to be a directory, we can obtain its subdirectory list from the list of keys in its <script type="math/tex; mode=display">dirs</script> hashmap. Similarly, we can obtain the list of files in the last directory from the keys in the corresponding <script type="math/tex; mode=display">files</script> hashmap. We append the two lists obtained, sort them and return the sorted appended list.</p>
+</li>
+<li>
+<p><code>mkdir</code>: In response to this command, as in case of <code>ls</code>, we start entering the directory structure level by level. Whenever we reach a state where a directory mentioned in the path of <code>mkdir</code> doesn't exist, we create a new entry in the last valid directory's <script type="math/tex; mode=display">dirs</script> structure and initialize its subdirectory list as an empty list. We keep on doing so till we reach the end level directory.</p>
+</li>
+<li>
+<p><code>addContentToFile</code>: In response to this command as well, as in case of <code>ls</code>, we start entering the directory structure level by  level. When we reach the level of the file name, we check if the file name already exists in the <script type="math/tex; mode=display">files</script> keys. If it exists, we concatenate the current contents to the contents of the file(in the value section of the corresponding file). If it doesn't exist, we create a new entry in the current directory's <script type="math/tex; mode=display">files</script> and initialize its contents with the current contents.</p>
+</li>
+<li>
+<p><code>readContentFromFile</code>: As the previous cases, we reach the last directory level by traversing through the directory structure level by level. Then, in the last directory, we search for the file name entry in the corresponding <script type="math/tex; mode=display">files</script>' keys  and return its corresponding value as the contents of the file.</p>
+</li>
+</ol>
+<iframe frameborder="0" height="515" name="EUzUEgvo" src="https://leetcode.com/playground/EUzUEgvo/shared" width="100%"></iframe>
+<p><strong>Performance Analysis</strong></p>
+<ul>
+<li>
+<p>The time complexity of executing an <code>ls</code> command is <script type="math/tex; mode=display">O\big(m+n+klog(k)\big)</script>. Here, <script type="math/tex; mode=display">m</script> refers to the length of the input string. We need to scan the input string once to split it and determine the various levels. <script type="math/tex; mode=display">n</script> refers to the depth of the last directory level in the given input for <code>ls</code>. This factor is taken because we need to enter <script type="math/tex; mode=display">n</script> levels of the tree structure to reach the last level. <script type="math/tex; mode=display">k</script> refers to the number of entries(files+subdirectories) in the last level directory(in the current input). We need to sort these names giving a factor of <script type="math/tex; mode=display">klog(k)</script>.</p>
+</li>
+<li>
+<p>The time complexity of executing an <code>mkdir</code> command is <script type="math/tex; mode=display">O(m+n)</script>. Here, <script type="math/tex; mode=display">m</script> refers to the length of the input string. We need to scan the input string once to split it and determine the various levels. <script type="math/tex; mode=display">n</script> refers to the depth of the last directory level in the <code>mkdir</code> input. This factor is taken because we need to enter <script type="math/tex; mode=display">n</script> levels of the tree structure to reach the last level.</p>
+</li>
+<li>
+<p>The time complexity of both <code>addContentToFile</code> and <code>readContentFromFile</code> is <script type="math/tex; mode=display">O(m+n)</script>. Here, <script type="math/tex; mode=display">m</script> refers to the length of the input string. We need to scan the input string once to split it and determine the various levels. <script type="math/tex; mode=display">n</script> refers to the depth of the file name in the current input. This factor is taken because we need to enter <script type="math/tex; mode=display">n</script> levels of the tree structure to reach the level where the files's contents need to be added/read from.</p>
+</li>
+<li>
+<p>The advantage of this scheme of maintaining the directory structure is that it is expandable to include even more commands easily. For example, <code>rmdir</code> to remove a directory given an input directory path. We need to simply reach to the destined directory level and remove the corresponding directory entry from the corresponding <script type="math/tex; mode=display">dirs</script> keys.</p>
+</li>
+<li>
+<p>Renaming files/directories is also very simple, since all we need to do is to create a temporary copy of the directory structure/file with a new name and delete the last entry.</p>
+</li>
+<li>
+<p>Relocating a hierarchichal subdirectory structure from one directory to the other is also very easy, since, all we need to do is obtain the address for the corresponding subdirectory class, and assign the same at the new positon in the new directory structure.</p>
+</li>
+<li>
+<p>Extracting only directories or files list on any path is easy in this case, since we maintain separate entires for <script type="math/tex; mode=display">dirs</script> and <script type="math/tex; mode=display">files</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-unified-directory-and-file-listaccepted">Approach #2 Using unified Directory and File List[Accepted]</h4>
+<p>This design differs from the first design in that the current data structure for a Directory contains a unified <script type="math/tex; mode=display">files</script> hashmap, which contains the list of all the files and subdirectories in the current directory. Apart from this, we contain an entry <script type="math/tex; mode=display">isfile</script>, which when True indicates that the current <script type="math/tex; mode=display">files</script> entry is actually corresponding to a file, otherwise it represents a directory. Further, since we are considering the directory and files' entries in the same manner, we need an entry for <script type="math/tex; mode=display">content</script>, which contains the contents of the current file(if <script type="math/tex; mode=display">isfile</script> entry is True in the current case). For entries corresponding to directories, the <script type="math/tex; mode=display">content</script> field is kept empty.</p>
+<p>The following figure shows the directory structure for the same example as in the case above, for the first two levels of the hierarchical structure. </p>
+<p><img alt="Design_In_Memory" src="https://leetcode.com/articles/Figures/588_Design_In_Memory_3.PNG"/></p>
+<p>The implementation of all the commands remains the same as in the last design, except that we need to make entries in the same <script type="math/tex; mode=display">files</script> hashmap for both files and directories, corresponding to <code>addContentToFile</code> and <code>mkdir</code> respectively. Further, for <code>ls</code>, we need not extract entries separately for the files and directories, since they are unified in the current case, and can be obtained in a single go.</p>
+<p>This approach is inspired by <a href="http://leetcode.com/shwangao">@shawngao</a></p>
+<iframe frameborder="0" height="515" name="a7jiya7b" src="https://leetcode.com/playground/a7jiya7b/shared" width="100%"></iframe>
+<p><strong>Performance Analysis</strong></p>
+<ul>
+<li>
+<p>The time complexity of executing an <code>ls</code> command is <script type="math/tex; mode=display">O\big(m+n+klog(k)\big)</script>. Here, <script type="math/tex; mode=display">m</script> refers to the length of the input string. We need to scan the input string once to split it and determine the various levels. <script type="math/tex; mode=display">n</script> refers to the depth of the last directory level in the given input for <code>ls</code>. This factor is taken because we need to enter <script type="math/tex; mode=display">n</script> levels of the tree structure to reach the last level. <script type="math/tex; mode=display">k</script> refers to the number of entries(files+subdirectories) in the last level directory(in the current input). We need to sort these names giving a factor of <script type="math/tex; mode=display">klog(k)</script>.</p>
+</li>
+<li>
+<p>The time complexity of executing an <code>mkdir</code> command is <script type="math/tex; mode=display">O(m+n)</script>. Here, <script type="math/tex; mode=display">m</script> refers to the length of the input string. We need to scan the input string once to split it and determine the various levels. <script type="math/tex; mode=display">n</script> refers to the depth of the last directory level in the <code>mkdir</code> input. This factor is taken because we need to enter <script type="math/tex; mode=display">n</script> levels of the tree structure to reach the last level.</p>
+</li>
+<li>
+<p>The time complexity of both <code>addContentToFile</code> and <code>readContentFromFile</code> is <script type="math/tex; mode=display">O(m+n)</script>. Here, <script type="math/tex; mode=display">m</script> refers to the length of the input string. We need to scan the input string once to split it and determine the various levels. <script type="math/tex; mode=display">n</script> refers to the depth of the file name in the current input. This factor is taken because we need to enter <script type="math/tex; mode=display">n</script> levels of the tree structure to reach the level where the files's contents need to be added/read from.</p>
+</li>
+<li>
+<p>The advantage of this scheme of maintaining the directory structure is that it is expandable to include even more commands easily. For example, <code>rmdir</code> to remove a directory given an input directory path. We need to simply reach to the destined directory level and remove the corresponding directory entry from the corresponding <script type="math/tex; mode=display">dirs</script> keys.</p>
+</li>
+<li>
+<p>Renaming files/directories is also very simple, since all we need to do is to create a temporary copy of the directory structure/file with a new name and delete the last entry.</p>
+</li>
+<li>
+<p>Relocating a hierarchichal subdirectory structure from one directory to the other is also very easy, since, all we need to do is obtain the address for the corresponding subdirectory class, and assign the same at the new positon in the new directory structure.</p>
+</li>
+<li>
+<p>If the number of directories is very large, we waste redundant space for <script type="math/tex; mode=display">isfile</script> and <script type="math/tex; mode=display">content</script>, which wasn't needed in the first design.</p>
+</li>
+<li>
+<p>A problem with the current design could occur if we want to list only the directories(and not the files), on any given path. In this case, we need to traverse over the whole contents of the current directory, check for each entry, whether it is a file or a directory, and then extract the required data.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">2175</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">6064</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              7%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/baidu.html">Baidu</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

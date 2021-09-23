@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Note: This is a companion problem to the System Design problem: Design TinyURL.
+TinyURL is a URL shortening service where you enter a URL such as https://leetcode.com/problems/design-tinyurl and it returns a short URL such as http://tinyurl.com/4e9iAk.
+Design the encode and decode methods for the TinyURL service. There is no restriction on how your encode/decode algorithm should work. You just need to ensure that a URL can be encoded to a tiny URL and the tiny URL can be decoded to the original URL.">
+  <meta name="keywords"
+        content="Encode and Decode TinyURL, LC 535, leetcode 535, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>535. Encode and Decode TinyURL</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <blockquote>Note: This is a companion problem to the <a href="https://leetcode.com/problemset/system-design/">System Design</a> problem: <a href="https://leetcode.com/problems/design-tinyurl/">Design TinyURL</a>.</blockquote>
+
+<p>TinyURL is a URL shortening service where you enter a URL such as <code>https://leetcode.com/problems/design-tinyurl</code> and it returns a short URL such as <code>http://tinyurl.com/4e9iAk</code>.</p>
+
+<p>Design the <code>encode</code> and <code>decode</code> methods for the TinyURL service. There is no restriction on how your encode/decode algorithm should work. You just need to ensure that a URL can be encoded to a tiny URL and the tiny URL can be decoded to the original URL.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-simple-counteraccepted">Approach #1 Using Simple Counter[Accepted]</a></li>
+<li><a href="#approach-2-variable-length-encodingaccepted">Approach #2 Variable-length Encoding[Accepted]</a></li>
+<li><a href="#approach-3-using-hashcodeaccepted">Approach #3 Using hashcode[Accepted]</a></li>
+<li><a href="#approach-4-using-random-numberaccepted">Approach #4 Using random number[Accepted]</a></li>
+<li><a href="#approach-5-random-fixed-length-encodingaccepted">Approach #5 Random fixed-length encoding[Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-simple-counteraccepted">Approach #1 Using Simple Counter[Accepted]</h4>
+<p>In order to encode the URL, we make use of a counter(<script type="math/tex; mode=display">i</script>), which is incremented for every new URL encountered. We put the URL along with its encoded count(<script type="math/tex; mode=display">i</script>) in a HashMap. This way we can retrieve it later at the time of decoding easily.</p>
+<iframe frameborder="0" height="275" name="BEsJT7hF" src="https://leetcode.com/playground/BEsJT7hF/shared" width="100%"></iframe>
+<p><strong>Performance Analysis</strong></p>
+<ul>
+<li>
+<p>The range of URLs that can be decoded is limited by the range of <script type="math/tex; mode=display">\text{int}</script>.</p>
+</li>
+<li>
+<p>If excessively large number of URLs have to be encoded, after the range of <script type="math/tex; mode=display">\text{int}</script> is exceeded, integer overflow could lead to overwriting the previous URLs' encodings, leading to the performance degradation.</p>
+</li>
+<li>
+<p>The length of the URL isn't necessarily shorter than the incoming <script type="math/tex; mode=display">\text{longURL}</script>. It is only dependent on the relative order in which the URLs are encoded.</p>
+</li>
+<li>
+<p>One problem with this method is that it is very easy to predict the next code generated, since the pattern can be detected by generating a few encoded URLs.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-variable-length-encodingaccepted">Approach #2 Variable-length Encoding[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this case, we make use of variable length encoding to encode the given URLs. For every <script type="math/tex; mode=display">\text{longURL}</script>, we choose a variable codelength for the input URL, which can be any length between 0 and 61. Further, instead of using only numbers as the Base System for encoding the URLSs, we make use of a set of integers and alphabets to be used for encoding.</p>
+<iframe frameborder="0" height="515" name="wbFtiFeG" src="https://leetcode.com/playground/wbFtiFeG/shared" width="100%"></iframe>
+<p><strong>Performance Analysis</strong></p>
+<ul>
+<li>
+<p>The number of URLs that can be encoded is, again, dependent on the range of <script type="math/tex; mode=display">\text{int}</script>, since, the same <script type="math/tex; mode=display">count</script> will be generated after overflow of integers.</p>
+</li>
+<li>
+<p>The length of the encoded URLs isn't necessarily short, but is to some extent dependent on the order in which the incoming <script type="math/tex; mode=display">\text{longURL}</script>'s are encountered. For example, the codes generated will have the lengths in the following order: 1(62 times), 2(62 times) and so on.</p>
+</li>
+<li>
+<p>The performance is quite good, since the same code will be repeated only after the integer overflow limit, which is quite large.</p>
+</li>
+<li>
+<p>In this case also, the next code generated could be predicted by the use of some calculations.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-hashcodeaccepted">Approach #3 Using hashcode[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this method, we make use of an inbuilt function <script type="math/tex; mode=display">\text{hashCode()}</script> to determine a code for mapping every URL. Again, the mapping is stored in a HashMap for decoding.</p>
+<p>The hash code for a String object is computed(using int arithmetic) as −</p>
+<p>
+<script type="math/tex; mode=display">s[0]*31^{(n - 1)} + s[1]*31^{(n - 2)} + ... + s[n - 1]</script> , where s[i] is the ith character of the string, n is the length of the string.</p>
+<iframe frameborder="0" height="292" name="gzRtcrHu" src="https://leetcode.com/playground/gzRtcrHu/shared" width="100%"></iframe>
+<p><strong>Performance Analysis</strong></p>
+<ul>
+<li>
+<p>The number of URLs that can be encoded is limited by the range of <script type="math/tex; mode=display">\text{int}</script>, since <script type="math/tex; mode=display">\text{hashCode}</script> uses integer calculations.</p>
+</li>
+<li>
+<p>The average length of the encoded URL isn't directly related to the incoming <script type="math/tex; mode=display">\text{longURL}</script> length.</p>
+</li>
+<li>
+<p>The <script type="math/tex; mode=display">\text{hashCode()}</script> doesn't generate unique codes for different string. This property of getting the same code for two different inputs is called collision. Thus, as the number of encoded URLs increases, the probability of collisions increases, which leads to failure.</p>
+</li>
+<li>
+<p>The following figure demonstrates the mapping of different objects to the same hashcode and the increasing probability of collisions with increasing number of objects.</p>
+</li>
+</ul>
+<p><img alt="Encode_and_Decode_URLs" src="https://leetcode.com/articles/Figures/535_Encode_and_Decode.png"/></p>
+<ul>
+<li>
+<p>Thus, it isn't necessary that the collisions start occuring only after a certain number of strings have been encoded, but they could occur way before the limit is even near to the <script type="math/tex; mode=display">\text{int}</script>. This is similar to birthday paradox i.e. the probability of two people having the same birthday is nearly 50% if we consider only 23 people and 99.9% with just 70 people.</p>
+</li>
+<li>
+<p>Predicting the encoded URL isn't easy in this scheme.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-random-numberaccepted">Approach #4 Using random number[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this case, we generate a random integer to be used as the code. In case the generated code happens to be already mapped to some previous <script type="math/tex; mode=display">\text{longURL}</script>, we generate a new random integer to be used as the code. The data is again stored in a HashMap to help in the decoding process.</p>
+<iframe frameborder="0" height="377" name="CdZ9PRZt" src="https://leetcode.com/playground/CdZ9PRZt/shared" width="100%"></iframe>
+<p><strong>Performance Analysis</strong></p>
+<ul>
+<li>
+<p>The number of URLs that can be encoded is limited by the range of <script type="math/tex; mode=display">\text{int}</script>.</p>
+</li>
+<li>
+<p>The average length of the codes generated is independent of the <script type="math/tex; mode=display">\text{longURL}</script>'s length, since a random integer is used.</p>
+</li>
+<li>
+<p>The length of the URL isn't necessarily shorter than the incoming <script type="math/tex; mode=display">\text{longURL}</script>. It is only dependent on the relative order in which the URLs are encoded.</p>
+</li>
+<li>
+<p>Since a random number is used for coding, again, as in the previous case, the number of collisions could increase with the increasing number of input strings, leading to performance degradation.</p>
+</li>
+<li>
+<p>Determining the encoded URL isn't possible in this scheme, since we make use of random numbers.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-random-fixed-length-encodingaccepted">Approach #5 Random fixed-length encoding[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this case, again, we make use of the set of numbers and alphabets to generate the coding for the given URLs, similar to Approach 2. But in this case, the length of the code is fixed to 6 only. Further, random characters from the string to form the characters of the code. In case, the code generated collides with some previously generated code, we form a new random code.</p>
+<iframe frameborder="0" height="515" name="u5oj9dfd" src="https://leetcode.com/playground/u5oj9dfd/shared" width="100%"></iframe>
+<p><strong>Performance Analysis</strong></p>
+<ul>
+<li>
+<p>The number of URLs that can be encoded is quite large in this case, nearly of the order <script type="math/tex; mode=display">(10+26*2)^6</script>.</p>
+</li>
+<li>
+<p>The length of the encoded URLs is fixed to 6 units, which is a significant reduction for very large URLs.</p>
+</li>
+<li>
+<p>The performance of this scheme is quite good, due to a very less probability of repeated same codes generated.</p>
+</li>
+<li>
+<p>We can increase the number of encodings possible as well, by increasing the length of the encoded strings. Thus, there exists a  tradeoff between the length of the code and the number of encodings possible.</p>
+</li>
+<li>
+<p>Predicting the encoding isn't possible in this scheme since random numbers are used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">26331</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">35528</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              94%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/amazon.html">Amazon</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/uber.html">Uber</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>
