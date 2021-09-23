@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an unsorted array, find the maximum difference between the successive elements in its sorted form.
+Try to solve it in linear time/space.
+Return 0 if the array contains less than 2 elements.
+You may assume all elements in the array are non-negative integers and fit in the 32-bit signed integer range.
+Credits:Special thanks to @porker2008 for adding this problem and creating all test cases.">
+  <meta name="keywords"
+        content="Maximum Gap, LC 164, leetcode 164, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>164. Maximum Gap</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given an unsorted array, find the maximum difference between the successive elements in its sorted form.</p>
+
+<p>Try to solve it in linear time/space.</p>
+
+<p>Return 0 if the array contains less than 2 elements.</p>
+
+<p>You may assume all elements in the array are non-negative integers and fit in the 32-bit signed integer range.</p>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://oj.leetcode.com/discuss/user/porker2008">@porker2008</a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-comparison-sorting-accepted">Approach #1 Comparison Sorting [Accepted]</a></li>
+<li><a href="#approach-2-radix-sort-accepted">Approach #2 Radix Sort [Accepted]</a></li>
+<li><a href="#approach-3-buckets-and-the-pigeonhole-principle-accepted">Approach #3 Buckets and The Pigeonhole Principle [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-comparison-sorting-accepted">Approach #1 Comparison Sorting [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Do what the question says.</p>
+<p><strong>Algorithm</strong></p>
+<p>Sort the entire array. Then iterate over it to find the maximum gap between two successive elements.</p>
+<iframe frameborder="0" height="292" name="5XF6D9Xw" src="https://leetcode.com/playground/5XF6D9Xw/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O(n \cdot log(n))</script>.</p>
+<p>Time taken to sort the array is <script type="math/tex; mode=display">O(n \cdot log(n))</script> (average case). Time taken for linear iteration through the array is of <script type="math/tex; mode=display">O(n)</script> complexity. Hence overall time complexity is <script type="math/tex; mode=display">O(n \cdot log(n))</script>.</p>
+</li>
+<li>
+<p>Space complexity: No extra space needed, other than the input array (since sorting can usually be done in-place).</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-radix-sort-accepted">Approach #2 Radix Sort [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>This approach is similar to <a href="#approach-1-comparison-sorting-accepted">Approach #1</a>, except we use <a href="https://en.wikipedia.org/wiki/Radix_sort">Radix Sort</a> instead of a traditional comparison sort.</p>
+<iframe frameborder="0" height="515" name="3qjCnNai" src="https://leetcode.com/playground/3qjCnNai/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O(d \cdot (n + k)) \approx O(n)</script>.</p>
+<p>Since a linear iteration over the array (once it is sorted) is of linear (i.e. <script type="math/tex; mode=display">O(n)</script>) complexity, the performance of this approach is limited by the performance of Radix sort.</p>
+<p>Radix sort uses <a href="https://en.wikipedia.org/wiki/Counting_sort">Counting sort</a> as a subroutine.</p>
+<ul>
+<li>
+<p>Counting sort runs in <script type="math/tex; mode=display">O(n + k)</script> time (where <script type="math/tex; mode=display">k</script> is the radix or base of the digits comprising the <script type="math/tex; mode=display">n</script> elements in the array). If <script type="math/tex; mode=display">k \leq O(n)</script>, Counting sort would run in linear time. In our case, the radix is fixed (i.e. <script type="math/tex; mode=display">k = 10</script>). Hence our Counting sort subroutine runs in <script type="math/tex; mode=display">O(n)</script> linear time.</p>
+</li>
+<li>
+<p>Radix sort works by running <script type="math/tex; mode=display">d</script> passes of the Counting sort subroutine (where the elements are composed of, maximally, <script type="math/tex; mode=display">d</script> digits). Hence effective runtime of Radix sort would be <script type="math/tex; mode=display">O(d \cdot (n + k))</script>. However, in our case an element can, maximally, be the maximum 32-bit signed integer <code>2,147,483,647</code>. Hence <script type="math/tex; mode=display">d \leq 10</script> is a constant.</p>
+</li>
+</ul>
+<p>Thus Radix sort has a runtime performance complexity of about <script type="math/tex; mode=display">O(n)</script> for reasonably large input.</p>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(n + k) \approx O(n)</script> extra space.</p>
+<p>Counting sort requires <script type="math/tex; mode=display">O(k)</script> extra space. Radix sort requires an auxiliary array of the same size as input array. However given that <script type="math/tex; mode=display">k</script> is a small fixed constant, the space required by Counting sort can be ignored for reasonably large input.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-buckets-and-the-pigeonhole-principle-accepted">Approach #3 Buckets and The Pigeonhole Principle [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Sorting an entire array can be costly. At worst, it requires comparing each element with <em>every</em> other element.
+What if we didn't need to compare all pairs of elements? That would be possible if we could somehow divide the elements into representative groups, or rather, <em>buckets</em>. Then we would only need to compare these buckets.</p>
+<blockquote>
+<p><strong>Digression: The Pigeonhole Principle</strong>
+The <a href="https://en.wikipedia.org/wiki/Pigeonhole_principle">Pigeonhole Principle</a> states that if <script type="math/tex; mode=display">n</script> items are put into <script type="math/tex; mode=display">m</script> containers, with <script type="math/tex; mode=display">n > m</script>, then at least one container must contain more than one item.</p>
+</blockquote>
+<p>Suppose for each of the <script type="math/tex; mode=display">n</script> elements in our array, there was a bucket. Then each element would occupy one bucket. Now what if we reduced, the number of buckets? Some buckets would have to accommodate more than one element.</p>
+<p>Now let's talk about the gaps between the elements. Let's take the best case, where all elements of the array are sorted and have a uniform gap between them. This means every adjacent pair of elements differ by the same constant value. So for <script type="math/tex; mode=display">n</script> elements of the array, there are <script type="math/tex; mode=display">n-1</script> gaps, each of width, say, <script type="math/tex; mode=display">t</script>. It is trivial to deduce that <script type="math/tex; mode=display">t = (max - min)/(n-1)</script> (where <script type="math/tex; mode=display">max</script> and <script type="math/tex; mode=display">min</script> are the minimum and maximum elements of the array). This width is the maximal width/gap between two adjacent elements in the array; precisely the quantity we are looking for!</p>
+<p>One can safely argue that this value of <script type="math/tex; mode=display">t</script>, is in fact, the smallest value that <script type="math/tex; mode=display">t</script> can ever accomplish of any array with the same number of elements (i.e. <script type="math/tex; mode=display">n</script>) and the same range (i.e. <script type="math/tex; mode=display">(max - min)</script>). To test this fact, you can start with a uniform width array (as described above) and try to reduce the gap between any two adjacent elements. If you reduce the gap between <script type="math/tex; mode=display">arr[i-1]</script> and <script type="math/tex; mode=display">arr[i]</script> to some value <script type="math/tex; mode=display">t - p</script>, then you will notice that the gap between <script type="math/tex; mode=display">arr[i]</script> and <script type="math/tex; mode=display">arr[i+1]</script> would have increased to <script type="math/tex; mode=display">t + p</script>. Hence the maximum attainable gap would have become <script type="math/tex; mode=display">t + p</script> from <script type="math/tex; mode=display">t</script>. Thus the value of the <strong>maximum gap</strong> <script type="math/tex; mode=display">t</script> can only increase.</p>
+<p><strong>Buckets!</strong></p>
+<p>Coming back to our problem, we have already established by application of the Pigeonhole Principle, that if we used <em>buckets</em> instead of individual elements as our base for comparison, the number of comparisons would reduce if we could accommodate more than one element in a single bucket. That does not immediately solve the problem though. What if we had to compare elements <em>within</em> a bucket? We would end up no better.</p>
+<p>So the current motivation remains: somehow, if we only had to compare among the buckets, and <em>not</em> the elements <em>within</em> the buckets, we would be good. It would also solve our sorting problem: we would just distribute the elements to the right buckets. Since the buckets can be already ordered, and we only compare among buckets, we wouldn't have to compare all elements to sort them!</p>
+<p>But if we only had buckets to compare, we would have to <em>ensure</em>, that the gap between the buckets itself represent the maximal gap in the input array. How do we go about doing that?</p>
+<p>We could do that just by setting the buckets to be smaller than <script type="math/tex; mode=display">t = (max - min)/(n-1)</script> (as described above). Since the gaps (between elements) within the same bucket would only be <script type="math/tex; mode=display">\leq t</script>, we could deduce that the maximal gap would <em>indeed</em> occur <strong>only between two adjacent buckets</strong>.</p>
+<p>Hence by setting bucket size <script type="math/tex; mode=display">b</script> to be <script type="math/tex; mode=display">1 < b \leq (max - min)/(n-1)</script>, we can ensure that at least one of the gaps between adjacent buckets would serve as the <strong>maximal gap.</strong></p>
+<p><strong>Clarifications</strong></p>
+<p>A few clarifications are in order:</p>
+<ul>
+<li>
+<p><strong>Would the buckets be of uniform size?</strong>
+Yes. Each of them would be of the same size <script type="math/tex; mode=display">b</script>.</p>
+</li>
+<li>
+<p><strong>But, then wouldn't the gap between them be uniform/constant as well?</strong>
+Yes it would be. The gap between them would be <script type="math/tex; mode=display">1</script> integer unit wide. That means a two adjacent buckets of size <script type="math/tex; mode=display">3</script> could hold integers with values, say, <script type="math/tex; mode=display">3 - 6</script> and <script type="math/tex; mode=display">7 - 9</script>. We avoid overlapping buckets.</p>
+</li>
+<li>
+<p><strong>Then what are you talking about when you say the gap between two adjacent buckets could be the maximal gap?</strong>
+When we are talking about the size of a bucket, we are talking about its holding capacity. That is the range of values the bucket can represent (or <em>hold</em>). However the actual extent of the bucket are determined by the values of the maximum and minimum element a bucket holds. For example a bucket of size <script type="math/tex; mode=display">5</script> could have a capacity to hold values between <script type="math/tex; mode=display">6 - 10</script>. However, if it only holds the elements <script type="math/tex; mode=display">7, 8</script> and <script type="math/tex; mode=display">9</script>, then its actual extent is only <script type="math/tex; mode=display">(9 - 7) + 1 = 3</script> which is not the same as the capacity of the bucket.</p>
+</li>
+<li>
+<p><strong>Then how do you compare adjacent buckets?</strong>
+We do that by comparing their extents. Thus we compare the minimum element of the next bucket to the maximum element of the current bucket. For example: if we have two buckets of size <script type="math/tex; mode=display">5</script> each, holding elements <script type="math/tex; mode=display">[1, 2, 3]</script> and <script type="math/tex; mode=display">[9, 10]</script> respectively, then the gap between the buckets would essentially refer to the value <script type="math/tex; mode=display">9 - 3 = 6</script> (which is larger than the size of either bucket).</p>
+</li>
+<li>
+<p><strong>But then aren't we comparing elements again?!</strong>
+We are, yes! But only compare about twice the elements as the number of buckets (i.e. the minimum and maximum elements of each bucket). If you followed the above, you would realize that this amount is certainly less than the actual number of elements in the array, given a suitable bucket size was chosen.</p>
+</li>
+</ul>
+<p><strong>Algorithm</strong></p>
+<ul>
+<li>
+<p>We choose a bucket size <script type="math/tex; mode=display">b</script> such that <script type="math/tex; mode=display">1 < b \leq (max - min)/(n-1)</script>. Let's just choose <script type="math/tex; mode=display">b = \lfloor (max - min)/(n-1) \rfloor</script>.</p>
+</li>
+<li>
+<p>Thus all the <script type="math/tex; mode=display">n</script> elements would be divided among <script type="math/tex; mode=display">k = \lceil (max - min)/b \rceil</script> buckets.</p>
+</li>
+<li>
+<p>Hence the <script type="math/tex; mode=display">i^{th}</script> bucket would hold the range of values: <script type="math/tex; mode=display">\bigg [min + (i-1) * b, \space min + i*b \bigg )</script> (<code>1</code>-based indexing).</p>
+</li>
+<li>
+<p>It is trivial to calculate the index of the bucket to which a particular element belongs. That is given by <script type="math/tex; mode=display">\lfloor (num - min)/b \rfloor</script> (<code>0</code>-based indexing) where <script type="math/tex; mode=display">num</script> is the element in question.</p>
+</li>
+<li>
+<p>Once all <script type="math/tex; mode=display">n</script> elements have been distributed, we compare <script type="math/tex; mode=display">k-1</script> adjacent bucket pairs to find the maximum gap.</p>
+</li>
+</ul>
+<iframe frameborder="0" height="515" name="iV6KTsnr" src="https://leetcode.com/playground/iV6KTsnr/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O(n + b) \approx O(n)</script>.</p>
+<p>Distributing the elements of the array takes one linear pass (i.e. <script type="math/tex; mode=display">O(n)</script> complexity). Finding the maximum gap among the buckets takes a linear pass over the bucket storage (i.e. <script type="math/tex; mode=display">O(b)</script> complexity). Hence overall process takes linear runtime.</p>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(2*b) \approx O(b)</script> extra space.</p>
+<p>Each bucket stores a maximum and a minimum element. Hence extra space linear to the number of buckets is required.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by <a href="https://leetcode.com/babhishek21">@babhishek21</a>. Shout-out to <a href="https://leetcode.com/zkfairytale/">@zkfairytale</a>, <a href="https://leetcode.com/teddyyyy/">@teddyyyy</a> and <a href="https://leetcode.com/lhearen/">@lhearen</a>!</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">52455</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">175916</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              77%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

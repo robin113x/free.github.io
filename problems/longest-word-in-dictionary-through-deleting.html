@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a string and a string dictionary, find the longest string in the dictionary that can be formed by deleting some characters of the given string. If there are more than one possible results, return the longest word with the smallest lexicographical order. If there is no possible result, return the empty string.
+
+Example 1:
+Input:
+s = &#34;abpcplea&#34;, d = [&#34;ale&#34;,&#34;apple&#34;,&#34;monkey&#34;,&#34;plea&#34;]
+
+Output: 
+&#34;apple&#34;">
+  <meta name="keywords"
+        content="Longest Word in Dictionary through Deleting, LC 524, leetcode 524, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>524. Longest Word in Dictionary through Deleting</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given a string and a string dictionary, find the longest string in the dictionary that can be formed by deleting some characters of the given string. If there are more than one possible results, return the longest word with the smallest lexicographical order. If there is no possible result, return the empty string.
+</p>
+<p><b>Example 1:</b><br>
+<pre>
+<b>Input:</b>
+s = "abpcplea", d = ["ale","apple","monkey","plea"]
+
+<b>Output:</b> 
+"apple"
+</pre>
+</p>
+
+</p>
+<p><b>Example 2:</b><br>
+<pre>
+<b>Input:</b>
+s = "abpcplea", d = ["a","b","c"]
+
+<b>Output:</b> 
+"a"
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>All the strings in the input will only contain lower-case letters.</li>
+<li>The size of the dictionary won't exceed 1,000.</li>
+<li>The length of all the strings in the input won't exceed 1,000.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-iterative-brute-force-time-limit-exceeded">Approach #2 Iterative Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-sorting-and-checking-subsequence-accepted">Approach #3 Sorting and checking Subsequence [Accepted]</a></li>
+<li><a href="#approach-4-without-sorting-accepted">Approach #4 Without Sorting [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The idea behind this approach is as follows. We create a list of all the possible strings that can be formed by deleting one or more characters from the given string <script type="math/tex; mode=display">s</script>. In order to do so, we make use of a recursive function <code>generate(s, str, i, l)</code> which creates a string by adding and by removing the current character(<script type="math/tex; mode=display">i^{th}</script>) from the string <script type="math/tex; mode=display">s</script> to the string <script type="math/tex; mode=display">str</script> formed till the index <script type="math/tex; mode=display">i</script>. Thus, it adds the <script type="math/tex; mode=display">i^{th}</script> character to <script type="math/tex; mode=display">str</script> and calls itself as <code>generate(s, str + s.charAt(i), i + 1, l)</code>. It also omits the <script type="math/tex; mode=display">i^{th}</script> character to <script type="math/tex; mode=display">str</script> and calls itself as <code>generate(s, str, i + 1, l)</code>.</p>
+<p>Thus, at the end the list <script type="math/tex; mode=display">l</script> contains all the required strings that can be formed using <script type="math/tex; mode=display">s</script>. Then, we look for the strings formed in <script type="math/tex; mode=display">l</script> into the dictionary available to see if a match is available. Further, in case of a match, we check for the length of the matched string to maximize the length and we also take care to consider the lexicographically smallest string in case of length match as well.</p>
+<iframe frameborder="0" height="445" name="stinLqjy" src="https://leetcode.com/playground/stinLqjy/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(2^n)</script>. <code>generate</code> calls itself <script type="math/tex; mode=display">2^n</script> times. Here, <script type="math/tex; mode=display">n</script> refers to the length of string <script type="math/tex; mode=display">s</script>. </p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(2^n)</script>. List <script type="math/tex; mode=display">l</script> contains <script type="math/tex; mode=display">2^n</script> strings.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-iterative-brute-force-time-limit-exceeded">Approach #2 Iterative Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Instead of using recursive <code>generate</code> to create the list of possible strings that can be formed using <script type="math/tex; mode=display">s</script> by performing delete operations, we can also do the same process iteratively. To do so, we use the concept of binary number generation. </p>
+<p>We can treat the given string <script type="math/tex; mode=display">s</script> along with a binary represenation corresponding to the indices of <script type="math/tex; mode=display">s</script>. The rule is that the character at the position <script type="math/tex; mode=display">i</script> has to be added to the newly formed string <script type="math/tex; mode=display">str</script> only if there is a boolean 1 at the corresponding index in the binary representation of a number currently considered.</p>
+<p>We know a total of <script type="math/tex; mode=display">2^n</script> such binary numbers are possible if there are <script type="math/tex; mode=display">n</script> positions to be filled(<script type="math/tex; mode=display">n</script> also corresponds to the number of characters in <script type="math/tex; mode=display">s</script>). Thus, we consider all the numbers from <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">2^n</script> in their binary representation in a serial order and generate all the strings possible using the above rule.</p>
+<p>The figure below shows an example of the strings generated for the given string <script type="math/tex; mode=display">s</script>:"sea".</p>
+<p><img alt="Longest_Word" src="https://leetcode.com/articles/Figures/524_Longest_Word_Binary.PNG"/></p>
+<p>A problem with this method is that the maximum length of the string can be 32 only, since we make use of an integer and perform the shift operations on it to generate the binary numbers.</p>
+<iframe frameborder="0" height="411" name="cmWsEFGG" src="https://leetcode.com/playground/cmWsEFGG/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(2^n)</script>. <script type="math/tex; mode=display">2^n</script> strings are generated. </p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(2^n)</script>. List <script type="math/tex; mode=display">l</script> contains <script type="math/tex; mode=display">2^n</script> strings.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-sorting-and-checking-subsequence-accepted">Approach #3 Sorting and checking Subsequence [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The matching condition in the given problem requires that we need to consider the matching string in the dictionary with the longest length and in case of same length, the string which is smallest lexicographically. To ease the searching process, we can sort the given dictionary's strings based on the same criteria, such that the more favorable string appears earlier in the sorted dictionary.</p>
+<p>Now, instead of performing the deletions in <script type="math/tex; mode=display">s</script>, we can directly check if any of the words given in the dictionary(say <script type="math/tex; mode=display">x</script>) is a subsequence of the given string <script type="math/tex; mode=display">s</script>, starting from the beginning of the dictionary. This is because, if <script type="math/tex; mode=display">x</script> is a subsequence of <script type="math/tex; mode=display">s</script>, we can obtain <script type="math/tex; mode=display">x</script> by performing delete operations on <script type="math/tex; mode=display">s</script>. </p>
+<p>If <script type="math/tex; mode=display">x</script> is a subsequence of <script type="math/tex; mode=display">s</script> every character of <script type="math/tex; mode=display">x</script> will be present in <script type="math/tex; mode=display">s</script>. The following figure shows the way the subsequence check is done for one example:</p>
+<p>!?!../Documents/524_Longest_Word.json:1000,563!?!</p>
+<p>As soon as we find any such <script type="math/tex; mode=display">x</script>, we can stop the search immediately since we've already processed <script type="math/tex; mode=display">d</script> to our advantage.</p>
+<iframe frameborder="0" height="428" name="bzaQxoMF" src="https://leetcode.com/playground/bzaQxoMF/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n*x*logn + n*x)</script>. Here <script type="math/tex; mode=display">n</script> refers to the number of strings in list <script type="math/tex; mode=display">d</script> and <script type="math/tex; mode=display">x</script> refers to average string length. Sorting takes <script type="math/tex; mode=display">O(nlogn)</script> and <code>isSubsequence</code> takes <script type="math/tex; mode=display">O(x)</script> to check whether a string is a subsequence of another string or not.  </p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(logn)</script>. Sorting takes <script type="math/tex; mode=display">O(logn)</script> space in average case.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-without-sorting-accepted">Approach #4 Without Sorting [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>Since sorting the dictionary could lead to a huge amount of extra effort, we can skip the sorting and directly look for the strings <script type="math/tex; mode=display">x</script> in the unsorted dictionary <script type="math/tex; mode=display">d</script> such that <script type="math/tex; mode=display">x</script> is a subsequence in <script type="math/tex; mode=display">s</script>. If such a string <script type="math/tex; mode=display">x</script> is found, we compare it with the other matching strings found till now based on the required length and lexicographic criteria. Thus, after considering every string in <script type="math/tex; mode=display">d</script>, we can obtain the required result.</p>
+<iframe frameborder="0" height="377" name="qsSjNJwD" src="https://leetcode.com/playground/qsSjNJwD/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n*x)</script>. One iteration over all strings is required. Here <script type="math/tex; mode=display">n</script> refers to the number of strings in list <script type="math/tex; mode=display">d</script> and <script type="math/tex; mode=display">x</script> refers to average string length.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(x)</script>. <script type="math/tex; mode=display">max\_str</script> variable is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">16550</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">38162</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              23%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

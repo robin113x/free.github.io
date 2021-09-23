@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a list of strings words representing an English Dictionary, find the longest word in words that can be built one character at a time by other words in words.  If there is more than one possible answer, return the longest word with the smallest lexicographical order.  If there is no answer, return the empty string.
+
+Example 1:
+Input: 
+words = [&#34;w&#34;,&#34;wo&#34;,&#34;wor&#34;,&#34;worl&#34;, &#34;world&#34;]
+Output: &#34;world&#34;
+Explanation: 
+The word &#34;world&#34; can be built one character at a time by &#34;w&#34;, &#34;wo&#34;, &#34;wor&#34;, and &#34;worl&#34;.
+
+
+Example 2:
+Input: 
+words = [&#34;a&#34;, &#34;banana&#34;, &#34;app&#34;, &#34;appl&#34;, &#34;ap&#34;, &#34;apply&#34;, &#34;apple&#34;]
+Output: &#34;apple&#34;
+Explanation: 
+Both &#34;apply&#34; and &#34;apple&#34; can be built from other words in the dictionary. However, &#34;apple&#34; is lexicographically smaller than &#34;apply&#34;.
+
+
+Note:
+All the strings in the input will only contain lowercase letters.
+The length of words will be in the range [1, 1000].
+The length of words[i] will be in the range [1, 30].">
+  <meta name="keywords"
+        content="Longest Word in Dictionary, LC 720, leetcode 720, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>720. Longest Word in Dictionary</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a list of strings <code>words</code> representing an English Dictionary, find the longest word in <code>words</code> that can be built one character at a time by other words in <code>words</code>.  If there is more than one possible answer, return the longest word with the smallest lexicographical order.</p>  If there is no answer, return the empty string.
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 
+words = ["w","wo","wor","worl", "world"]
+<b>Output:</b> "world"
+<b>Explanation:</b> 
+The word "world" can be built one character at a time by "w", "wo", "wor", and "worl".
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> 
+words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
+<b>Output:</b> "apple"
+<b>Explanation:</b> 
+Both "apply" and "apple" can be built from other words in the dictionary. However, "apple" is lexicographically smaller than "apply".
+</pre>
+</p>
+
+<p><b>Note:</b>
+<li>All the strings in the input will only contain lowercase letters.</li>
+<li>The length of <code>words</code> will be in the range <code>[1, 1000]</code>.</li>
+<li>The length of <code>words[i]</code> will be in the range <code>[1, 30]</code>.</li>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-brute-force-accepted">Approach #1: Brute Force [Accepted]</a></li>
+<li><a href="#approach-2-trie-depth-first-search-accepted">Approach #2: Trie + Depth-First Search [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-brute-force-accepted">Approach #1: Brute Force [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>For each word, check if all prefixes word[:k] are present.  We can use a <code>Set</code> structure to check this quickly.</p>
+<p><strong>Algorithm</strong></p>
+<p>Whenever our found word would be superior, we check if all it's prefixes are present, then replace our answer.</p>
+<p>Alternatively, we could have sorted the words beforehand, so that we know the word we are considering would be the answer if all it's prefixes are present.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">longestWord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="s2">""</span>
+    <span class="n">wordset</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span> <span class="ow">and</span> <span class="n">word</span> <span class="o">&lt;</span> <span class="n">ans</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">word</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span> <span class="ow">in</span> <span class="n">wordset</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">))):</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="n">word</span>
+
+    <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+<p><em>Alternate Implementation</em></p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">longestWord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
+        <span class="n">wordset</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+        <span class="n">words</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">c</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">word</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span> <span class="ow">in</span> <span class="n">wordset</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">))):</span>
+                <span class="k">return</span> <span class="n">word</span>
+
+        <span class="k">return</span> <span class="s2">""</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">longestWord</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">words</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">ans</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">wordset</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">:</span> <span class="n">words</span><span class="o">)</span> <span class="n">wordset</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">word</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">:</span> <span class="n">words</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">ans</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">||</span>
+                    <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="n">ans</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">word</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">ans</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kt">boolean</span> <span class="n">good</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(!</span><span class="n">wordset</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">word</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">k</span><span class="o">)))</span> <span class="o">{</span>
+                        <span class="n">good</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+                        <span class="k">break</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">good</span><span class="o">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">word</span><span class="o">;</span>
+            <span class="o">}</span>    
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><em>Alternate Implementation</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">longestWord</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">words</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">wordset</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">:</span> <span class="n">words</span><span class="o">)</span> <span class="n">wordset</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">word</span><span class="o">);</span>
+        <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">words</span><span class="o">,</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">()</span>
+                    <span class="o">?</span> <span class="n">a</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">b</span><span class="o">)</span> <span class="o">:</span> <span class="n">b</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">:</span> <span class="n">words</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">boolean</span> <span class="n">good</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="o">++</span><span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">wordset</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">word</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">k</span><span class="o">)))</span> <span class="o">{</span>
+                    <span class="n">good</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+                    <span class="k">break</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">good</span><span class="o">)</span> <span class="k">return</span> <span class="n">word</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="s">""</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(\sum w_i^2)</script>, where <script type="math/tex; mode=display">w_i</script> is the length of <code>words[i]</code>.  Checking whether all prefixes of <code>words[i]</code> are in the set is <script type="math/tex; mode=display">O(\sum w_i^2)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(\sum w_i^2)</script> to create the substrings.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-trie-depth-first-search-accepted">Approach #2: Trie + Depth-First Search [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>As prefixes of strings are involved, this is usually a natural fit for a <em>trie</em> (a prefix tree.)</p>
+<p><strong>Algorithm</strong></p>
+<p>Put every word in a trie, then depth-first-search from the start of the trie, only searching nodes that ended a word.  Every node found (except the root, which is a special case) then represents a word with all it's prefixes present.  We take the best such word.</p>
+<p>In Python, we showcase a method using defaultdict, while in Java, we stick to a more general object-oriented approach.</p>
+<p><strong>Python</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">longestWord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
+        <span class="n">Trie</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="n">Trie</span><span class="p">)</span>
+        <span class="n">trie</span> <span class="o">=</span> <span class="n">Trie</span><span class="p">()</span>
+        <span class="n">END</span> <span class="o">=</span> <span class="bp">True</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+            <span class="nb">reduce</span><span class="p">(</span><span class="nb">dict</span><span class="o">.</span><span class="n">__getitem__</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">trie</span><span class="p">)[</span><span class="n">END</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+
+        <span class="n">stack</span> <span class="o">=</span> <span class="n">trie</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="s2">""</span>
+        <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+            <span class="n">cur</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">END</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">:</span>
+                <span class="n">word</span> <span class="o">=</span> <span class="n">words</span><span class="p">[</span><span class="n">cur</span><span class="p">[</span><span class="n">END</span><span class="p">]]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span> <span class="ow">and</span> <span class="n">word</span> <span class="o">&lt;</span> <span class="n">ans</span><span class="p">:</span>
+                    <span class="n">ans</span> <span class="o">=</span> <span class="n">word</span>
+                <span class="n">stack</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">cur</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">cur</span> <span class="k">if</span> <span class="n">letter</span> <span class="o">!=</span> <span class="n">END</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">longestWord</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">words</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Trie</span> <span class="n">trie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Trie</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">:</span> <span class="n">words</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">trie</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">word</span><span class="o">,</span> <span class="o">++</span><span class="n">index</span><span class="o">);</span> <span class="c1">//indexed by 1</span>
+        <span class="o">}</span>
+        <span class="n">trie</span><span class="o">.</span><span class="na">words</span> <span class="o">=</span> <span class="n">words</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">trie</span><span class="o">.</span><span class="na">dfs</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
+    <span class="kt">char</span> <span class="n">c</span><span class="o">;</span>
+    <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">,</span> <span class="n">Node</span><span class="o">&gt;</span> <span class="n">children</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+    <span class="kt">int</span> <span class="n">end</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nf">Node</span><span class="o">(</span><span class="kt">char</span> <span class="n">c</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Trie</span> <span class="o">{</span>
+    <span class="n">Node</span> <span class="n">root</span><span class="o">;</span>
+    <span class="n">String</span><span class="o">[]</span> <span class="n">words</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nf">Trie</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="sc">'0'</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">,</span> <span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Node</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">root</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">c</span><span class="o">:</span> <span class="n">word</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">cur</span><span class="o">.</span><span class="na">children</span><span class="o">.</span><span class="na">putIfAbsent</span><span class="o">(</span><span class="n">c</span><span class="o">,</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">c</span><span class="o">));</span>
+            <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="na">children</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">cur</span><span class="o">.</span><span class="na">end</span> <span class="o">=</span> <span class="n">index</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">dfs</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">ans</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">();</span>
+        <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
+        <span class="k">while</span> <span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">empty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">Node</span> <span class="n">node</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">end</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">node</span> <span class="o">==</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">!=</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">String</span> <span class="n">word</span> <span class="o">=</span> <span class="n">words</span><span class="o">[</span><span class="n">node</span><span class="o">.</span><span class="na">end</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">ans</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">||</span>
+                            <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="n">ans</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">word</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">ans</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">ans</span> <span class="o">=</span> <span class="n">word</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="k">for</span> <span class="o">(</span><span class="n">Node</span> <span class="n">nei</span><span class="o">:</span> <span class="n">node</span><span class="o">.</span><span class="na">children</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">nei</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time Complexity: <script type="math/tex; mode=display">O(\sum w_i)</script>, where <script type="math/tex; mode=display">w_i</script> is the length of <code>words[i]</code>.  This is the complexity to build the trie and to search it.</li>
+</ul>
+<p>If we used a BFS instead of a DFS, and ordered the children in an array, we could drop the need to check whether the candidate word at each node is better than the answer, by forcing that the last node visited will be the best answer.</p>
+<ul>
+<li>Space Complexity: <script type="math/tex; mode=display">O(\sum w_i)</script>, the space used by our trie.</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">6447</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">15774</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              13%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/pinterest.html">Pinterest</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

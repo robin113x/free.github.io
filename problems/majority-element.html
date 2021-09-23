@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+You may assume that the array is non-empty and the majority element always exist in the array.
+Credits:Special thanks to @ts for adding this problem and creating all test cases.">
+  <meta name="keywords"
+        content="Majority Element, LC 169, leetcode 169, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>169. Majority Element</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given an array of size <i>n</i>, find the majority element. The majority element is the element that appears <b>more than</b> <code>&lfloor; n/2 &rfloor;</code> times.</p>
+
+<p>You may assume that the array is non-empty and the majority element always exist in the array.</p>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://oj.leetcode.com/discuss/user/ts">@ts</a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-hashmap-accepted">Approach #2 HashMap [Accepted]</a></li>
+<li><a href="#approach-3-sorting-accepted">Approach #3 Sorting [Accepted]</a></li>
+<li><a href="#approach-4-randomization-accepted">Approach #4 Randomization [Accepted?]</a></li>
+<li><a href="#approach-5-divide-and-conquer-accepted">Approach #5 Divide and Conquer [Accepted]</a></li>
+<li><a href="#approach-6-boyer-moore-voting-algorithm-accepted">Approach #6 Boyer-Moore Voting Algorithm [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Intuition</strong></p>
+<p>We can exhaust the search space in quadratic time by checking whether each
+element is the majority element.</p>
+<p><strong>Algorithm</strong></p>
+<p>The brute force algorithm iterates over the array, and then iterates again
+for each number to count its occurrences. As soon as a number is found to
+have appeared more than any other can possibly have appeared, return it.</p>
+<iframe frameborder="0" height="412" name="H2vyWAaF" src="https://leetcode.com/playground/H2vyWAaF/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>
+</p>
+<p>The brute force algorithm contains two nested <code>for</code> loops that each run
+for <script type="math/tex; mode=display">n</script> iterations, adding up to quadratic time complexity.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>
+</p>
+<p>The brute force solution does not allocate additional space proportional
+to the input size.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-hashmap-accepted">Approach #2 HashMap [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>We know that the majority element occurs more than <script type="math/tex; mode=display">\lfloor \frac{n}{2} \rfloor</script>
+times, and a <code>HashMap</code> allows us to count element occurrences efficiently.</p>
+<p><strong>Algorithm</strong></p>
+<p>We can use a <code>HashMap</code> that maps elements to counts in order to count
+occurrences in linear time by looping over <code>nums</code>. Then, we simply return the
+key with maximum value.</p>
+<iframe frameborder="0" height="500" name="4nq5cRU7" src="https://leetcode.com/playground/4nq5cRU7/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>We iterate over <code>nums</code> once and make a constant time <code>HashMap</code> insertion
+on each iteration. Therefore, the algorithm runs in <script type="math/tex; mode=display">O(n)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>At most, the <code>HashMap</code> can contain <script type="math/tex; mode=display">n - \lfloor \frac{n}{2} \rfloor</script>
+associations, so it occupies <script type="math/tex; mode=display">O(n)</script> space. This is because an arbitrary
+array of length <script type="math/tex; mode=display">n</script> can contain <script type="math/tex; mode=display">n</script> distinct values, but <code>nums</code> is
+guaranteed to contain a majority element, which will occupy (at minimum)
+<script type="math/tex; mode=display">\lfloor \frac{n}{2} \rfloor + 1</script> array indices. Therefore,
+<script type="math/tex; mode=display">n - (\lfloor \frac{n}{2} \rfloor + 1)</script> indices can be occupied by
+distinct, non-majority elements (plus 1 for the majority element itself),
+leaving us with (at most) <script type="math/tex; mode=display">n - \lfloor \frac{n}{2} \rfloor</script> distinct
+elements.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-sorting-accepted">Approach #3 Sorting [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If the elements are sorted in monotonically increasing (or decreasing) order,
+the majority element can be found at index
+<script type="math/tex; mode=display">\lfloor \frac{n}{2} \rfloor</script> (and <script type="math/tex; mode=display">\lfloor \frac{n}{2} \rfloor + 1</script>,
+incidentally, if <script type="math/tex; mode=display">n</script> is even).</p>
+<p><strong>Algorithm</strong></p>
+<p>For this algorithm, we simply do exactly what is described: sort <code>nums</code>, and
+return the element in question. To see why this will always return the
+majority element (given that the array has one), consider the figure below
+(the top example is for an odd-length array and the bottom is for an
+even-length array):</p>
+<p align="center"><img alt="Sorting middle index overlap" src="https://leetcode.com/articles/Figures/169/sorting.png"/></p>
+<p>For each example, the line below the array denotes the range of indices that
+are covered by a majority element that happens to be the array minimum. As
+you might expect, the line above the array is similar, but for the case where
+the majority element is also the array maximum. In all other cases, this line
+will lie somewhere between these two, but notice that even in these two most
+extreme cases, they overlap at index <script type="math/tex; mode=display">\lfloor \frac{n}{2} \rfloor</script> for both
+even- and odd-length arrays. Therefore, no matter what value the majority
+element has in relation to the rest of the array, returning the value at
+<script type="math/tex; mode=display">\lfloor \frac{n}{2} \rfloor</script> will never be wrong.</p>
+<iframe frameborder="0" height="157" name="X9WGS7YM" src="https://leetcode.com/playground/X9WGS7YM/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nlgn)</script>
+</p>
+<p>Sorting the array costs <script type="math/tex; mode=display">O(nlgn)</script> time in Python and Java, so it
+dominates the overall runtime.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script> or (<script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>We sorted <code>nums</code> in place here - if that is not allowed, then we must
+spend linear additional space on a copy of <code>nums</code> and sort the copy
+instead.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-randomization-accepted">Approach #4 Randomization [Accepted?]</h4>
+<p><strong>Intuition</strong></p>
+<p>Because more than <script type="math/tex; mode=display">\lfloor \frac{n}{2} \rfloor</script> array indices are occupied
+by the majority element, a random array index is likely to contain the
+majority element.</p>
+<p><strong>Algorithm</strong></p>
+<p>Because a given index is likely to have the majority element, we can just
+select a random index, check whether its value is the majority element,
+return if it is, and repeat if it is not. The algorithm is verifiably correct
+because we ensure that the randomly chosen value is the majority element
+before ever returning.</p>
+<iframe frameborder="0" height="500" name="w2hsUnvB" src="https://leetcode.com/playground/w2hsUnvB/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(\infty)</script>
+</p>
+<p>It is technically possible for this algorithm to run indefinitely (if we
+never manage to randomly select the majority element), so the worst
+possible runtime is unbounded. However, the expected runtime is far
+better - linear, in fact. For ease of analysis, convince yourself that
+because the majority element is guaranteed to occupy <em>more</em> than half of
+the array, the expected number of iterations will be less than it would
+be if the element we sought occupied exactly <em>half</em> of the array.
+Therefore, we can calculate the expected number of iterations for this
+modified version of the problem and assert that our version is easier.</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    EV(iters_{prob}) &\leq EV(iters_{mod}) \\
+                     &= \lim_{n\to\infty} \sum_{i=1}^{n} i \cdot \frac{1}{2^i} \\
+                     &= 2
+\end{aligned}
+</script>
+</p>
+<p>Because the series converges, the expected number of iterations for the
+modified problem is constant. Based on an expected-constant number of
+iterations in which we perform linear work, the expected runtime is
+linear for the modifed problem. Therefore, the expected runtime for our
+problem is also linear, as the runtime of the modifed problem serves as
+an upper bound for it.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>
+</p>
+<p>Much like the brute force solution, the randomized approach runs with
+constant additional space.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-divide-and-conquer-accepted">Approach #5 Divide and Conquer [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If we know the majority element in the left and right halves of an array, we
+can determine which is the global majority element in linear time.</p>
+<p><strong>Algorithm</strong></p>
+<p>Here, we apply a classical divide &amp; conquer approach that recurses on the
+left and right halves of an array until an answer can be trivially achieved
+for a length-1 array. Note that because actually passing copies of subarrays
+costs time and space, we instead pass <code>lo</code> and <code>hi</code> indices that describe the
+relevant slice of the overall array. In this case, the majority element for a
+length-1 slice is trivially its only element, so the recursion stops there.
+If the current slice is longer than length-1, we must combine the answers for
+the slice's left and right halves. If they agree on the majority element,
+then the majority element for the overall slice is obviously the same<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>. If
+they disagree, only one of them can be "right", so we need to count the
+occurrences of the left and right majority elements to determine which
+subslice's answer is globally correct. The overall answer for the array is
+thus the majority element between indices 0 and <script type="math/tex; mode=display">n</script>.</p>
+<iframe frameborder="0" height="500" name="4zVEbCKq" src="https://leetcode.com/playground/4zVEbCKq/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nlgn)</script>
+</p>
+<p>Each recursive call to <code>majority_element_rec</code> performs two recursive
+calls on subslices of size <script type="math/tex; mode=display">\frac{n}{2}</script> and two linear scans of length
+<script type="math/tex; mode=display">n</script>. Therefore, the time complexity of the divide &amp; conquer approach
+can be represented by the following recurrence relation:</p>
+<p>
+<script type="math/tex; mode=display">
+    T(n) = 2T(\frac{n}{2}) + 2n
+</script>
+</p>
+<p>By the <a href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)">master theorem</a>,
+the recurrence satisfies case 2, so the complexity can be analyzed as such:</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    T(n) &= \Theta(n^{log_{b}a}\log n) \\
+         &= \Theta(n^{log_{2}2}\log n) \\
+         &= \Theta(n \log n) \\
+\end{aligned}
+</script>
+</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(lgn)</script>
+</p>
+<p>Although the divide &amp; conquer does not explicitly allocate any additional
+memory, it uses a non-constant amount of additional memory in stack
+frames due to recursion. Because the algorithm "cuts" the array in half
+at each level of recursion, it follows that there can only be <script type="math/tex; mode=display">O(lgn)</script>
+"cuts" before the base case of 1 is reached. It follows from this fact
+that the resulting recursion tree is balanced, and therefore all paths
+from the root to a leaf are of length <script type="math/tex; mode=display">O(lgn)</script>. Because the recursion
+tree is traversed in a depth-first manner, the space complexity is
+therefore equivalent to the length of the longest path, which is, of
+course, <script type="math/tex; mode=display">O(lgn)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-6-boyer-moore-voting-algorithm-accepted">Approach #6 Boyer-Moore Voting Algorithm [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If we had some way of counting instances of the majority element as <script type="math/tex; mode=display">+1</script>
+and instances of any other element as <script type="math/tex; mode=display">-1</script>, summing them would make it
+obvious that the majority element is indeed the majority element.</p>
+<p><strong>Algorithm</strong></p>
+<p>Essentially, what Boyer-Moore does is look for a suffix <script type="math/tex; mode=display">suf</script> of <code>nums</code>
+where <script type="math/tex; mode=display">suf[0]</script> is the majority element in that suffix. To do this, we
+maintain a count, which is incremented whenever we see an instance of our
+current candidate for majority element and decremented whenever we see
+anything else. Whenever <code>count</code> equals 0, we effectively forget about
+everything in <code>nums</code> up to the current index and consider the current number
+as the candidate for majority element. It is not immediately obvious why we can
+get away with forgetting prefixes of <code>nums</code> - consider the following
+examples (pipes are inserted to separate runs of nonzero <code>count</code>).</p>
+<p>[7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]</p>
+<p>Here, the <code>7</code> at index 0 is selected to be the first candidate for majority
+element. <code>count</code> will eventually reach 0 after index 5 is processed, so the
+<code>5</code> at index 6 will be the next candidate. In this case, <code>7</code> is the true
+majority element, so by disregarding this prefix, we are ignoring an equal
+number of majority and minority elements - therefore, <code>7</code> will still be the
+majority element in the suffix formed by throwing away the first prefix.</p>
+<p>[7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | <strong>5, 5, 5, 5</strong>]</p>
+<p>Now, the majority element is <code>5</code> (we changed the last run of the array from
+<code>7</code>s to <code>5</code>s), but our first candidate is still <code>7</code>. In this case, our
+candidate is not the true majority element, but we still cannot discard more
+majority elements than minority elements (this would imply that <code>count</code> could
+reach -1 before we reassign <code>candidate</code>, which is obviously false).</p>
+<p>Therefore, given that it is impossible (in both cases) to discard more
+majority elements than minority elements, we are safe in discarding the
+prefix and attempting to recursively solve the majority element problem for the
+suffix. Eventually, a suffix will be found for which <code>count</code> does not hit
+<code>0</code>, and the majority element of that suffix will necessarily be the same as
+the majority element of the overall array.</p>
+<iframe frameborder="0" height="310" name="yMbL4Yog" src="https://leetcode.com/playground/yMbL4Yog/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>Boyer-Moore performs constant work exactly <script type="math/tex; mode=display">n</script> times, so the algorithm
+runs in linear time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>
+</p>
+<p>Boyer-Moore allocates only constant additional memory.</p>
+</li>
+</ul>
+<hr/>
+<p><strong>Footnotes</strong></p>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/emptyset">@emptyset</a></p>
+<p>Approaches and time complexities itemized by <a href="" title="https://oj.leetcode.com/discuss/user/ts">@ts</a> and <a href="" title="https://oj.leetcode.com/discuss/user/1337c0d3r">@1337c0d3r</a></p>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>This is a constant optimization that could be excluded without hurting our
+  overall runtime. <a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">231538</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">488897</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              93%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/zenefits.html">Zenefits</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/adobe.html">Adobe</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

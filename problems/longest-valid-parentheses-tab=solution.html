@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a string containing just the characters &#39;(&#39; and &#39;)&#39;, find the length of the longest valid (well-formed) parentheses substring.
+
+
+For &#34;(()&#34;, the longest valid parentheses substring is &#34;()&#34;, which has length = 2.
+
+
+Another example is &#34;)()())&#34;, where the longest valid parentheses substring is &#34;()()&#34;, which has length = 4.">
+  <meta name="keywords"
+        content="Longest Valid Parentheses, LC 32, leetcode 32, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>32. Longest Valid Parentheses</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a string containing just the characters <code>'('</code> and <code>')'</code>, find the length of the longest valid (well-formed) parentheses substring.
+</p>
+<p>
+For <code>"(()"</code>, the longest valid parentheses substring is <code>"()"</code>, which has length = 2.
+</p>
+<p>
+Another example is <code>")()())"</code>, where the longest valid parentheses substring is <code>"()()"</code>, which has length = 4.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-dynamic-programming-accepted">Approach #2 Using Dynamic Programming [Accepted]</a></li>
+<li><a href="#approach-3-using-stack-accepted">Approach #3 Using Stack [Accepted]</a></li>
+<li><a href="#approach-4-without-extra-space-accepted">Approach #4 Without extra space [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>We need to determine the length of the largest valid substring of parentheses from a given string.</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, we consider every possible non-empty even length substring from the given string and check whether it's
+a valid string of parentheses or not. In order to check the validity, we use the Stack's Method.</p>
+<p>Every time we
+encounter a <script type="math/tex; mode=display">\text{‘(’}</script>, we push it onto the stack. For every <script type="math/tex; mode=display">\text{‘)’}</script> encountered, we pop a <script type="math/tex; mode=display">\text{‘(’}</script> from the stack. If <script type="math/tex; mode=display">\text{‘(’}</script> isn't
+ available on the stack for popping at anytime or if stack contains some elements after processing complete substring, the substring of parentheses is invalid. In this way, we repeat the
+ process for every possible substring and we keep on
+  storing the length of the longest valid string found so far.</p>
+<div class="codehilite"><pre><span></span>Example:
+"((())"
+
+(( --&gt; invalid
+(( --&gt; invalid
+() --&gt; valid, length=2
+)) --&gt; invalid
+((()--&gt; invalid
+(())--&gt; valid, length=4
+maxlength=4
+</pre></div>
+<iframe frameborder="0" height="496" name="HyUki2wW" src="https://leetcode.com/playground/HyUki2wW/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. Generating every possible substring from a string of length <script type="math/tex; mode=display">n</script> requires <script type="math/tex; mode=display">O(n^2)</script>. Checking validity of a string of length <script type="math/tex; mode=display">n</script> requires <script type="math/tex; mode=display">O(n)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. A stack of depth <script type="math/tex; mode=display">n</script> will be required for the longest substring.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-dynamic-programming-accepted">Approach #2 Using Dynamic Programming [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>This problem can be solved by using Dynamic Programming. We make use of a <script type="math/tex; mode=display">\text{dp}</script> array where <script type="math/tex; mode=display">i</script>th element of <script type="math/tex; mode=display">\text{dp}</script> represents the length of the longest valid substring ending at <script type="math/tex; mode=display">i</script>th index. We initialize the complete <script type="math/tex; mode=display">\text{dp}</script> array with 0's. Now, it's obvious that the valid substrings must end with <script type="math/tex; mode=display">\text{‘)’}</script>. This further leads to the conclusion that the substrings ending with <script type="math/tex; mode=display">\text{‘(’}</script> will always contain '0' at their corresponding <script type="math/tex; mode=display">\text{dp}</script> indices. Thus, we update the <script type="math/tex; mode=display">\text{dp}</script> array only when <script type="math/tex; mode=display">\text{‘)’}</script> is encountered.</p>
+<p>To fill <script type="math/tex; mode=display">\text{dp}</script> array we will check every two consecutive characters of the string and if</p>
+<ol>
+<li>
+<p>
+<script type="math/tex; mode=display">\text{s}[i] = \text{‘)’}</script> and <script type="math/tex; mode=display">\text{s}[i - 1] = \text{‘(’}</script>, i.e. string looks like <script type="math/tex; mode=display">``.......()" \Rightarrow</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+\text{dp}[i]=\text{dp}[i-2]+2
+</script>
+</p>
+<p>We do so because the ending "()" portion is a valid substring anyhow and leads to an increment of 2 in the length of the just previous valid substring's length.</p>
+</li>
+<li>
+<p>
+<script type="math/tex; mode=display">\text{s}[i] = \text{‘)’}</script> and <script type="math/tex; mode=display">\text{s}[i - 1] = \text{‘)’}</script>, i.e. string looks like <script type="math/tex; mode=display">``.......))" \Rightarrow</script>
+</p>
+<p>if <script type="math/tex; mode=display">\text{s}[i - \text{dp}[i - 1] - 1] = \text{‘(’}</script> then</p>
+<p>
+<script type="math/tex; mode=display">
+\text{dp}[i]=\text{dp}[i-1]+\text{dp}[i-\text{dp}[i-1]-2]+2
+</script>
+</p>
+</li>
+</ol>
+<p>The reason behind this is that if the 2nd last <script type="math/tex; mode=display">\text{‘)’}</script> was a part of a valid substring (say <script type="math/tex; mode=display">sub_s</script>), for the last <script type="math/tex; mode=display">\text{‘)’}</script> to be a part of a larger substring, there must be a corresponding starting <script type="math/tex; mode=display">\text{‘(’}</script> which lies before the valid substring of which the 2nd last <script type="math/tex; mode=display">\text{‘)’}</script> is a part (i.e. before <script type="math/tex; mode=display">sub_s</script>). Thus, if the character before <script type="math/tex; mode=display">sub_s</script> happens to be <script type="math/tex; mode=display">\text{‘(’}</script>, we update the <script type="math/tex; mode=display">\text{dp}[i]</script> as an addition of <script type="math/tex; mode=display">2</script> in the length of <script type="math/tex; mode=display">sub_s</script> which is <script type="math/tex; mode=display">\text{dp}[i-1]</script>. To this, we also add the length of the valid substring just before the term "(,sub_s,)" , i.e. <script type="math/tex; mode=display">\text{dp}[i-\text{dp}[i-1]-2]</script>.</p>
+<p>For better understanding of this method, see this example:</p>
+<!--![Longest_Valid_Parenthesis](https://leetcode.com/articles/Figures/32_LongestValidParenthesisDP.gif)-->
+<p>!?!../Documents/32_Longest_Valid2.json:1000,563!?!</p>
+<iframe frameborder="0" height="360" name="2dij24pv" src="https://leetcode.com/playground/2dij24pv/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Single traversal of string to fill dp array is done.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. dp array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-stack-accepted">Approach #3 Using Stack [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Instead of finding every possible string and checking its validity, we can make use of stack while scanning
+the given string to check if the string scanned so far is valid, and also the length of the longest valid string. In order to do so, we start by pushing <script type="math/tex; mode=display">-1</script> onto the stack.</p>
+<p>For every <script type="math/tex; mode=display">\text{‘(’}</script> encountered, we push its index onto the stack.</p>
+<p>For every <script type="math/tex; mode=display">\text{‘)’}</script> encountered, we pop the topmost element and subtract the current element's index from the top element of the stack, which gives the length of the currently encountered valid string of parentheses. If while popping the element, the stack becomes empty, we push the current element's index onto the stack. In this way, we keep on calculating the lengths of the valid substrings, and return the length of the longest valid string at the end.</p>
+<p>See this example for better understanding.</p>
+<!--![Longest_Valid_Parenthesis](https://leetcode.com/articles/Figures/32_LongestValidParenthesisSTACK.gif)-->
+<p>!?!../Documents/32_Longest_Valid_stack_new.json:1000,563!?!</p>
+<iframe frameborder="0" height="428" name="i5yzG7s7" src="https://leetcode.com/playground/i5yzG7s7/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">n</script> is the length of the given string..</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The size of stack can go up to <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-without-extra-space-accepted">Approach #4 Without extra space [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, we make use of two counters <script type="math/tex; mode=display">left</script> and <script type="math/tex; mode=display">right</script>. First, we start traversing the string from the left towards the right and for every <script type="math/tex; mode=display">\text{‘(’}</script> encountered, we increment the <script type="math/tex; mode=display">left</script> counter and for every <script type="math/tex; mode=display">\text{‘)’}</script> encountered, we increment the <script type="math/tex; mode=display">right</script> counter. Whenever <script type="math/tex; mode=display">left</script> becomes equal to <script type="math/tex; mode=display">right</script>, we calculate the length of the current valid string and keep track of maximum length substring found so far. If <script type="math/tex; mode=display">right</script> becomes greater than <script type="math/tex; mode=display">left</script> we reset <script type="math/tex; mode=display">left</script> and <script type="math/tex; mode=display">right</script> to <script type="math/tex; mode=display">0</script>.</p>
+<p>Next, we start traversing the string from right to left and similar procedure is applied.</p>
+<p>Example of this approach:</p>
+<!--![Longest_Valid_Parenthesis](https://leetcode.com/articles/Figures/32_LongestValidParenthesisLR.gif)-->
+<p>!?!../Documents/32_Longest_Validlr.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="DSvJtRbb" src="https://leetcode.com/playground/DSvJtRbb/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Two traversals of the string.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Only two extra variables <script type="math/tex; mode=display">left</script> and <script type="math/tex; mode=display">right</script> are needed.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">112556</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">486222</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              62%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

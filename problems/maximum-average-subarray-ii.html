@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array consisting of n integers, find the contiguous subarray whose length is greater than or equal to k that has the maximum average value. And you need to output the maximum average value.
+
+Example 1:
+Input: [1,12,-5,-6,50,3], k = 4
+Output: 12.75
+Explanation:
+when length is 5, maximum average value is 10.8,
+when length is 6, maximum average value is 9.16667.
+Thus return 12.75.
+
+
+Note:
+
+1 &lt;= k &lt;= n &lt;= 10,000.
+Elements of the given array will be in range [-10,000, 10,000].
+The answer with the calculation error less than 10-5 will be accepted.">
+  <meta name="keywords"
+        content="Maximum Average Subarray II, LC 644, leetcode 644, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>644. Maximum Average Subarray II</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given an array consisting of <code>n</code> integers, find the contiguous subarray whose <b>length is greater than or equal to</b> <code>k</code> that has the maximum average value. And you need to output the maximum average value.
+</p>
+
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> [1,12,-5,-6,50,3], k = 4
+<b>Output:</b> 12.75
+<b>Explanation:</b>
+when length is 5, maximum average value is 10.8,
+when length is 6, maximum average value is 9.16667.
+Thus return 12.75.
+</pre>
+</p>
+
+
+<p><b>Note:</b><br>
+<ol>
+<li>1 <= <code>k</code> <= <code>n</code> <= 10,000.</li>
+<li>Elements of the given array will be in range [-10,000, 10,000].</li>
+<li>The answer with the calculation error less than 10<sup>-5</sup> will be accepted.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-iterative-method-time-limit-exceeded">Approach #1 Iterative method [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-binary-search-accepted">Approach #2 Using Binary Search [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-iterative-method-time-limit-exceeded">Approach #1 Iterative method [Time Limit Exceeded]</h4>
+<p>One of the simplest solutions is to consider the sum of every possible subarray with length greater than or equal to <script type="math/tex; mode=display">k</script> and to determine the maximum average from out of those. But, instead of finding out this sum in a naive manner for every subarray with length greater than or equal to <script type="math/tex; mode=display">k</script> separately, we can do as follows. </p>
+<p>For every starting point, <script type="math/tex; mode=display">s</script>, considered, we can iterate over the elements of <script type="math/tex; mode=display">nums</script> starting from <script type="math/tex; mode=display">nums</script>, and keep a track of the <script type="math/tex; mode=display">sum</script> found till the current index(<script type="math/tex; mode=display">i</script>). Whenever the index reached is such that the number of elements lying between <script type="math/tex; mode=display">s</script> and <script type="math/tex; mode=display">i</script> is greater than or equal to <script type="math/tex; mode=display">k</script>, we can check if the average of the elements between <script type="math/tex; mode=display">s</script> and <script type="math/tex; mode=display">i</script> is greater than the average found till now or not.</p>
+<iframe frameborder="0" height="309" name="uX3gpV7T" src="https://leetcode.com/playground/uX3gpV7T/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. Two for loops iterating over the whole length of <script type="math/tex; mode=display">nums</script> with <script type="math/tex; mode=display">n</script> elements.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-binary-search-accepted">Approach #2 Using Binary Search [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>To understand the idea behind this method, let's look at the following points. </p>
+<p>Firstly, we know that the value of the average could lie between the range <script type="math/tex; mode=display">(min, max)</script>. Here, <script type="math/tex; mode=display">min</script> and <script type="math/tex; mode=display">max</script> refer to the minimum and the maximum values out of the given <script type="math/tex; mode=display">nums</script> array. This is because, the average can't be lesser than the minimum value and can't be larger than the maximum value. </p>
+<p>But, in this case, we need to find the maximum average of a subarray with atleast <script type="math/tex; mode=display">k</script> elements. The idea in this method is to try to approximate(guess) the solution and to try to find if this solution really exists. </p>
+<p>If it exists, we can continue trying to approximate the solution even to a further precise value, but choosing a larger number as the next approximation. But, if the initial guess is wrong, and the initial maximum average value(guessed) isn't possible, we need to try with a smaller number as the next approximate.</p>
+<p>Now, instead of doing the guesses randomly, we can make use of Binary Search. With <script type="math/tex; mode=display">min</script> and <script type="math/tex; mode=display">max</script> as the initial numbers to begin with, we can find out the <script type="math/tex; mode=display">mid</script> of these two numbers given by <script type="math/tex; mode=display">(min+max)/2</script>. Now, we need to find if a subarray with length greater than or equal to <script type="math/tex; mode=display">k</script> is possible with an average sum greater than this <script type="math/tex; mode=display">mid</script> value.</p>
+<p>To determine if this is possible in a single scan, let's look at an observation. Suppose, there exist <script type="math/tex; mode=display">j</script> elements, <script type="math/tex; mode=display">a_1, a_2, a_3..., a_j</script> in a subarray within <script type="math/tex; mode=display">nums</script> such that their average is greater than <script type="math/tex; mode=display">mid</script>. In this case, we can say that </p>
+<p>
+<script type="math/tex; mode=display">(a_1+a_2+ a_3...+a_j)/j &geq; mid</script> or</p>
+<p>
+<script type="math/tex; mode=display">(a_1+a_2+ a_3...+a_j) &geq; j*mid</script> or</p>
+<p>
+<script type="math/tex; mode=display">(a_1-mid) +(a_2-mid)+ (a_3-mid) ...+(a_j-mid) &geq; 0</script>
+</p>
+<p>Thus, we can see that if after subtracting the <script type="math/tex; mode=display">mid</script> number from the elements of a subarray with more than <script type="math/tex; mode=display">k-1</script> elements, within <script type="math/tex; mode=display">nums</script>, if the sum of elements of this reduced subarray is greater than 0, we can achieve an average value greater than <script type="math/tex; mode=display">mid</script>. Thus, in this case, we need to set the <script type="math/tex; mode=display">mid</script> as the new minimum element and continue the process. </p>
+<p>Otherwise, if this reduced sum is lesser than 0 for all subarrays with greater than or equal to <script type="math/tex; mode=display">k</script> elements, we can't achieve <script type="math/tex; mode=display">mid</script> as the average. Thus, we need to set <script type="math/tex; mode=display">mid</script> as the new maximum element and continue the process.</p>
+<p>In order to determine if such a subarray exists in a linear manner, we keep on adding <script type="math/tex; mode=display">nums[i]-mid</script> to the <script type="math/tex; mode=display">sum</script> obtained till the <script type="math/tex; mode=display">i^{th}</script> element while traversing over the <script type="math/tex; mode=display">nums</script> array. If on traversing the first <script type="math/tex; mode=display">k</script> elements, the <script type="math/tex; mode=display">sum</script> becomes greater than or equal to 0, we can directly determine that we can increase the average beyond <script type="math/tex; mode=display">mid</script>. Otherwise, we continue making additions to <script type="math/tex; mode=display">sum</script> for elements beyond the <script type="math/tex; mode=display">k^{th}</script> element, making use of the following idea.</p>
+<p>If we know the cumulative sum upto indices <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script>, say <script type="math/tex; mode=display">sum_i</script> and <script type="math/tex; mode=display">sum_j</script> respectively, we can determine the sum of the subarray between these indices(including <script type="math/tex; mode=display">j</script>) as <script type="math/tex; mode=display">sum_j - sum_i</script>. In our case, we want this difference between the cumulative sums to be greater than or equal to 0 as discusssed above. </p>
+<p>Further, for <script type="math/tex; mode=display">sum_i</script> as the cumulative sum upto the current(<script type="math/tex; mode=display">i^{th}</script>) index, all we need is <script type="math/tex; mode=display">sum_j - sum_i &geq; 0</script> such that <script type="math/tex; mode=display">j - i &geq; k</script>. </p>
+<p>To achive this, instead of checking with all possible values of <script type="math/tex; mode=display">sum_i</script>, we can just consider the minimum cumulative sum upto the index <script type="math/tex; mode=display">j - k</script>. This is because if the required condition can't be sastisfied with the minimum <script type="math/tex; mode=display">sum_i</script>, it can never be satisfied with a larger value.</p>
+<p>To fulfil this, we make use of a <script type="math/tex; mode=display">prev</script> variable which again stores the cumulative sums but, its current index(for cumulative sum) lies behind the current index for <script type="math/tex; mode=display">sum</script> at an offset of <script type="math/tex; mode=display">k</script> units. Thus, by finding the minimum out of <script type="math/tex; mode=display">prev</script> and the last minimum value, we can easily find out the required minimum sum value.</p>
+<p>Every time after checking the possiblility with a new <script type="math/tex; mode=display">mid</script> value, at the end, we need to settle at some value as the average. But, we can observe that eventually, we'll reach a point, where we'll keep moving near some same value with very small changes. In order to keep our precision in control, we limit this process to <script type="math/tex; mode=display">10^-5</script> precision, by making use of <script type="math/tex; mode=display">error</script> and continuing the process till <script type="math/tex; mode=display">error</script> becomes lesser than 0.00001 .</p>
+<iframe frameborder="0" height="515" name="9co4Jxkv" src="https://leetcode.com/playground/9co4Jxkv/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nlog(max\_val-min\_val))</script>. <script type="math/tex; mode=display">check</script> takes <script type="math/tex; mode=display">O(n)</script> time and it is executed <script type="math/tex; mode=display">O(log(max\_val-min\_val))</script> times.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant Space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">3838</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">16391</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              25%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

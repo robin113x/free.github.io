@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.">
+  <meta name="keywords"
+        content="Merge k Sorted Lists, LC 23, leetcode 23, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>23. Merge k Sorted Lists</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Merge <i>k</i> sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-accepted">Approach #1 Brute Force [Accepted]</a></li>
+<li><a href="#approach-2-compare-one-by-one-accepted">Approach #2 Compare one by one [Accepted]</a></li>
+<li><a href="#approach-3-optimize-approach-2-by-priority-queue-accepted">Approach #3 Optimize Approach 2 by Priority Queue [Accepted]</a></li>
+<li><a href="#approach-4-merge-lists-one-by-one-accepted">Approach #4 Merge lists one by one [Accepted]</a></li>
+<li><a href="#approach-5-merge-with-divide-and-conquer-accepted">Approach #5 Merge with Divide And Conquer [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-accepted">Approach #1 Brute Force [Accepted]</h4>
+<p><strong>Intuition &amp; Algorithm</strong></p>
+<ul>
+<li>Traverse all the linked lists and collect the values of the nodes into an array.</li>
+<li>Sort and iterate over this array to get the proper value of nodes.</li>
+<li>Create a new sorted linked list and extend it with the new nodes.</li>
+</ul>
+<p>As for sorting, you can refer <a href="https://www.cs.cmu.edu/~adamchik/15-121/lectures/Sorting%20Algorithms/sorting.html">here</a> for more about sorting algorithms.</p>
+<iframe frameborder="0" height="326" name="JoCvtQU2" src="https://leetcode.com/playground/JoCvtQU2/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(N\log N)</script> where <script type="math/tex; mode=display">N</script> is the total number of nodes. </p>
+<ul>
+<li>Collecting all the values costs <script type="math/tex; mode=display">O(N)</script> time.</li>
+<li>A stable sorting algorithm costs <script type="math/tex; mode=display">O(N\log N)</script> time.</li>
+<li>Iterating for creating the linked list costs <script type="math/tex; mode=display">O(N)</script> time.</li>
+</ul>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(N)</script>.</p>
+<ul>
+<li>Sorting cost <script type="math/tex; mode=display">O(N)</script> space (depends on the algorithm you choose).</li>
+<li>Creating a new linked list costs <script type="math/tex; mode=display">O(N)</script> space.</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-compare-one-by-one-accepted">Approach #2 Compare one by one [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<ul>
+<li>Compare every <script type="math/tex; mode=display">\text{k}</script> nodes (head of every linked list) and get the node with the smallest value.</li>
+<li>Extend the final sorted linked list with the selected nodes.</li>
+</ul>
+<p>!?!../Documents/23_Merge_lists.json:1000,563!?!</p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(kN)</script> where <script type="math/tex; mode=display">\text{k}</script> is the number of linked lists.</p>
+<ul>
+<li>Almost every selection of node in final linked costs <script type="math/tex; mode=display">O(k)</script> (<script type="math/tex; mode=display">\text{k-1}</script> times comparison).</li>
+<li>There are <script type="math/tex; mode=display">N</script> nodes in the final linked list.</li>
+</ul>
+</li>
+<li>
+<p>Space complexity :</p>
+<ul>
+<li>
+<script type="math/tex; mode=display">O(n)</script> Creating a new linked list costs <script type="math/tex; mode=display">O(n)</script> space.</li>
+<li>
+<script type="math/tex; mode=display">O(1)</script> It's not hard to apply in-place method - connect selected nodes instead of creating new nodes to fill the new linked list.</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-optimize-approach-2-by-priority-queue-accepted">Approach #3 Optimize Approach 2 by Priority Queue [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Almost the same as the one above but optimize the <strong>comparison process</strong> by <strong>priority queue</strong>. You can refer <a href="https://en.wikipedia.org/wiki/Priority_queue">here</a> for more information about it.</p>
+<iframe frameborder="0" height="428" name="xxB9pdKV" src="https://leetcode.com/playground/xxB9pdKV/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(N\log k)</script> where <script type="math/tex; mode=display">\text{k}</script> is the number of linked lists.</p>
+<ul>
+<li>The comparison cost will be reduced to <script type="math/tex; mode=display">O(\log k)</script> for every pop and insertion to priority queue. But finding the node with the smallest value just costs <script type="math/tex; mode=display">O(1)</script> time.</li>
+<li>There are <script type="math/tex; mode=display">N</script> nodes in the final linked list.</li>
+</ul>
+</li>
+<li>
+<p>Space complexity :</p>
+<ul>
+<li>
+<script type="math/tex; mode=display">O(n)</script> Creating a new linked list costs <script type="math/tex; mode=display">O(n)</script> space.</li>
+<li>
+<script type="math/tex; mode=display">O(k)</script> The code above present applies in-place method which cost <script type="math/tex; mode=display">O(1)</script> space. And the priority queue (often implemented with heaps) costs <script type="math/tex; mode=display">O(k)</script> space (it's far less than <script type="math/tex; mode=display">N</script> in most situations).</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-merge-lists-one-by-one-accepted">Approach #4 Merge lists one by one [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Convert merge <script type="math/tex; mode=display">\text{k}</script> lists problem to merge 2 lists (<script type="math/tex; mode=display">\text{k-1}</script>) times. Here is the <a href="https://leetcode.com/problems/merge-two-sorted-lists/description/">merge 2 lists</a> problem page.</p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(kN)</script> where <script type="math/tex; mode=display">\text{k}</script> is the number of linked lists.</p>
+<ul>
+<li>We can merge two sorted linked list in <script type="math/tex; mode=display">O(n)</script> time where <script type="math/tex; mode=display">n</script> is the total number of nodes in two lists.</li>
+<li>Sum up the merge process and we can get:  <script type="math/tex; mode=display">O(\sum_{i=1}^{k-1} (i*(\frac{N}{k}) + \frac{N}{k})) = O(kN)</script>.</li>
+</ul>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>
+</p>
+<ul>
+<li>We can merge two sorted linked list in <script type="math/tex; mode=display">O(1)</script> space.</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-merge-with-divide-and-conquer-accepted">Approach #5 Merge with Divide And Conquer [Accepted]</h4>
+<p><strong>Intuition &amp; Algorithm</strong></p>
+<p>This approach walks alongside the one above but is improved a lot. We don't need to traverse most nodes many times repeatedly</p>
+<ul>
+<li>
+<p>Pair up <script type="math/tex; mode=display">\text{k}</script> lists and merge each pair.</p>
+</li>
+<li>
+<p>After the first pairing, <script type="math/tex; mode=display">\text{k}</script> lists are merged into <script type="math/tex; mode=display">k/2</script> lists with average <script type="math/tex; mode=display">2N/k</script> length, then <script type="math/tex; mode=display">k/4</script>, <script type="math/tex; mode=display">k/8</script> and so on.</p>
+</li>
+<li>
+<p>Repeat this procedure until we get the final sorted linked list.</p>
+</li>
+</ul>
+<p>Thus, we'll traverse almost <script type="math/tex; mode=display">N</script> nodes per pairing and merging, and repeat this procedure about <script type="math/tex; mode=display">\log_{2}{k}</script>  times.</p>
+<p align="align"><img alt="Divide_and_Conquer" src="https://leetcode.com/articles/Figures/23/23_divide_and_conquer_new.png"/></p>
+<iframe frameborder="0" height="515" name="VfAbRJUb" src="https://leetcode.com/playground/VfAbRJUb/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(N\log k)</script> where <script type="math/tex; mode=display">\text{k}</script> is the number of linked lists.</p>
+<ul>
+<li>We can merge two sorted linked list in <script type="math/tex; mode=display">O(n)</script> time where <script type="math/tex; mode=display">n</script> is the total number of nodes in two lists.</li>
+<li>Sum up the merge process and we can get: <script type="math/tex; mode=display">O\big(\sum_{i=1}^{log_{2}{k}}N \big)= O(N\log k)</script>
+</li>
+</ul>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>
+</p>
+<ul>
+<li>We can merge two sorted linked lists in <script type="math/tex; mode=display">O(1)</script> space.</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/hermann">@Hermann0</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">189105</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">679699</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              92%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/microsoft.html">Microsoft</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/amazon.html">Amazon</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/uber.html">Uber</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/linkedin.html">LinkedIn</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/twitter.html">Twitter</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/airbnb.html">Airbnb</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/ixl.html">IXL</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Design a max stack that supports push, pop, top, peekMax and popMax.
+
+
+push(x) -- Push element x onto stack.
+pop() -- Remove the element on top of the stack and return it.
+top() -- Get the element on the top.
+peekMax() -- Retrieve the maximum element in the stack.
+popMax() -- Retrieve the maximum element in the stack, and remove it. If you find more than one maximum elements, only remove the top-most one.
+
+
+Example 1:
+
+MaxStack stack = new MaxStack();
+stack.push(5); 
+stack.push(1);
+stack.push(5);
+stack.top(); -&gt; 5
+stack.popMax(); -&gt; 5
+stack.top(); -&gt; 1
+stack.peekMax(); -&gt; 5
+stack.pop(); -&gt; 1
+stack.top(); -&gt; 5
+
+
+Note:
+
+-1e7 &lt;= x &lt;= 1e7
+Number of operations won&#39;t exceed 10000.
+The last four operations won&#39;t be called when stack is empty.">
+  <meta name="keywords"
+        content="Max Stack, LC 716, leetcode 716, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>716. Max Stack</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Design a max stack that supports push, pop, top, peekMax and popMax.</p>
+
+<p>
+<ol>
+<li>push(x) -- Push element x onto stack.</li>
+<li>pop() -- Remove the element on top of the stack and return it.</li>
+<li>top() -- Get the element on the top.</li>
+<li>peekMax() -- Retrieve the maximum element in the stack.</li>
+<li>popMax() -- Retrieve the maximum element in the stack, and remove it. If you find more than one maximum elements, only remove the top-most one.</li>
+</ol>
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+MaxStack stack = new MaxStack();
+stack.push(5); 
+stack.push(1);
+stack.push(5);
+stack.top(); -> 5
+stack.popMax(); -> 5
+stack.top(); -> 1
+stack.peekMax(); -> 5
+stack.pop(); -> 1
+stack.top(); -> 5
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>-1e7 <= x <= 1e7</li>
+<li>Number of operations won't exceed 10000.</li>
+<li>The last four operations won't be called when stack is empty.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-two-stacks-accepted">Approach #1: Two Stacks [Accepted]</a></li>
+<li><a href="#approach-2-double-linked-list-treemap-accepted">Approach #2: Double Linked List + TreeMap [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-two-stacks-accepted">Approach #1: Two Stacks [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>A regular stack already supports the first 3 operations, so we focus on the last two.</p>
+<p>For <code>peekMax</code>, we remember the largest value we've seen on the side.  For example if we add <code>[2, 1, 5, 3, 9]</code>, we'll remember <code>[2, 2, 5, 5, 9]</code>.  This works seamlessly with <code>pop</code> operations, and also it's easy to compute: it's just the maximum of the element we are adding and the previous maximum.</p>
+<p>For <code>popMax</code>, we know what the current maximum (<code>peekMax</code>) is.  We can pop until we find that maximum, then push the popped elements back on the stack.</p>
+<p>Our implementation in Python will showcase extending the <code>list</code> class.</p>
+<iframe frameborder="0" height="500" name="49Y3VvUj" src="https://leetcode.com/playground/49Y3VvUj/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N)</script> for the <code>popMax</code> operation, and <script type="math/tex; mode=display">O(1)</script> for the other operations, where <script type="math/tex; mode=display">N</script> is the number of operations performed.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>, the maximum size of the stack.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-double-linked-list-treemap-accepted">Approach #2: Double Linked List + TreeMap [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Using structures like Array or Stack will never let us <code>popMax</code> quickly.  We turn our attention to tree and linked-list structures that have a lower time complexity for removal, with the aim of making <code>popMax</code> faster than <script type="math/tex; mode=display">O(N)</script> time complexity.</p>
+<p>Say we have a double linked list as our "stack".  This reduces the problem to finding which node to remove, since we can remove nodes in <script type="math/tex; mode=display">O(1)</script> time.</p>
+<p>We can use a TreeMap mapping values to a list of nodes to answer this question.  TreeMap can find the largest value, insert values, and delete values, all in <script type="math/tex; mode=display">O(\log N)</script> time.</p>
+<p><strong>Algorithm</strong></p>
+<p>Let's store the stack as a double linked list <code>dll</code>, and store a <code>map</code> from <code>value</code> to a <code>List</code> of <code>Node</code>.</p>
+<ul>
+<li>
+<p>When we <code>MaxStack.push(x)</code>, we add a node to our <code>dll</code>, and add or update our entry <code>map.get(x).add(node)</code>.</p>
+</li>
+<li>
+<p>When we <code>MaxStack.pop()</code>, we find the value <code>val = dll.pop()</code>, and remove the node from our <code>map</code>, deleting the entry if it was the last one.</p>
+</li>
+<li>
+<p>When we <code>MaxStack.popMax()</code>, we use the <code>map</code> to find the relevant node to <code>unlink</code>, and return it's value.</p>
+</li>
+</ul>
+<p>The above operations are more clear given that we have a working <code>DoubleLinkedList</code> class.  The implementation provided uses <code>head</code> and <code>tail</code> <em>sentinels</em> to simplify the relevant <code>DoubleLinkedList</code> operations.</p>
+<p>A Python implementation was not included for this approach because there is no analog to <em>TreeMap</em> available.</p>
+<iframe frameborder="0" height="500" name="7cWp6DCL" src="https://leetcode.com/playground/7cWp6DCL/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(\log N)</script> for all operations except <code>peek</code> which is <script type="math/tex; mode=display">O(1)</script>, where <script type="math/tex; mode=display">N</script> is the number of operations performed.  Most operations involving <code>TreeMap</code> are <script type="math/tex; mode=display">O(\log N)</script>.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>, the size of the data structures used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">1844</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">5150</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              12%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/linkedin.html">LinkedIn</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

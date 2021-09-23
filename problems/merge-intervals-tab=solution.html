@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a collection of intervals, merge all overlapping intervals.
+
+For example,
+Given [1,3],[2,6],[8,10],[15,18],
+return [1,6],[8,10],[15,18].">
+  <meta name="keywords"
+        content="Merge Intervals, LC 56, leetcode 56, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>56. Merge Intervals</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a collection of intervals, merge all overlapping intervals.</p>
+
+<p>
+For example,<br />
+Given <code>[1,3],[2,6],[8,10],[15,18]</code>,<br />
+return <code>[1,6],[8,10],[15,18]</code>.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-connected-components-time-limited-exceeded">Approach #1 Connected Components [Time Limited Exceeded]</a></li>
+<li><a href="#approach-2-sorting-accepted">Approach #2 Sorting [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-connected-components-time-limited-exceeded">Approach #1 Connected Components [Time Limited Exceeded]</h4>
+<p><strong>Intuition</strong></p>
+<p>If we draw a graph (with intervals as nodes) that contains undirected edges
+between all pairs of intervals that overlap, then all intervals in each
+<em>connected component</em> of the graph can be merged into a single interval.</p>
+<p><strong>Algorithm</strong></p>
+<p>With the above intuition in mind, we can represent the graph as an adjacency
+list, inserting directed edges in both directions to simulate undirected
+edges. Then, to determine which connected component each node is it, we
+perform graph traversals from arbitrary unvisited nodes until all nodes have
+been visited. To do this efficiently, we store visited nodes in a <code>Set</code>,
+allowing for constant time containment checks and insertion. Finally, we
+consider each connected component, merging all of its intervals by
+constructing a new <code>Interval</code> with <code>start</code> equal to the minimum start among
+them and <code>end</code> equal to the maximum end.</p>
+<p>This algorithm is correct simply because it is basically the brute force
+solution. We compare every interval to every other interval, so we know
+exactly which intervals overlap. The reason for the connected component
+search is that two intervals may not directly overlap, but might overlap
+indirectly via a third interval. See the example below to see this more
+clearly.</p>
+<p align="center"><img alt="Components Example" src="https://leetcode.com/articles/Figures/56/component.png"/></p>
+<p>Although (1, 5) and (6, 10) do not directly overlap, either would overlap
+with the other if first merged with (4, 7). There are two connected
+components, so if we merge their nodes, we expect to get the following two
+merged intervals:</p>
+<p>(1, 10), (15, 20)</p>
+<iframe frameborder="0" height="500" name="x3cmWRvG" src="https://leetcode.com/playground/x3cmWRvG/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>
+</p>
+<p>Building the graph costs <script type="math/tex; mode=display">O(V + E) = O(V) + O(E) = O(n) + O(n^2) = O(n^2)</script>
+time, as in the worst case all intervals are mutually overlapping.
+Traversing the graph has the same cost (although it might appear higher
+at first) because our <code>visited</code> set guarantees that each node will be
+visited exactly once. Finally, because each node is part of exactly one
+component, the merge step costs <script type="math/tex; mode=display">O(V) = O(n)</script> time. This all adds up as
+follows:</p>
+<p>
+<script type="math/tex; mode=display">
+    O(n^2) + O(n^2) + O(n) = O(n^2)
+</script>
+</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n^2)</script>
+</p>
+<p>As previously mentioned, in the worst case, all intervals are mutually
+overlapping, so there will be an edge for every pair of intervals.
+Therefore, the memory footprint is quadratic in the input size.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-sorting-accepted">Approach #2 Sorting [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If we sort the intervals by their <code>start</code> value, then each set of intervals
+that can be merged will appear as a contiguous "run" in the sorted list.</p>
+<p><strong>Algorithm</strong></p>
+<p>First, we sort the list as described. Then, we insert the first interval into
+our <code>merged</code> list and continue considering each interval in turn as follows:
+If the current interval begins <em>after</em> the previous interval ends, then they
+do not overlap and we can append the current interval to <code>merged</code>. Otherwise,
+they do overlap, and we merge them by updating the <code>end</code> of the previous
+interval if it is less than the <code>end</code> of the current interval.</p>
+<p>A simple proof by contradiction shows that this algorithm always produces the
+correct answer. First, suppose that the algorithm at some point fails to
+merge two intervals that should be merged. This would imply that there exists
+some triple of indices <script type="math/tex; mode=display">i</script>, <script type="math/tex; mode=display">j</script>, and <script type="math/tex; mode=display">k</script> in a list of intervals
+<script type="math/tex; mode=display">ints</script> such that <script type="math/tex; mode=display">i < j < k</script> and (<script type="math/tex; mode=display">ints[i]</script>, <script type="math/tex; mode=display">ints[k]</script>) can be
+merged, but neither (<script type="math/tex; mode=display">ints[i]</script>, <script type="math/tex; mode=display">ints[j]</script>) nor (<script type="math/tex; mode=display">ints[j]</script>, <script type="math/tex; mode=display">ints[k]</script>)
+can be merged. From this scenario follow several inequalities:</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    ints[i].end < ints[j].start \\
+    ints[j].end < ints[k].start \\
+    ints[i].end \geq ints[k].start \\
+\end{aligned}
+</script>
+</p>
+<p>We can chain these inequalities (along with the following inequality, implied
+by the well-formedness of the intervals: <script type="math/tex; mode=display">ints[j].start \leq ints[j].end</script>) to
+demonstrate a contradiction:</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    ints[i].end < ints[j].start \leq ints[j].end < ints[k].start \\
+    ints[i].end \geq ints[k].start
+\end{aligned}
+</script>
+</p>
+<p>Therefore, all mergeable intervals must occur in a contiguous run of the
+sorted list.</p>
+<p align="center"><img alt="Sorting Example" src="https://leetcode.com/articles/Figures/56/sort.png"/></p>
+<p>Consider the example above, where the intervals are sorted, and then all
+mergeable intervals form contiguous blocks.</p>
+<iframe frameborder="0" height="500" name="Jkko9mPu" src="https://leetcode.com/playground/Jkko9mPu/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nlgn)</script>
+</p>
+<p>Other than the <code>sort</code> invocation, we do a simple linear scan of the list,
+so the runtime is dominated by the <script type="math/tex; mode=display">O(nlgn)</script> complexity of sorting.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script> (or <script type="math/tex; mode=display">O(n)</script>)</p>
+<p>If we can sort <code>intervals</code> in place, we do not need more than constant
+additional space. Otherwise, we must allocate linear space to store a
+copy of <code>intervals</code> and sort that.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis and solutions written by: <a href="https://leetcode.com/emptyset">@emptyset</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">166950</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">535133</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              85%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/microsoft.html">Microsoft</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/bloomberg.html">Bloomberg</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/linkedin.html">LinkedIn</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/twitter.html">Twitter</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/yelp.html">Yelp</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

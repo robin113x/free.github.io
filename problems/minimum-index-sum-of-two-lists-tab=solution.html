@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Suppose Andy and Doris want to choose a restaurant for dinner, and they both have a list of favorite restaurants represented by strings. 
+
+
+You need to help them find out their common interest with the least list index sum. If there is a choice tie between answers, output all of them with no order requirement. You could assume there always exists an answer.
+
+Example 1:
+Input:
+[&#34;Shogun&#34;, &#34;Tapioca Express&#34;, &#34;Burger King&#34;, &#34;KFC&#34;]
+[&#34;Piatti&#34;, &#34;The Grill at Torrey Pines&#34;, &#34;Hungry Hunter Steakhouse&#34;, &#34;Shogun&#34;]
+Output: [&#34;Shogun&#34;]
+Explanation: The only restaurant they both like is &#34;Shogun&#34;.
+
+
+Example 2:
+Input:
+[&#34;Shogun&#34;, &#34;Tapioca Express&#34;, &#34;Burger King&#34;, &#34;KFC&#34;]
+[&#34;KFC&#34;, &#34;Shogun&#34;, &#34;Burger King&#34;]
+Output: [&#34;Shogun&#34;]
+Explanation: The restaurant they both like and have the least index sum is &#34;Shogun&#34; with index sum 1 (0+1).
+
+
+Note:
+
+The length of both lists will be in the range of [1, 1000].
+The length of strings in both lists will be in the range of [1, 30].
+The index is starting from 0 to the list length minus 1.
+No duplicates in both lists.">
+  <meta name="keywords"
+        content="Minimum Index Sum of Two Lists, LC 599, leetcode 599, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>599. Minimum Index Sum of Two Lists</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Suppose Andy and Doris want to choose a restaurant for dinner, and they both have a list of favorite restaurants represented by strings. 
+</p>
+<p>
+You need to help them find out their <b>common interest</b> with the <b>least list index sum</b>. If there is a choice tie between answers, output all of them with no order requirement. You could assume there always exists an answer.
+</p>
+
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b>
+["Shogun", "Tapioca Express", "Burger King", "KFC"]
+["Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"]
+<b>Output:</b> ["Shogun"]
+<b>Explanation:</b> The only restaurant they both like is "Shogun".
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b>
+["Shogun", "Tapioca Express", "Burger King", "KFC"]
+["KFC", "Shogun", "Burger King"]
+<b>Output:</b> ["Shogun"]
+<b>Explanation:</b> The restaurant they both like and have the least index sum is "Shogun" with index sum 1 (0+1).
+</pre>
+</p>
+
+
+<p><b>Note:</b><br>
+<ol>
+<li>The length of both lists will be in the range of [1, 1000].</li>
+<li>The length of strings in both lists will be in the range of [1, 30].</li>
+<li>The index is starting from 0 to the list length minus 1.</li>
+<li>No duplicates in both lists.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-hashmap-accepted">Approach #1 Using HashMap [Accepted]</a></li>
+<li><a href="#approach-2-without-using-hashmap-accepted">Approach #2 Without Using HashMap [Accepted]</a></li>
+<li><a href="#approach-3-using-hashmap-linear-accepted">Approach #3 Using HashMap (linear) [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-hashmap-accepted">Approach #1 Using HashMap [Accepted]</h4>
+<p>In this approach, we compare every string in <script type="math/tex; mode=display">list1</script> and <script type="math/tex; mode=display">list2</script> by traversing over the whole list <script type="math/tex; mode=display">list2</script> for every string chosen from <script type="math/tex; mode=display">list1</script>. We make use of a hashmap <script type="math/tex; mode=display">map</script>, which contains elements of the form <script type="math/tex; mode=display">(sum : list_{sum})</script>. Here, <script type="math/tex; mode=display">sum</script> refers to the sum of indices of matching elements and <script type="math/tex; mode=display">list_{sum}</script> refers to the list of matching strings whose indices' sum equals <script type="math/tex; mode=display">sum</script>. </p>
+<p>Thus, while doing the comparisons, whenever a match between a string at <script type="math/tex; mode=display">i^{th}</script> index of <script type="math/tex; mode=display">list1</script> and <script type="math/tex; mode=display">j^{th}</script> index of <script type="math/tex; mode=display">list2</script> is found, we make an entry in the <script type="math/tex; mode=display">map</script> corresponding to the sum <script type="math/tex; mode=display">i + j</script>, if this entry isn't already present. If an entry with this sum already exists, we need to keep a track of all the strings which lead to the same index sum. Thus, we append the current string to the list of strings corresponding to sum <script type="math/tex; mode=display">i + j</script>.</p>
+<p>At the end, we traverse over the keys of the <script type="math/tex; mode=display">map</script> and find out the list of strings corresponding to the key reprsenting the minimum sum.</p>
+<iframe frameborder="0" height="394" name="Rxg7wbHW" src="https://leetcode.com/playground/Rxg7wbHW/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(l_1*l_2*x)</script>. Every item of <script type="math/tex; mode=display">list1</script> is compared with all the items of <script type="math/tex; mode=display">list2</script>. <script type="math/tex; mode=display">l_1</script> and <script type="math/tex; mode=display">l_2</script> are the lengths of <script type="math/tex; mode=display">list1</script> and <script type="math/tex; mode=display">list2</script> respectively. And <script type="math/tex; mode=display">x</script> refers to average string length.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(l_1*l_2*x)</script>. In worst case all items of <script type="math/tex; mode=display">list1</script> and <script type="math/tex; mode=display">list2</script> are same. In that case, hashmap size grows upto <script type="math/tex; mode=display">l_1*l_2*x</script>, where <script type="math/tex; mode=display">x</script> refers to average string length.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-without-using-hashmap-accepted">Approach #2 Without Using HashMap [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Another method could be to traverse over the various <script type="math/tex; mode=display">sum</script>(index sum) values and determine if any such string exists in <script type="math/tex; mode=display">list1</script> and <script type="math/tex; mode=display">list2</script> such that the sum of its indices in the two lists equals <script type="math/tex; mode=display">sum</script>. </p>
+<p>Now, we know that the value of index sum, <script type="math/tex; mode=display">sum</script> could range from 0 to <script type="math/tex; mode=display">m + n - 1</script>. Here, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> refer to the length of lists <script type="math/tex; mode=display">list1</script> and <script type="math/tex; mode=display">list2</script> respectively. Thus, we choose every value of <script type="math/tex; mode=display">sum</script> in ascending order. For every <script type="math/tex; mode=display">sum</script> chosen, we iterate over <script type="math/tex; mode=display">list1</script>. Suppose, currently the string at <script type="math/tex; mode=display">i^{th}</script> index in <script type="math/tex; mode=display">list1</script> is being considered. Now, in order for the index sum <script type="math/tex; mode=display">sum</script> to be the one corresponding to matching strings in <script type="math/tex; mode=display">list1</script> and <script type="math/tex; mode=display">list2</script>, the string at index <script type="math/tex; mode=display">j</script> in <script type="math/tex; mode=display">list2</script> should match the string at index <script type="math/tex; mode=display">i</script> in <script type="math/tex; mode=display">list1</script>, such that <script type="math/tex; mode=display">sum = i + j</script>.</p>
+<p>Or, stating in other terms, the string at index <script type="math/tex; mode=display">j</script> in <script type="math/tex; mode=display">list2</script> should be equal to the string at index <script type="math/tex; mode=display">i</script> in <script type="math/tex; mode=display">list1</script>, such that <script type="math/tex; mode=display">j = sum - i</script>. Thus, for a particular <script type="math/tex; mode=display">sum</script> and <script type="math/tex; mode=display">i</script>(from <script type="math/tex; mode=display">list1</script>), we can directly determine that we need to check the element at index <script type="math/tex; mode=display"> j= sum - i</script> in <script type="math/tex; mode=display">list2</script>, instead of traversing over the whole <script type="math/tex; mode=display">list2</script>. </p>
+<p>Doing such checks/comparisons, iterate over all the indices of <script type="math/tex; mode=display">list1</script> for every <script type="math/tex; mode=display">sum</script> value chosen. Whenver a match occurs between <script type="math/tex; mode=display">list1</script> and <script type="math/tex; mode=display">list2</script>, we put the matching string in a list <script type="math/tex; mode=display">res</script>. </p>
+<p>We do the same process of checking the strings for all the  values of <script type="math/tex; mode=display">sum</script> in ascending order. After completing every iteration over <script type="math/tex; mode=display">list1</script> for a particular <script type="math/tex; mode=display">sum</script>, we check if the <script type="math/tex; mode=display">res</script> list is empty or not. If it is empty, we need to continue the process with the next <script type="math/tex; mode=display">sum</script> value considered. If not, the current <script type="math/tex; mode=display">res</script> gives the required list with minimum index sum. This is because we are already considering the index sum values in ascending order. So, the first list to be found is the required resultant list.</p>
+<p>The following example depicts the process:</p>
+<p>!?!../Documents/599_Min_Index_Sum.json:1000,563!?!</p>
+<iframe frameborder="0" height="309" name="HhLorCYq" src="https://leetcode.com/playground/HhLorCYq/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O((l_1+l_2)^2*x)</script>. There are two nested loops upto <script type="math/tex; mode=display">l_1+l_2</script> and string comparison takes <script type="math/tex; mode=display">x</script> time. Here, <script type="math/tex; mode=display">x</script> refers to the average string length.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(r*x)</script>. <script type="math/tex; mode=display">res</script> list is used to store the result. Assuming <script type="math/tex; mode=display">r</script> is the length of <script type="math/tex; mode=display">res</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-hashmap-linear-accepted">Approach #3 Using HashMap (linear) [Accepted]</h4>
+<p>We make use of a HashMap to solve the given problem in a different way in this approach. Firstly, we traverse over the whole <script type="math/tex; mode=display">list1</script> and create an entry for each element of <script type="math/tex; mode=display">list1</script> in a HashMap <script type="math/tex; mode=display">map</script>, of the form <script type="math/tex; mode=display">(list[i], i)</script>. Here, <script type="math/tex; mode=display">i</script> refers to the index of the <script type="math/tex; mode=display">i^{th}</script> element, and <script type="math/tex; mode=display">list[i]</script> is the <script type="math/tex; mode=display">i^{th}</script> element itself. Thus, we create a mapping from the elements of <script type="math/tex; mode=display">list1</script> to their indices.</p>
+<p>Now, we traverse over <script type="math/tex; mode=display">list2</script>. For every element ,<script type="math/tex; mode=display">list2[j]</script>, of <script type="math/tex; mode=display">list2</script> encountered, we check if the same element already exists as a key in the <script type="math/tex; mode=display">map</script>. If so, it means that the element exists in both <script type="math/tex; mode=display">list1</script> and <script type="math/tex; mode=display">list2</script>. Thus, we find out the sum of indices corresponding to this element in the two lists, given by <script type="math/tex; mode=display">sum = map.get(list[j]) + j</script>. If this <script type="math/tex; mode=display">sum</script> is lesser than the minimum sum  obtained till now, we update the resultant list to be returned, <script type="math/tex; mode=display">res</script>, with the element <script type="math/tex; mode=display">list2[j]</script> as the only entry in it. </p>
+<p>If the <script type="math/tex; mode=display">sum</script> is equal to the minimum sum obtained till now, we put an extra entry corresponding to the element <script type="math/tex; mode=display">list2[j]</script> in the <script type="math/tex; mode=display">res</script> list.</p>
+<p>Below code is inspired by <a href="http://leetcode.com/cloud.runner">@cloud.runner</a></p>
+<iframe frameborder="0" height="411" name="FatTyfy6" src="https://leetcode.com/playground/FatTyfy6/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(l_1+l_2)</script>. Every item of <script type="math/tex; mode=display">list2</script> is checked in a map of <script type="math/tex; mode=display">list1</script>. <script type="math/tex; mode=display">l_1</script> and <script type="math/tex; mode=display">l_2</script> are the lengths of <script type="math/tex; mode=display">list1</script> and <script type="math/tex; mode=display">list2</script> respectively.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(l_1*x)</script>. hashmap size grows upto <script type="math/tex; mode=display">l_1*x</script>, where <script type="math/tex; mode=display">x</script> refers to average string length.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">23045</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">49602</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              29%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/yelp.html">Yelp</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

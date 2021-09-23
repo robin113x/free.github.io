@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="LeetCode wants to give one of its best employees the option to travel among N cities to collect algorithm problems. But all work and no play makes Jack a dull boy, you could take vacations in some particular cities and weeks. Your job is to schedule the traveling to maximize the number of vacation days you could take, but there are certain rules and restrictions you need to follow.
+
+Rules and restrictions:
+
+You can only travel among N cities, represented by indexes from 0 to N-1. Initially, you are in the city indexed 0 on Monday.
+The cities are connected by flights. The flights are represented as a N*N matrix (not necessary symmetrical), called flights representing the airline status from the city i to the city j. If there is no flight from the city i to the city j, flights[i][j] = 0; Otherwise, flights[i][j] = 1. Also, flights[i][i] = 0 for all i.
+You totally have K weeks (each week has 7 days) to travel. You can only take flights at most once per day and can only take flights on each week&#39;s Monday morning. Since flight time is so short, we don&#39;t consider the impact of flight time.
+For each city, you can only have restricted vacation days in different weeks, given an N*K matrix called days representing this relationship. For the value of days[i][j], it represents the maximum days you could take vacation in the city i in the week j.
+
+
+You&#39;re given the flights matrix and days matrix, and you need to output the maximum vacation days you could take during K weeks.
+Example 1:
+Input:flights = [[0,1,1],[1,0,1],[1,1,0]], days = [[1,3,1],[6,0,3],[3,3,3]]
+Output: 12
+Explanation: Ans = 6 + 3 + 3 = 12. 
+One of the best strategies is:
+1st week : fly from city 0 to city 1 on Monday, and play 6 days and work 1 day. (Although you start at city 0, we could also fly to and start at other cities since it is Monday.) 
+2nd week : fly from city 1 to city 2 on Monday, and play 3 days and work 4 days.
+3rd week : stay at city 2, and play 3 days and work 4 days.
+
+
+Example 2:
+Input:flights = [[0,0,0],[0,0,0],[0,0,0]], days = [[1,1,1],[7,7,7],[7,7,7]]
+Output: 3
+Explanation: Ans = 1 + 1 + 1 = 3. 
+Since there is no flights enable you to move to another city, you have to stay at city 0 for the whole 3 weeks. For each week, you only have one day to play and six days to work. So the maximum number of vacation days is 3.
+
+
+Example 3:
+Input:flights = [[0,1,1],[1,0,1],[1,1,0]], days = [[7,0,0],[0,7,0],[0,0,7]]
+Output: 21
+Explanation:Ans = 7 + 7 + 7 = 21
+One of the best strategies is:
+1st week : stay at city 0, and play 7 days. 
+2nd week : fly from city 0 to city 1 on Monday, and play 7 days.
+3rd week : fly from city 1 to city 2 on Monday, and play 7 days.
+
+
+Note:
+
+N and K are positive integers, which are in the range of [1, 100].
+In the matrix flights, all the values are integers in the range of [0, 1].
+In the matrix days, all the values are integers in the range [0, 7].
+You could stay at a city beyond the number of vacation days, but you should work on the extra days, which won&#39;t be counted as vacation days.
+If you fly from the city A to the city B and take the vacation on that day, the deduction towards vacation days will count towards the vacation days of city B in that week.
+We don&#39;t consider the impact of flight hours towards the calculation of vacation days.">
+  <meta name="keywords"
+        content="Maximum Vacation Days, LC 568, leetcode 568, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>568. Maximum Vacation Days</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+LeetCode wants to give one of its best employees the option to travel among <b>N</b> cities to collect algorithm problems. But all work and no play makes Jack a dull boy, you could take vacations in some particular cities and weeks. Your job is to schedule the traveling to maximize the number of vacation days you could take, but there are certain rules and restrictions you need to follow.
+</p>
+
+<p><b>Rules and restrictions:</b><br>
+<ol>
+<li>You can only travel among <b>N</b> cities, represented by indexes from 0 to N-1. Initially, you are in the city indexed 0 on <b>Monday</b>.</li>
+<li>The cities are connected by flights. The flights are represented as a <b>N*N</b> matrix (not necessary symmetrical), called <b>flights</b> representing the airline status from the city i to the city j. If there is no flight from the city i to the city j, <b>flights[i][j] = 0</b>; Otherwise, <b>flights[i][j] = 1</b>. Also, <b>flights[i][i] = 0</b> for all i.</li>
+<li>You totally have <b>K</b> weeks (<b>each week has 7 days</b>) to travel. You can only take flights at most once <b>per day</b> and can only take flights on each week's <b>Monday</b> morning. Since flight time is so short, we don't consider the impact of flight time.</li>
+<li>For each city, you can only have restricted vacation days in different weeks, given an <b>N*K</b> matrix called <b>days</b> representing this relationship. For the value of <b>days[i][j]</b>, it represents the maximum days you could take vacation in the city <b>i</b> in the week <b>j</b>.</li>
+</ol>
+</p>
+
+<p>You're given the <b>flights</b> matrix and <b>days</b> matrix, and you need to output the maximum vacation days you could take during <b>K</b> weeks.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b>flights = [[0,1,1],[1,0,1],[1,1,0]], days = [[1,3,1],[6,0,3],[3,3,3]]
+<b>Output:</b> 12
+<b>Explanation:</b> <br>Ans = 6 + 3 + 3 = 12. <br>
+One of the best strategies is:
+1st week : fly from city 0 to city 1 on Monday, and play 6 days and work 1 day. <br/>(Although you start at city 0, we could also fly to and start at other cities since it is Monday.) 
+2nd week : fly from city 1 to city 2 on Monday, and play 3 days and work 4 days.
+3rd week : stay at city 2, and play 3 days and work 4 days.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b>flights = [[0,0,0],[0,0,0],[0,0,0]], days = [[1,1,1],[7,7,7],[7,7,7]]
+<b>Output:</b> 3
+<b>Explanation:</b> <br>Ans = 1 + 1 + 1 = 3. <br>
+Since there is no flights enable you to move to another city, you have to stay at city 0 for the whole 3 weeks. <br/>For each week, you only have one day to play and six days to work. <br/>So the maximum number of vacation days is 3.
+</pre>
+</p>
+
+<p><b>Example 3:</b><br />
+<pre>
+<b>Input:</b>flights = [[0,1,1],[1,0,1],[1,1,0]], days = [[7,0,0],[0,7,0],[0,0,7]]
+<b>Output:</b> 21
+<b>Explanation:</b><br>Ans = 7 + 7 + 7 = 21<br>
+One of the best strategies is:
+1st week : stay at city 0, and play 7 days. 
+2nd week : fly from city 0 to city 1 on Monday, and play 7 days.
+3rd week : fly from city 1 to city 2 on Monday, and play 7 days.
+</pre>
+</p>
+
+
+<p><b>Note:</b><br>
+<ol>
+<li><b>N and K</b> are positive integers, which are in the range of [1, 100].</li>
+<li>In the matrix <b>flights</b>, all the values are integers in the range of [0, 1].</li>
+<li>In the matrix <b>days</b>, all the values are integers in the range [0, 7].</li>
+<li>You could stay at a city beyond the number of vacation days, but you should <b>work</b> on the extra days, which won't be counted as vacation days.</li>
+<li>If you fly from the city A to the city B and take the vacation on that day, the deduction towards vacation days will count towards the vacation days of city B in that week.</li>
+<li>We don't consider the impact of flight hours towards the calculation of vacation days.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-depth-first-search-time-limit-exceeded">Approach #1 Using Depth First Search [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-dfs-with-memoization-accepted">Approach #2 Using DFS with memoization [Accepted]:</a></li>
+<li><a href="#approach-3-using-2-d-dynamic-programming-accepted">Approach #3 Using 2-D Dynamic Programming [Accepted]:</a></li>
+<li><a href="#approach-4-using-1-d-dynamic-programming-accepted">Approach #4 Using 1-D Dynamic Programming [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-depth-first-search-time-limit-exceeded">Approach #1 Using Depth First Search [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the brute force approach, we make use of a recursive function <script type="math/tex; mode=display">dfs</script>, which returns the number of vacations which can be taken startring from <script type="math/tex; mode=display">cur\_city</script> as the current city and <script type="math/tex; mode=display">weekno</script> as the starting week. </p>
+<p>In every function call, we traverse over all the cities(represented by <script type="math/tex; mode=display">i</script>) and find out all the cities which are connected to the current city, <script type="math/tex; mode=display">cur\_city</script>. Such a city is represented by a 1 at the corresponding <script type="math/tex; mode=display">flights[cur\_city][i]</script> position. Now, for the current city, we can either travel to the city which is connected to it or we can stay in the same city. Let's say the city to which we change our location from the current city be represented by <script type="math/tex; mode=display">j</script>. Thus, after changing the city, we need to find the number of vacations which we can take from the new city as the current city and the incremented week as the new starting week. This count of vacations can be represented as: <script type="math/tex; mode=display">days[j][weekno] + dfs(flights, days, j, weekno + 1)</script>. </p>
+<p>Thus, for the current city, we obtain a number of vacations by choosing different cities as the next cities. Out of all of these vacations coming from different cities, we can find out the maximum number of vacations that need to be returned for every <script type="math/tex; mode=display">dfs</script> function call.</p>
+<iframe frameborder="0" height="377" name="7nvGhHgq" src="https://leetcode.com/playground/7nvGhHgq/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^k)</script>. Depth of Recursion tree will be <script type="math/tex; mode=display">k</script> and each node contains <script type="math/tex; mode=display">n</script> branches in the worst case. Here <script type="math/tex; mode=display">n</script> represents the number of cities and <script type="math/tex; mode=display">k</script> is the total number of weeks.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(k)</script>. The depth of the recursion tree is <script type="math/tex; mode=display">k</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-dfs-with-memoization-accepted">Approach #2 Using DFS with memoization [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, we make a number of redundant function calls, since the same function call of the form <code>dfs(flights, days, cur_city, weekno)</code> can be made multiple number of times with the same <script type="math/tex; mode=display">cur\_city</script> and <script type="math/tex; mode=display">weekno</script>. These redundant calls can be pruned off if we make use of memoization. </p>
+<p>In order to remove these redundant function calls, we make use of a 2-D memoization array <script type="math/tex; mode=display">memo</script>. In this array, <script type="math/tex; mode=display">memo[i][j]</script> is used to store the number of vacactions that can be taken using the <script type="math/tex; mode=display">i^{th}</script> city as the current city and the <script type="math/tex; mode=display">j^{th}</script> week as the starting week. This result is equivalent to that obtained using the function call: <code>dfs(flights, days, i, j)</code>. Thus, if the <script type="math/tex; mode=display">memo</script> entry corresponding to the current function call already contains a valid value, we can directly obtain the result from this array instead of going deeper into recursion.</p>
+<iframe frameborder="0" height="445" name="JawnLfLv" src="https://leetcode.com/playground/JawnLfLv/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2k)</script>. <script type="math/tex; mode=display">memo</script> array of size <script type="math/tex; mode=display">n*k</script> is filled and each cell filling takes O(n) time .</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n*k)</script>. <script type="math/tex; mode=display">memo</script> array of size <script type="math/tex; mode=display">n*k</script> is used. Here <script type="math/tex; mode=display">n</script> represents the number of cities and <script type="math/tex; mode=display">k</script> is the total number of weeks.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-2-d-dynamic-programming-accepted">Approach #3 Using 2-D Dynamic Programming [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>The idea behind this approach is as follows. The maximum number of vacations that can be taken given we start from the <script type="math/tex; mode=display">i^{th}</script> city in the <script type="math/tex; mode=display">j^{th}</script> week is not dependent on the the vacations that can be taken in the earlier weeks. It only depends on the number of vacations that can be taken in the upcoming weeks and also on the connections between the various cities(<script type="math/tex; mode=display">flights</script>).</p>
+<p>Therefore, we can make use of a 2-D <script type="math/tex; mode=display">dp</script>, in which <script type="math/tex; mode=display">dp[i][k]</script> represents the maximum number of vacations which can be taken starting from the <script type="math/tex; mode=display">i^{th}</script> city in the <script type="math/tex; mode=display">k^{th}</script> week. This <script type="math/tex; mode=display">dp</script> is filled in the backward manner(in terms of the week number).</p>
+<p>While filling up the entry for <script type="math/tex; mode=display">dp[i][k]</script>, we need to consider the following cases:</p>
+<ol>
+<li>
+<p>We start from the <script type="math/tex; mode=display">i^{th}</script> city in the <script type="math/tex; mode=display">k^{th}</script> week and stay in the same city for the <script type="math/tex; mode=display">(k+1)^{th}</script> week. Thus, the factor to be considered for updating the <script type="math/tex; mode=display">dp[i][k]</script> entry will be given by: <script type="math/tex; mode=display">days[i][k] + dp[i, k+1]</script>.</p>
+</li>
+<li>
+<p>We start from the <script type="math/tex; mode=display">i^{th}</script> city in the <script type="math/tex; mode=display">k^{th}</script> week and move to the <script type="math/tex; mode=display">j^{th}</script> city in the <script type="math/tex; mode=display">(k+1)^{th}</script> week. But, for changing the city in this manner, we need to be able to move from the <script type="math/tex; mode=display">i^{th}</script> city to the <script type="math/tex; mode=display">j^{th}</script> city i.e. <script type="math/tex; mode=display">flights[i][j]</script> should be 1 for such <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script>. </p>
+</li>
+</ol>
+<p>But, while changing the city from <script type="math/tex; mode=display">i^{th}</script> city in the <script type="math/tex; mode=display">k^{th}</script> week, we can move to any <script type="math/tex; mode=display">j^{th}</script> city such that a connection exists between the <script type="math/tex; mode=display">i^{th}</script> city and the <script type="math/tex; mode=display">j^{th}</script> city i.e. <script type="math/tex; mode=display">flights[i][j]=1</script>. But, in order to maximize the number of vacations that can be taken starting from the <script type="math/tex; mode=display">i^{th}</script> city in the <script type="math/tex; mode=display">k^{th}</script> week, we need to choose the destination city that leads to maximum no. of vacations. Thus, the factor to be considered here, is given by: <script type="math/tex; mode=display">\text{max}days[j][k] + days[j, k+1]</script>, for all <script type="math/tex; mode=display">i</script>, <script type="math/tex; mode=display">j</script>, <script type="math/tex; mode=display">k</script> satisfying <script type="math/tex; mode=display">flights[i][j] = 1</script>, <script type="math/tex; mode=display">0 &leq; i,j &leq; n, where </script>n$$ refers to the number of cities.</p>
+<p>At the end, we need to find the maximum out of these two factors to update the <script type="math/tex; mode=display">dp[i][k]</script> value.</p>
+<p>In order to fill the <script type="math/tex; mode=display">dp</script> values, we start by filling the entries for the last week and proceed backwards. At last, the value of <script type="math/tex; mode=display">dp[0][0]</script> gives the required result.</p>
+<p>The following animation illustrates the process of filling the <script type="math/tex; mode=display">dp</script> array.</p>
+<p>!?!../Documents/568_Maximum_Vacation_Days.json:1000,563!?!</p>
+<p>Below code is inspired by <a href="http://leetcode.com/hackerhuang">@hackerhuang</a></p>
+<iframe frameborder="0" height="343" name="hLAaTwUh" src="https://leetcode.com/playground/hLAaTwUh/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2k)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n*k</script> is filled and each cell filling takes O(n) time. Here <script type="math/tex; mode=display">n</script> represents the number of cities and <script type="math/tex; mode=display">k</script> is the total number of weeks.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n*k)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n*k</script> is used. </p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-1-d-dynamic-programming-accepted">Approach #4 Using 1-D Dynamic Programming [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>As can be observed in the previous approach, in order to update the <script type="math/tex; mode=display">dp</script> entries for <script type="math/tex; mode=display">i^{th}</script> week, we only need the values corresponding to <script type="math/tex; mode=display">(i+1)^{th}</script> week along with the <script type="math/tex; mode=display">days</script> and <script type="math/tex; mode=display">flights</script> array. Thus, instead of using a 2-D <script type="math/tex; mode=display">dp</script> array, we can omit the dimension corresponding to the weeks and make use of a 1-D <script type="math/tex; mode=display">dp</script> array. </p>
+<p>Now, <script type="math/tex; mode=display">dp[i]</script> is used to store the number of vacations that provided that we start from the <script type="math/tex; mode=display">i^{th}</script> city in the current week. The procedure remains the same as that of the previous approach, except that we make the updations in the same <script type="math/tex; mode=display">dp</script> row again and again. In order to store the <script type="math/tex; mode=display">dp</script> values corresponding to the current week temporarily, we make use of a <script type="math/tex; mode=display">temp</script> array so that the original <script type="math/tex; mode=display">dp</script> entries corresponding to <script type="math/tex; mode=display">week+1</script> aren't altered.</p>
+<iframe frameborder="0" height="394" name="6eAfgP4u" src="https://leetcode.com/playground/6eAfgP4u/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2k)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n*k</script> is filled and each cell filling takes O(n) time. Here <script type="math/tex; mode=display">n</script> represents the number of cities and <script type="math/tex; mode=display">k</script> is the total number of weeks.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(k)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">nk</script> is used. </p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">5058</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">13050</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              8%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>
