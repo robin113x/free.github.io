@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="There is a table courses with columns: student and class
+
+Please list out all classes which have more than or equal to 5 students.
+
+
+For example, the table:
+
+
++---------+------------+
+| student | class      |
++---------+------------+
+| A       | Math       |
+| B       | English    |
+| C       | Math       |
+| D       | Biology    |
+| E       | Math       |
+| F       | Computer   |
+| G       | Math       |
+| H       | Math       |
+| I       | Math       |
++---------+------------+
+
+
+Should output:
+
++---------+
+| class   |
++---------+
+| Math    |
++---------+
+
+
+
+Note:
+The students should not be counted duplicate in each course.">
+  <meta name="keywords"
+        content="Classes More Than 5 Students, LC 596, leetcode 596, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>596. Classes More Than 5 Students</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+There is a table <code>courses</code> with columns: <b>student</b> and <b>class</b>
+</p><p>
+Please list out all classes which have more than or equal to 5 students.
+</p>
+<p>
+For example, the table:
+</p>
+<pre>
++---------+------------+
+| student | class      |
++---------+------------+
+| A       | Math       |
+| B       | English    |
+| C       | Math       |
+| D       | Biology    |
+| E       | Math       |
+| F       | Computer   |
+| G       | Math       |
+| H       | Math       |
+| I       | Math       |
++---------+------------+
+</pre>
+<p>
+Should output:
+<pre>
++---------+
+| class   |
++---------+
+| Math    |
++---------+
+</pre>
+</p>
+<p>
+<b>Note:</b><br>
+The students should not be counted duplicate in each course.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-using-group-by-clause-and-sub-query-accepted">Approach: Using GROUP BY clause and sub-query [Accepted]</a></li>
+<li><a href="#approach-using-group-by-and-having-condition-accepted">Approach: Using GROUP BY and HAVING condition [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-using-group-by-clause-and-sub-query-accepted">Approach: Using <code>GROUP BY</code> clause and <strong>sub-query</strong> [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>First, we can count the student number in each class. And then select the ones have more than 5 students.</p>
+<p><strong>Algorithm</strong></p>
+<p>To get the student number in each class. We can use <code>GROUP BY</code> and <code>COUNT</code>, which is very popular used to statistic bases on some character in a table.</p>
+<div class="codehilite"><pre><span></span><span class="k">SELECT</span>
+    <span class="k">class</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">student</span><span class="p">)</span>
+<span class="k">FROM</span>
+    <span class="n">courses</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="k">class</span>
+<span class="p">;</span>
+</pre></div>
+<blockquote>
+<p>Note: We use <code>DISTINCT</code> here since the student name may duplicated in a class as it is mentioned int he problem description.</p>
+</blockquote>
+<div class="codehilite"><pre><span></span>| class    | COUNT(student) |
+|----------|----------------|
+| Biology  | 1              |
+| Computer | 1              |
+| English  | 1              |
+| Math     | 6              |
+</pre></div>
+<p>To continue, we can filter the classes by taking the above query as a sub-query.</p>
+<div class="codehilite"><pre><span></span><span class="k">SELECT</span>
+    <span class="k">class</span>
+<span class="k">FROM</span>
+    <span class="p">(</span><span class="k">SELECT</span>
+        <span class="k">class</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">student</span><span class="p">)</span> <span class="k">AS</span> <span class="n">num</span>
+    <span class="k">FROM</span>
+        <span class="n">courses</span>
+    <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">class</span><span class="p">)</span> <span class="k">AS</span> <span class="n">temp_table</span>
+<span class="k">WHERE</span>
+    <span class="n">num</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+<span class="p">;</span>
+</pre></div>
+<blockquote>
+<p>Note: Make an alias of <code>COUNT(student)</code> ('num' in this case) so that you can use in the <code>WHERE</code> clause because it cannot be used directly over there.</p>
+</blockquote>
+<h4 id="approach-using-group-by-and-having-condition-accepted">Approach: Using <code>GROUP BY</code> and <code>HAVING</code> condition [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Using sub-query is one way to add some condition to a <code>GROUP BY</code> clause, however, using <a href="https://dev.mysql.com/doc/refman/5.7/en/group-by-handling.html"><code>HAVING</code></a> is another simpler and natural approach. So we can rewrite the above solution as below.</p>
+<p><strong>MySQL</strong></p>
+<div class="codehilite"><pre><span></span><span class="k">SELECT</span>
+    <span class="k">class</span>
+<span class="k">FROM</span>
+    <span class="n">courses</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="k">class</span>
+<span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">student</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+<span class="p">;</span>
+</pre></div>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">9924</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">35895</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              32%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

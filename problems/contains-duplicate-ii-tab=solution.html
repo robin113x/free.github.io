@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k.">
+  <meta name="keywords"
+        content="Contains Duplicate II, LC 219, leetcode 219, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>219. Contains Duplicate II</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given an array of integers and an integer <i>k</i>, find out whether there are two distinct indices <i>i</i> and <i>j</i> in the array such that <b>nums[i] = nums[j]</b> and the <b>absolute</b> difference between <i>i</i> and <i>j</i> is at most <i>k</i>.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-naive-linear-search-time-limit-exceeded">Approach #1 (Naive Linear Search) [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-binary-search-tree-time-limit-exceeded">Approach #2 (Binary Search Tree) [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-hash-table-accepted">Approach #3 (Hash Table) [Accepted]</a></li>
+</ul>
+</li>
+<li><a href="#see-also">See Also</a></li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>This article is for beginners. It introduces the following ideas:
+Linear Search, Binary Search Tree and Hash Table.</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-naive-linear-search-time-limit-exceeded">Approach #1 (Naive Linear Search) [Time Limit Exceeded]</h4>
+<p><strong>Intuition</strong></p>
+<p>Look for duplicate element in the previous <script type="math/tex; mode=display">k</script> elements.</p>
+<p><strong>Algorithm</strong></p>
+<p>This algorithm is the same as <a href="https://leetcode.com/articles/contains-duplicate/#approach-1-naive-linear-search-time-limit-exceeded">Approach #1 in Contains Duplicate solution</a>, except that it looks at previous <script type="math/tex; mode=display">k</script> elements instead of all its previous elements.</p>
+<p>Another perspective of this algorithm is to keep a virtual sliding window of the previous <script type="math/tex; mode=display">k</script> elements. We scan for the duplicate in this window.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">containsNearbyDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="c1">// Time Limit Exceeded.</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n \min(k,n))</script>.
+It costs <script type="math/tex; mode=display">O(\min(k, n))</script> time for each linear search. Apparently we do at most <script type="math/tex; mode=display">n</script> comparisons in one search even if <script type="math/tex; mode=display">k</script> can be larger than <script type="math/tex; mode=display">n</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-binary-search-tree-time-limit-exceeded">Approach #2 (Binary Search Tree) [Time Limit Exceeded]</h4>
+<p><strong>Intuition</strong></p>
+<p>Keep a sliding window of <script type="math/tex; mode=display">k</script> elements using self-balancing Binary Search Tree (BST).</p>
+<p><strong>Algorithm</strong></p>
+<p>The key to improve upon <a href="#approach-1-naive-linear-search-time-limit-exceeded">Approach #1</a> above is to reduce the search time of the previous <script type="math/tex; mode=display">k</script> elements. Can we use an auxiliary data structure to maintain a sliding window of <script type="math/tex; mode=display">k</script> elements with more efficient <code>search</code>, <code>delete</code>, and <code>insert</code> operations? Since elements in the sliding window are strictly First-In-First-Out (FIFO), queue is a natural data structure. A queue using a linked list implementation supports constant time <code>delete</code> and <code>insert</code> operations, however the <code>search</code> costs linear time, which is <em>no better</em> than <a href="#approach-1-naive-linear-search-time-limit-exceeded">Approach #1</a>.</p>
+<p>A better option is to use a self-balancing BST. A BST supports <code>search</code>, <code>delete</code> and <code>insert</code> operations all in <script type="math/tex; mode=display">O(\log k)</script> time, where <script type="math/tex; mode=display">k</script> is the number of elements in the BST. In most interviews you are not required to implement a self-balancing BST, so you may think of it as a black box. Most programming languages provide implementations of this useful data structure in its standard library. In Java, you may use a <code>TreeSet</code> or a <code>TreeMap</code>. In C++ STL, you may use a <code>std::set</code> or a <code>std::map</code>.</p>
+<p>If you already have such a data structure available, the pseudocode is:</p>
+<ul>
+<li>Loop through the array, for each element do<ul>
+<li>Search current element in the BST, return <code>true</code> if found</li>
+<li>Put current element in the BST</li>
+<li>If the size of the BST is larger than <script type="math/tex; mode=display">k</script>, remove the oldest item.</li>
+</ul>
+</li>
+<li>Return <code>false</code></li>
+</ul>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">containsNearbyDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;&gt;();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">set</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]))</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">set</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">set</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="o">]);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="c1">// Time Limit Exceeded.</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n \log (\min(k,n)))</script>. We do <script type="math/tex; mode=display">n</script> operations of <code>search</code>, <code>delete</code> and <code>insert</code>. Each operation costs logarithmic time complexity in the sliding window which size is <script type="math/tex; mode=display">\min(k, n)</script>. Note that even if <script type="math/tex; mode=display">k</script> can be greater than <script type="math/tex; mode=display">n</script>, the window size can never exceed <script type="math/tex; mode=display">n</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(\min(n,k))</script>.
+Space is the size of the sliding window which should not exceed <script type="math/tex; mode=display">n</script> or <script type="math/tex; mode=display">k</script>.</p>
+</li>
+</ul>
+<p><strong>Note</strong></p>
+<p>The algorithm still gets Time Limit Exceeded for large <script type="math/tex; mode=display">n</script> and <script type="math/tex; mode=display">k</script>.</p>
+<hr/>
+<h4 id="approach-3-hash-table-accepted">Approach #3 (Hash Table) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Keep a sliding window of <script type="math/tex; mode=display">k</script> elements using Hash Table.</p>
+<p><strong>Algorithm</strong></p>
+<p>From the previous approaches, we know that even logarithmic performance in <code>search</code> is not enough.
+In this case, we need a data structure supporting constant time <code>search</code>, <code>delete</code> and <code>insert</code> operations.
+Hash Table is the answer. The algorithm and implementation are almost identical to <a href="#approach-2-binary-search-tree-time-limit-exceeded">Approach #2</a>.</p>
+<ul>
+<li>Loop through the array, for each element do<ul>
+<li>Search current element in the HashTable, return <code>true</code> if found</li>
+<li>Put current element in the HashTable</li>
+<li>If the size of the HashTable is larger than <script type="math/tex; mode=display">k</script>, remove the oldest item.</li>
+</ul>
+</li>
+<li>Return <code>false</code></li>
+</ul>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">containsNearbyDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">set</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]))</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">set</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">set</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="o">]);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>.
+We do <script type="math/tex; mode=display">n</script> operations of <code>search</code>, <code>delete</code> and <code>insert</code>, each with constant time complexity.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(\min(n,k))</script>.
+The extra space required depends on the number of items stored in the hash table, which is the size of the sliding window, <script type="math/tex; mode=display">\min(n,k)</script>.</p>
+</li>
+</ul>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="https://leetcode.com/articles/contains-duplicate/">Problem 217 Contains Duplicate</a></li>
+<li><a href="https://leetcode.com/articles/contains-duplicate-iii/">Problem 220 Contains Duplicate III</a></li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">129518</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">396253</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              83%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/airbnb.html">Airbnb</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/palantir.html">Palantir</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

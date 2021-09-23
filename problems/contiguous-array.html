@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a binary array, find the maximum length of a contiguous subarray with equal number of 0 and 1. 
+Example 1:
+Input: [0,1]
+Output: 2
+Explanation: [0, 1] is the longest contiguous subarray with equal number of 0 and 1.
+
+
+Example 2:
+Input: [0,1,0]
+Output: 2
+Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal number of 0 and 1.
+
+
+Note:
+The length of the given binary array will not exceed 50,000.">
+  <meta name="keywords"
+        content="Contiguous Array, LC 525, leetcode 525, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>525. Contiguous Array</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a binary array, find the maximum length of a contiguous subarray with equal number of 0 and 1. </p>
+
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> [0,1]
+<b>Output:</b> 2
+<b>Explanation:</b> [0, 1] is the longest contiguous subarray with equal number of 0 and 1.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> [0,1,0]
+<b>Output:</b> 2
+<b>Explanation:</b> [0, 1] (or [1, 0]) is a longest contiguous subarray with equal number of 0 and 1.
+</pre>
+</p>
+
+<p><b>Note:</b>
+The length of the given binary array will not exceed 50,000.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-extra-array-accepted">Approach #2 Using Extra Array [Accepted]</a></li>
+<li><a href="#approach-3-using-hashmap-accepted">Approach #3 Using HashMap [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The brute force approach is really simple. We consider every possible subarray within the given array and count the number of zeros and ones in each subarray. Then, we find out the maximum size subarray with equal no. of zeros and ones out of them.</p>
+<iframe frameborder="0" height="428" name="sPZqbexo" src="https://leetcode.com/playground/sPZqbexo/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. We consider every possible subarray by traversing over the complete array for every start point possible.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Only two variables <script type="math/tex; mode=display">zeroes</script> and <script type="math/tex; mode=display">ones</script> are required.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-extra-array-accepted">Approach #2 Using Extra Array [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, we make use of a <script type="math/tex; mode=display">count</script> variable, which is used to store the relative number of ones and zeros encountered so far while traversing the array. The <script type="math/tex; mode=display">count</script> variable is incremented by one for every <script type="math/tex; mode=display">\text{1}</script> encountered and the same is decremented by one for every <script type="math/tex; mode=display">\text{0}</script> encountered.</p>
+<p>We start traversing the array from the beginning. If at any moment, the <script type="math/tex; mode=display">count</script> becomes zero, it implies that we've encountered equal number of zeros and ones from the beginning till the current index of the array(<script type="math/tex; mode=display">i</script>). Not only this, another point to be noted is that  if we encounter the same <script type="math/tex; mode=display">count</script> twice while traversing the array, it means that the number of zeros and ones are equal between the indices corresponding to the equal <script type="math/tex; mode=display">count</script> values. The following figure illustrates the observation for the sequence <code>[0 0 1 0 0 0 1 1]</code>:</p>
+<p><img alt="Contiguous_Array" src="https://leetcode.com/articles/Figures/535_Contiguous_Array.PNG"/></p>
+<p>In the above figure, the subarrays between (A,B), (B,C) and (A,C) (lying between indices corresponing to <script type="math/tex; mode=display">count = 2</script>) have equal number of zeros and ones.</p>
+<p>Another point to be noted is that the largest subarray is the one between the points (A, C). Thus, if we keep a track of the indices corresponding to the same <script type="math/tex; mode=display">count</script> values that lie farthest apart, we can determine the size of the largest subarray with equal no. of zeros and ones easily.</p>
+<p>Now, the <script type="math/tex; mode=display">count</script> values can range between <script type="math/tex; mode=display">\text{-n}</script> to <script type="math/tex; mode=display">\text{+n}</script>, with the extreme points corresponding to the complete array being filled with all 0's and all 1's respectively. Thus, we make use of an array <script type="math/tex; mode=display">arr</script>(of size <script type="math/tex; mode=display">\text{2n+1}</script>to keep a track of the various <script type="math/tex; mode=display">count</script>'s encountered so far. We make an entry containing the current element's index (<script type="math/tex; mode=display">i</script>) in the <script type="math/tex; mode=display">arr</script> for a new <script type="math/tex; mode=display">count</script> encountered everytime. Whenever, we come across the same <script type="math/tex; mode=display">count</script> value later while traversing the array, we determine the length of the subarray lying between the indices corresponding to the same <script type="math/tex; mode=display">count</script> values.</p>
+<iframe frameborder="0" height="411" name="Nvw6WnPN" src="https://leetcode.com/playground/Nvw6WnPN/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. The complete array is traversed only once.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">arr</script> array of size <script type="math/tex; mode=display">\text{2n+1}</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-hashmap-accepted">Approach #3 Using HashMap [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>This approach relies on the same premise as the previous approach. But, we need not use an array of size <script type="math/tex; mode=display">\text{2n+1}</script>, since it isn't necessary that we'll encounter all the <script type="math/tex; mode=display">count</script> values possible. Thus, we make use of a HashMap <script type="math/tex; mode=display">map</script> to store the entries in the form of <script type="math/tex; mode=display">(index, count)</script>. We make an entry for a <script type="math/tex; mode=display">count</script> in the <script type="math/tex; mode=display">map</script> whenever the <script type="math/tex; mode=display">count</script> is encountered first, and later on use the correspoding index to find the length of the largest subarray with equal no. of zeros and ones when the same <script type="math/tex; mode=display">count</script> is encountered again.</p>
+<p>The following animation depicts the process:
+<!--<img alt="Contiguous_Array" src="https://leetcode.com/articles/Figures/525_Contiguous_Array.gif" />-->
+!?!../Documents/525_Contiguous_Array.json:1000,563!?!</p>
+<iframe frameborder="0" height="360" name="nG5CTUD8" src="https://leetcode.com/playground/nG5CTUD8/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. The entire array is traversed only once.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Maximum size of the HashMap <script type="math/tex; mode=display">map</script> will be <script type="math/tex; mode=display">\text{n}</script>, if all the elements are either 1 or 0.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">19325</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">46971</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              23%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

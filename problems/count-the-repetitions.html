@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Define S = [s,n] as the string S which consists of n connected strings s. For example, [&#34;abc&#34;, 3] =&#34;abcabcabc&#34;. 
+On the other hand, we define that string s1 can be obtained from string s2 if we can remove some characters from s2 such that it becomes s1. For example, “abc”  can be obtained from “abdbec” based on our definition, but it can not be obtained from “acbbe”.
+You are given two non-empty strings s1 and s2 (each at most 100 characters long) and two integers 0 ≤ n1 ≤ 106 and 1 ≤ n2 ≤ 106. Now consider the strings S1 and S2, where S1=[s1,n1] and S2=[s2,n2]. Find the maximum integer M such that [S2,M] can be obtained from S1.
+Example:
+
+Input:
+s1=&#34;acb&#34;, n1=4
+s2=&#34;ab&#34;, n2=2
+
+Return:
+2">
+  <meta name="keywords"
+        content="Count The Repetitions, LC 466, leetcode 466, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>466. Count The Repetitions</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Define <code>S = [s,n]</code> as the string S which consists of n connected strings s. For example, <code>["abc", 3]</code> ="abcabcabc". </p>
+<p>On the other hand, we define that string s1 can be obtained from string s2 if we can remove some characters from s2 such that it becomes s1. For example, “abc”  can be obtained from “abdbec” based on our definition, but it can not be obtained from “acbbe”.</p>
+<p>You are given two non-empty strings s1 and s2 (each at most 100 characters long) and two integers 0 &le; n1 &le; 10<sup>6</sup> and 1 &le; n2 &le; 10<sup>6</sup>. Now consider the strings S1 and S2, where <code>S1=[s1,n1]</code> and <code>S2=[s2,n2]</code>. Find the maximum integer M such that <code>[S2,M]</code> can be obtained from <code>S1</code>.</p>
+
+<p><b>Example:</b>
+<pre>
+Input:
+s1="acb", n1=4
+s2="ab", n2=2
+
+Return:
+2
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-a-better-brute-force-accepted">Approach #2 A better brute force [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute force [Time Limit Exceeded]</h4>
+<p><strong>Intuition</strong></p>
+<p>According to the question, we need to find <script type="math/tex; mode=display">m</script> such that <script type="math/tex; mode=display">[S2,m]</script> is the largest subsequence that can be found in <script type="math/tex; mode=display">S1</script>. <script type="math/tex; mode=display">S2</script> is essentially <script type="math/tex; mode=display">[s2,n2]</script> and <script type="math/tex; mode=display">S1</script> is <script type="math/tex; mode=display">[s1,n1]</script> and so, we can find the number of times <script type="math/tex; mode=display">s2</script> repeats in <script type="math/tex; mode=display">[s1,n1]</script>, say <script type="math/tex; mode=display">\text{repeat_count}</script>. And the number of times <script type="math/tex; mode=display">S2</script> repeats in <script type="math/tex; mode=display">S1</script> is therefore <script type="math/tex; mode=display">\text{(repeat_count/n2)}</script>. Simple.</p>
+<p><strong>Algorithm</strong></p>
+<ul>
+<li>Initialize <script type="math/tex; mode=display">\text{index=0}</script> and <script type="math/tex; mode=display">\text{repeat_count=0}</script>. <script type="math/tex; mode=display">\text{index}</script> represents the current index in <script type="math/tex; mode=display">s2</script> to be checked against <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">\text{repeat_count}</script> represents the number of times <script type="math/tex; mode=display">s2</script> repeats in <script type="math/tex; mode=display">S1</script>.</li>
+<li>Iterate over the variable <script type="math/tex; mode=display">i</script> from <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">n1-1</script>:<ul>
+<li>Iterate over the variable <script type="math/tex; mode=display">j</script> from <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">\text{size(s1)}-1</script>:  <ul>
+<li>If <script type="math/tex; mode=display">\text{s1[j] }</script> is equal to <script type="math/tex; mode=display">\text{s2[index]}</script>, increment <script type="math/tex; mode=display">\text{index}</script>.</li>
+<li>If <script type="math/tex; mode=display">index</script> is equal to <script type="math/tex; mode=display">size(s2)</script>, this implies that <script type="math/tex; mode=display">s2</script> has completed one repartition and hence set <script type="math/tex; mode=display">\text{index=0}</script> and increment the <script type="math/tex; mode=display">\text{repeat_count}</script>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Return <script type="math/tex; mode=display">\text{(repeat_count / n2)}</script> since, <script type="math/tex; mode=display">S2</script> is <script type="math/tex; mode=display">\text{[s2,n2]}</script>.</li>
+</ul>
+<iframe frameborder="0" height="326" name="y5jtZgJj" src="https://leetcode.com/playground/y5jtZgJj/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O(n1*size(s1))</script>.</p>
+<ul>
+<li>We iterate over the entire length of string <script type="math/tex; mode=display">s1</script> for <script type="math/tex; mode=display">n1</script> times.</li>
+</ul>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(1)</script> extra space for <script type="math/tex; mode=display">\text{index}</script> and <script type="math/tex; mode=display">\text{repeat_count}</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-a-better-brute-force-accepted">Approach #2 A better brute force [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>In Approach #1, we simply checked for repetition over the entire <script type="math/tex; mode=display">[s1,n1]</script>. However, <script type="math/tex; mode=display">n1</script> could be quiet large and thus, is inefficient to iterate over complete <script type="math/tex; mode=display">S1</script>. We can take advantage of the fact that <script type="math/tex; mode=display">s1</script> is repeating and hence, we could find a pattern of repetition of <script type="math/tex; mode=display">s2</script> in <script type="math/tex; mode=display">S1</script>. Once, we get the repetition pattern, we can easy calculate how many times the pattern repeats in <script type="math/tex; mode=display">n2</script> in <script type="math/tex; mode=display">O(1)</script>.</p>
+<p><em>But what's the pattern!</em></p>
+<p>In approach #1, we kept <script type="math/tex; mode=display">\text{index}</script> which tells the index to search in <script type="math/tex; mode=display">s2</script>. We try to see in the below illustration if this <script type="math/tex; mode=display">\text{index}</script> repeats itself after some fixed iterations of <script type="math/tex; mode=display">s1</script> or not and if so, then how can we leverage it.</p>
+<p align="center"><img alt="Count the repitition" src="https://leetcode.com/articles/Figures/466/count_the_repititions.png" width="700px"/></p>
+<p>After finding the repitition pattern, we can calculate the sum of repeating pattern, part before repitition and part left after repitition as the result in <script type="math/tex; mode=display">O(1)</script>.   </p>
+<p><em>But will this repitition always take place?</em></p>
+<p>Yes! By <strong>Pigeonhole principle</strong>, which states that if <script type="math/tex; mode=display">n</script> items are put into <script type="math/tex; mode=display">m</script> containers, with <script type="math/tex; mode=display">n > m</script>, then at least one container must contain more than one item. So, according to this, we are sure to find 2 same <script type="math/tex; mode=display">index</script> after scanning at max <script type="math/tex; mode=display">\text{size(s2)}</script> blocks of <script type="math/tex; mode=display">s1</script>.</p>
+<p><strong>Algorithm</strong></p>
+<ul>
+<li>Intialize <script type="math/tex; mode=display">count=0</script> nd <script type="math/tex; mode=display">index=0</script>, which are same as in Approach #1.</li>
+<li>Initialize 2 arrays, say <script type="math/tex; mode=display">\text{indexr}</script> and <script type="math/tex; mode=display">\text{countr}</script> of size <script type="math/tex; mode=display">(\text{size(s2)}+1)</script>, initialized with 0. The size <script type="math/tex; mode=display">(\text{size(s2)}+1)</script> is based on the Pigeonhole principle as discussed above. The 2 arrays specifies the <script type="math/tex; mode=display">\text{index}</script> and <script type="math/tex; mode=display">\text{count}</script> at the start of each <script type="math/tex; mode=display">s1</script> block.</li>
+<li>Iterate over <script type="math/tex; mode=display">i</script> from <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">n1-1</script>:<ul>
+<li>Iterate over <script type="math/tex; mode=display">j</script> from <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">\text{size(s1)}-1</script>:<ul>
+<li>If <script type="math/tex; mode=display">\text{s1[j]} == \text{s2[index]}</script>, increment <script type="math/tex; mode=display">\text{index}</script>.</li>
+<li>If <script type="math/tex; mode=display">\text{index}</script> is equal to <script type="math/tex; mode=display">\text{size(s2)}</script>, set <script type="math/tex; mode=display">\text{index} = 0</script> and increment <script type="math/tex; mode=display">\text{count}</script>.</li>
+</ul>
+</li>
+<li>Set <script type="math/tex; mode=display">\text{countr[i]}=\text{count}</script> and <script type="math/tex; mode=display">\text{indexr[i]}=\text{index}</script>
+</li>
+<li>
+<p>Iterate over <script type="math/tex; mode=display">k</script> from <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">i-1</script>:</p>
+<ul>
+<li>If we find the repitition, i.e. current <script type="math/tex; mode=display">\text{index} = \text{indexr[k]}</script>, we calculate the count for block before the repitition starts, the repeating block and the block left after repitition pattern, which can be calculated as:</li>
+</ul>
+<p>
+<script type="math/tex; mode=display">
+\begin{align}
+\text{prev_count} &= \text{countr}[k] \\
+\text{pattern_count} &= (\text{countr}[i] - \text{countr}[k]) * \frac{n1 - 1 - k}{i - k} \\
+\text{remain_count} &= \text{countr}\left[k + \left(n1 - 1 - k\right) \% \left(i - k \right)\right] - \text{countr}[k]
+\end{align}
+</script>
+</p>
+<ul>
+<li>Sum the 3 counts and return the sum divided by <script type="math/tex; mode=display">n2</script>, since <script type="math/tex; mode=display">\text{S2 = [s2,n2]}</script>
+</li>
+<li>If no repetition is found, return <script type="math/tex; mode=display">\text{countr[n1-1]/n2}</script>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<iframe frameborder="0" height="515" name="2UJEXG8V" src="https://leetcode.com/playground/2UJEXG8V/shared" width="100%"></iframe>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">\text{O(size(s1)*size(s2))}</script>.</p>
+<ul>
+<li>According to the Pigeonhole principle, we need to iterate over <script type="math/tex; mode=display">s1</script> only <script type="math/tex; mode=display">(\text{size(s2)+1})</script> times at max.</li>
+</ul>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(\text{size(s2)})</script> extra space for <script type="math/tex; mode=display">\text{indexr}</script> and <script type="math/tex; mode=display">\text{countr}</script> string.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by <a href="https://leetcode.com/abhinavbansal0">@abhinavbansal0</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">4884</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">17696</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              34%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

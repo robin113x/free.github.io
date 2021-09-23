@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="In a N x N grid representing a field of cherries, each cell is one of three possible integers.
+
+0 means the cell is empty, so you can pass through;
+1 means the cell contains a cherry, that you can pick up and pass through;
+-1 means the cell contains a thorn that blocks your way.
+
+Your task is to collect maximum number of cherries possible by following the rules below:
+
+Starting at the position (0, 0) and reaching (N-1, N-1) by moving right or down through valid path cells (cells with value 0 or 1);
+After reaching (N-1, N-1), returning to (0, 0) by moving left or up through valid path cells;
+When passing through a path cell containing a cherry, you pick it up and the cell becomes an empty cell (0);
+If there is no valid path between (0, 0) and (N-1, N-1), then no cherries can be collected.
+
+Example 1:
+Input: grid =
+[[0, 1, -1],
+ [1, 0, -1],
+ [1, 1,  1]]
+Output: 5
+Explanation: 
+The player started at (0, 0) and went down, down, right right to reach (2, 2).
+4 cherries were picked up during this single trip, and the matrix becomes [[0,1,-1],[0,0,-1],[0,0,0]].
+Then, the player went left, up, up, left to return home, picking up one more cherry.
+The total number of cherries picked up is 5, and this is the maximum possible.
+
+
+Note:
+grid is an N by N 2D array, with 1 &lt;= N &lt;= 50.
+Each grid[i][j] is an integer in the set {-1, 0, 1}.
+It is guaranteed that grid[0][0] and grid[N-1][N-1] are not -1.">
+  <meta name="keywords"
+        content="Cherry Pickup, LC 741, leetcode 741, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>741. Cherry Pickup</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+In a N x N <code>grid</code> representing a field of cherries, each cell is one of three possible integers.
+</p><p>
+<li>0 means the cell is empty, so you can pass through;</li>
+<li>1 means the cell contains a cherry, that you can pick up and pass through;</li>
+<li>-1 means the cell contains a thorn that blocks your way.</li>
+</p><p>
+Your task is to collect maximum number of cherries possible by following the rules below:
+</p><p>
+<li>Starting at the position (0, 0) and reaching (N-1, N-1) by moving right or down through valid path cells (cells with value 0 or 1);</li>
+<li>After reaching (N-1, N-1), returning to (0, 0) by moving left or up through valid path cells;</li>
+<li>When passing through a path cell containing a cherry, you pick it up and the cell becomes an empty cell (0);</li>
+<li>If there is no valid path between (0, 0) and (N-1, N-1), then no cherries can be collected.</li>
+</p><p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> grid =
+[[0, 1, -1],
+ [1, 0, -1],
+ [1, 1,  1]]
+<b>Output:</b> 5
+<b>Explanation:</b> 
+The player started at (0, 0) and went down, down, right right to reach (2, 2).
+4 cherries were picked up during this single trip, and the matrix becomes [[0,1,-1],[0,0,-1],[0,0,0]].
+Then, the player went left, up, up, left to return home, picking up one more cherry.
+The total number of cherries picked up is 5, and this is the maximum possible.
+</pre>
+</p>
+
+<p><b>Note:</b>
+<li><code>grid</code> is an <code>N</code> by <code>N</code> 2D array, with <code>1 <= N <= 50</code>.</li>
+<li>Each <code>grid[i][j]</code> is an integer in the set <code>{-1, 0, 1}</code>.</li>
+<li>It is guaranteed that grid[0][0] and grid[N-1][N-1] are not -1.<li>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-greedy-wrong-answer">Approach #1: Greedy [Wrong Answer]</a></li>
+<li><a href="#approach-2-dynamic-programming-top-down-accepted">Approach #2: Dynamic Programming (Top Down) [Accepted]</a></li>
+<li><a href="#approach-3-dynamic-programming-bottom-up-accepted">Approach #3: Dynamic Programming (Bottom Up) [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-greedy-wrong-answer">Approach #1: Greedy [Wrong Answer]</h4>
+<p><strong>Intuition</strong></p>
+<p>Let's find the most cherries we can pick up with one path, pick them up, then find the most cherries we can pick up with a second path on the remaining field.</p>
+<p>Though a counter example might be hard to think of, this approach fails to find the best answer to this case:</p>
+<div class="codehilite"><pre><span></span><span class="mi">11100</span>
+<span class="mo">00101</span>
+<span class="mi">10100</span>
+<span class="mo">00100</span>
+<span class="mo">00111</span>
+</pre></div>
+<p><strong>Algorithm</strong></p>
+<p>We can use dynamic programming to find the most number of cherries <code>dp[i][j]</code> that can be picked up from any location <code>(i, j)</code> to the bottom right corner.  This is a classic question very similar to <a href="https://leetcode.com/problems/minimum-path-sum/description/">Minimum Path Sum</a>, refer to the link if you are not familiar with this type of question.</p>
+<p>After, we can find an first path that maximizes the number of cherries taken by using our completed <code>dp</code> as an oracle for deciding where to move.  We'll choose the move that allows us to pick up more cherries (based on comparing <code>dp[i+1][j]</code> and <code>dp[i][j+1]</code>).</p>
+<p>After taking the cherries from that path (and removing it from the grid), we'll take the cherries again.</p>
+<iframe frameborder="0" height="500" name="DezZpWur" src="https://leetcode.com/playground/DezZpWur/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N^2)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>grid</code>.  Our dynamic programming consists of two for-loops of length <code>N</code>.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N^2)</script>, the size of <code>dp</code>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-dynamic-programming-top-down-accepted">Approach #2: Dynamic Programming (Top Down) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Instead of walking from end to beginning, let's reverse the second leg of the path, so we are only considering two paths from the beginning to the end.</p>
+<p>Notice after <code>t</code> steps, each position <code>(r, c)</code> we could be, is on the line <code>r + c = t</code>.  So if we have two people at positions <code>(r1, c1)</code> and <code>(r2, c2)</code>, then <code>r2 = r1 + c1 - c2</code>.  That means the variables <code>r1, c1, c2</code> uniquely determine 2 people who have walked the same <code>r1 + c1</code> number of steps.  This sets us up for dynamic programming quite nicely.</p>
+<p><strong>Algorithm</strong></p>
+<p>Let <code>dp[r1][c1][c2]</code> be the most number of cherries obtained by two people starting at <code>(r1, c1)</code> and <code>(r2, c2)</code> and walking towards <code>(N-1, N-1)</code> picking up cherries, where <code>r2 = r1+c1-c2</code>.</p>
+<p>If <code>grid[r1][c1]</code> and <code>grid[r2][c2]</code> are not thorns, then the value of <code>dp[r1][c1][c2]</code> is <code>(grid[r1][c1] + grid[r2][c2])</code>, plus the maximum of <code>dp[r1+1][c1][c2]</code>, <code>dp[r1][c1+1][c2]</code>, <code>dp[r1+1][c1][c2+1]</code>, <code>dp[r1][c1+1][c2+1]</code> as appropriate.  We should also be careful to not double count in case <code>(r1, c1) == (r2, c2)</code>.</p>
+<iframe frameborder="0" height="500" name="ykWmWdzo" src="https://leetcode.com/playground/ykWmWdzo/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N^3)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>grid</code>.  Our dynamic programming has <script type="math/tex; mode=display">O(N^3)</script> states.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N^3)</script>, the size of <code>memo</code>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-dynamic-programming-bottom-up-accepted">Approach #3: Dynamic Programming (Bottom Up) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Like in <em>Approach #2</em>, we have the idea of dynamic programming.</p>
+<p>Say <code>r1 + c1 = t</code> is the <code>t</code>-th layer.  Since our recursion only references the next layer, we only need to keep two layers in memory at a time.</p>
+<p><strong>Algorithm</strong></p>
+<p>At time <code>t</code>, let <code>dp[c1][c2]</code> be the most cherries that we can pick up for two people going from <code>(0, 0)</code> to <code>(r1, c1)</code> and <code>(0, 0)</code> to <code>(r2, c2)</code>, where <code>r1 = t-c1, r2 = t-c2</code>.  Our dynamic program proceeds similarly to <em>Approach #2</em>.</p>
+<iframe frameborder="0" height="500" name="dC4XmymT" src="https://leetcode.com/playground/dC4XmymT/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N^3)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>grid</code>.  We have three for-loops of size <script type="math/tex; mode=display">O(N)</script>.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N^2)</script>, the sizes of <code>dp</code> and <code>dp2</code>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.  Solution 3 inspired by <a href="https://leetcode.com/contest/weekly-contest-61/ranking">@uwi</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">995</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">4443</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              2%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/akuna-capital.html">Akuna Capital</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

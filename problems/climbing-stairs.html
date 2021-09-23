@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="You are climbing a stair case. It takes n steps to reach to the top.
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+Note: Given n will be a positive integer.
+
+
+Example 1:
+Input: 2
+Output:  2
+Explanation:  There are two ways to climb to the top.
+
+1. 1 step + 1 step
+2. 2 steps
+
+
+Example 2:
+Input: 3
+Output:  3
+Explanation:  There are three ways to climb to the top.
+
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step">
+  <meta name="keywords"
+        content="Climbing Stairs, LC 70, leetcode 70, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>70. Climbing Stairs</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>You are climbing a stair case. It takes <i>n</i> steps to reach to the top.</p>
+
+<p>Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+</p>
+
+<p><b>Note:</b> Given <i>n</i> will be a positive integer.
+</p>
+
+<br />
+
+<p><b>Example 1:</b>
+<pre>
+<b>Input:</b> 2
+<b>Output:</b>  2
+<b>Explanation:</b>  There are two ways to climb to the top.
+
+1. 1 step + 1 step
+2. 2 steps
+</pre>
+</p>
+
+<p><b>Example 2:</b>
+<pre>
+<b>Input:</b> 3
+<b>Output:</b>  3
+<b>Explanation:</b>  There are three ways to climb to the top.
+
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-recursion-with-memorization-accepted">Approach #2 Recursion with memorization [Accepted]</a></li>
+<li><a href="#approach-3-dynamic-programming-accepted">Approach #3 Dynamic Programming [Accepted]</a></li>
+<li><a href="#approach-4-fibonacci-number-accepted">Approach #4 Fibonacci Number [Accepted]:</a></li>
+<li><a href="#approach-5-binets-method-accepted">Approach #5 Binets Method [Accepted]:</a></li>
+<li><a href="#approach-6-fibonacci-formula-accepted">Approach #6 Fibonacci Formula [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>You are climbing a stair case. It takes n steps to reach to the top.</p>
+<p>Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this brute force approach we take all possible step combinations i.e. 1 and 2, at every step. At every step we are calling the function <script type="math/tex; mode=display">climbStairs</script> for step <script type="math/tex; mode=display">1</script> and <script type="math/tex; mode=display">2</script>, and return the sum of returned values of both functions.</p>
+<p>
+<script type="math/tex; mode=display">climbStairs(i,n)=(i + 1, n) + climbStairs(i + 2, n)</script>, where <script type="math/tex; mode=display">i</script> defines the current step and <script type="math/tex; mode=display">n</script> defines the destination step.</p>
+<iframe frameborder="0" height="309" name="9wu5u86u" src="https://leetcode.com/playground/9wu5u86u/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(2^n)</script>. Size of recursion tree will be <script type="math/tex; mode=display">2^n</script>.</p>
+<p>Recursion tree for n=5 would be like this:</p>
+<p><img alt="Climbing_Stairs" src="https://leetcode.com/articles/Figures/70_Climbing_Stairs_rt.jpg"/></p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The depth of the recursion tree can go upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-recursion-with-memorization-accepted">Approach #2 Recursion with memorization [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the previous approach we are redundantly calculating the result for every step. Instead, we can store the result at each step in <script type="math/tex; mode=display">memo</script> array and directly returning the result from the memo array whenever that function is called again.</p>
+<p>In this way we are pruning recursion tree with the help of <script type="math/tex; mode=display">memo</script> array and reducing the size of recursion tree upto <script type="math/tex; mode=display">n</script>.</p>
+<iframe frameborder="0" height="411" name="8vstwMnN" src="https://leetcode.com/playground/8vstwMnN/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Size of recursion tree can go upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The depth of recursion tree can go upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-dynamic-programming-accepted">Approach #3 Dynamic Programming [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>As we can see this problem can be broken into subproblems, and it contains the optimal substructure property i.e. its optimal solution can be constructed efficiently from optimal solutions of its subproblems, we can use dynamic programming to solve this problem.</p>
+<p>One can reach <script type="math/tex; mode=display">i^{th}</script> step in one of the two ways:</p>
+<ol>
+<li>
+<p>Taking a single step from <script type="math/tex; mode=display">(i-1)^{th}</script> step.</p>
+</li>
+<li>
+<p>Taking a step of <script type="math/tex; mode=display">2</script> from <script type="math/tex; mode=display">(i-2)^{th}</script> step.</p>
+</li>
+</ol>
+<p>So, the total number of ways to reach <script type="math/tex; mode=display">i^{th}</script> is equal to sum of ways of reaching <script type="math/tex; mode=display">(i-1)^{th}</script> step and ways of reaching <script type="math/tex; mode=display">(i-2)^{th}</script> step.</p>
+<p>Let <script type="math/tex; mode=display">dp[i]</script> denotes the number of ways to reach on <script type="math/tex; mode=display">i^{th}</script> step.</p>
+<p>
+<script type="math/tex; mode=display">dp[i]=dp[i-1]+dp[i-2]</script>
+</p>
+<p>Example:</p>
+<!--![Climbing_Stairs](https://leetcode.com/articles/Figures/70_Climbing_Stairs.gif)-->
+<p>!?!../Documents/70_Climbing_Stairs.json:1000,563!?!</p>
+<iframe frameborder="0" height="309" name="ma2pcxbp" src="https://leetcode.com/playground/ma2pcxbp/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Single loop upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-fibonacci-number-accepted">Approach #4 Fibonacci Number [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the above approach we have used <script type="math/tex; mode=display">dp</script> array where <script type="math/tex; mode=display">dp[i]=dp[i-1]+dp[i-2]</script>. It can be easily analysed that <script type="math/tex; mode=display">dp[i]</script> is nothing but <script type="math/tex; mode=display">i^{th}</script> fibonacci number.</p>
+<p>
+<script type="math/tex; mode=display">Fib(n)=Fib(n-1)+Fib(n-2)</script>
+</p>
+<p>Now we just have to find <script type="math/tex; mode=display">n^{th}</script> number of the fibonacci series having <script type="math/tex; mode=display">1</script> and <script type="math/tex; mode=display">2</script> their first and second term respectively i.e. <script type="math/tex; mode=display">Fib(1)=1</script> and <script type="math/tex; mode=display">Fib(2)=2</script>.</p>
+<iframe frameborder="0" height="309" name="LAPbmrSH" src="https://leetcode.com/playground/LAPbmrSH/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Single loop upto <script type="math/tex; mode=display">n</script> is required to calculate <script type="math/tex; mode=display">n^{th}</script> fibonacci number.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-binets-method-accepted">Approach #5 Binets Method [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>This is an interesting solution which uses matrix multiplication to obtain the <script type="math/tex; mode=display">n^{th}</script> Fibonacci Number. The matrix takes the following form:</p>
+<p>
+<script type="math/tex; mode=display">\left[ {\begin{array}{cc} F_{n+1} & F_n \\  F_n & F_{n-1}     \end{array} } \right] = \left[ {\begin{array}{cc} 1 & 1 \\  1 & 0     \end{array} } \right]</script>.</p>
+<p>Let's say <script type="math/tex; mode=display">Q=\left[ {\begin{array}{cc} F_{n+1} & F_n \\  F_n & F_{n-1}     \end{array} } \right]</script>
+</p>
+<p>As per the method, the <script type="math/tex; mode=display">n^{th}</script> Fibonacci Number is given by <script type="math/tex; mode=display">Q^{n-1}[0,0]</script>
+</p>
+<p>Let's look at the proof of this method.</p>
+<p>We can prove this method using Mathematical Induction. We know, this matrix gives the correct result for the <script type="math/tex; mode=display">3^{rd}</script> term(base case). Since <script type="math/tex; mode=display">Q^2 = \left[ {\begin{array}{cc} 2 & 1 \\  1 & 1     \end{array} } \right]</script>. This proves that the base case holds.</p>
+<p>Assume that this method holds for finding the <script type="math/tex; mode=display">n^{th}</script> Fibonacci Number i.e. <script type="math/tex; mode=display">F_n=Q^{n-1}[0,0]</script>, where <script type="math/tex; mode=display">Q^{n-1}=\left[ {\begin{array}{cc} F_{n} & F_{n-1} \\  F_{n-1} & F_{n-2}     \end{array} } \right]</script>.</p>
+<p>Now, we need to prove that with the above two conditions holding true, the method is valid for finding the <script type="math/tex; mode=display">(n+1)^{th}</script> Fibonacci Number i.e. <script type="math/tex; mode=display">F_{n+1}=Q^{n}[0,0]</script>
+</p>
+<p>Proof: <script type="math/tex; mode=display">Q^{n} = \left[ {\begin{array}{cc} F_{n} & F_{n-1} \\  F_{n-1} & F_{n-2}     \end{array} } \right]\left[ {\begin{array}{cc} 1 & 1 \\  1 & 0     \end{array} } \right]</script>.
+ <script type="math/tex; mode=display">Q^{n} = \left[ {\begin{array}{cc} F_{n}+F_{n-1} & F_n \\  F_{n-1}+F_{n-2} & F_{n-1}    \end{array} } \right]</script>
+<script type="math/tex; mode=display">Q^{n} = \left[ {\begin{array}{cc} F_{n+1} & F_n \\  F_n & F_{n-1}     \end{array} } \right]</script>
+</p>
+<p>Thus, <script type="math/tex; mode=display">F_{n+1}=Q^{n}[0,0]</script>. This completes the proof of this method.</p>
+<p>The only variation we need to do for our problem is that we need to modify the initial terms to 2 and 1 instead of 1 and 0 in the Fibonacci series. Or, another way is to use the same initial <script type="math/tex; mode=display">Q</script> matrix and use <script type="math/tex; mode=display">result = Q^{n}[0,0]</script> to get the final result. This happens because the initial terms we have to use are the 2nd and 3rd terms of the otherwise normal Fibonacci Series.</p>
+<iframe frameborder="0" height="515" name="NV9UfA5Q" src="https://leetcode.com/playground/NV9UfA5Q/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(log(n))</script>. Traversing on <script type="math/tex; mode=display">log(n)</script> bits.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<p>Proof of Time Complexity:</p>
+<p>Let's say there is a  matrix <script type="math/tex; mode=display">M</script> to be raised to  power <script type="math/tex; mode=display">n</script>. Suppose, <script type="math/tex; mode=display">n</script> is the power of 2. Thus, <script type="math/tex; mode=display">n = 2^i</script>, <script type="math/tex; mode=display">i\in\mathbb{N}</script>, where <script type="math/tex; mode=display">\mathbb{N}</script> represents the set of natural numbers(including 0). We can represent  in the form of a tree:</p>
+<p><img alt="Climbing Stairs" src="https://leetcode.com/articles/Figures/70_Climbing_Stairs.PNG"/></p>
+<p>Meaning that:</p>
+<p>
+<script type="math/tex; mode=display">M^n = M^{n/2}.M^{n/2} = .... = \prod_{1}^{n} M^{1}</script>
+</p>
+<p>So, to calculate  <script type="math/tex; mode=display">M^{n}</script> matrix, we should calculate <script type="math/tex; mode=display">M^{n/2}</script>  matrix and multiply it by itself. To calculate <script type="math/tex; mode=display">M^{n/2}</script> we would have to do the same with <script type="math/tex; mode=display">M^{n/4}</script> and so on.</p>
+<p>Obviously, the tree height is <script type="math/tex; mode=display">log_{2}n</script>.</p>
+<p>Let’s estimate <script type="math/tex; mode=display">M^{n}</script> calculation time. <script type="math/tex; mode=display">M</script> matrix is of the same size in any power . Therefore, we can perform the multiplication of two matrices in any power in <script type="math/tex; mode=display">O(1)</script>. We should perform <script type="math/tex; mode=display">log_2{n}</script> of such multiplications. So, <script type="math/tex; mode=display">M^{n}</script> calculation complexity is <script type="math/tex; mode=display">O(log_{2}n)</script>.</p>
+<p>In case, the number <script type="math/tex; mode=display">n</script> is not a power of two, we can break it in terms of powers of 2 using its binary representation</p>
+<p>
+<script type="math/tex; mode=display">n= \sum_{p\in P} 2^{p}</script>, where <script type="math/tex; mode=display">P\subset\mathbb{N}</script>.</p>
+<p>Thus, we can obtain the final result using:</p>
+<p>
+<script type="math/tex; mode=display">M^{n} = \prod_{p\in P} M^{2^{p}}</script>
+</p>
+<p>This is the method we've used in our implementation. Again, the complexity remains <script type="math/tex; mode=display">O(log_{2}n)</script> as we have limited the number of multiplications to <script type="math/tex; mode=display">O(log_{2}n)</script>.</p>
+<hr/>
+<h4 id="approach-6-fibonacci-formula-accepted">Approach #6 Fibonacci Formula [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can find <script type="math/tex; mode=display">n^{th}</script> fibonacci number using this formula:</p>
+<p>
+<script type="math/tex; mode=display">F_n = 1/\sqrt{5}\left[ \left(\frac{1+\sqrt{5}}{2}\right)^{n} - \left(\frac{1-\sqrt{5}}{2}\right)^{n} \right]</script>
+</p>
+<p>For the given problem, the Fibonacci sequence is defined by <script type="math/tex; mode=display">F_0 = 1</script>, <script type="math/tex; mode=display">F_1= 1</script>,  <script type="math/tex; mode=display">F_1= 2</script>, <script type="math/tex; mode=display">F_{n+2}= F_{n+1} + F_n</script>. A standard method of trying to solve such recursion formulas is assume <script type="math/tex; mode=display">F_n</script> of the form <script type="math/tex; mode=display">F_n= a^n</script>. Then, of course, <script type="math/tex; mode=display">F_{n+1} = a^{n+1}</script> and <script type="math/tex; mode=display">F_{n+2}= a^{n+2}</script> so the equation becomes <script type="math/tex; mode=display">a^{n+2}= a^{n+1}+ a^n</script>. If we divide the entire equation by an we arrive at <script type="math/tex; mode=display">a^2= a + 1</script> or the quadratic equation</p>
+<p>
+<script type="math/tex; mode=display">a^2 - a- 1= 0</script>.</p>
+<p>Solving this by the quadratic formula, we get:</p>
+<p>
+<script type="math/tex; mode=display">a=1/\sqrt{5}\left(\left(\frac{1\pm \sqrt{5}}{2}\right)\right)</script>.</p>
+<p>The general solution, thus takes the form:</p>
+<p>
+<script type="math/tex; mode=display">F_n = A\left(\frac{1+\sqrt{5}}{2}\right)^{n} + B\left(\frac{1-\sqrt{5}}{2}\right)^{n}</script>
+</p>
+<p>For <script type="math/tex; mode=display">n=0</script>, we get <script type="math/tex; mode=display">A + B = 1</script>
+</p>
+<p>For <script type="math/tex; mode=display">n=1</script>, we get <script type="math/tex; mode=display">A\left(\frac{1+\sqrt{5}}{2}\right) + B\left(\frac{1-\sqrt{5}}{2}\right) = 1</script>
+</p>
+<p>Solving the above equations, we get:</p>
+<p>
+<script type="math/tex; mode=display">A = \left(\frac{1+\sqrt{5}}{2\sqrt{5}}\right), B = \left(\frac{1-\sqrt{5}}{2\sqrt{5}}\right)</script>
+</p>
+<p>Putting these values of <script type="math/tex; mode=display">A</script> and <script type="math/tex; mode=display">B</script> in the above general solution equation, we get:</p>
+<p>
+<script type="math/tex; mode=display">F_n = 1/\sqrt{5}\left( \left(\frac{1+\sqrt{5}}{2}\right)^{n+1} - \left(\frac{1-\sqrt{5}}{2}\right)^{n+1} \right)</script>
+</p>
+<iframe frameborder="0" height="173" name="eH7EYNzi" src="https://leetcode.com/playground/eH7EYNzi/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(log(n))</script>. <script type="math/tex; mode=display">pow</script> method takes <script type="math/tex; mode=display">log(n)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">214734</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">528726</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              92%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/apple.html">Apple</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/adobe.html">Adobe</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a string S, find the number of different non-empty palindromic subsequences in S, and return that number modulo 10^9 + 7.
+
+A subsequence of a string S is obtained by deleting 0 or more characters from S.
+
+A sequence is palindromic if it is equal to the sequence reversed.
+
+Two sequences A_1, A_2, ... and B_1, B_2, ... are different if there is some i for which A_i != B_i.
+
+Example 1:
+Input: 
+S = &#39;bccb&#39;
+Output: 6
+Explanation: 
+The 6 different non-empty palindromic subsequences are &#39;b&#39;, &#39;c&#39;, &#39;bb&#39;, &#39;cc&#39;, &#39;bcb&#39;, &#39;bccb&#39;.
+Note that &#39;bcb&#39; is counted only once, even though it occurs twice.
+
+
+Example 2:
+Input: 
+S = &#39;abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba&#39;
+Output: 104860361
+Explanation: 
+There are 3104860382 different non-empty palindromic subsequences, which is 104860361 modulo 10^9 + 7.
+
+
+Note:
+The length of S will be in the range [1, 1000].
+Each character S[i] will be in the set {&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;}.">
+  <meta name="keywords"
+        content="Count Different Palindromic Subsequences, LC 730, leetcode 730, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>730. Count Different Palindromic Subsequences</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given a string S, find the number of different non-empty palindromic subsequences in S, and <b>return that number modulo <code>10^9 + 7</code>.</b>
+</p><p>
+A subsequence of a string S is obtained by deleting 0 or more characters from S.
+</p><p>
+A sequence is palindromic if it is equal to the sequence reversed.
+</p><p>
+Two sequences <code>A_1, A_2, ...</code> and <code>B_1, B_2, ...</code> are different if there is some <code>i</code> for which <code>A_i != B_i</code>.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 
+S = 'bccb'
+<b>Output:</b> 6
+<b>Explanation:</b> 
+The 6 different non-empty palindromic subsequences are 'b', 'c', 'bb', 'cc', 'bcb', 'bccb'.
+Note that 'bcb' is counted only once, even though it occurs twice.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> 
+S = 'abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba'
+<b>Output:</b> 104860361
+<b>Explanation:</b> 
+There are 3104860382 different non-empty palindromic subsequences, which is 104860361 modulo 10^9 + 7.
+</pre>
+</p>
+
+<p><b>Note:</b>
+<li>The length of <code>S</code> will be in the range <code>[1, 1000]</code>.</li>
+<li>Each character <code>S[i]</code> will be in the set <code>{'a', 'b', 'c', 'd'}</code>.</li>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-dynamic-programming-using-3d-array-accepted">Approach #1 Dynamic Programming (using 3D array) [Accepted]</a></li>
+<li><a href="#approach-2-dynamic-programming-using-2d-array-accepted">Approach #2: Dynamic Programming (using 2D array) [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-dynamic-programming-using-3d-array-accepted">Approach #1 Dynamic Programming (using 3D array) [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Let <code>dp[x][i][j]</code> be the answer for the substring <code>S[i...j]</code> where
+<code>S[i] == S[j] == 'a'+x</code>. Note that since we only have 4 characters <code>a,
+b, c, d</code>, thus <code>0 &lt;= x &lt; 4</code>. The DP formula goes as follows:</p>
+<ul>
+<li>
+<p>If <code>S[i] != 'a'+x</code>, then <code>dp[x][i][j] = dp[x][i+1][j]</code>, note that
+  here we leave the first character <code>S[i]</code> in the window out due to
+  our definition of <code>dp[x][i][j]</code>.</p>
+</li>
+<li>
+<p>If <code>S[j] != 'a'+x</code>, then <code>dp[x][i][j] = dp[x][i][j-1]</code>, leaving the
+  last character <code>S[j]</code> out.</p>
+</li>
+<li>
+<p>If <code>S[i] == S[j] == 'a'+x</code>, then <code>dp[x][i][j] = 2 +
+  dp[0][i+1][j-1] + dp[1][i+1][j-1] + dp[2][i+1][j-1] +
+  dp[3][i+1][j-1]</code>. When the first and last characters are the same, we
+  need to count all the distinct palindromes (for each of <code>a,b,c,d</code>) within
+  the sub-window <code>S[i+1][j-1]</code> plus the <code>2</code> palindromes contributed by
+  the first and last characters.</p>
+</li>
+</ul>
+<p>Let <code>n</code> be the length of the input string <code>S</code>, The final answer would
+be <code>dp[0][0][n-1] + dp[1][0][n-1] + dp[2][0][n-1] + dp[3][0][n-1]</code>
+mod <code>1000000007</code>.</p>
+<iframe frameborder="0" height="500" name="4MHeaWhk" src="https://leetcode.com/playground/4MHeaWhk/shared" width="100%"></iframe>
+<p><strong>Example Walkthrough</strong></p>
+<p>Indeed this is a hard problem to solve and thoroughly understanding
+its solution is also challenging. Maybe the best way to understand the
+above approach is to walkthrough some simple examples to help build up
+intuitions.</p>
+<p>Let's first look at the strategy we used to fill the DP table and then walkthrough a concrete example to see how it works.</p>
+<p align="center"><img alt="DP Table Filling Strategy" src="https://leetcode.com/articles/Figures/730/730_Table_Fill.svg" width="539px"/></p>
+<p>!?!../Documents/730_Example_Walkthrough.json:1280,720!?!</p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(N^2)</script> where <script type="math/tex; mode=display">N</script> is the length of the input
+  string <script type="math/tex; mode=display">S</script>. It takes quadratic time to fill up the DP table.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(N^2)</script> where <script type="math/tex; mode=display">N</script> is the length of the input
+  string <script type="math/tex; mode=display">S</script>. The DP table takes quadratic space.</p>
+</li>
+</ul>
+<p>Note that we ignore the constant factor <script type="math/tex; mode=display">4</script> in the above analysis.</p>
+<p><strong>Conclusion</strong></p>
+<p>As we look back, this problem reveals a key attribute which indicates
+that dynamic programming might be a good fit: <code>overlapping
+sub-problems</code> as we recall the DP formula. By practicing more
+problems, we can build up this kind of intuition.</p>
+<p><em>Credit</em>: the above solution is inspired by
+<a href="https://discuss.leetcode.com/topic/111241/c-o-n-2-time-o-n-memory-with-explanation">this post</a>
+written by <a href="https://discuss.leetcode.com/user/elastico">@elastico</a>. His solution is space optimized. However, I found
+that my approach is relatively easy to understand for people who found
+this problem hard to approach.</p>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/imsure">@imsure</a>.  </p>
+<h4 id="approach-2-dynamic-programming-using-2d-array-accepted">Approach #2: Dynamic Programming (using 2D array) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Almost every palindrome is going to take one of these four forms: <code>a_a</code>, <code>b_b</code>, <code>c_c</code>, or <code>d_d</code>, where <code>_</code> represents a palindrome of zero or more characters.  (The only other palindromes are <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code>, and the empty string.)</p>
+<p>Let's try to count palindromes of the form <code>a_a</code> - the other types are similar.  Evidently, we should take the first and last <code>a</code>, then count all the palindromes that can be formed in between, as this provides us strictly more possibilities for <code>_</code> to be a palindrome.  This reveals an <em>optimal substructure</em> that is ideal for <em>dynamic programming</em>.</p>
+<p><strong>Algorithm</strong></p>
+<p>Let <code>dp(i, j)</code> be the number of palindromes (including the palindrome <code>''</code>) in the string <code>T = S[i], S[i+1], ..., S[j]</code>.  To count palindromes in <code>T</code> of the form <code>a_a</code>, we will need to know the first and last occurrence of <code>'a'</code> in this string.  This can be done by a precomputed dp: <code>next[i][0]</code> will be the next occurrence of <code>'a'</code> in <code>S[i:]</code>, <code>next[i][1]</code> will be the next occurrence of <code>'b'</code> in <code>S[i:]</code>, and so on.  </p>
+<p>Also, we will need to know the number of unique letters in <code>T</code> to count the single letter palindromes.  We can use the information from <code>next</code> to deduce it: if <code>next[i][0]</code> is in the interval <code>[i, j]</code>, then <code>'a'</code> occurs in <code>T</code>, and so on.</p>
+<p>As many states <code>dp(i, j)</code> do not need to be computed, the most natural approach is a <em>top-down</em> variation of dynamic programming.</p>
+<iframe frameborder="0" height="500" name="dhYtsJUH" src="https://leetcode.com/playground/dhYtsJUH/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N^2)</script>, where <script type="math/tex; mode=display">N</script> is the size of the string <code>S</code>.  Our calculation of <code>prv</code> and <code>nxt</code> happens in <script type="math/tex; mode=display">O(N)</script> time, then our evaluation of <code>dp</code> with at most <script type="math/tex; mode=display">N^2</script> states is <script type="math/tex; mode=display">O(1)</script> work per state.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N^2)</script>, the size of <code>memo</code>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">1207</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">3718</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              15%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/linkedin.html">LinkedIn</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array of integers, find if the array contains any duplicates. Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.">
+  <meta name="keywords"
+        content="Contains Duplicate, LC 217, leetcode 217, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>217. Contains Duplicate</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given an array of integers, find if the array contains any duplicates. Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-naive-linear-search-time-limit-exceeded">Approach #1 (Naive Linear Search) [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-sorting-accepted">Approach #2 (Sorting) [Accepted]</a></li>
+<li><a href="#approach-3-hash-table-accepted">Approach #3 (Hash Table) [Accepted]</a></li>
+</ul>
+</li>
+<li><a href="#see-also">See Also</a></li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>This article is for beginners. It introduces the following ideas:
+Loop Invariant, Linear Search, Sorting and Hash Table.</p>
+<h2 id="solution">Solution</h2>
+<h4 id="approach-1-naive-linear-search-time-limit-exceeded">Approach #1 (Naive Linear Search) [Time Limit Exceeded]</h4>
+<p><strong>Intuition</strong></p>
+<p>For an array of <script type="math/tex; mode=display">n</script> integers, there are <script type="math/tex; mode=display">C(n,2) = \frac{n(n+1)}{2}</script> pairs of integers. Thus, we may check all <script type="math/tex; mode=display">\frac{n(n+1)}{2}</script> pairs and see if there is any pair with duplicates.</p>
+<p><strong>Algorithm</strong></p>
+<p>To apply this idea, we employ the linear search algorithm which is the simplest search algorithm. Linear search is a method of finding if a particular value is in a list by checking each of its elements, one at a time and in sequence until the desired one is found.</p>
+<p>For our problem, we loop through all <script type="math/tex; mode=display">n</script> integers. For the <script type="math/tex; mode=display">i</script>th integer <code>nums[i]</code>, we search in the previous <code>i-1</code> integers for the duplicate of <code>nums[i]</code>. If we find one, we return true; if not, we continue. Return false at the end of the program.</p>
+<p>To prove the correctness of the algorithm, we define the loop invariant. A loop invariant is a property that holds before (and after) each iteration. Knowing its invariant(s) is essential for understanding the effect of a loop. Here is the <em>loop invariant</em>:</p>
+<blockquote>
+<p>Before the next search, there are no duplicate integers in the searched integers.</p>
+</blockquote>
+<p>The loop invariant holds true before the loop because there is no searched integer.
+Each time through the loop we look for any any possible duplicate of the current element.
+If we found a duplicate, the function exits by returning true; If not, the invariant still holds true.</p>
+<p>Therefore, if the loop finishes, the invariant tells us that there is no duplicate in all <script type="math/tex; mode=display">n</script> integers.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">containsDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>  
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="c1">// Time Limit Exceeded</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. In the worst case, there are <script type="math/tex; mode=display">\frac{n(n+1)}{2}</script> pairs of integers to check. Therefore, the time complexity is <script type="math/tex; mode=display">O(n^2)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>.
+We only used constant extra space.</p>
+</li>
+</ul>
+<p><strong>Note</strong></p>
+<p>This approach will get Time Limit Exceeded on LeetCode. Usually, if an algorithm is <script type="math/tex; mode=display">O(n^2)</script>, it can handle <script type="math/tex; mode=display">n</script> up to around <script type="math/tex; mode=display">10^4</script>. It gets Time Limit Exceeded when <script type="math/tex; mode=display">n \geq 10^5</script>.</p>
+<hr/>
+<h4 id="approach-2-sorting-accepted">Approach #2 (Sorting) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If there are any duplicate integers, they will be consecutive after sorting.</p>
+<p><strong>Algorithm</strong></p>
+<p>This approach employs sorting algorithm. Since comparison sorting algorithm like <em>heapsort</em> is known to provide <script type="math/tex; mode=display">O(n \log n)</script> worst-case performance, sorting is often a good preprocessing step. After sorting, we can sweep the sorted array to find if there are any two consecutive duplicate elements.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">containsDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">nums</span><span class="o">);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">])</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n \log n)</script>.
+Sorting is <script type="math/tex; mode=display">O(n \log n)</script> and the sweeping is <script type="math/tex; mode=display">O(n)</script>. The entire algorithm is dominated by the sorting step, which is <script type="math/tex; mode=display">O(n \log n)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>.
+Space depends on the sorting implementation which, usually, costs <script type="math/tex; mode=display">O(1)</script> auxiliary space if <code>heapsort</code> is used.</p>
+</li>
+</ul>
+<p><strong>Note</strong></p>
+<p>The implementation here modifies the original array by sorting it. In general, it is not a good practice to modify the input unless it is clear to the caller that the input will be modified. One may make a copy of <code>nums</code> and operate on the copy instead.</p>
+<hr/>
+<h4 id="approach-3-hash-table-accepted">Approach #3 (Hash Table) [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Utilize a dynamic data structure that supports fast search and insert operations.</p>
+<p><strong>Algorithm</strong></p>
+<p>From <a href="#approach-1-naive-linear-search-time-limit-exceeded">Approach #1</a> we know that search operations is <script type="math/tex; mode=display">O(n)</script> in an unsorted array and we did so repeatedly. Utilizing a data structure with faster search time will speed up the entire algorithm.</p>
+<p>There are many data structures commonly used as dynamic sets such as Binary Search Tree and Hash Table. The operations we need to support here are <code>search()</code> and <code>insert()</code>. For a self-balancing Binary Search Tree (TreeSet or TreeMap in Java), <code>search()</code> and <code>insert()</code> are both <script type="math/tex; mode=display">O(\log n)</script> time. For a Hash Table (HashSet or HashMap in Java), <code>search()</code> and <code>insert()</code> are both <script type="math/tex; mode=display">O(1)</script> on average. Therefore, by using hash table, we can achieve linear time complexity for finding the duplicate in an unsorted array.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">containsDuplicate</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">:</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">set</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">x</span><span class="o">))</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>.
+We do <code>search()</code> and <code>insert()</code> for <script type="math/tex; mode=display">n</script> times and each operation takes constant time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>.
+The space used by a hash table is linear with the number of elements in it.</p>
+</li>
+</ul>
+<p><strong>Note</strong></p>
+<p>For certain test cases with not very large <script type="math/tex; mode=display">n</script>, the runtime of this method can be slower than <a href="#approach-2-sorting-accepted">Approach #2</a>. The reason is hash table has some overhead in maintaining its property. One should keep in mind that real world performance can be different from what the Big-O notation says. The Big-O notation only tells us that for <em>sufficiently</em> large input, one will be faster than the other. Therefore, when <script type="math/tex; mode=display">n</script> is not sufficiently large, an <script type="math/tex; mode=display">O(n)</script> algorithm can be slower than an <script type="math/tex; mode=display">O(n \log n)</script> algorithm.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="https://leetcode.com/articles/contains-duplicate-ii/">Problem 219 Contains Duplicate II</a></li>
+<li><a href="https://leetcode.com/articles/contains-duplicate-iii/">Problem 220 Contains Duplicate III</a></li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">186966</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">402540</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              89%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/airbnb.html">Airbnb</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/yahoo.html">Yahoo</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/palantir.html">Palantir</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

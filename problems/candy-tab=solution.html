@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="There are N children standing in a line. Each child is assigned a rating value. 
+
+
+You are giving candies to these children subjected to the following requirements:
+
+
+Each child must have at least one candy.
+Children with a higher rating get more candies than their neighbors.
+
+
+What is the minimum candies you must give?">
+  <meta name="keywords"
+        content="Candy, LC 135, leetcode 135, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>135. Candy</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+There are <i>N</i> children standing in a line. Each child is assigned a rating value. 
+</p>
+<p>
+You are giving candies to these children subjected to the following requirements:
+</p>
+<ul>
+<li>Each child must have at least one candy.</li>
+<li>Children with a higher rating get more candies than their neighbors.</li>
+</ul>
+<p>
+What is the minimum candies you must give?
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-two-arrays-accepted">Approach #2 Using two arrays [Accepted]</a></li>
+<li><a href="#approach-3-using-one-array-accepted">Approach #3 Using one array [Accepted]</a></li>
+<li><a href="#approach-4-single-pass-approach-with-constant-space-accepted">Approach #4 Single Pass Approach with Constant Space [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>The simplest approach makes use of a 1-d array, <script type="math/tex; mode=display">candies</script> to keep a track of the candies given to the students. Firstly, we give 1 candy to each student. Then, we start scanning the
+array from left-to-right. At every element encountered, firstly, if the current element's ratings, <script type="math/tex; mode=display">ratings[i]</script>, is larger than the previous element(<script type="math/tex; mode=display">ratings[i-1]</script>) and <script type="math/tex; mode=display">candies[i]<=candies[i-1]</script>,
+then we update <script type="math/tex; mode=display">candies[i]</script> as <script type="math/tex; mode=display">candies[i]=candies[i-1] + 1</script>.Thus, now the candy distribution for these two elements <script type="math/tex; mode=display">candies[i-1]</script> and <script type="math/tex; mode=display">candies[i]</script> becomes correct for the time being(locally).
+ In the same step, we also check if the current element's ratings, <script type="math/tex; mode=display">ratings[i]</script>, is larger than the next element's ratings,
+i.e. <script type="math/tex; mode=display">ratings[i]>ratings[i+1]</script>. If so, we again update <script type="math/tex; mode=display">candies[i]=candies[i+1] + 1</script>. We continue this process for the whole <script type="math/tex; mode=display">ratings</script> array. If in any traversal,
+no updation of the <script type="math/tex; mode=display">candies</script> array occurs, it means we've reached at the final required distribution of the candies and we can stop the traversals. To keep a track of
+this we make use of a <script type="math/tex; mode=display">flag</script> which is set to <script type="math/tex; mode=display">\text{True}</script> if any updation occurs in a traversal.</p>
+<p>At the end, we can sum up all the elements of the <script type="math/tex; mode=display">candies</script> array to obtain the required minimum number of candies.</p>
+<iframe frameborder="0" height="513" name="7nzEeZYF" src="https://leetcode.com/playground/7nzEeZYF/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. We need to traverse the array at most <script type="math/tex; mode=display">n</script> times.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>. One <script type="math/tex; mode=display">candies</script> array of size <script type="math/tex; mode=display">n</script> is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-two-arrays-accepted">Approach #2 Using two arrays [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, we make use of two 1-d arrays <script type="math/tex; mode=display">left2right</script> and <script type="math/tex; mode=display">right2left</script>. The <script type="math/tex; mode=display">left2right</script> array is used to store the number of candies required by the
+current student taking care of the distribution relative to the left neighbours only. i.e. Assuming the distribution rule is: The student with a higher ratings
+than its left neighbour should always get more candies than its left neighbour. Similarly, the <script type="math/tex; mode=display">right2left</script> array is used to store the number of candies candies required by the
+current student taking care of the distribution relative to the right neighbours only. i.e. Assuming the distribution rule to be: The student with a higher ratings
+than its right neighbour should always get more candies than its right neighbour. To do so, firstly we assign 1 candy to each student in both <script type="math/tex; mode=display">left2right</script> and <script type="math/tex; mode=display">right2left</script> array.
+ Then, we traverse the array from
+left-to-right and whenever the current element's ratings is larger than the left neighbour we update the
+current element's candies in the <script type="math/tex; mode=display">left2right</script> array as <script type="math/tex; mode=display">left2right[i] = left2right[i-1] + 1</script>, since the current element's candies are always less than or equal candies than its left neighbour before updation.
+After the forward traversal, we traverse the array from left-to-right and
+update <script type="math/tex; mode=display">right2left[i]</script> as <script type="math/tex; mode=display">right2left[i] = right2left[i + 1] + 1</script>, whenever the current(<script type="math/tex; mode=display">i^{th}</script>) element has a higher ratings than the
+right(<script type="math/tex; mode=display">(i+1)^{th}</script>) element.</p>
+<p>Now, for the <script type="math/tex; mode=display">i^{th}</script> student in the array, we need to give <script type="math/tex; mode=display">\text{max}(left2right[i], right2left[i])</script> to it, in order to satisfy both the left and the right neighbour
+relationship. Thus, at the end, we obtain the minimum number of candies required as:</p>
+<p>
+<script type="math/tex; mode=display">
+\text{minimum_candies}=\sum_{i=0}^{n-1} \text{max}(left2right[i], right2left[i]), \quad\text{where } n = \text{length of the ratings array.}
+</script>
+</p>
+<p>The following animation illustrates the method:</p>
+<p><img alt="Candy_Two_Arrays" src="https://leetcode.com/articles/Figures/135_Candy_Two_Pass.gif"/></p>
+<iframe frameborder="0" height="462" name="m8n6vXfR" src="https://leetcode.com/playground/m8n6vXfR/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">left2right</script> and <script type="math/tex; mode=display">right2left</script> arrays are traversed thrice.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Two arrays <script type="math/tex; mode=display">left2right</script> and <script type="math/tex; mode=display">right2left</script> of size <script type="math/tex; mode=display">n</script> are used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-one-array-accepted">Approach #3 Using one array [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the previous approach, we used two arrays to keep track of the left neighbour and the right neighbour relation individually and later on combined these two. Instead of this, we
+can make use of a single array <script type="math/tex; mode=display">candies</script> to keep the count of the number of candies to be allocated to the current student. In order to do so, firstly we assign 1 candy to
+each student. Then, we traverse the array from left-to-right and distribute the candies following only the left neighbour relation i.e. whenever the current element's ratings is
+larger than the left neighbour and has less than or equal candies than its left neighbour, we update the
+current element's candies in the <script type="math/tex; mode=display">candies</script> array as <script type="math/tex; mode=display">candies[i] = candies[i-1] + 1</script>. While updating we need not compare <script type="math/tex; mode=display">candies[i]</script> and <script type="math/tex; mode=display">candies[i - 1]</script>, since
+ <script type="math/tex; mode=display">candies[i] \leq candies[i - 1]</script> before updation. After this, we traverse the array from right-to-left. Now, we need to
+update the <script type="math/tex; mode=display">i^{th}</script> element's candies in order to satisfy both the left neighbour and the right neighbour relation. Now, during the backward traversal, if <script type="math/tex; mode=display">ratings[i]>ratings[i + 1]</script>,
+considering only the right neighbour criteria, we could've updated <script type="math/tex; mode=display">candies[i]</script> as <script type="math/tex; mode=display">candies[i] = candies[i + 1] + 1</script>. But, this time we need to update the <script type="math/tex; mode=display">candies[i]</script> only
+if <script type="math/tex; mode=display">candies[i] \leq candies[i + 1]</script>. This happens because, this time we've already altered the <script type="math/tex; mode=display">candies</script> array during the forward traversal and thus <script type="math/tex; mode=display">candies[i]</script> isn't
+necessarily less than or equal to <script type="math/tex; mode=display">candies[i + 1]</script>. Thus, if <script type="math/tex; mode=display">ratings[i] > ratings[i + 1]</script>, we can update <script type="math/tex; mode=display">candies[i]</script> as <script type="math/tex; mode=display">candies[i] = \text{max}(candies[i], candies[i + 1] + 1)</script>, which makes
+<script type="math/tex; mode=display">candies[i]</script> satisfy both the left neighbour and the right neighbour criteria.</p>
+<p>Again, we need sum up all the elements of the <script type="math/tex; mode=display">candies</script> array to obtain the required result.</p>
+<p>
+<script type="math/tex; mode=display">
+\text{minimum_candies} = \sum_{i=0}^{n-1} candies[i], \quad\text{where } n = \text{length of the ratings array.}
+</script>
+</p>
+<iframe frameborder="0" height="394" name="Wa7z7oF2" src="https://leetcode.com/playground/Wa7z7oF2/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. The array <script type="math/tex; mode=display">candies</script> of size <script type="math/tex; mode=display">n</script> is traversed thrice.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. An array <script type="math/tex; mode=display">candies</script> of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-single-pass-approach-with-constant-space-accepted">Approach #4 Single Pass Approach with Constant Space [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>This approach relies on the observation(as demonstrated in the figure below as well) that in order to distribute the candies as per the given criteria using
+the minimum number of candies, the candies are always distributed in terms of increments of 1. Further, while distributing the candies, the local minimum number of candies
+given to a student is 1. Thus, the sub-distributions always take the form: <script type="math/tex; mode=display">\text{1, 2, 3, ..., n}</script> or <script type="math/tex; mode=display">\text{n,..., 2, 1}</script>, whose sum is simply given by <script type="math/tex; mode=display">n(n+1)/2</script>.</p>
+<p>Now, we can view the given <script type="math/tex; mode=display">rankings</script> as some
+rising and falling slopes. Whenever the slope is rising, the distribution takes the form: <script type="math/tex; mode=display">\text{1, 2, 3, ..., m}</script>. Similarly, a falling slope takes the form:
+<script type="math/tex; mode=display">\text{k,..., 2, 1}</script>. An issue that arises now is that the local peak point can be included in only one of the slopes.
+Whether to include the local peak point(<script type="math/tex; mode=display">\text{n}</script>) in the rising slope or the falling slope?</p>
+<p>In order to decide it,
+we can observe that in order to satisfy both the right neighbour and the left neighbour criteria, the peak point's count needs to be the max. of the counts determined
+by the rising and the falling slopes. Thus, in order to determine the number of candies required, the peak point needs to be included in the slope which contains more
+number of points. The local valley point can also be included in only one of the slopes, but this issue can be resolved easily, since the local valley point will
+always be assigned a candy count of 1(which can be subtracted from the next slope's count calculations).</p>
+<p>Coming to the implementation, we maintain two variables <script type="math/tex; mode=display">old\_slope</script> and <script type="math/tex; mode=display">new\_slope</script> to determine the occurence of a peak or a valley. We also use
+<script type="math/tex; mode=display">up</script> and <script type="math/tex; mode=display">down</script> variables to keep a track of the count of elements on the rising slope and on the falling slope respectively(without including the peak element). We always update the total count
+of <script type="math/tex; mode=display">candies</script> at the end of a falling slope following a rising slope (or a mountain). The leveling of the points in <script type="math/tex; mode=display">rankings</script> also works as the end of a mountain. At the end of the mountain, we determine whether to include the peak point in the rising slope or in the falling slope by comparing the <script type="math/tex; mode=display">up</script> and <script type="math/tex; mode=display">down</script> variables up to that point. Thus, the count assigned to the peak element becomes: <script type="math/tex; mode=display">\text{max}(up, down) + 1</script>. At this point, we can reset the <script type="math/tex; mode=display">up</script> and <script type="math/tex; mode=display">down</script> variables indicating the start of a new mountain.</p>
+<p>The following figure shows the cases that need to be handled for this example:</p>
+<p><code>rankings: [1 2 3 4 5 3 2 1 2 6 5 4 3 3 2 1 1 3 3 3 4 2]</code></p>
+<p><img alt="Candy_Two_Arrays" src="https://leetcode.com/articles/Figures/135_Candy_Constant_Space.PNG"/></p>
+<p>From this figure, we can see that the candy distributions in the subregions always take the form <script type="math/tex; mode=display">\text{1, 2, ...n}</script> or <script type="math/tex; mode=display">\text{n, ..., 2, 1}</script>.
+For the first mountain comprised by the regions <script type="math/tex; mode=display">a</script> and <script type="math/tex; mode=display">b</script>, while assigning candies to the local peak point(<script type="math/tex; mode=display">pt. 5</script>), it needs to be included in
+<script type="math/tex; mode=display">a</script> to satisfy the left neighbour criteria. The local valley point at the end of region <script type="math/tex; mode=display">b</script>(<script type="math/tex; mode=display">pt. 8</script>) marks the end of the first mountain(region <script type="math/tex; mode=display">c</script>).
+ While performing the calculations, we can include this point in either the current or the following mountain. The <script type="math/tex; mode=display">pt. 13</script> marks the end of the second
+ mountain due to levelling of the <script type="math/tex; mode=display">pt. 13</script> and <script type="math/tex; mode=display">pt. 14</script>. Since, region <script type="math/tex; mode=display">e</script> has more points than region <script type="math/tex; mode=display">d</script>, the local peak(<script type="math/tex; mode=display">pt. 10</script>) needs to be
+ included in region <script type="math/tex; mode=display">e</script> to satisfy the right neighbour criteria. Now, the third mountain <script type="math/tex; mode=display">f</script> can be considered as a mountian with no rising slope(<script type="math/tex; mode=display">up=0</script>)
+ but only a falling slope. Similarly, <script type="math/tex; mode=display">pt. 16, 18, 19</script> also act as the mountain ends due to the levelling of the points.</p>
+<iframe frameborder="0" height="515" name="VMXjjp9G" src="https://leetcode.com/playground/VMXjjp9G/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We traverse the <script type="math/tex; mode=display">rankings</script> array once only.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant Extra Space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">74439</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">297432</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              64%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

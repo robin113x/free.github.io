@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array A (index starts at 1) consisting of N integers: A1, A2, ..., AN and an integer B. The integer B denotes that from any place (suppose the index is i) in the array A, you can jump to any one of the place in the array A indexed i+1, i+2, …, i+B if this place can be jumped to. Also, if you step on the index i, you have to pay Ai coins. If Ai is -1, it means you can’t jump to the place indexed i in the array.
+
+
+Now, you start from the place indexed 1 in the array A, and your aim is to reach the place indexed N using the minimum coins. You need to return the path of indexes (starting from 1 to N) in the array you should take to get to the place indexed N using minimum coins.
+
+
+If there are multiple paths with the same cost, return the lexicographically smallest such path.
+
+
+If it&#39;s not possible to reach the place indexed N then you need to return an empty array.
+
+Example 1:
+Input: [1,2,4,-1,2], 2
+Output: [1,3,5]
+
+
+Example 2:
+Input: [1,2,4,-1,2], 1
+Output: []
+
+
+Note:
+
+Path Pa1, Pa2, ..., Pan is lexicographically smaller than Pb1, Pb2, ..., Pbm, if and only if at the first i where Pai and Pbi differ, Pai &lt; Pbi; when no such i exists, then n &lt; m.
+A1 &gt;= 0. A2, ..., AN (if exist) will in the range of [-1, 100]. 
+Length of A is in the range of [1, 1000].
+B is in the range of [1, 100].">
+  <meta name="keywords"
+        content="Coin Path, LC 656, leetcode 656, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>656. Coin Path</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given an array <code>A</code> (index starts at <code>1</code>) consisting of N integers: A<sub>1</sub>, A<sub>2</sub>, ..., A<sub>N</sub> and an integer <code>B</code>. The integer <code>B</code> denotes that from any place (suppose the index is <code>i</code>) in the array <code>A</code>, you can jump to any one of the place in the array <code>A</code> indexed <code>i+1</code>, <code>i+2</code>, …, <code>i+B</code> if this place can be jumped to. Also, if you step on the index <code>i</code>, you have to pay A<sub>i</sub> coins. If A<sub>i</sub> is -1, it means you can’t jump to the place indexed <code>i</code> in the array.
+</p>
+
+<p>
+Now, you start from the place indexed <code>1</code> in the array <code>A</code>, and your aim is to reach the place indexed <code>N</code> using the minimum coins. You need to return the path of indexes (starting from 1 to N) in the array you should take to get to the place indexed <code>N</code> using minimum coins.
+</p>
+
+<p>
+If there are multiple paths with the same cost, return the lexicographically smallest such path.
+</p>
+<p>
+If it's not possible to reach the place indexed N then you need to return an empty array.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> [1,2,4,-1,2], 2
+<b>Output:</b> [1,3,5]
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> [1,2,4,-1,2], 1
+<b>Output:</b> []
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>Path Pa<sub>1</sub>, Pa<sub>2</sub>, ..., Pa<sub>n</sub> is lexicographically smaller than Pb<sub>1</sub>, Pb<sub>2</sub>, ..., Pb<sub>m</sub>, if and only if at the first <code>i</code> where Pa<sub>i</sub> and Pb<sub>i</sub> differ, Pa<sub>i</sub> < Pb<sub>i</sub>; when no such <code>i</code> exists, then <code>n</code> < <code>m</code>.</li>
+<li>A<sub>1</sub> >= 0. A<sub>2</sub>, ..., A<sub>N</sub> (if exist) will in the range of [-1, 100]. </li>
+<li>Length of A is in the range of [1, 1000].</li>
+<li>B is in the range of [1, 100].</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-forcetime-limit-exceeded">Approach #1 Brute Force[Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-memoization-accepted">Approach #2 Using Memoization [Accepted]</a></li>
+<li><a href="#approach-3-using-dynamic-programming-accepted">Approach #3 Using Dynamic Programming [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-forcetime-limit-exceeded">Approach #1 Brute Force[Time Limit Exceeded]</h4>
+<p>In this approach, we make use of a <script type="math/tex; mode=display">next</script> array of size <script type="math/tex; mode=display">n</script>. Here, <script type="math/tex; mode=display">n</script> refers to the size of the given <script type="math/tex; mode=display">A</script> array. The array <script type="math/tex; mode=display">nums</script> is used such that <script type="math/tex; mode=display">nums[i]</script> is used to store the minimum number of coins needed to jump till the end of the array <script type="math/tex; mode=display">A</script>, starting from the index <script type="math/tex; mode=display">i</script>. </p>
+<p>We start by filling the <script type="math/tex; mode=display">next</script> array with all -1's. Then, in order to fill this <script type="math/tex; mode=display">next</script> array, we make use of a recursive function <code>jump(A, B, i, next)</code> which fills the <script type="math/tex; mode=display">next</script> array starting from the index <script type="math/tex; mode=display">i</script> onwards, given <script type="math/tex; mode=display">A</script> as the coins array and <script type="math/tex; mode=display">B</script> as the largest jump value.</p>
+<p>With <script type="math/tex; mode=display">i</script> as the current index, we can consider every possible index from <script type="math/tex; mode=display">i+1</script> to <script type="math/tex; mode=display">i+B</script> as the next place to be jumped to. For every such next index, <script type="math/tex; mode=display">j</script>, if this place can be jumped to, we determine the cost of reaching the end of the array starting from the index <script type="math/tex; mode=display">i</script>, and with <script type="math/tex; mode=display">j</script> as the next index jumped from <script type="math/tex; mode=display">i</script>, as  <script type="math/tex; mode=display">A[i] + jump(A, B, j, next)</script>. If this cost is lesser than the minimum cost required till now, for the same starting index, we can update the minimum cost and the value of <script type="math/tex; mode=display">next[i]</script> as well. </p>
+<p>For every such function call, we also need to return this minimum cost.</p>
+<p>At the end, we traverse over the <script type="math/tex; mode=display">next</script> array starting from the index 1. At every step, we add the current index to the <script type="math/tex; mode=display">res</script> list to be returned and also jump/move to the index pointed by <script type="math/tex; mode=display">next[i]</script>, since this refers to the next index for the minimum cost. We continue in the same manner till we reach the end of the array <script type="math/tex; mode=display">A</script>.</p>
+<iframe frameborder="0" height="515" name="9tcSoGzo" src="https://leetcode.com/playground/9tcSoGzo/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(B^n)</script>. The size of the recursive tree can grow upto <script type="math/tex; mode=display">O(b^n)</script> in the worst case. This is because, we have <script type="math/tex; mode=display">B</script> possible branches at every step. Here, <script type="math/tex; mode=display">B</script> refers to the limit of the largest jump and <script type="math/tex; mode=display">n</script> refers to the size of the given <script type="math/tex; mode=display">A</script> array. </p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The depth of the recursive tree can grow upto <script type="math/tex; mode=display">n</script>. <script type="math/tex; mode=display">next</script> array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-memoization-accepted">Approach #2 Using Memoization [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the recursive solution just discussed, a lot of duplicate function calls are made, since we are considering the same index through multiple paths. To remove this redundancy, we can make use of memoization.</p>
+<p>We keep a <script type="math/tex; mode=display">memo</script> array, such that <script type="math/tex; mode=display">memo[i]</script> is used to store the minimum cost of jumps to reach the end of the array <script type="math/tex; mode=display">A</script>. Whenever the value for any index is calculated once, it is stored in its appropriate location. Thus, next time whenever the same function call is made, we can return the result directly from this <script type="math/tex; mode=display">memo</script> array, pruning the search space to a great extent.</p>
+<iframe frameborder="0" height="515" name="mAVq4r5H" src="https://leetcode.com/playground/mAVq4r5H/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nB)</script>. <script type="math/tex; mode=display">memo</script> array of size <script type="math/tex; mode=display">n</script> is filled only once. We also do a traversal over the <script type="math/tex; mode=display">next</script> array, which will go upto <script type="math/tex; mode=display">B</script> steps.  Here, <script type="math/tex; mode=display">n</script> refers to the number of nodes in the given tree.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The depth of the recursive tree can grow upto <script type="math/tex; mode=display">n</script>. <script type="math/tex; mode=display">next</script> array of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-dynamic-programming-accepted">Approach #3 Using Dynamic Programming [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>From the solutions discussed above, we can observe that the cost of jumping till the end of the array <script type="math/tex; mode=display">A</script> starting from the index <script type="math/tex; mode=display">i</script> is only dependent on the elements following the index <script type="math/tex; mode=display">i</script> and not the ones before it. This inspires us to make use of Dynamic Programming to solve the current problem.</p>
+<p>We again make use of a <script type="math/tex; mode=display">next</script> array to store the next jump locations. We also make use of a <script type="math/tex; mode=display">dp</script> with the same size as that of the given <script type="math/tex; mode=display">A</script> array. <script type="math/tex; mode=display">dp[i]</script> is used to store the minimum cost of jumping till the end of the array <script type="math/tex; mode=display">A</script>, starting from the index <script type="math/tex; mode=display">i</script>. We start with the last index as the current index and proceed backwards for filling the <script type="math/tex; mode=display">next</script> and <script type="math/tex; mode=display">dp</script> array.</p>
+<p>With <script type="math/tex; mode=display">i</script> as the current index, we consider all the next possible positions from <script type="math/tex; mode=display">i+1</script>, <script type="math/tex; mode=display">i+2</script>,..., <script type="math/tex; mode=display">i+B</script>, and determine the position, <script type="math/tex; mode=display">j</script>,  which leads to a minimum cost of reaching the end of <script type="math/tex; mode=display">A</script>, which is given by <script type="math/tex; mode=display">A[i]+dp[j]</script>. We update <script type="math/tex; mode=display">next[i]</script> with this corresponding index. We also update <script type="math/tex; mode=display">dp[i]</script> with the minimum cost, to be used by the previous indices' cost calculations.</p>
+<p>At the end, we again jump over the indices as per the <script type="math/tex; mode=display">next</script> array and put these indices in the <script type="math/tex; mode=display">res</script> array to be returned.</p>
+<iframe frameborder="0" height="515" name="BMCVq3jo" src="https://leetcode.com/playground/BMCVq3jo/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nB)</script>. We need to consider all the possible <script type="math/tex; mode=display">B</script> positions for every current index considered in the <script type="math/tex; mode=display">A</script> array. Here, <script type="math/tex; mode=display">A</script> refers to the number of elements in <script type="math/tex; mode=display">A</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">dp</script> and <script type="math/tex; mode=display">next</script> array of size <script type="math/tex; mode=display">n</script> are used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">3047</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">11959</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              1%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

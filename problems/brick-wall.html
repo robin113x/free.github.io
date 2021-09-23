@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="There is a brick wall in front of you. The wall is rectangular and has several rows of bricks. The bricks have the same height but different width. You want to draw a vertical line from the top to the bottom and cross the least bricks. 
+
+The brick wall is represented by a list of rows. Each row is a list of integers representing the width of each brick in this row from left to right. 
+
+If your line go through the edge of a brick, then the brick is not considered as crossed. You need to find out how to draw the line to cross the least bricks and return the number of crossed bricks. 
+You cannot draw a line just along one of the two vertical edges of the wall, in which case the line will obviously cross no bricks. 
+Example:
+Input: 
+[[1,2,2,1],
+ [3,1,2],
+ [1,3,2],
+ [2,4],
+ [3,1,2],
+ [1,3,1,1]]
+Output: 2
+Explanation: 
+
+
+
+Note:
+
+The width sum of bricks in different rows are the same and won&#39;t exceed INT_MAX.
+The number of bricks in each row is in range [1,10,000]. The height of wall is in range [1,10,000]. Total number of bricks of the wall won&#39;t exceed 20,000.">
+  <meta name="keywords"
+        content="Brick Wall, LC 554, leetcode 554, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>554. Brick Wall</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>There is a brick wall in front of you. The wall is rectangular and has several rows of bricks. The bricks have the same height but different width. You want to draw a vertical line from the <b>top</b> to the <b>bottom</b> and cross the <b>least</b> bricks. </p>
+
+<p>
+The brick wall is represented by a list of rows. Each row is a list of integers representing the width of each brick in this row from left to right. 
+</p>
+
+<p>If your line go through the edge of a brick, then the brick is not considered as crossed. You need to find out how to draw the line to cross the least bricks and return the number of crossed bricks. </p>
+
+<p><b>You cannot draw a line just along one of the two vertical edges of the wall, in which case the line will obviously cross no bricks. </b></p>
+
+<p><b>Example:</b><br />
+<pre>
+<b>Input:</b> 
+[[1,2,2,1],
+ [3,1,2],
+ [1,3,2],
+ [2,4],
+ [3,1,2],
+ [1,3,1,1]]
+<b>Output:</b> 2
+<b>Explanation:</b> 
+<img src="https://leetcode.com/static/images/problemset/brick_wall.png" width = "30%" />
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The width sum of bricks in different rows are the same and won't exceed INT_MAX.</li>
+<li>The number of bricks in each row is in range [1,10,000]. The height of wall is in range [1,10,000]. Total number of bricks of the wall won't exceed 20,000. </li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-forcetime-limit-exceeded">Approach #2 Better Brute Force[Time LImit Exceeded]</a></li>
+<li><a href="#approach-3-using-hashmap-accepted">Approach #3 Using HashMap [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>In this approach, we consider the given wall as being made up of virtual bricks each of width 1. We traverse over the width of the wall only in terms of these virtual bricks.</p>
+<p>Firstly, we need to determine the total number of virtual bricks. For this, we determine the width of the given wall by summing up the widths of the bricks in the first row. This width is stored in <script type="math/tex; mode=display">sum</script>. Thus, we need to traverse over the widthe <script type="math/tex; mode=display">sum</script> times now in terms of 1 unit in each iteration.</p>
+<p>We traverse over the virtual bricks in a column by column fashion. For keeping a track of the actual position at which we are currently in any row, we make use of a <script type="math/tex; mode=display">pos</script> array. <script type="math/tex; mode=display">pos[i]</script> refers to the index of the brick in the <script type="math/tex; mode=display">i^{th}</script> row, which is being treated as the virtual brick in the current column's traversal. Further, we maintain a <script type="math/tex; mode=display">count</script> variable to keep a track of the number of bricks cut if we draw a line down at the current position.</p>
+<p>For every row considered during the column-by-column traversal, we need to check if we've hit an actual brick boundary. This is done by updating the brick's width after the traversal. If we don't hit an actual brick boundary, we need to increment <script type="math/tex; mode=display">count</script> to reflect that drawing a line at this point leads to cutting off 1 more brick. But, if we hit an actual brick boundary, we increment the value of <script type="math/tex; mode=display">pos[i]</script>, with <script type="math/tex; mode=display">i</script> referring to the current row's index. But, now if we draw a line down through this boundary, we need not increment the <script type="math/tex; mode=display">count</script>.</p>
+<p>We repeat the same process for every column of width equal to a virtual brick, and determine the minimum value of <script type="math/tex; mode=display">count</script> obtained from all such traversals.</p>
+<p>The following animation makes the process clearer:</p>
+<!--![Brick_Wall](https://leetcode.com/articles/Figures/554_Brick_Wall_1.gif)-->
+<p>!?!../Documents/554_Brick_Wall1.json:866,487!?!</p>
+<iframe frameborder="0" height="428" name="fruhzBr8" src="https://leetcode.com/playground/fruhzBr8/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n*m)</script>. We traverse over the width(<script type="math/tex; mode=display">n</script>) of the wall <script type="math/tex; mode=display">m</script> times, where <script type="math/tex; mode=display">m</script> is the height of the wall.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m)</script>. <script type="math/tex; mode=display">pos</script> array of size <script type="math/tex; mode=display">m</script> is used, where <script type="math/tex; mode=display">m</script> is the height of the wall.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-forcetime-limit-exceeded">Approach #2 Better Brute Force[Time LImit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, instead of traversing over the columns in terms of 1 unit each time, we traverse over the columns in terms of the width of the smallest brick encountered while traversing the current column. Thus, we update <script type="math/tex; mode=display">pos</script> array and <script type="math/tex; mode=display">sums</script> appropriately depending on the width of the smallest brick. Rest of the process remains the same as the first approach.</p>
+<p>The optimization achieved can be viewed by considering this example:</p>
+<div class="codehilite"><pre><span></span>[[100, 50, 50],
+[50, 100],
+[150]]
+</pre></div>
+<p>In this case, we directly jump over the columns in terms of widths of 50 units each time, rather than making traversals over widths incrementing by 1 unit each time.</p>
+<iframe frameborder="0" height="496" name="e58vTtJR" src="https://leetcode.com/playground/e58vTtJR/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n*m)</script>. In worst case, we traverse over the length(<script type="math/tex; mode=display">n</script>) of the wall <script type="math/tex; mode=display">m</script> times, where <script type="math/tex; mode=display">m</script> is the height of the wall.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m)</script>. <script type="math/tex; mode=display">pos</script> array of size <script type="math/tex; mode=display">m</script> is used, where <script type="math/tex; mode=display">m</script> is the height of the wall.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-hashmap-accepted">Approach #3 Using HashMap [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, we make use of a HashMap <script type="math/tex; mode=display">map</script> which is used to store entries in the form: <script type="math/tex; mode=display">(sum, count)</script>. Here, <script type="math/tex; mode=display">sum</script> refers to the cumulative sum of the bricks' widths encountered in the current row, and <script type="math/tex; mode=display">count</script> refers to the number of times the corresponding sum is obtained. Thus, <script type="math/tex; mode=display">sum</script> in a way, represents the positions of the bricks's boundaries relative to the leftmost boundary.</p>
+<p>Let's look at the process first. We traverse over every row of the given wall. For every brick considered, we find the <script type="math/tex; mode=display">sum</script> corresponding to the sum of the bricks' widths encountered so far in the current row. If this <script type="math/tex; mode=display">sum</script>'s entry doesn't exist in the <script type="math/tex; mode=display">map</script>, we create a corresponding entry with an initial <script type="math/tex; mode=display">count</script> of 1. If the <script type="math/tex; mode=display">sum</script> already exists as a key, we increment its corresponding <script type="math/tex; mode=display">count</script> value.</p>
+<p>This is done based on the following observation. We will never obtain the same value of <script type="math/tex; mode=display">sum</script> twice while traversing over a particular row. Thus, if the <script type="math/tex; mode=display">sum</script> value is repeated while traversing over the rows, it means some row's brick boundary coincides with some previous row's brick boundary. This fact is accounted for by incrementing the corresponding <script type="math/tex; mode=display">count</script> value.</p>
+<p>But, for every row, we consider the sum only upto the second last brick, since the last boundary isn't a valid boundary for the solution.</p>
+<p>At the end, we can obtain the maximum <script type="math/tex; mode=display">count</script> value to determine the minimum number of bricks that need to be cut to draw a vetical line through them.</p>
+<p>The following animation makes the process clear:</p>
+<!-- ![Brick_Wall](https://leetcode.com/articles/Figures/554_Brick_Wall_2.gif) -->
+<p>!?!../Documents/554_Brick_Wall2.json:866,487!?!</p>
+<iframe frameborder="0" height="377" name="miHSNYBN" src="https://leetcode.com/playground/miHSNYBN/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We traverse over the complete bricks only once. <script type="math/tex; mode=display">n</script> is the total number of bricks in a wall.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m)</script>. <script type="math/tex; mode=display">map</script> will contain atmost <script type="math/tex; mode=display">m</script> entries, where <script type="math/tex; mode=display">m</script> refers to the width of the wall.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">17130</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">37125</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              18%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

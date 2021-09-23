@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1&#39;s in their binary representation and return them as an array.
+
+
+Example:">
+  <meta name="keywords"
+        content="Counting Bits, LC 338, leetcode 338, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>338. Counting Bits</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a non negative integer number <b>num</b>. For every numbers <b>i</b> in the range <b>0 &le; i &le; num</b> calculate the number of 1's in their binary representation and return them as an array.
+</p>
+<p>
+<b>Example:</b></br>
+For <code>num = 5</code> you should return <code>[0,1,1,2,1,2]</code>.
+</p>
+<p>
+<b>Follow up:</b>
+<ul>
+<li>It is very easy to come up with a solution with run time <b>O(n*sizeof(integer))</b>. But can you do it in linear time <b>O(n)</b> /possibly in a single pass?</li>
+<li>Space complexity should be <b>O(n)</b>.</li>
+<li>Can you do it like a boss? Do it without using any builtin function like <b>__builtin_popcount</b>  in c++ or in any other language.</li>
+</ul>
+</p>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://leetcode.com/discuss/user/syedee">@ syedee </a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solutions">Solutions</a><ul>
+<li><a href="#approach-1-pop-count-accepted">Approach #1 Pop Count [Accepted]</a></li>
+<li><a href="#approach-2-dp-most-significant-bit-accepted">Approach #2 DP + Most Significant Bit [Accepted]</a></li>
+<li><a href="#approach-3-dp-least-significant-bit-accepted">Approach #3 DP + Least Significant Bit [Accepted]</a></li>
+<li><a href="#approach-4-dp-last-set-bit-accepted">Approach #4 DP + Last Set Bit [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>This article is for intermediate readers. It relates to the following ideas:
+Pop Count, Most Significant Bit, Least Significant Bit, Last Set Bit and Dynamic Programming.</p>
+<h2 id="solutions">Solutions</h2>
+<hr/>
+<h4 id="approach-1-pop-count-accepted">Approach #1 Pop Count [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Solve the problem for one number and applies that for all.</p>
+<p><strong>Algorithm</strong></p>
+<p>This problem can be seen as a follow-up of the <a href="https://leetcode.com/problems/number-of-1-bits/">Problem 191 The number of 1 bits</a>. It counts the bits for an unsigned integer. The number is often called pop count or <a href="https://en.wikipedia.org/wiki/Hamming_weight">Hamming weight</a>. See the editorial of <a href="https://leetcode.com/problems/number-of-1-bits/">Problem 191 The number of 1 bits</a> for a detailed explanation of different approaches.</p>
+<p>Now we just take that for granted. And suppose we have the function <code>int popcount(int x)</code> which will return the count of the bits for a given non-negative integer. We just loop through the numbers in range <code>[0, num]</code> and put the results in a list.</p>
+<iframe frameborder="0" height="292" name="huXmPZY7" src="https://leetcode.com/playground/huXmPZY7/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nk)</script>. For each integer <script type="math/tex; mode=display">x</script>, we need <script type="math/tex; mode=display">O(k)</script> operations where <script type="math/tex; mode=display">k</script> is the number of bits in <script type="math/tex; mode=display">x</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. We need <script type="math/tex; mode=display">O(n)</script> space to store the count results. If we exclude that, it costs only constant space.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-dp-most-significant-bit-accepted">Approach #2 DP + Most Significant Bit [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Use previous count results to generate the count for a new integer.</p>
+<p><strong>Algorithm</strong></p>
+<p>Suppose we have an integer:</p>
+<p>
+<script type="math/tex; mode=display">
+x = (1001011101)_2 = (605)_{10}
+</script>
+</p>
+<p>and we already calculated and stored all the results of <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">x - 1</script>.</p>
+<p>Then we know that <script type="math/tex; mode=display">x</script> is differ by one bit with a number we already calculated:</p>
+<p>
+<script type="math/tex; mode=display">
+x' = (1011101)_2 = (93)_{10}
+</script>
+</p>
+<p>They are different only in the most significant bit.</p>
+<p>Let's exam the range <script type="math/tex; mode=display">[0, 3]</script> in the binary form:</p>
+<p>
+<script type="math/tex; mode=display">
+(0) = (0)_2
+</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+(1) = (1)_2
+</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+(2) = (10)_2
+</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+(3) = (11)_2
+</script>
+</p>
+<p>One can see that the binary form of 2 and 3 can be generated by adding 1 bit in front of 0 and 1. Thus, they are different only by 1 regarding pop count.</p>
+<p>Similarly, we can generate the results for <script type="math/tex; mode=display">[4, 7]</script> using <script type="math/tex; mode=display">[0, 3]</script> as blueprints.</p>
+<p>In general, we have the following transition function for popcount <script type="math/tex; mode=display">P(x)</script>:</p>
+<p>
+<script type="math/tex; mode=display">
+P(x + b) = P(x) + 1, b = 2^m > x
+</script>
+</p>
+<p>With this transition function, we can then apply Dynamic Programming to generate all the pop counts starting from <script type="math/tex; mode=display">0</script>.</p>
+<div class="codehilite"><pre><span></span>public class Solution {
+    public int[] countBits(int num) {
+        int[] ans = new int[num + 1];
+        int i = 0, b = 1;
+        // [0, b) is calculated
+        while (b &lt;= num) {
+            // generate [b, 2b) or [b, num) from [0, b)
+            while(i &lt; b &amp;&amp; i + b &lt;= num){
+                ans[i + b] = ans[i] + 1;
+                ++i;
+            }
+            i = 0;   // reset i
+            b &lt;&lt;= 1; // b = 2b
+        }
+        return ans;
+    }
+}
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. For each integer <script type="math/tex; mode=display">x</script> we need constant operations which do not depend on the number of bits in <script type="math/tex; mode=display">x</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. We need <script type="math/tex; mode=display">O(n)</script> space to store the count results. If we exclude that, it costs only constant space.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-dp-least-significant-bit-accepted">Approach #3 DP + Least Significant Bit [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>We can have different transition functions, as long as <script type="math/tex; mode=display">x'</script> is smaller than <script type="math/tex; mode=display">x</script> and their pop counts have a function.</p>
+<p><strong>Algorithm</strong></p>
+<p>Following the same principle of the previous approach, we can also have a transition function by playing with the least significant bit.</p>
+<p>Let look at the relation between <script type="math/tex; mode=display">x</script> and <script type="math/tex; mode=display">x' = x / 2</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+x = (1001011101)_2 = (605)_{10}
+</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+x' = (100101110)_2 = (302)_{10}
+</script>
+</p>
+<p>We can see that <script type="math/tex; mode=display">x'</script> is differ than <script type="math/tex; mode=display">x</script> by one bit, because <script type="math/tex; mode=display">x'</script> can be considered as the result of removing the least significant bit of <script type="math/tex; mode=display">x</script>.</p>
+<p>Thus, we have the following transition function of pop count <script type="math/tex; mode=display">P(x)</script>:</p>
+<p>
+<script type="math/tex; mode=display">
+P(x) = P(x / 2) + (x \mod 2)
+</script>
+</p>
+<iframe frameborder="0" height="190" name="bDREyCKV" src="https://leetcode.com/playground/bDREyCKV/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. For each integer <script type="math/tex; mode=display">x</script> we need constant operations which do not depend on the number of bits in <script type="math/tex; mode=display">x</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>.  Same as approach #2.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-dp-last-set-bit-accepted">Approach #4 DP + Last Set Bit [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>With the same logic as previous approaches, we can also manipulate the last set bit.</p>
+<p>Last set bit is the rightmost set bit. Setting that bit to zero with the bit trick, <code>x &amp;= x - 1</code>, leads to the following transition function:</p>
+<p>
+<script type="math/tex; mode=display">
+P(x) = P(x \mathrel{\&} (x - 1)) + 1;
+</script>
+</p>
+<iframe frameborder="0" height="190" name="Bj47Y4ha" src="https://leetcode.com/playground/Bj47Y4ha/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Same as approach #3.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Same as approach #3.</p>
+</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">97611</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">157930</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              87%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

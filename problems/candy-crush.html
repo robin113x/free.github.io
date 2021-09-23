@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="This question is about implementing a basic elimination algorithm for Candy Crush.
+Given a 2D integer array board representing the grid of candy, different positive integers board[i][j] represent different types of candies.  A value of board[i][j] = 0 represents that the cell at position (i, j) is empty.  The given board represents the state of the game following the player&#39;s move.  Now, you need to restore the board to a stable state by crushing candies according to the following rules:
+
+If three or more candies of the same type are adjacent vertically or horizontally, &#34;crush&#34; them all at the same time - these positions become empty.
+After crushing all candies simultaneously, if an empty space on the board has candies on top of itself, then these candies will drop until they hit a candy or bottom at the same time. (No new candies will drop outside the top boundary.)
+After the above steps, there may exist more candies that can be crushed.  If so, you need to repeat the above steps.
+If there does not exist more candies that can be crushed (ie. the board is stable), then return the current board.
+
+You need to perform the above rules until the board becomes stable, then return the current board.
+Example 1:
+Input:
+board = 
+[[110,5,112,113,114],[210,211,5,213,214],[310,311,3,313,314],[410,411,412,5,414],[5,1,512,3,3],[610,4,1,613,614],[710,1,2,713,714],[810,1,2,1,1],[1,1,2,2,2],[4,1,4,4,1014]]
+Output:
+[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[110,0,0,0,114],[210,0,0,0,214],[310,0,0,113,314],[410,0,0,213,414],[610,211,112,313,614],[710,311,412,613,714],[810,411,512,713,1014]]
+Explanation: 
+
+
+
+Note:
+
+The length of board will be in the range [3, 50].
+The length of board[i] will be in the range [3, 50].
+Each board[i][j] will initially start as an integer in the range [1, 2000].">
+  <meta name="keywords"
+        content="Candy Crush, LC 723, leetcode 723, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>723. Candy Crush</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>This question is about implementing a basic elimination algorithm for Candy Crush.</p>
+
+<p>Given a 2D integer array <code>board</code> representing the grid of candy, different positive integers <code>board[i][j]</code> represent different types of candies.  A value of <code>board[i][j] = 0</code> represents that the cell at position <code>(i, j)</code> is empty.  The given board represents the state of the game following the player's move.  Now, you need to restore the board to a <i>stable state</i> by crushing candies according to the following rules:</p>
+
+<ol>
+<li>If three or more candies of the same type are adjacent vertically or horizontally, "crush" them all at the same time - these positions become empty.</li>
+<li>After crushing all candies simultaneously, if an empty space on the board has candies on top of itself, then these candies will drop until they hit a candy or bottom at the same time. (No new candies will drop outside the top boundary.)</li>
+<li>After the above steps, there may exist more candies that can be crushed.  If so, you need to repeat the above steps.</li>
+<li>If there does not exist more candies that can be crushed (ie. the board is <i>stable</i>), then return the current board.</li>
+</ol>
+
+<p>You need to perform the above rules until the board becomes stable, then return the current board.</p>
+
+<p><b>Example 1:</b><br />
+<pre style="white-space: pre-line">
+<b>Input:</b>
+board = 
+[[110,5,112,113,114],[210,211,5,213,214],[310,311,3,313,314],[410,411,412,5,414],[5,1,512,3,3],[610,4,1,613,614],[710,1,2,713,714],[810,1,2,1,1],[1,1,2,2,2],[4,1,4,4,1014]]
+<b>Output:</b>
+[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[110,0,0,0,114],[210,0,0,0,214],[310,0,0,113,314],[410,0,0,213,414],[610,211,112,313,614],[710,311,412,613,714],[810,411,512,713,1014]]
+<b>Explanation:</b> 
+<img src="https://leetcode.com/static/images/problemset/candy_crush_example_2.png"/>
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The length of <code>board</code> will be in the range [3, 50].</li>
+<li>The length of <code>board[i]</code> will be in the range [3, 50].</li>
+<li>Each <code>board[i][j]</code> will initially start as an integer in the range [1, 2000].</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-ad-hoc-accepted">Approach #1: Ad-Hoc [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-ad-hoc-accepted">Approach #1: Ad-Hoc [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>We need to simply perform the algorithm as described.  It consists of two major steps: a crush step, and a gravity step.  We work through each step individually.</p>
+<p><strong>Algorithm</strong></p>
+<p><em>Crushing Step</em></p>
+<p>When crushing, one difficulty is that we might accidentally crush candy that is part of another row.  For example, if the board is:</p>
+<div class="codehilite"><pre><span></span><span class="mi">123</span>
+<span class="mi">145</span>
+<span class="mi">111</span>
+</pre></div>
+<p>and we crush the vertical row of <code>1</code>s early, we may not see there was also a horizontal row.</p>
+<p>To remedy this, we should flag candy that should be crushed first.  We could use an auxillary <code>toCrush</code> boolean array, or we could mark it directly on the board by making the entry negative (ie. <code>board[i][j] = -Math.abs(board[i][j])</code>)</p>
+<p>As for how to scan the board, we have two approaches.  Let's call a <em>line</em> any row or column of the board.  </p>
+<p>For each line, we could use a sliding window (or <code>itertools.groupby</code> in Python) to find contiguous segments of the same character.  If any of these segments have length 3 or more, we should flag them.</p>
+<p>Alternatively, for each line, we could look at each width-3 slice of the line: if they are all the same, then we should flag those 3.</p>
+<p>After, we can crush the candy by setting all flagged <code>board</code> cells to zero.</p>
+<p><em>Gravity Step</em></p>
+<p>For each column, we want all the candy to go to the bottom.  One way is to iterate through and keep a stack of the (uncrushed) candy, popping and setting as we iterate through the column in reverse order.</p>
+<p>Alternatively, we could use a sliding window approach, maintaining a read and write head.  As the read head iterates through the column in reverse order, when the read head sees candy, the write head will write it down and move one place.  Then, the write head will write zeroes to the remainder of the column.</p>
+<p>We showcase the simplest approaches to these steps in the solutions below.</p>
+<iframe frameborder="0" height="500" name="NMCdS4xd" src="https://leetcode.com/playground/NMCdS4xd/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O((R*C)^2)</script>, where <script type="math/tex; mode=display">R, C</script> is the number of rows and columns in <code>board</code>.  We need <script type="math/tex; mode=display">O(R*C)</script> to scan the board, and we might crush only 3 candies repeatedly.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(1)</script> additional complexity, as we edit the board in place.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">1258</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">2256</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              11%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/rubrik.html">Rubrik</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>
