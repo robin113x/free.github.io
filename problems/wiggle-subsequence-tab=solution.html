@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="A sequence of numbers is called a wiggle sequence if the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with fewer than two elements is trivially a wiggle sequence. 
+For example, [1,7,4,9,2,5] is a wiggle sequence because the differences (6,-3,5,-7,3) are alternately positive and negative. In contrast, [1,4,7,2,5] and [1,7,4,5,5] are not wiggle sequences, the first because its first two differences are positive and the second because its last difference is zero.
+Given a sequence of integers, return the length of the longest subsequence that is a wiggle sequence. A subsequence is obtained by deleting some number of elements (eventually, also zero) from the original sequence, leaving the remaining elements in their original order.
+Examples:
+Input: [1,7,4,9,2,5]
+Output: 6
+The entire sequence is a wiggle sequence.
+
+Input: [1,17,5,10,13,15,10,5,16,8]
+Output: 7
+There are several subsequences that achieve this length. One is [1,17,10,13,10,16,8].
+
+Input: [1,2,3,4,5,6,7,8,9]
+Output: 2
+
+
+Follow up:
+Can you do it in O(n) time?
+
+Credits:Special thanks to @agave and @StefanPochmann for adding this problem and creating all test cases.">
+  <meta name="keywords"
+        content="Wiggle Subsequence, LC 376, leetcode 376, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>376. Wiggle Subsequence</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>A sequence of numbers is called a <strong>wiggle sequence</strong> if the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with fewer than two elements is trivially a wiggle sequence. </p>
+
+<p>For example, <code>[1,7,4,9,2,5]</code> is a wiggle sequence because the differences (6,-3,5,-7,3) are alternately positive and negative. In contrast, <code>[1,4,7,2,5]</code> and <code>[1,7,4,5,5]</code> are not wiggle sequences, the first because its first two differences are positive and the second because its last difference is zero.</p>
+
+<p>Given a sequence of integers, return the length of the longest subsequence that is a wiggle sequence. A subsequence is obtained by deleting some number of elements (eventually, also zero) from the original sequence, leaving the remaining elements in their original order.</p>
+
+<p><b>Examples:</b><br />
+<pre>
+<b>Input:</b> [1,7,4,9,2,5]
+<b>Output:</b> 6
+The entire sequence is a wiggle sequence.
+
+<b>Input:</b> [1,17,5,10,13,15,10,5,16,8]
+<b>Output:</b> 7
+There are several subsequences that achieve this length. One is [1,17,10,13,10,16,8].
+
+<b>Input:</b> [1,2,3,4,5,6,7,8,9]
+<b>Output:</b> 2
+</pre>
+</p>
+
+<p><b>Follow up:</b><br />
+Can you do it in O(<i>n</i>) time?
+</p>
+
+<p><b>Credits:</b><br />Special thanks to <a href="https://leetcode.com/agave/">@agave</a> and <a href="https://leetcode.com/stefanpochmann/">@StefanPochmann</a> for adding this problem and creating all test cases.</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-dynamic-programming-accepted">Approach #2  Dynamic Programming [Accepted]</a></li>
+<li><a href="#approach-3-linear-dynamic-programming-accepted">Approach #3 Linear Dynamic Programming [Accepted]</a></li>
+<li><a href="#approach-4-space-optimized-dynamic-programming-accepted">Approach #4 Space-Optimized Dynamic Programming [Accepted]</a></li>
+<li><a href="#approach-5-greedy-approach-accepted">Approach #5 Greedy Approach [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>We need to find the length of the longest wiggle subsequence. A wiggle subsequence consists of a subsequence with numbers which appears in alternating ascending / descending order.</p>
+<h2 id="solution">Solution</h2>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>Here, we can find the length of every possible wiggle subsequence and find the maximum length out of them. To implement this, we use a recursive function, <script type="math/tex; mode=display">\text{calculate}(\text{nums}, \text{index}, \text{isUp})</script> which takes the array <script type="math/tex; mode=display">\text{nums}</script>, the <script type="math/tex; mode=display">\text{index}</script> from which we need to find the length of the longest wiggle subsequence, boolean variable <script type="math/tex; mode=display">\text{isUp}</script> to tell whether we need to find an increasing wiggle or decreasing wiggle respectively. If the function <script type="math/tex; mode=display">\text{calculate}</script> is called after an increasing wiggle, we need to find the next decreasing wiggle with the same function. If the function <script type="math/tex; mode=display">\text{calculate}</script> is called after a decreasing wiggle, we need to find the next increasing wiggle with the same function.</p>
+<iframe frameborder="0" height="326" name="JXWefkVB" src="https://leetcode.com/playground/JXWefkVB/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n!)</script>. <script type="math/tex; mode=display">\text{calculate}()</script> will be called maximum <script type="math/tex; mode=display">n!</script> times.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Recursion of depth <script type="math/tex; mode=display">n</script> is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-dynamic-programming-accepted">Approach #2  Dynamic Programming [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>To understand this approach, take two arrays for dp named <script type="math/tex; mode=display">up</script> and <script type="math/tex; mode=display">down</script>.</p>
+<p>Whenever we pick up any element of the array to be a part of the wiggle subsequence, that element could be a part of a rising wiggle or a falling wiggle depending upon which element we have taken prior to it.</p>
+<p>
+<script type="math/tex; mode=display">up[i]</script> refers to the length of the longest wiggle subsequence obtained so far considering <script type="math/tex; mode=display">i^{th}</script> element as the last element of the wiggle subsequence and ending with a rising wiggle.</p>
+<p>Similarly, <script type="math/tex; mode=display">down[i]</script> refers to the length of the longest wiggle subsequence obtained so far considering <script type="math/tex; mode=display">i^{th}</script> element as the last element of the wiggle subsequence and ending with a falling wiggle.</p>
+<p>
+<script type="math/tex; mode=display">up[i]</script> will be updated every time we find a rising wiggle ending with the <script type="math/tex; mode=display">i^{th}</script> element. Now, to find <script type="math/tex; mode=display">up[i]</script>, we need to consider the maximum out of all the previous wiggle subsequences ending with a falling wiggle i.e. <script type="math/tex; mode=display">down[j]</script>, for every <script type="math/tex; mode=display">j&lt;i</script> and <script type="math/tex; mode=display">nums[i]&gt;nums[j]</script>. Similarly, <script type="math/tex; mode=display">down[i]</script> will be updated.</p>
+<iframe frameborder="0" height="360" name="5DeX9SiP" src="https://leetcode.com/playground/5DeX9SiP/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. Loop inside a loop.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Two arrays of the same length are used for dp.</li>
+</ul>
+<hr/>
+<h4 id="approach-3-linear-dynamic-programming-accepted">Approach #3 Linear Dynamic Programming [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Any element in the array could correspond to only one of the three possible states:</p>
+<ol>
+<li>up position, it means <script type="math/tex; mode=display">nums[i] > nums[i-1]</script>
+</li>
+<li>down position, it means <script type="math/tex; mode=display">nums[i] < nums[i-1]</script>
+</li>
+<li>equals to position, <script type="math/tex; mode=display">nums[i] == nums[i-1]</script>
+</li>
+</ol>
+<p>The updates are done as:</p>
+<p>If <script type="math/tex; mode=display">nums[i] > nums[i-1]</script>, that means it wiggles up. The element before it must be a down position. So <script type="math/tex; mode=display">up[i] = down[i-1] + 1</script>, <script type="math/tex; mode=display">down[i]</script> remains the same as <script type="math/tex; mode=display">down[i-1]</script>.
+If <script type="math/tex; mode=display">nums[i] < nums[i-1]</script>, that means it wiggles down. The element before it must be a up position. So <script type="math/tex; mode=display">down[i] = up[i-1] + 1</script>, <script type="math/tex; mode=display">up[i]</script> remains the same as <script type="math/tex; mode=display">up[i-1]</script>.
+If <script type="math/tex; mode=display">nums[i] == nums[i-1]</script>, that means it will not change anything becaue it didn't wiggle at all. So both <script type="math/tex; mode=display">down[i]</script> and <script type="math/tex; mode=display">up[i]</script> remain the same as <script type="math/tex; mode=display">down[i-1]</script> and <script type="math/tex; mode=display">up[i-1]</script>.</p>
+<p>At the end, we can find the larger out of <script type="math/tex; mode=display">up[length-1]</script> and <script type="math/tex; mode=display">down[length-1]</script> to find the max. wiggle subsequence length, where <script type="math/tex; mode=display">length</script> refers to the number of elements in the given array.</p>
+<p>The process can be illustrated with the following example:</p>
+<!--![Wiggle gif](https://leetcode.com/media/original_images/376_Wiggle_Subsequence.gif)-->
+<p>!?!../Documents/376_Wiggle.json:1000,563!?!</p>
+<iframe frameborder="0" height="428" name="iKGkFpFG" src="https://leetcode.com/playground/iKGkFpFG/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Only one pass over the array length.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Two arrays of the same length are used for dp.</li>
+</ul>
+<hr/>
+<h4 id="approach-4-space-optimized-dynamic-programming-accepted">Approach #4 Space-Optimized Dynamic Programming [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>This approach relies on the same concept as <a href="https://leetcode.com/articles/wiggle-subsequence/#approach-3-linear-dynamic-programming-accepted">Approach #3</a>. But we can observe that in the DP approach, for updating elements <script type="math/tex; mode=display">up[i]</script> and <script type="math/tex; mode=display">down[i]</script>, we need only the elements <script type="math/tex; mode=display">up[i-1]</script> and <script type="math/tex; mode=display">down[i-1]</script>. Thus, we can save space by not using the whole array, but only the last elements.</p>
+<iframe frameborder="0" height="292" name="hUCEjR4D" src="https://leetcode.com/playground/hUCEjR4D/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Only one pass over the array length.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-5-greedy-approach-accepted">Approach #5 Greedy Approach [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We need not necessarily need dp to solve this problem. This problem is equivalent to finding the number of alternating max. and min. peaks in the array. Since, if we choose any other intermediate number to be a part of the current wiggle subsequence, the maximum length of that wiggle subsequence will always be less than or equal to the one obtained by choosing only the consecutive max. and min. elements.</p>
+<p>This can be clarified by looking at the following figure:
+<img alt="Wiggle Peaks" src="https://leetcode.com/media/original_images/376_Wiggle_Subsequence.PNG"/></p>
+<p>From the above figure, we can see that if we choose <strong>C</strong> instead of <strong>D</strong> as the 2nd point in the wiggle subsequence, we can't include the point <strong>E</strong>. Thus, we won't obtain the maximum length wiggle subsequence.</p>
+<p>Thus, to solve this problem, we maintain a variable <script type="math/tex; mode=display">\text{prevdiff}</script>, where <script type="math/tex; mode=display">\text{prevdiff}</script> is used to indicate whether the current subsequence of numbers lies in an increasing or decreasing wiggle. If <script type="math/tex; mode=display">\text{prevdiff} > 0</script>, it indicates that we have found the increasing wiggle and are looking for a decreasing wiggle now. Thus, we update the length of the found subsequence when <script type="math/tex; mode=display">\text{diff}</script> (<script type="math/tex; mode=display">nums[i]-nums[i-1]</script>) becomes negative. Similarly, if <script type="math/tex; mode=display">\text{prevdiff} < 0</script>, we will update the count when <script type="math/tex; mode=display">\text{diff}</script> (<script type="math/tex; mode=display">nums[i]-nums[i-1]</script>) becomes positive.</p>
+<p>When the complete array has been traversed, we get the required count, which represents the length of the longest wiggle subsequence.</p>
+<iframe frameborder="0" height="326" name="AqoaR5Ks" src="https://leetcode.com/playground/AqoaR5Ks/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We traverse the given array once.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">29155</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">80846</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              36%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

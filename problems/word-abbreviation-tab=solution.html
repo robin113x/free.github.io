@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array of n distinct non-empty strings, you need to generate minimal possible abbreviations for every word following rules below.
+
+Begin with the first character and then the number of characters abbreviated, which followed by the last character.
+If there are any conflict, that is more than one words share the same abbreviation, a longer prefix is used instead of only the first character until making the map from word to abbreviation become unique. In other words, a final abbreviation cannot map to more than one original words.
+ If the abbreviation doesn&#39;t make the word shorter, then keep it as original.
+
+Example:
+Input: [&#34;like&#34;, &#34;god&#34;, &#34;internal&#34;, &#34;me&#34;, &#34;internet&#34;, &#34;interval&#34;, &#34;intension&#34;, &#34;face&#34;, &#34;intrusion&#34;]
+Output: [&#34;l2e&#34;,&#34;god&#34;,&#34;internal&#34;,&#34;me&#34;,&#34;i6t&#34;,&#34;interval&#34;,&#34;inte4n&#34;,&#34;f2e&#34;,&#34;intr4n&#34;]
+
+
+Note:
+
+ Both n and the length of each word will not exceed 400.
+ The length of each word is greater than 1.
+ The words consist of lowercase English letters only.
+ The return answers should be in the same order as the original array.">
+  <meta name="keywords"
+        content="Word Abbreviation, LC 527, leetcode 527, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>527. Word Abbreviation</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given an array of n distinct non-empty strings, you need to generate <b>minimal</b> possible abbreviations for every word following rules below.</p>
+
+<ol>
+<li>Begin with the first character and then the number of characters abbreviated, which followed by the last character.</li>
+<li>If there are any conflict, that is more than one words share the same abbreviation, a longer prefix is used instead of only the first character until making the map from word to abbreviation become unique. In other words, a final abbreviation cannot map to more than one original words.</li>
+<li> If the abbreviation doesn't make the word shorter, then keep it as original.</li>
+</ol>
+
+<p><b>Example:</b><br />
+<pre>
+<b>Input:</b> ["like", "god", "internal", "me", "internet", "interval", "intension", "face", "intrusion"]
+<b>Output:</b> ["l2e","god","internal","me","i6t","interval","inte4n","f2e","intr4n"]
+</pre>
+</p>
+
+
+<b>Note:</b> 
+<ol>
+<li> Both n and the length of each word will not exceed 400.</li>
+<li> The length of each word is greater than 1.</li>
+<li> The words consist of lowercase English letters only.</li>
+<li> The return answers should be <b>in the same order</b> as the original array.</li>
+</ol>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-greedy-accepted">Approach #1: Greedy [Accepted]</a></li>
+<li><a href="#approach-2-group-least-common-prefix-accepted">Approach #2: Group + Least Common Prefix [Accepted]</a></li>
+<li><a href="#approach-3-group-trie-accepted">Approach #3: Group + Trie [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-greedy-accepted">Approach #1: Greedy [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Let's choose the shortest abbreviation for each word.  Then, while we have duplicates, we'll increase the length of all duplicates.</p>
+<p><strong>Algorithm</strong></p>
+<p>For example, let's say we have <code>"aabaaa", "aacaaa", "aacdaa"</code>, then we start with <code>"a4a", "a4a", "a4a"</code>.  Since these are duplicated, we lengthen them to <code>"aa3a", "aa3a", "aa3a"</code>.  They are still duplicated, so we lengthen them to <code>"aab2a", "aac2a", "aac2a"</code>.  The last two are still duplicated, so we lengthen them to <code>"aacaaa", "aacdaa"</code>.</p>
+<p>Throughout this process, we were tracking an index <code>prefix[i]</code> which told us up to what index to take the prefix to.  For example, <code>prefix[i] = 2</code> means to take a prefix of <code>word[0], word[1], word[2]</code>.</p>
+<iframe frameborder="0" height="500" name="potfaw7d" src="https://leetcode.com/playground/potfaw7d/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(C^2)</script> where <script type="math/tex; mode=display">C</script> is the number of characters across all words in the given array.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(C)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-group-least-common-prefix-accepted">Approach #2: Group + Least Common Prefix [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>Two words are only eligible to have the same abbreviation if they have the same first letter, last letter, and length.  Let's group each word based on these properties, and then sort out the conflicts.</p>
+<p>In each group <code>G</code>, if a word <code>W</code> has a longest common prefix <code>P</code> with any other word <code>X</code> in <code>G</code>, then our abbreviation must contain a prefix of more than <code>|P|</code> characters.  The longest common prefixes must occur with words adjacent to <code>W</code> (in lexicographical order), so we can just sort <code>G</code> and look at the adjacent words.</p>
+<iframe frameborder="0" height="500" name="oSfs2RA2" src="https://leetcode.com/playground/oSfs2RA2/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(C \log C)</script> where <script type="math/tex; mode=display">C</script> is the number of characters across all words in the given array.  The complexity is dominated by the sorting step.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(C)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-group-trie-accepted">Approach #3: Group + Trie [Accepted]</h4>
+<p><strong>Intuition and Algorithm</strong></p>
+<p>As in <em>Approach #1</em>, let's group words based on length, first letter, and last letter, and discuss when words in a group do not share a longest common prefix.</p>
+<p>Put the words of a group into a trie (prefix tree), and count at each node (representing some prefix <code>P</code>) the number of words with prefix <code>P</code>.  If the count is 1, we know the prefix is unique.</p>
+<iframe frameborder="0" height="500" name="g97bSjjc" src="https://leetcode.com/playground/g97bSjjc/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(C)</script> where <script type="math/tex; mode=display">C</script> is the number of characters across all words in the given array.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(C)</script>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.  Approach #1 inspired by <a href="https://discuss.leetcode.com/topic/82613/really-simple-and-straightforward-java-solution">@ckcz123</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">3978</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">9235</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              0%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/snapchat.html">Snapchat</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word. You may assume the dictionary does not contain duplicate words.
+
+
+Return all such possible sentences.
+
+
+For example, given
+s = &#34;catsanddog&#34;,
+dict = [&#34;cat&#34;, &#34;cats&#34;, &#34;and&#34;, &#34;sand&#34;, &#34;dog&#34;].
+
+
+A solution is [&#34;cats and dog&#34;, &#34;cat sand dog&#34;].
+
+
+UPDATE (2017/1/4):
+The wordDict parameter had been changed to a list of strings (instead of a set of strings). Please reload the code definition to get the latest changes.">
+  <meta name="keywords"
+        content="Word Break II, LC 140, leetcode 140, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>140. Word Break II</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given a <b>non-empty</b> string <i>s</i> and a dictionary <i>wordDict</i> containing a list of <b>non-empty</b> words, add spaces in <i>s</i> to construct a sentence where each word is a valid dictionary word. You may assume the dictionary does not contain duplicate words.
+</p>
+
+<p>
+Return all such possible sentences.
+</p>
+
+<p>
+For example, given<br>
+<i>s</i> = <code>"catsanddog"</code>,<br>
+<i>dict</i> = <code>["cat", "cats", "and", "sand", "dog"]</code>.
+</p>
+
+<p>
+A solution is <code>["cats and dog", "cat sand dog"]</code>.
+</p>
+
+<p>
+<b><font color="red">UPDATE (2017/1/4):</font></b><br />
+The <i>wordDict</i> parameter had been changed to a list of strings (instead of a set of strings). Please reload the code definition to get the latest changes.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-recursion-with-memoization-accepted">Approach #2 Recursion with memoization [Accepted]</a></li>
+<li><a href="#approach-3-using-dynamic-programming-time-limit-exceeded">Approach #3 Using Dynamic Programming [Time Limit Exceeded]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>Given a string <script type="math/tex; mode=display">s</script> and a dictionary of words <script type="math/tex; mode=display">dict</script>, add spaces in <script type="math/tex; mode=display">s</script> to construct every possible sentence such that each word is valid as per the given dictionary.
+Return all such possible sentences.</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The naive approach to solve this problem is to use recursion.
+For finding the solution, we check every possible prefix of that string (<script type="math/tex; mode=display">s</script>) in the dictionary of words, if it is found in the dictionary (say <script type="math/tex; mode=display">s1</script>), then the recursive function is called for the remaining portion of that string.
+This function returns the prefix <script type="math/tex; mode=display">s1</script> appended by the result of the recursive call using the remaining portion of the string (<script type="math/tex; mode=display">s-s1</script>), if the remaining portion is a substring
+which can lead to the formation of a valid sentence as per the dictionary. Otherwise, empty list is returned.</p>
+<iframe frameborder="0" height="394" name="7t7xWm5m" src="https://leetcode.com/playground/7t7xWm5m/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^n)</script>. Consider the worst case where <script type="math/tex; mode=display">s=``aaaaaaa"</script> and every prefix of <script type="math/tex; mode=display">s</script> is present in the dictionary of words, then the recursion tree can grow up to <script type="math/tex; mode=display">n^n</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n^3)</script>. In worst case the depth of recursion tree can go up to <script type="math/tex; mode=display">n</script> and nodes can contain <script type="math/tex; mode=display">n</script> strings each of length <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-recursion-with-memoization-accepted">Approach #2 Recursion with memoization [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the previous approach we can see that many subproblems were redundant, i.e we were calling the recursive function multiple times for the same substring appearing through
+ multiple paths.
+To avoid this we can use memorization method, where we are making use of a hashmap to store the results in the form of a <script type="math/tex; mode=display">key:value</script> pair. In this hashmap, the <script type="math/tex; mode=display">key</script>
+ used is the starting index of the string currently considered and the <script type="math/tex; mode=display">value</script> contains all the sentences which can be formed using the substring from this starting
+ index onwards. Thus, if we encounter the same starting index from different function calls, we can return the result directly from the hashmap rather than going
+ for redundant function calls.</p>
+<p>With memorization many redundant subproblems are avoided and recursion tree is pruned and thus it reduces the time complexity by a large factor.</p>
+<iframe frameborder="0" height="515" name="EK5ckR9F" src="https://leetcode.com/playground/EK5ckR9F/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. Size of recursion tree can go up to <script type="math/tex; mode=display">n^2</script>. The creation of list takes <script type="math/tex; mode=display">n</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n^3)</script>.The depth of the recursion tree can go up to <script type="math/tex; mode=display">n</script> and each activation record can contains a string list of size <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-dynamic-programming-time-limit-exceeded">Approach #3 Using Dynamic Programming [Time Limit Exceeded]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>The intuition behind this approach is that the given problem (<script type="math/tex; mode=display">s</script>) can be divided into subproblems <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script>. If these subproblems individually satisfy the required conditions, the complete problem, <script type="math/tex; mode=display">s</script> also satisfies the same. e.g. "catsanddog" can be split into two substrings "catsand", "dog". The subproblem "catsand" can be further divided into "cats","and", which individually are a part of the dictionary making "catsand" satisfy the condition. Going further backwards, "catsand", "dog" also satisfy the required criteria individually leading to the complete string "catsanddog" also to satisfy the criteria.</p>
+<p>Now, we'll move onto the process of <script type="math/tex; mode=display">\text{dp}</script> array formation.
+We make use of <script type="math/tex; mode=display">\text{dp}</script> array (in the form of a linked list) of size <script type="math/tex; mode=display">n+1</script>, where <script type="math/tex; mode=display">n</script> is the length of the given string.
+<script type="math/tex; mode=display">\text{dp}[k]</script> is used to store every possible sentence having all valid dictionary words using the substring <script type="math/tex; mode=display">s[0:k-1]</script>.
+ We also use two index pointers <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script>, where <script type="math/tex; mode=display">i</script> refers to the length of the substring (<script type="math/tex; mode=display">s'</script>) considered currently starting from
+the beginning, and <script type="math/tex; mode=display">j</script> refers to the index partitioning the current substring (<script type="math/tex; mode=display">s'</script>) into smaller substrings <script type="math/tex; mode=display">s'(0,j)</script> and <script type="math/tex; mode=display">s'(j+1,i)</script>.
+To fill in the <script type="math/tex; mode=display">\text{dp}</script> array, we initialize the element <script type="math/tex; mode=display">\text{dp}[0]</script> as an empty string, since no sentence can be formed using a word of size 0.
+We consider substrings of all possible lengths starting from the beginning by making use of index <script type="math/tex; mode=display">i</script>.
+For every such substring, we partition the string into two further substrings <script type="math/tex; mode=display">s1'</script> and <script type="math/tex; mode=display">s2'</script> in all possible ways using the index <script type="math/tex; mode=display">j</script> (
+Note that the <script type="math/tex; mode=display">i</script> now refers to the ending index of <script type="math/tex; mode=display">s2'</script>). Now, to fill in the entry <script type="math/tex; mode=display">\text{dp}[i]</script>, we check if the <script type="math/tex; mode=display">\text{dp}[j]</script> contains a non-empty string
+ i.e. if some valid sentence can be formed using <script type="math/tex; mode=display">s1'</script>. If so, we further check if <script type="math/tex; mode=display">s2'</script> is present in the dictionary. If both the conditions are satified,
+ we append the substring <script type="math/tex; mode=display">s2'</script> to every possible sentence that can be formed up to the index <script type="math/tex; mode=display">j</script> (which is already stored in <script type="math/tex; mode=display">d[j]</script>). These newly formed sentences
+ are stored in <script type="math/tex; mode=display">\text{dp}[i]</script>. Finally the element <script type="math/tex; mode=display">\text{dp}[n]</script> (<script type="math/tex; mode=display">n</script> refers to the length of the given string <script type="math/tex; mode=display">s</script>) gives all possible valid sentences using the complete string <script type="math/tex; mode=display">s</script>.</p>
+<iframe frameborder="0" height="394" name="NMViSLPe" src="https://leetcode.com/playground/NMViSLPe/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. Two loops are required to fill <script type="math/tex; mode=display">\text{dp}</script> array and one loop for appending a list .</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n^3)</script>. Length of <script type="math/tex; mode=display">\text{dp}</script> array is <script type="math/tex; mode=display">n</script> and each value of <script type="math/tex; mode=display">\text{dp}</script> array contains a list of string i.e. <script type="math/tex; mode=display">n^2</script> space.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">103420</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">430827</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              69%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/uber.html">Uber</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/twitter.html">Twitter</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/snapchat.html">Snapchat</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/dropbox.html">Dropbox</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

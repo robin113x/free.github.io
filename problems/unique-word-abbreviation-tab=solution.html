@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="An abbreviation of a word follows the form &lt;first letter&gt;&lt;number&gt;&lt;last letter&gt;. Below are some examples of word abbreviations:
+
+a) it                      --&gt; it    (no abbreviation)
+
+     1
+b) d|o|g                   --&gt; d1g
+
+              1    1  1
+     1---5----0----5--8
+c) i|nternationalizatio|n  --&gt; i18n
+
+              1
+     1---5----0
+d) l|ocalizatio|n          --&gt; l10n
+
+Assume you have a dictionary and given a word, find whether its abbreviation is unique in the dictionary. A word&#39;s abbreviation is unique if no other word from the dictionary has the same abbreviation.
+Example:">
+  <meta name="keywords"
+        content="Unique Word Abbreviation, LC 288, leetcode 288, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>288. Unique Word Abbreviation</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>An abbreviation of a word follows the form &lt;first letter&gt;&lt;number&gt;&lt;last letter&gt;. Below are some examples of word abbreviations:
+<pre>
+a) it                      --> it    (no abbreviation)
+
+     1
+b) d|o|g                   --> d1g
+
+              1    1  1
+     1---5----0----5--8
+c) i|nternationalizatio|n  --> i18n
+
+              1
+     1---5----0
+d) l|ocalizatio|n          --> l10n
+</pre>
+
+<p>Assume you have a dictionary and given a word, find whether its abbreviation is unique in the dictionary. A word's abbreviation is unique if no <i>other</i> word from the dictionary has the same abbreviation.</p>
+
+<p>Example: </br>
+<pre>
+Given dictionary = [ "deer", "door", "cake", "card" ]
+
+isUnique("dear") -> <code>false</code>
+isUnique("cart") -> <code>true</code>
+isUnique("cane") -> <code>false</code>
+isUnique("make") -> <code>true</code>
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force">Approach #1 (Brute Force)</a></li>
+<li><a href="#approach-2-hash-table-accepted">Approach #2 (Hash Table) [Accepted]</a></li>
+<li><a href="#approach-3-hash-table-accepted">Approach #3 (Hash Table) [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>This problem has a low acceptance rate for a reason. The logic in <code>isUnique</code> can be a little tricky to get right due to the number of cases you need to consider. We highly recommend that you practice this similar but easier problem first - <a href="https://leetcode.com/problems/two-sum-iii-data-structure-design/">Two Sum III - Data structure design</a>.</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force">Approach #1 (Brute Force)</h4>
+<p>Let us begin by storing the dictionary first in the constructor. To determine if a word's abbreviation is unique with respect to a word in the dictionary, we check if all the following conditions are met:</p>
+<ol>
+<li><a name="condition-1"></a>They are not the same word.</li>
+<li>They both have equal lengths.</li>
+<li>They both share the same first and last letter.</li>
+</ol>
+<p>Note that <a href="#condition-1">Condition #1</a> is implicit because from the problem statement:</p>
+<blockquote>
+<p>A word's abbreviation is unique if no <strong><em>other</em></strong> word from the dictionary has the same abbreviation.</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ValidWordAbbr</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span><span class="o">[]</span> <span class="n">dict</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ValidWordAbbr</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">dictionary</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dict</span> <span class="o">=</span> <span class="n">dictionary</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isUnique</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">dict</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">word</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">s</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">continue</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">m</span> <span class="o">==</span> <span class="n">n</span>
+                <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="n">word</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+                <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="n">word</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n)</script> for each <code>isUnique</code> call.
+Assume that <script type="math/tex; mode=display">n</script> is the number of words in the dictionary, each <code>isUnique</code> call takes <script type="math/tex; mode=display">O(n)</script> time.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-hash-table-accepted">Approach #2 (Hash Table) [Accepted]</h4>
+<p>Note that <code>isUnique</code> is called repeatedly for the same set of words in the dictionary each time. We should pre-process the dictionary to speed it up.</p>
+<p>Ideally, a hash table supports constant time look up. What should the key-value pair be?</p>
+<p>Well, the idea is to <em>group</em> the words that fall under the same abbreviation together. For the value, we use a Set instead of a List to guarantee uniqueness.</p>
+<p>The logic in <code>isUnique(word)</code> is tricky. You need to consider the following cases:</p>
+<ol>
+<li>Does the word's abbreviation exists in the dictionary? If not, then it must be unique.</li>
+<li>If above is yes, then it can only be unique if the grouping of the abbreviation contains no other words except <em>word</em>.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ValidWordAbbr</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">abbrDict</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="nf">ValidWordAbbr</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">dictionary</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">dictionary</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">abbr</span> <span class="o">=</span> <span class="n">toAbbr</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+            <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">words</span> <span class="o">=</span> <span class="n">abbrDict</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">abbr</span><span class="o">)</span>
+                <span class="o">?</span> <span class="n">abbrDict</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">abbr</span><span class="o">)</span> <span class="o">:</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
+            <span class="n">words</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+            <span class="n">abbrDict</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">abbr</span><span class="o">,</span> <span class="n">words</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isUnique</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">abbr</span> <span class="o">=</span> <span class="n">toAbbr</span><span class="o">(</span><span class="n">word</span><span class="o">);</span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">words</span> <span class="o">=</span> <span class="n">abbrDict</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">abbr</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">words</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">words</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">words</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">word</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">toAbbr</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">s</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">+</span> <span class="n">Integer</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="o">)</span> <span class="o">+</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<hr/>
+<h4 id="approach-3-hash-table-accepted">Approach #3 (Hash Table) [Accepted]</h4>
+<p>Let us consider another approach using a counter as the table's value. For example, assume the dictionary = <code>["door", "deer"]</code>, we have the mapping of <code>{"d2r" -&gt; 2}</code>. However, this mapping alone is not enough, because we need to consider whether the word exists in the dictionary. This can be easily overcome by inserting the entire dictionary into a set.</p>
+<p>When an abbreviation's counter exceeds one, we know this abbreviation must not be unique because at least two different words share the same abbreviation. Therefore, we can further simplify the counter to just a boolean.</p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ValidWordAbbr</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">abbrDict</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">dict</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ValidWordAbbr</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">dictionary</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dict</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">dictionary</span><span class="o">));</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">dict</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">abbr</span> <span class="o">=</span> <span class="n">toAbbr</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+            <span class="n">abbrDict</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">abbr</span><span class="o">,</span> <span class="o">!</span><span class="n">abbrDict</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">abbr</span><span class="o">));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isUnique</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">abbr</span> <span class="o">=</span> <span class="n">toAbbr</span><span class="o">(</span><span class="n">word</span><span class="o">);</span>
+        <span class="n">Boolean</span> <span class="n">hasAbbr</span> <span class="o">=</span> <span class="n">abbrDict</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">abbr</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">hasAbbr</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">hasAbbr</span> <span class="o">&amp;&amp;</span> <span class="n">dict</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">word</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">toAbbr</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">s</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">+</span> <span class="n">Integer</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="o">)</span> <span class="o">+</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script> pre-processing, <script type="math/tex; mode=display">O(1)</script> for each <code>isUnique</code> call.
+Both <a href="#approach-2">Approach #2</a> and <a href="#approach-3">Approach #3</a> above take <script type="math/tex; mode=display">O(n)</script> pre-processing time in the constructor. This is totally worth it if <code>isUnique</code> is called repeatedly.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>.
+We traded the extra <script type="math/tex; mode=display">O(n)</script> space storing the table to reduce the time complexity in <code>isUnique</code>.</p>
+</li>
+</ul>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">29801</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">171415</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              22%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

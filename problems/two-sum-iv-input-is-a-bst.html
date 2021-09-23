@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a Binary Search Tree and a target number, return true if there exist two elements in the BST such that their sum is equal to the given target.
+Example 1:
+Input: 
+    5
+   / \
+  3   6
+ / \   \
+2   4   7
+
+Target = 9
+
+Output: True
+
+
+Example 2:
+Input: 
+    5
+   / \
+  3   6
+ / \   \
+2   4   7
+
+Target = 28
+
+Output: False">
+  <meta name="keywords"
+        content="Two Sum IV - Input is a BST, LC 653, leetcode 653, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>653. Two Sum IV - Input is a BST</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a Binary Search Tree and a target number, return true if there exist two elements in the BST such that their sum is equal to the given target.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 
+    5
+   / \
+  3   6
+ / \   \
+2   4   7
+
+Target = 9
+
+<b>Output:</b> True
+</pre>
+</p>
+
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> 
+    5
+   / \
+  3   6
+ / \   \
+2   4   7
+
+Target = 28
+
+<b>Output:</b> False
+</pre>
+</p>
+
+
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-using-hashsetaccepted">Approach #1 Using HashSet[Accepted]</a></li>
+<li><a href="#approach-2-using-bfs-and-hashset-accepted">Approach #2 Using BFS and HashSet [Accepted]</a></li>
+<li><a href="#approach-3-using-bst-accepted">Approach #3 Using BST [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-using-hashsetaccepted">Approach #1 Using HashSet[Accepted]</h4>
+<p>The simplest solution will be to traverse over the whole tree and consider every possible pair of nodes to determine if they can form the required sum <script type="math/tex; mode=display">k</script>. But, we can improve the process if we look at a little catch here.</p>
+<p>If the sum of two elements <script type="math/tex; mode=display">x + y</script> equals <script type="math/tex; mode=display">k</script>, and we already know that <script type="math/tex; mode=display">x</script> exists in the given tree, we only need to check if an element <script type="math/tex; mode=display">y</script> exists in the given tree, such that <script type="math/tex; mode=display">y = k - x</script>. Based on this simple catch, we can traverse the tree in both the directions(left child and right child) at every step. We keep a track of the elements which have been found so far during the tree traversal, by putting them into a <script type="math/tex; mode=display">set</script>. </p>
+<p>For every current node with a value of <script type="math/tex; mode=display">p</script>, we check if <script type="math/tex; mode=display">k-p</script> already exists in the array. If so, we can conclude that the sum <script type="math/tex; mode=display">k</script> can be formed by using the two elements from the given tree. Otherwise, we put this value <script type="math/tex; mode=display">p</script> into the <script type="math/tex; mode=display">set</script>.</p>
+<p>If even after the whole tree's traversal, no such element <script type="math/tex; mode=display">p</script> can be found, the sum <script type="math/tex; mode=display">k</script> can't be formed by using any two elements.</p>
+<iframe frameborder="0" height="309" name="NwhifNbv" src="https://leetcode.com/playground/NwhifNbv/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. The entire tree is traversed only once in the worst case. Here, <script type="math/tex; mode=display">n</script> refers to the number of nodes in the given tree.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The size of the <script type="math/tex; mode=display">set</script> can grow upto <script type="math/tex; mode=display">n</script> in the worst case.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-bfs-and-hashset-accepted">Approach #2 Using BFS and HashSet [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, the idea of using the <script type="math/tex; mode=display">set</script> is the same as in the last approach. But, we can carry on the traversal in a Breadth First Search manner, which is a very common traversal method used in Trees. The way BFS is used can be summarized as given below. We start by putting the root node into a <script type="math/tex; mode=display">queue</script>. We also maintain a <script type="math/tex; mode=display">set</script> similar to the last approach. Then, at every step, we do as follows:</p>
+<ol>
+<li>
+<p>Remove an element, <script type="math/tex; mode=display">p</script>,  from the front of the <script type="math/tex; mode=display">queue</script>. </p>
+</li>
+<li>
+<p>Check if the element <script type="math/tex; mode=display">k-p</script> already exists in the <script type="math/tex; mode=display">set</script>. If so, return True.</p>
+</li>
+<li>
+<p>Otherwise, add this element, <script type="math/tex; mode=display">p</script> to the <script type="math/tex; mode=display">set</script>. Further, add the right and the left child nodes of the current node to the back of the <script type="math/tex; mode=display">queue</script>.</p>
+</li>
+<li>
+<p>Continue steps 1. to 3. till the <script type="math/tex; mode=display">queue</script> becomes empty. </p>
+</li>
+<li>
+<p>Return false if the <script type="math/tex; mode=display">queue</script> becomes empty.</p>
+</li>
+</ol>
+<p>By following this process, we traverse the tree on a level by level basis. </p>
+<iframe frameborder="0" height="377" name="7SgfKz2F" src="https://leetcode.com/playground/7SgfKz2F/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We need to traverse over the whole tree once in the worst case.  Here, <script type="math/tex; mode=display">n</script> refers to the number of nodes in the given tree.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The size of the <script type="math/tex; mode=display">set</script> can grow atmost upto <script type="math/tex; mode=display">n</script>. </p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-bst-accepted">Approach #3 Using BST [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, we make use of the fact that the given tree is a Binary  Search Tree. Now, we know that the inorder traversal of a BST gives the nodes in ascending order. Thus, we do the inorder traversal of the given tree and put the results in a <script type="math/tex; mode=display">list</script> which contains the nodes sorted in ascending order.</p>
+<p>Once this is done, we make use of two pointers <script type="math/tex; mode=display">l</script> and <script type="math/tex; mode=display">r</script> pointing to the beginning and the end of the sorted <script type="math/tex; mode=display">list</script>. Then, we do as follows:</p>
+<ol>
+<li>
+<p>Check if the sum of the elements pointed by <script type="math/tex; mode=display">l</script> and <script type="math/tex; mode=display">r</script> is equal to the required sum <script type="math/tex; mode=display">k</script>. If so, return a True immediately.</p>
+</li>
+<li>
+<p>Otherwise, if the sum of the current two elements is lesser than the required sum <script type="math/tex; mode=display">k</script>, update <script type="math/tex; mode=display">l</script> to point to the next element. This is done, because, we need to increase the sum of the current elements, which can only be done by increasing the smaller number.</p>
+</li>
+<li>
+<p>Otherwise, if the sum of the current two elements is larger than the required sum <script type="math/tex; mode=display">k</script>, update <script type="math/tex; mode=display">r</script> to point to the previous element. This is done, because, we need to decrease the sum of the current elements, which can only be done by reducing the larger number. </p>
+</li>
+<li>
+<p>Continue steps 1. to 3. till the left pointer <script type="math/tex; mode=display">l</script> crosses the right pointer <script type="math/tex; mode=display">r</script>.</p>
+</li>
+<li>
+<p>If the two pointers cross each other, return a False value.</p>
+</li>
+</ol>
+<p>Note that we need not increase the larger number or reduce the smaller number in any case. This happens because, in case, a number larger than the current <script type="math/tex; mode=display">list[r]</script> is needed to form the required sum <script type="math/tex; mode=display">k</script>, the right pointer could not have been reduced in the first place. The similar argument holds true for not reducing the smaller number as well.</p>
+<iframe frameborder="0" height="462" name="chZDDTAy" src="https://leetcode.com/playground/chZDDTAy/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We need to traverse over the whole tree once to do the inorder traversal.  Here, <script type="math/tex; mode=display">n</script> refers to the number of nodes in the given tree.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The sorted <script type="math/tex; mode=display">list</script> will contain <script type="math/tex; mode=display">n</script> elements.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">24445</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">48665</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              42%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/samsung.html">Samsung</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

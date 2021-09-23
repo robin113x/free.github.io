@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array consists of non-negative integers,  your task is to count the number of triplets chosen from the array that can make triangles if we take them as side lengths of a triangle.
+
+Example 1:
+Input: [2,2,3,4]
+Output: 3
+Explanation:
+Valid combinations are: 
+2,3,4 (using the first 2)
+2,3,4 (using the second 2)
+2,2,3
+
+
+Note:
+
+The length of the given array won&#39;t exceed 1000.
+The integers in the given array are in the range of [0, 1000].">
+  <meta name="keywords"
+        content="Valid Triangle Number, LC 611, leetcode 611, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>611. Valid Triangle Number</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            Given an array consists of non-negative integers,  your task is to count the number of triplets chosen from the array that can make triangles if we take them as side lengths of a triangle.
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> [2,2,3,4]
+<b>Output:</b> 3
+<b>Explanation:</b>
+Valid combinations are: 
+2,3,4 (using the first 2)
+2,3,4 (using the second 2)
+2,2,3
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The length of the given array won't exceed 1000.</li>
+<li>The integers in the given array are in the range of [0, 1000].</li>
+</ol>
+</p>
+
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-binary-search-accepted">Approach #2 Using Binary Search [Accepted]</a></li>
+<li><a href="#approach-3-linear-scan-accepted">Approach #3 Linear Scan [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>The condition for the triplets <script type="math/tex; mode=display">(a, b, c)</script> representing the lengths of the sides of a triangle, to form a valid triangle, is that the sum of any two sides should always be greater than the third side alone. i.e. <script type="math/tex; mode=display">a + b > c</script>, <script type="math/tex; mode=display">b + c > a</script>, <script type="math/tex; mode=display">a + c > b</script>. </p>
+<p>The simplest method to check this is to consider every possible triplet in the given <script type="math/tex; mode=display">nums</script> array and checking if the triplet satisfies the three inequalities mentioned above. Thus, we can keep a track of the <script type="math/tex; mode=display">count</script> of the number of triplets satisfying these inequalities. When all the triplets have been considered, the <script type="math/tex; mode=display">count</script> gives the required result.</p>
+<iframe frameborder="0" height="309" name="gdURWBgv" src="https://leetcode.com/playground/gdURWBgv/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. Three nested loops are there to check every triplet.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-binary-search-accepted">Approach #2 Using Binary Search [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>If we sort the given <script type="math/tex; mode=display">nums</script> array once, we can solve the given problem in a better way. This is because, if we consider a triplet <script type="math/tex; mode=display">(a, b, c)</script> such that <script type="math/tex; mode=display">a &leq; b &leq; c</script>, we need not check all the three inequalities for checking the validity of the triangle formed by them. But, only one condition <script type="math/tex; mode=display">a + b > c</script> would suffice. This happens because <script type="math/tex; mode=display">c &geq; b</script> and <script type="math/tex; mode=display">c &geq; a</script>. Thus, adding any number to <script type="math/tex; mode=display">c</script> will always produce a sum which is greater than either <script type="math/tex; mode=display">a</script> or <script type="math/tex; mode=display">b</script> considered alone. Thus, the inequalities <script type="math/tex; mode=display">c + a > b</script> and <script type="math/tex; mode=display">c + b > a</script> are satisfied implicitly by virtue of the  property <script type="math/tex; mode=display">a < b < c</script>.</p>
+<p>From this, we get the idea that we can sort the given <script type="math/tex; mode=display">nums</script> array. Then, for every pair <script type="math/tex; mode=display">(nums[i], nums[j])</script> considered starting from the beginning of the array, such that <script type="math/tex; mode=display">j > i</script>(leading to <script type="math/tex; mode=display">nums[j] &geq; nums[i]</script>), we can find out the count of elements <script type="math/tex; mode=display">nums[k]</script>(<script type="math/tex; mode=display">k > j</script>), which satisfy the inequality <script type="math/tex; mode=display">nums[k] > nums[i] + nums[j]</script>. We can do so for every pair <script type="math/tex; mode=display">(i, j)</script> considered and get the required result.</p>
+<p>We can also observe that, since we've sorted the <script type="math/tex; mode=display">nums</script> array, as we traverse towards the right for choosing the index <script type="math/tex; mode=display">k</script>(for number <script type="math/tex; mode=display">nums[k]</script>), the value of <script type="math/tex; mode=display">nums[k]</script> could increase or remain the same(doesn't decrease relative to the previous value). Thus, there will exist a right limit on the value of index <script type="math/tex; mode=display">k</script>, such that the elements satisfy <script type="math/tex; mode=display">nums[k] > nums[i] + nums[j]</script>. Any elements beyond this value of <script type="math/tex; mode=display">k</script> won't satisfy this inequality as well, which is obvious.</p>
+<p>Thus, if we are able to find this right limit value of <script type="math/tex; mode=display">k</script>(indicating the element just greater than <script type="math/tex; mode=display">nums[i] + nums[j]</script>), we can conclude that all the elements in <script type="math/tex; mode=display">nums</script> array in the range <script type="math/tex; mode=display">(j+1, k-1)</script>(both included) satisfy the required inequality. Thus, the <script type="math/tex; mode=display">count</script> of elements satisfying the inequality will be given by <script type="math/tex; mode=display">(k-1) - (j+1) + 1 = k - j - 1</script>.</p>
+<p>Since the <script type="math/tex; mode=display">nums</script> array has been sorted now, we can make use of Binary Search to find this right limit of <script type="math/tex; mode=display">k</script>. The following animation shows how Binary Search can be used to find the right limit for a simple example.</p>
+<p>!?!../Documents/Valid_Triangle_Binary.json:1000,563!?!</p>
+<p>Another point to be observed is that once we find a right limit index <script type="math/tex; mode=display">k_{(i,j)}</script> for a particular pair <script type="math/tex; mode=display">(i, j)</script> chosen, when we choose a higher value of <script type="math/tex; mode=display">j</script> for the same value of <script type="math/tex; mode=display">i</script>, we need not start searching for the right limit <script type="math/tex; mode=display">k_{(i,j+1)}</script> from the index <script type="math/tex; mode=display">j+2</script>. Instead, we can start off from the index <script type="math/tex; mode=display">k_{(i,j)}</script> directly where we left off for the last <script type="math/tex; mode=display">j</script> chosen. </p>
+<p>This holds correct because when we choose a higher value of <script type="math/tex; mode=display">j</script>(higher or equal <script type="math/tex; mode=display">nums[j]</script> than the previous one), all the <script type="math/tex; mode=display">nums[k]</script>, such that <script type="math/tex; mode=display">k < k_{(i,j)}</script> will obviously satisfy <script type="math/tex; mode=display">nums[i] + nums[j] > nums[k]</script> for the new value of <script type="math/tex; mode=display">j</script> chosen.</p>
+<p>By taking advantage of this observation, we can limit the range of Binary Search for <script type="math/tex; mode=display">k</script> to shorter values for increasing values of <script type="math/tex; mode=display">j</script> considered while choosing the pairs <script type="math/tex; mode=display">(i, j)</script>.</p>
+<iframe frameborder="0" height="462" name="UpFbPxRd" src="https://leetcode.com/playground/UpFbPxRd/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2logn)</script>. In worst case inner loop will take <script type="math/tex; mode=display">nlogn</script> (binary search applied <script type="math/tex; mode=display">n</script> times).</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(logn)</script>. Sorting takes <script type="math/tex; mode=display">O(logn)</script> space.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-linear-scan-accepted">Approach #3 Linear Scan [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>As discussed in the last approach, once we sort the given <script type="math/tex; mode=display">nums</script> array, we need to find the right limit of the index <script type="math/tex; mode=display">k</script> for a pair of indices <script type="math/tex; mode=display">(i, j)</script> chosen to find the <script type="math/tex; mode=display">count</script> of elements satisfying <script type="math/tex; mode=display">nums[i] + nums[j] > nums[k]</script> for the triplet <script type="math/tex; mode=display">(nums[i], nums[j], nums[k])</script> to form a valid triangle. </p>
+<p>We can find this right limit by simply traversing the index <script type="math/tex; mode=display">k</script>'s values starting from the index <script type="math/tex; mode=display">k=j+1</script> for a pair <script type="math/tex; mode=display">(i, j)</script> chosen and stopping at the first value of <script type="math/tex; mode=display">k</script> not satisfying the above inequality. Again, the <script type="math/tex; mode=display">count</script> of elements <script type="math/tex; mode=display">nums[k]</script> satisfying <script type="math/tex; mode=display">nums[i] + nums[j] > nums[k]</script> for the pair of indices <script type="math/tex; mode=display">(i, j)</script> chosen is given by <script type="math/tex; mode=display">k - j - 1</script> as discussed in the last approach.</p>
+<p>Further, as discussed in the last approach, when we choose a higher value of index <script type="math/tex; mode=display">j</script> for a particular <script type="math/tex; mode=display">i</script> chosen, we need not start from the index <script type="math/tex; mode=display">j + 1</script>. Instead, we can start off directly from the value of <script type="math/tex; mode=display">k</script> where we left for the last index <script type="math/tex; mode=display">j</script>. This helps to save redundant computations.</p>
+<p>The following animation depicts the process:</p>
+<p>!?!../Documents/Valid_Triangle_Linear.json:1000,563!?!</p>
+<iframe frameborder="0" height="309" name="GW5LZ3tx" src="https://leetcode.com/playground/GW5LZ3tx/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. Loop of <script type="math/tex; mode=display">k</script> and <script type="math/tex; mode=display">j</script> will be executed <script type="math/tex; mode=display">O(n^2)</script> times in total, because, we do not reinitialize the value of <script type="math/tex; mode=display">k</script> for a new value of <script type="math/tex; mode=display">j</script> chosen(for the same <script type="math/tex; mode=display">i</script>). Thus the complexity will be O(n^2+n^2)=O(n^2).</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(logn)</script>. Sorting takes O(logn) space.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">12915</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">30568</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              27%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/expedia.html">Expedia</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

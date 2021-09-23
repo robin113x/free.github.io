@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="There is a ball in a maze with empty spaces and walls. The ball can go through empty spaces by rolling up, down, left or right, but it won&#39;t stop rolling until hitting a wall. When the ball stops, it could choose the next direction.
+Given the ball&#39;s start position, the destination and the maze, find the shortest distance for the ball to stop at the destination. The distance is defined by the number of empty spaces traveled by the ball from the start position (excluded) to the destination (included). If the ball cannot stop at the destination, return -1.
+The maze is represented by a binary 2D array. 1 means the wall and 0 means the empty space. You may assume that the borders of the maze are all walls. The start and destination coordinates are represented by row and column indexes.
+
+Example 1
+Input 1: a maze represented by a 2D array
+
+0 0 1 0 0
+0 0 0 0 0
+0 0 0 1 0
+1 1 0 1 1
+0 0 0 0 0
+
+Input 2: start coordinate (rowStart, colStart) = (0, 4)
+Input 3: destination coordinate (rowDest, colDest) = (4, 4)
+
+Output: 12
+Explanation: One shortest way is : left -&gt; down -&gt; left -&gt; down -&gt; right -&gt; down -&gt; right.
+             The total distance is 1 + 1 + 3 + 1 + 2 + 2 + 2 = 12.
+
+
+
+
+Example 2
+Input 1: a maze represented by a 2D array
+
+0 0 1 0 0
+0 0 0 0 0
+0 0 0 1 0
+1 1 0 1 1
+0 0 0 0 0
+
+Input 2: start coordinate (rowStart, colStart) = (0, 4)
+Input 3: destination coordinate (rowDest, colDest) = (3, 2)
+
+Output: -1
+Explanation: There is no way for the ball to stop at the destination.
+
+
+
+Note:
+
+There is only one ball and one destination in the maze.
+Both the ball and the destination exist on an empty space, and they will not be at the same position initially.
+The given maze does not contain border (like the red rectangle in the example pictures), but you could assume the border of the maze are all walls.
+The maze contains at least 2 empty spaces, and both the width and height of the maze won&#39;t exceed 100.">
+  <meta name="keywords"
+        content="The Maze II, LC 505, leetcode 505, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>505. The Maze II</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>There is a <b>ball</b> in a maze with empty spaces and walls. The ball can go through empty spaces by rolling <b>up</b>, <b>down</b>, <b>left</b> or <b>right</b>, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction.</p>
+
+<p>Given the ball's <b>start position</b>, the <b>destination</b> and the <b>maze</b>, find the shortest distance for the ball to stop at the destination. The distance is defined by the number of <b>empty spaces</b> traveled by the ball from the start position (excluded) to the destination (included). If the ball cannot stop at the destination, return -1.</p>
+
+<p>The maze is represented by a binary 2D array. 1 means the wall and 0 means the empty space. You may assume that the borders of the maze are all walls. The start and destination coordinates are represented by row and column indexes.</p>
+
+<p>
+<b>Example 1</b>
+<pre>
+<b>Input 1:</b> a maze represented by a 2D array
+
+0 0 1 0 0
+0 0 0 0 0
+0 0 0 1 0
+1 1 0 1 1
+0 0 0 0 0
+
+<b>Input 2:</b> start coordinate (rowStart, colStart) = (0, 4)
+<b>Input 3:</b> destination coordinate (rowDest, colDest) = (4, 4)
+
+<b>Output:</b> 12
+<b>Explanation:</b> One shortest way is : left -> down -> left -> down -> right -> down -> right.
+             The total distance is 1 + 1 + 3 + 1 + 2 + 2 + 2 = 12.
+<img src="https://leetcode.com/static/images/problemset/maze_1_example_1.png" width = "30%" />
+</pre>
+</p>
+
+<p>
+<b>Example 2</b>
+<pre>
+<b>Input 1:</b> a maze represented by a 2D array
+
+0 0 1 0 0
+0 0 0 0 0
+0 0 0 1 0
+1 1 0 1 1
+0 0 0 0 0
+
+<b>Input 2:</b> start coordinate (rowStart, colStart) = (0, 4)
+<b>Input 3:</b> destination coordinate (rowDest, colDest) = (3, 2)
+
+<b>Output:</b> -1
+<b>Explanation:</b> There is no way for the ball to stop at the destination.
+<img src="https://leetcode.com/static/images/problemset/maze_1_example_2.png" width = "30%" />
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>There is only one ball and one destination in the maze.</li>
+<li>Both the ball and the destination exist on an empty space, and they will not be at the same position initially.</li>
+<li>The given maze does not contain border (like the red rectangle in the example pictures), but you could assume the border of the maze are all walls.</li>
+<li>The maze contains at least 2 empty spaces, and both the width and height of the maze won't exceed 100.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-depth-first-search-accepted">Approach #1 Depth First Search [Accepted]</a></li>
+<li><a href="#approach-2-using-breadth-first-search-accepted">Approach #2 Using Breadth First Search [Accepted]</a></li>
+<li><a href="#approach-3-using-dijkstra-algorithm-accepted">Approach #3 Using Dijkstra Algorithm [Accepted]</a></li>
+<li><a href="#approach-4-using-dijkstra-algorithm-and-priority-queueaccepted">Approach #4 Using Dijkstra Algorithm and Priority Queue[Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-depth-first-search-accepted">Approach #1 Depth First Search [Accepted]</h4>
+<p>We can view the given search space in the form of a tree. The root node of the tree represents the starting position. Four different routes are possible from each position i.e. left, right, up or down. These four options can be represented by 4 branches of each node in the given tree. Thus, the new node reached from the root traversing over the branch represents the new position occupied by the ball after choosing the corresponding direction of travel.</p>
+<p><img alt="Maze_Tree" src="https://leetcode.com/articles/Figures/490_Maze_Tree.PNG"/></p>
+<p>In order to do this traversal, one of the simplest schemes is to undergo depth first search. We make use of a recursive function <code>dfs</code> for this. From every current position, we try to go as deep as possible into the levels of a tree taking a particular branch traversal direction as possible. When one of the deepest levels is exhausted, we continue the process by reaching the next deepest levels of the tree. In order to travel in the various directions from the current position, we make use of a <script type="math/tex; mode=display">dirs</script> array. <script type="math/tex; mode=display">dirs</script> is an array with 4 elements, where each of the elements represents a single step of a one-dimensional movement. For travelling in a particular direction, we keep on adding the appropriate <script type="math/tex; mode=display">dirs</script> element in the current position till the ball hits a boundary or a wall.</p>
+<p>We start with the given <script type="math/tex; mode=display">start</script> position, and try to explore these directions represented by the <script type="math/tex; mode=display">dirs</script> array one by one. For every element <script type="math/tex; mode=display">dir</script> of the <script type="math/tex; mode=display">dirs</script> chosen for the current travelling direction, we determine how far can the ball travel in this direction prior to hitting a wall or a boundary. We keep a track of the number of steps using <script type="math/tex; mode=display">count</script> variable. </p>
+<p>Apart from this, we also make use of a 2-D <script type="math/tex; mode=display">distance</script> array. <script type="math/tex; mode=display">distance[i][j]</script> represents the minimum number of steps required to reach the positon <script type="math/tex; mode=display">(i, j)</script> starting from the <script type="math/tex; mode=display">start</script> position. This array is initialized with largest integer values in the beginning. </p>
+<p>When we reach any position next to a boundary or a wall during the traversal in a particular direction, as discussed earlier, we keep a track of the number of steps taken in the last direction in <script type="math/tex; mode=display">count</script> variable. Suppose, we reach the position <script type="math/tex; mode=display">(i,j)</script> starting from the last position <script type="math/tex; mode=display">(k,l)</script>. Now, for this position, we need to determine the minimum number of steps taken to reach this position starting from the <script type="math/tex; mode=display">start</script> position. For this, we check if the current path takes lesser steps to reach <script type="math/tex; mode=display">(i,j)</script> than any other previous path taken to reach the same position i.e. we check if <script type="math/tex; mode=display">distance[k][l] + count</script> is lesser than <script type="math/tex; mode=display">distance[i][j]</script>. If not, we continue the process of traversal from the position <script type="math/tex; mode=display">(k,l)</script> in the next direction.</p>
+<p>If <script type="math/tex; mode=display">distance[k][l] + count</script> is lesser than <script type="math/tex; mode=display">distance[i][j]</script>, we can reach the position <script type="math/tex; mode=display">(i,j)</script> from the current route in lesser number of steps. Thus, we need to update the value of <script type="math/tex; mode=display">distance[i][j]</script> as <script type="math/tex; mode=display">distance[k][l] + count</script>. Further, now we need to try to reach the destination, <script type="math/tex; mode=display">dest</script>, from the end position <script type="math/tex; mode=display">(i,j)</script>, since this could lead to a shorter path to <script type="math/tex; mode=display">dest</script>. Thus, we again call the same function <code>dfs</code> but with the position <script type="math/tex; mode=display">(i,j)</script> acting as the current position. </p>
+<p>After this, we try to explore the routes possible by choosing all the other directions of travel from the current position <script type="math/tex; mode=display">(k,l)</script> as well.</p>
+<p>At the end, the entry in distance array corresponding to the destination, <script type="math/tex; mode=display">dest</script>'s coordinates gives the required minimum distance to reach the destination. If the destination can't be reached, the corresponding entry will contain <script type="math/tex; mode=display">\text{Integer.MAX_VALUE}</script>.</p>
+<p>The following animation depicts the process.</p>
+<p>!?!../Documents/505_Maze2_DFS.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="9KoQFAmz" src="https://leetcode.com/playground/9KoQFAmz/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(m*n*\text{max}(m,n))</script>. Complete traversal of maze will be done in the worst case. Here, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> refers to the number of rows and columns of the maze. Further, for every current node chosen, we can travel upto a maximum depth of <script type="math/tex; mode=display">\text{max}(m,n)</script> in any direction.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(mn)</script>. <script type="math/tex; mode=display">distance</script> array of size <script type="math/tex; mode=display">m*n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-breadth-first-search-accepted">Approach #2 Using Breadth First Search [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Instead of making use of Depth First Search for exploring the search space, we can make use of Breadth First Search as well. In this, instead of exploring the search space on a depth basis, we traverse the search space(tree) on a level by level basis i.e. we explore all the new positions that can be reached starting from the current position first, before moving onto the next positions that can be reached from these new positions. </p>
+<p>In order to make a traversal in any direction, we again make use of <script type="math/tex; mode=display">dirs</script> array as in the DFS approach. Again, whenever we make a traversal in any direction, we keep a track of the number of steps taken while moving in this direction in <script type="math/tex; mode=display">count</script> variable as done in the last approach. We also make use of <script type="math/tex; mode=display">distance</script> array initialized with very large values in the beginning. <script type="math/tex; mode=display">distance[i][j]</script> again represents the minimum number of steps required to reach the position <script type="math/tex; mode=display">(i,j)</script> from the <script type="math/tex; mode=display">start</script> position. </p>
+<p>This approach differs from the last approach only in the way the search space is explored. In order to reach the new positions in a Breadth First Search order, we make use of a <script type="math/tex; mode=display">queue</script>, which contains the new positions to be explored in the future. We start from the current position <script type="math/tex; mode=display">(k,l)</script>, try to traverse in a particular direction, obtain the corresponding <script type="math/tex; mode=display">count</script> for that direction, reaching an end position of <script type="math/tex; mode=display">(i,j)</script> just near the boundary or a wall. If the position <script type="math/tex; mode=display">(i,j)</script> can be reached in a lesser number of steps from the current route than any other previous route checked, indicated by <script type="math/tex; mode=display">distance[k][l] + count < distance[i][j]</script>, we need to update <script type="math/tex; mode=display">distance[i][j]</script> as <script type="math/tex; mode=display">distance[k][l] + count</script>. </p>
+<p>After this, we add the new position obtained, <script type="math/tex; mode=display">(i,j)</script> to the back of a <script type="math/tex; mode=display">queue</script>, so that the various paths possible from this new position will be explored later on when all the directions possible from the current position <script type="math/tex; mode=display">(k,l)</script> have been explored. After exploring all the directions from the current position, we remove an element from the front of the <script type="math/tex; mode=display">queue</script> and continue checking the routes possible through all the directions now taking the new position(obtained from the <script type="math/tex; mode=display">queue</script>) as the current position. </p>
+<p>Again, the entry in distance array corresponding to the destination, <script type="math/tex; mode=display">dest</script>'s coordinates gives the required minimum distance to reach the destination. If the destination can't be reached, the corresponding entry will contain <script type="math/tex; mode=display">\text{Integer.MAX_VALUE}</script>.</p>
+<iframe frameborder="0" height="515" name="58PgnMeA" src="https://leetcode.com/playground/58PgnMeA/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(m*n*max(m,n))</script>. Time complexity : <script type="math/tex; mode=display">O(m*n*\text{max}(m,n))</script>. Complete traversal of maze will be done in the worst case. Here, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> refers to the number of rows and columns of the maze. Further, for every current node chosen, we can travel upto a maximum depth of <script type="math/tex; mode=display">\text{max}(m,n)</script> in any direction.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(mn)</script>. <script type="math/tex; mode=display">queue</script> size can grow upto <script type="math/tex; mode=display">m*n</script> in the worst case.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-dijkstra-algorithm-accepted">Approach #3 Using Dijkstra Algorithm [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Before we look into this approach, we take a quick overview of Dijkstra's Algorithm. </p>
+<p>Dijkstra's Algorithm is a very famous graph algorithm, which is used to find the shortest path from any <script type="math/tex; mode=display">start</script> node to any <script type="math/tex; mode=display">destination</script> node in the given weighted graph(the edges of the graph represent the distance between the nodes). </p>
+<p>The algorithm consists of the following steps:</p>
+<ol>
+<li>
+<p>Assign a tentative distance value to every node: set it to zero for our <script type="math/tex; mode=display">start</script> node and to infinity for all other nodes.</p>
+</li>
+<li>
+<p>Set the <script type="math/tex; mode=display">start</script> node as <script type="math/tex; mode=display">current</script> node. Mark it as visited.</p>
+</li>
+<li>
+<p>For the <script type="math/tex; mode=display">current</script> node, consider all of its neighbors and calculate their tentative distances. Compare the newly calculated tentative distance to the current assigned value and assign the smaller one to all the neighbors. For example, if the current node A is marked with a distance of 6, and the edge connecting it with a neighbor B has length 2, then the distance to B (through A) will be 6 + 2 = 8. If B was previously marked with a distance greater than 8 then change it to 8. Otherwise, keep the current value.</p>
+</li>
+<li>
+<p>When we are done considering all of the neighbors of the current node, mark the <script type="math/tex; mode=display">current</script> node as visited. A visited node will never be checked again.</p>
+</li>
+<li>
+<p>If the <script type="math/tex; mode=display">destination</script> node has been marked visited  or if the smallest tentative distance among all the nodes left is infinity(indicating that the <script type="math/tex; mode=display">destination</script> can't be reached), then stop. The algorithm has finished.</p>
+</li>
+<li>
+<p>Otherwise, select the unvisited node that is marked with the smallest tentative distance, set it as the new <script type="math/tex; mode=display">current</script> node, and go back to step 3.</p>
+</li>
+</ol>
+<p>The working of this algorithm can be understood by taking two simple examples. Consider the first set of nodes as shown below. </p>
+<p><img alt="Dijkstra_Graph" src="https://leetcode.com/articles/Figures/505_Maze2_1.PNG"/></p>
+<p>Suppose that the node <script type="math/tex; mode=display">b</script> is at a shorter distance from the <script type="math/tex; mode=display">start</script> node <script type="math/tex; mode=display">a</script> as compared to <script type="math/tex; mode=display">c</script>, but the distance from <script type="math/tex; mode=display">a</script> to the <script type="math/tex; mode=display">destination</script> node, <script type="math/tex; mode=display">e</script>, is shorter through the node <script type="math/tex; mode=display">c</script> itself. In this case, we need to check if the Dijkstra's algorithm works correctly, since the node <script type="math/tex; mode=display">b</script> is considered first while selecting the nodes being at a shorter distance from <script type="math/tex; mode=display">a</script>. Let's look into this.</p>
+<ol>
+<li>
+<p>Firstly, we choose <script type="math/tex; mode=display">a</script> as the <script type="math/tex; mode=display">start</script> node, mark it as visited and update the <script type="math/tex; mode=display">distance_b</script> and <script type="math/tex; mode=display">distance_c</script> values. Here, <script type="math/tex; mode=display">distance_i</script> represents the distance of node <script type="math/tex; mode=display">i</script> from the <script type="math/tex; mode=display">start</script> node.</p>
+</li>
+<li>
+<p>Since <script type="math/tex; mode=display">distance_b < distance_c</script>, <script type="math/tex; mode=display">b</script> is chosen as the next node for calculating the distances. We mark <script type="math/tex; mode=display">b</script> as visited. Now, we update the <script type="math/tex; mode=display">distance_e</script> value as <script type="math/tex; mode=display">distance_b + weight_{be}</script>. </p>
+</li>
+<li>
+<p>Now, <script type="math/tex; mode=display">c</script> is obviously the next node to be chosen as per the conditions of the assumptions taken above. (For path to <script type="math/tex; mode=display">e</script> through <script type="math/tex; mode=display">c</script> to be  shorter than path to <script type="math/tex; mode=display">e</script> through <script type="math/tex; mode=display">c</script>, <script type="math/tex; mode=display">distance_c < distance_b + weight_{be}</script>. From <script type="math/tex; mode=display">c</script>, we determine the distance to node <script type="math/tex; mode=display">e</script>. Since <script type="math/tex; mode=display">distance_c + weight_{ce}</script> is shorter than the previous value of <script type="math/tex; mode=display">distance_e</script>, we update <script type="math/tex; mode=display">distance_e</script> with the correct shorter value.</p>
+</li>
+<li>
+<p>We choose <script type="math/tex; mode=display">e</script> as the current node. No other distances need to be updated. Thus, we mark <script type="math/tex; mode=display">e</script> as visited. <script type="math/tex; mode=display">distance_e</script> now gives the required shortest distance.</p>
+</li>
+</ol>
+<p>The above example proves that even if a locally closer node is chosen as the current node first, the ultimate shortest distance to any node is calculated correctly.</p>
+<p>Let's take another example to demonstrate that the visited node needs not be chosen again as the current node. </p>
+<p><img alt="Dijkstra_Graph" src="https://leetcode.com/articles/Figures/505_Maze2_2.PNG"/></p>
+<p>Suppose <script type="math/tex; mode=display">a</script> is the <script type="math/tex; mode=display">start</script> node and <script type="math/tex; mode=display">e</script> is the <script type="math/tex; mode=display">destination</script> node. Now, suppose we visit <script type="math/tex; mode=display">b</script> first and mark it as visited, but later on we find that another path exists through <script type="math/tex; mode=display">c</script> to <script type="math/tex; mode=display">b</script>, which makes the <script type="math/tex; mode=display">distance_b</script> shorter than the previous value. But, because of this, we need to consider <script type="math/tex; mode=display">b</script> as the current node again, since it would affect the value of <script type="math/tex; mode=display">distance_e</script>. But, if we observe closely, such a situation would never occur, because for <script type="math/tex; mode=display">weight_{ac} + weight_{cb}</script> to be lesser than <script type="math/tex; mode=display">weight_{ab}</script>, <script type="math/tex; mode=display">weight_{ac} < weight_{ab}</script> in the first place. Thus, <script type="math/tex; mode=display">b</script> would never be marked <script type="math/tex; mode=display">visited</script> before <script type="math/tex; mode=display">c</script>, which contradicts the first assumption. This proves that the <script type="math/tex; mode=display">visited</script> node needs not be chosen as the current node again.</p>
+<p>The given problem is also a shortest distance finding problem with a slightly different set of rules. Thus, we can make use of Dijkstra's Algorithm to determine the minimum number of steps to reach the destination.</p>
+<p>The methodology remains the same as the DFS or BFS Approach discussed above, except the order in which the current positions are chosen. We again make use of a <script type="math/tex; mode=display">distance</script> array to keep a track of the minimum number of steps needed to reach every position from the <script type="math/tex; mode=display">start</script> position. At every step, we choose a position which hasn't been marked as visited and which is at the shortest distance from the <script type="math/tex; mode=display">start</script> position to be the current position. We mark this position as visited so that we don't consider this position as the current position again.</p>
+<p>From the current position, we determine the number of steps required to reach all the positions possible travelling from the current position(in all the four directions possible till hitting a wall/boundary). If it is possible to reach any position through the current route with a lesser number of steps than the earlier routes considered, we update the corresponding <script type="math/tex; mode=display">distance</script> entry. We continue the same process for the other directions as well for the current position. </p>
+<p>In order to determine the current node, we make use of <code>minDistance</code> function, in which we traverse over the whole <script type="math/tex; mode=display">distance</script> array and find out an unvisited node at the shortest distance from the <script type="math/tex; mode=display">start</script> node.</p>
+<p>At the end, the entry in <script type="math/tex; mode=display">distance</script> array corresponding to the <script type="math/tex; mode=display">destination</script> position gives the required minimum number of steps.
+If the destination can't be reached, the corresponding entry will contain <script type="math/tex; mode=display">\text{Integer.MAX_VALUE}</script>.</p>
+<iframe frameborder="0" height="515" name="L8dvTQnh" src="https://leetcode.com/playground/L8dvTQnh/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O((mn)^2)</script>. Complete traversal of maze will be done in the worst case and function <code>minDistance</code> takes <script type="math/tex; mode=display">O(mn)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(mn)</script>. <script type="math/tex; mode=display">distance</script> array of size <script type="math/tex; mode=display">m*n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-dijkstra-algorithm-and-priority-queueaccepted">Approach #4 Using Dijkstra Algorithm and Priority Queue[Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, in order to choose the current node, we traversed over the whole <script type="math/tex; mode=display">distance</script> array and found out an unvisited node at the shortest distance from the <script type="math/tex; mode=display">start</script> node. Rather than doing this, we can do the same task much efficiently by making use of a Priority Queue, <script type="math/tex; mode=display">queue</script>. This priority queue is implemented internally in the form of a heap. The criteria used for heapifying is that the node which is unvisited and at the smallest distance from the <script type="math/tex; mode=display">start</script> node, is always present on the top of the heap. Thus, the node to be chosen as the current node, is always present at the front of the <script type="math/tex; mode=display">queue</script>. </p>
+<p>For every current node, we again try to traverse in all the possible directions. We determine the minimum number of steps(till now) required to reach all the end points possible from the current node. If any such end point can be reached in a lesser number of steps through the current path than the paths previously considered, we need to update its <script type="math/tex; mode=display">distance</script> entry. </p>
+<p>Further, we add an entry corresponding to this node in the <script type="math/tex; mode=display">queue</script>, since its <script type="math/tex; mode=display">distance</script> entry has been updated and we need to consider this node as the competitors for the next current node choice. Thus, the process remains the same as the last approach, except the way in which the pick out the current node(which is the unvisited node at the shortest distance from the <script type="math/tex; mode=display">start</script> node).</p>
+<iframe frameborder="0" height="515" name="iyiLhqSD" src="https://leetcode.com/playground/iyiLhqSD/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(mn*log(mn)\big)</script>. Complete traversal of maze will be done in the worst case giving a factor of <script type="math/tex; mode=display">mn</script>. Further, <code>poll</code> method is a combination of heapifying(<script type="math/tex; mode=display">O\big(log(n)\big)</script>) and removing the top element(<script type="math/tex; mode=display">O(1)</script>) from the priority queue, and it takes <script type="math/tex; mode=display">O(n)</script> time for <script type="math/tex; mode=display">n</script> elements. In the current case, <code>poll</code> introduces a factor of <script type="math/tex; mode=display">log(mn)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(mn)</script>. <script type="math/tex; mode=display">distance</script> array of size <script type="math/tex; mode=display">m*n</script> is used and <script type="math/tex; mode=display">queue</script> size can grow upto <script type="math/tex; mode=display">m*n</script> in worst case.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">8791</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">22752</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              11%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

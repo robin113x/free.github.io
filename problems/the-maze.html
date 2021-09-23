@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="There is a ball in a maze with empty spaces and walls. The ball can go through empty spaces by rolling up, down, left or right, but it won&#39;t stop rolling until hitting a wall. When the ball stops, it could choose the next direction.
+Given the ball&#39;s start position, the destination and the maze, determine whether the ball could stop at the destination.
+The maze is represented by a binary 2D array. 1 means the wall and 0 means the empty space. You may assume that the borders of the maze are all walls. The start and destination coordinates are represented by row and column indexes.
+
+Example 1
+Input 1: a maze represented by a 2D array
+
+0 0 1 0 0
+0 0 0 0 0
+0 0 0 1 0
+1 1 0 1 1
+0 0 0 0 0
+
+Input 2: start coordinate (rowStart, colStart) = (0, 4)
+Input 3: destination coordinate (rowDest, colDest) = (4, 4)
+
+Output: true
+Explanation: One possible way is : left -&gt; down -&gt; left -&gt; down -&gt; right -&gt; down -&gt; right.
+
+
+
+
+Example 2
+Input 1: a maze represented by a 2D array
+
+0 0 1 0 0
+0 0 0 0 0
+0 0 0 1 0
+1 1 0 1 1
+0 0 0 0 0
+
+Input 2: start coordinate (rowStart, colStart) = (0, 4)
+Input 3: destination coordinate (rowDest, colDest) = (3, 2)
+
+Output: false
+Explanation: There is no way for the ball to stop at the destination.
+
+
+
+Note:
+
+There is only one ball and one destination in the maze.
+Both the ball and the destination exist on an empty space, and they will not be at the same position initially.
+The given maze does not contain border (like the red rectangle in the example pictures), but you could assume the border of the maze are all walls.
+The maze contains at least 2 empty spaces, and both the width and height of the maze won&#39;t exceed 100.">
+  <meta name="keywords"
+        content="The Maze, LC 490, leetcode 490, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>490. The Maze</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>There is a <b>ball</b> in a maze with empty spaces and walls. The ball can go through empty spaces by rolling <b>up</b>, <b>down</b>, <b>left</b> or <b>right</b>, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction.</p>
+
+<p>Given the ball's <b>start position</b>, the <b>destination</b> and the <b>maze</b>, determine whether the ball could stop at the destination.</p>
+
+<p>The maze is represented by a binary 2D array. 1 means the wall and 0 means the empty space. You may assume that the borders of the maze are all walls. The start and destination coordinates are represented by row and column indexes.</p>
+
+<p>
+<b>Example 1</b>
+<pre>
+<b>Input 1:</b> a maze represented by a 2D array
+
+0 0 1 0 0
+0 0 0 0 0
+0 0 0 1 0
+1 1 0 1 1
+0 0 0 0 0
+
+<b>Input 2:</b> start coordinate (rowStart, colStart) = (0, 4)
+<b>Input 3:</b> destination coordinate (rowDest, colDest) = (4, 4)
+
+<b>Output:</b> true
+<b>Explanation:</b> One possible way is : left -> down -> left -> down -> right -> down -> right.
+<img src="https://leetcode.com/static/images/problemset/maze_1_example_1.png" width = "30%" />
+</pre>
+</p>
+
+<p>
+<b>Example 2</b>
+<pre>
+<b>Input 1:</b> a maze represented by a 2D array
+
+0 0 1 0 0
+0 0 0 0 0
+0 0 0 1 0
+1 1 0 1 1
+0 0 0 0 0
+
+<b>Input 2:</b> start coordinate (rowStart, colStart) = (0, 4)
+<b>Input 3:</b> destination coordinate (rowDest, colDest) = (3, 2)
+
+<b>Output:</b> false
+<b>Explanation:</b> There is no way for the ball to stop at the destination.
+<img src="https://leetcode.com/static/images/problemset/maze_1_example_2.png" width = "30%" />
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>There is only one ball and one destination in the maze.</li>
+<li>Both the ball and the destination exist on an empty space, and they will not be at the same position initially.</li>
+<li>The given maze does not contain border (like the red rectangle in the example pictures), but you could assume the border of the maze are all walls.</li>
+<li>The maze contains at least 2 empty spaces, and both the width and height of the maze won't exceed 100.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-depth-first-search-time-limit-exceeded">Approach #1 Depth First Search [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-breadth-first-search-accepted">Approach #2 Breadth First Search [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-depth-first-search-time-limit-exceeded">Approach #1 Depth First Search [Time Limit Exceeded]</h4>
+<p>We can view the given search space in the form of a tree. The root node of the tree represents the starting position. Four different routes are possible from each position i.e. left, right, up or down. These four options can be represented by 4 branches of each node in the given tree. Thus, the new node reached from the root traversing over the branch represents the new position occupied by the ball after choosing the corresponding direction of travel.</p>
+<p><img alt="Maze_Tree" src="https://leetcode.com/articles/Figures/490_Maze_Tree.PNG"/></p>
+<p>In order to do this traversal, one of the simplest schemes is to undergo depth first search. In this case, we choose one path at a time and try to go as deep as possible into the levels of the tree before going for the next path. In order to implement this, we make use of a recursive function <code>dfs(maze, start, desination, visited)</code>. This function takes the given <script type="math/tex; mode=display">maze</script> array, the <script type="math/tex; mode=display">start</script> position and the <script type="math/tex; mode=display">destination</script> position as its arguments along with a <script type="math/tex; mode=display">visited</script> array. <script type="math/tex; mode=display">visited</script> array is a 2-D boolean array of the same size as that of <script type="math/tex; mode=display">maze</script>. A True value at <script type="math/tex; mode=display">visited[i][j]</script> represents that the current position has already been reached earlier during the path traversal. We make use of this array so as to keep track of the same paths being repeated over and over. We mark a True at the current position in the <script type="math/tex; mode=display">visited</script> array once we reach that particular positon in the <script type="math/tex; mode=display">maze</script>.</p>
+<p>From every <script type="math/tex; mode=display">start</script> position, we can move continuously in either left, right, upward or downward direction till we reach the boundary or a wall. Thus, from the <script type="math/tex; mode=display">start</script> position, we determine all the end points which can be reached by choosing the four directions. For each of the cases, the new endpoint will now act as the new start point for the traversals. The destination, obviously remains unchanged. Thus, now we call the same function four times for the four directions, each time with a new start point obtained previously. </p>
+<p>If any of the function call returns a True value, it means we can reach the desination. </p>
+<p>The following animation depicts the process:</p>
+<p>!?!../Documents/490_Maze_DFS.json:1000,563!?!</p>
+<iframe frameborder="0" height="515" name="mNXpP4ZF" src="https://leetcode.com/playground/mNXpP4ZF/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(mn)</script>. Complete traversal of maze will be done in the worst case. Here, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> refers to the number of rows and coloumns of the maze.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(mn)</script>. <script type="math/tex; mode=display">visited</script> array of size <script type="math/tex; mode=display">m*n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-breadth-first-search-accepted">Approach #2 Breadth First Search [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The same search space tree can also be explored in a Depth First Search manner. In this case, we try to explore the search space on a level by level basis. i.e. We try to move in all the directions at every step. When all the directions have been explored and we still don't reach the destination, then only we proceed to the new set of traversals from the new positions obtained. </p>
+<p>In order to implement this, we make use of a <script type="math/tex; mode=display">queue</script>. We start with the ball at the <script type="math/tex; mode=display">start</script> position. For every current position, we add all the new positions possible by traversing in all the four directions(till reaching the wall or boundary) into the <script type="math/tex; mode=display">queue</script> to act as the new start positions and mark these positions as True in the <script type="math/tex; mode=display">visited</script> array. When all the directions have been covered up, we remove a position value, <script type="math/tex; mode=display">s</script>, from the front of the <script type="math/tex; mode=display">queue</script> and again continue the same process with <script type="math/tex; mode=display">s</script> acting as the new <script type="math/tex; mode=display">start</script> position. </p>
+<p>Further, in order to choose the direction of travel, we make use of a <script type="math/tex; mode=display">dir</script> array, which contains 4 entries. Each entry represents a  one-dimensional direction of travel. To travel in a particular direction, we keep on adding the particular entry of the <script type="math/tex; mode=display">dirs</script> array till we hit a wall or a boundary. For a particular start position, we do this process of <script type="math/tex; mode=display">dir</script> addition for all all the four directions possible.</p>
+<p>If we hit the destination position at any moment, we return a True directly indicating that the <script type="math/tex; mode=display">destination</script> position can be reached starting from the <script type="math/tex; mode=display">start</script> position. </p>
+<p>The following animation depicts the process:</p>
+<p>!?!../Documents/490_Maze_BFS.json:1000,563!?!</p>
+<iframe frameborder="0" height="513" name="5jvdfXTK" src="https://leetcode.com/playground/5jvdfXTK/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(mn)</script>. Complete traversal of maze will be done in the worst case. Here, <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> refers to the number of rows and coloumns of the maze.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(mn)</script>. <script type="math/tex; mode=display">visited</script> array of size <script type="math/tex; mode=display">m*n</script> is used and <script type="math/tex; mode=display">queue</script> size can grow upto <script type="math/tex; mode=display">m*n</script> in worst case.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">9889</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">22739</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              11%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

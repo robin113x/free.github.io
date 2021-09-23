@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
+Now your job is to find the total Hamming distance between all pairs of the given numbers.">
+  <meta name="keywords"
+        content="Total Hamming Distance, LC 477, leetcode 477, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>477. Total Hamming Distance</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>The <a href="https://en.wikipedia.org/wiki/Hamming_distance" target="_blank">Hamming distance</a> between two integers is the number of positions at which the corresponding bits are different.</p>
+
+<p>Now your job is to find the total Hamming distance between all pairs of the given numbers.</p>
+
+
+<p><b>Example:</b><br />
+<pre>
+<b>Input:</b> 4, 14, 2
+
+<b>Output:</b> 6
+
+<b>Explanation:</b> In binary representation, the 4 is 0100, 14 is 1110, and 2 is 0010 (just
+showing the four bits relevant in this case). So the answer will be:
+HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6.
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>Elements of the given array are in the range of <code>0 </code> to <code>10^9</code>
+<li>Length of the array will not exceed <code>10^4</code>. </li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-loop-over-the-bits-accepted">Approach #2 Loop over the bits! [Accepted]</a></li>
+<li><a href="#bonus">Bonus!</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Intuition</strong></p>
+<ol>
+<li>Check all the unique pairs of elements for differing bits.</li>
+<li><code>xor</code> of two bits is <code>1</code> if they are not the same, and <code>0</code> otherwise.</li>
+</ol>
+<p><strong>Algorithm</strong></p>
+<p>Bitwise <code>xor</code> of two numbers will give a bitwise representation of where the bits of two numbers differ. Such bit positions are represented by a <code>1</code> bit in the resultant. For example:</p>
+<div class="codehilite"><pre><span></span>    0010 1101   ==  45
+  ^ 0100 1010   ==  74
+----------------
+    0110 0111
+     ^^   ^^^   =&gt; 5 differing bits
+</pre></div>
+<p>Hence the numbers <script type="math/tex; mode=display">45</script> and <script type="math/tex; mode=display">74</script> have five differing bits. Thus the Hamming Distance between them is <script type="math/tex; mode=display">5</script>.</p>
+<p>For each of the <script type="math/tex; mode=display">\approx n^2/2</script> pairs of elements, simply apply bitwise <code>xor</code> to them to find out a resultant representation which tells us the differing bits. Count the <code>1</code> bits to find the Hamming Distance for that pair of elements. Sum over all pairs to get the total Hamming Distance.</p>
+<iframe frameborder="0" height="275" name="HpH92ApX" src="https://leetcode.com/playground/HpH92ApX/shared" width="100%"></iframe>
+<p><strong>NOTE:</strong> The <code>__builtin_popcount()</code> method is an internal built-in function available in <strong>C</strong> (and hence by extension <strong>C++</strong>) which gives the count of <code>1</code> bits for an <code>int</code> type argument. Being a low level built-in method, it is understandably faster than running a hand rolled loop.
+As an alternative, you can iterate over all the bits of the number and count the <code>1</code> bits. Take a look at the code for <a href="#approach-2-loop-over-the-bits-accepted">Approach #2</a> for hints on how to achieve that.</p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O(n^2 \cdot log_2V) \simeq O(n^2)</script>.</p>
+<ul>
+<li>There are exactly <script type="math/tex; mode=display">\binom{n}{2} = {}^nC_2 = \frac{n \cdot (n-1)}{2}</script> unique pairs of elements for an <script type="math/tex; mode=display">n</script> element array.</li>
+<li>Each of these pairs, when <code>xor</code>ed, result in a resultant number which is <script type="math/tex; mode=display">\lceil log_2V \rceil</script> bits long. Here <script type="math/tex; mode=display">V</script> is the largest value any of the elements can ever take.</li>
+<li>We iterate over these many bits to count the number of <code>1</code> bits.  In our case, since all elements are <script type="math/tex; mode=display">\leq 10^9</script>, the value <script type="math/tex; mode=display">\lceil log_2V \rceil = 30</script> is a small constant. Hence counting the <code>1</code> bits takes place in nearly constant (i.e. <script type="math/tex; mode=display">O(1)</script>) time.</li>
+</ul>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(1)</script> constant space.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-loop-over-the-bits-accepted">Approach #2 Loop over the bits! [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Looping over all possible combinations of two element pairs, increases quadratically over the size of the input. If we could instead loop over the bits of the elements (which is constant), we could shave off an input dimension from our runtime complexity.</p>
+<p><strong>Algorithm</strong></p>
+<p>Say for any particular bit position, count the number of elements with this bit <strong>ON</strong> (i.e. this particular bit is <code>1</code>). Let this count be <script type="math/tex; mode=display">k</script>. Hence the number of elements with this bit <strong>OFF</strong> (i.e. <code>0</code>) is <script type="math/tex; mode=display">(n - k)</script> (in an <script type="math/tex; mode=display">n</script> element array).</p>
+<p>Certainly unique pairs of elements exists where one element has this particular bit <strong>ON</strong> while the other element has this <strong>OFF</strong> (i.e. this particular bit differs for the two elements of this pair).</p>
+<blockquote>
+<p>We can argue that every such pair contributes one unit to the Hamming Distance for this particular bit.</p>
+</blockquote>
+<p>We know that the count of such unique pairs is <script type="math/tex; mode=display">{}^kC_1 * {}^{n-k}C_1 = k \cdot (n-k)</script> for this particular bit. Hence Hamming Distance for this particular bit is <script type="math/tex; mode=display">k \cdot (n-k)</script>.</p>
+<p>For each of the <script type="math/tex; mode=display">\lceil log_2V \rceil</script> bits that we can check, we can calculate a Hamming Distance pertaining to that bit. Taking sum over the Hamming Distances of all these bits, we get the total Hamming Distance.</p>
+<iframe frameborder="0" height="445" name="EoYRygcG" src="https://leetcode.com/playground/EoYRygcG/shared" width="100%"></iframe>
+<p><strong>NOTE:</strong> You <em>can switch the order of the loops</em> while counting <code>1</code> bits without affecting complexity. However it might give some performance changes due to locality of reference and the resultant cache hits/misses.</p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity: <script type="math/tex; mode=display">O(n \cdot log_2V) \simeq O(n)</script>. Runtime performance is limited by the double loop where we are counting elements for particular bits. In our case, since all elements are <script type="math/tex; mode=display">\leq 10^9</script>, the value <script type="math/tex; mode=display">\lceil log_2V \rceil = 30</script> is a small constant. Thus the inner loop runs in nearly constant time.</p>
+</li>
+<li>
+<p>Space complexity: <script type="math/tex; mode=display">O(log_2V) \to O(1)</script> extra space.</p>
+<ul>
+<li>For each of the <script type="math/tex; mode=display">\lceil log_2V \rceil</script> bits, we need to maintain a count which is later used to calculate the Hamming Distance for that bit. Since <script type="math/tex; mode=display">\lceil log_2V \rceil \approx 32</script> is a small constant in our case, that takes nearly constant extra space.</li>
+<li>Another thing to notice, is that if we <strong>switch the order of the double loop,</strong> we can do away with storing the count and calculate the Hamming Distance for that bit then and there. That results in only constant extra space being used.</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h4 id="bonus">Bonus!</h4>
+<p>This question is a perfect example of how vectorized operations can result in small, elegant and good performance code. Take a look at this slick <strong>Python</strong> solution to this problem (by <a href="https://leetcode.com/StefanPochmann/">@StefanPochmann</a>):</p>
+<iframe frameborder="0" height="88" name="uskMAwMG" src="https://leetcode.com/playground/uskMAwMG/shared" width="100%"></iframe>
+<p>The <code>*</code> operator turns the list of <code>32</code>-bit wide binary strings returned by <code>map</code> into individual arguments to the <code>zip</code> method. The <code>zip</code> method vectorizes the string arguments to create a list of vectors (each of which is a vector <code>b</code> of particular bits from every element in the input array; There are <code>32</code> such vectors of size <code>len(nums)</code> each, in this list ). Finally we use the same technique as <a href="#approach-2-loop-over-the-bits-accepted">Approach #2</a> to calculate the total Hamming Distance.</p>
+<hr/>
+<p>Analysis written by <a href="https://leetcode.com/babhishek21">@babhishek21</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">26481</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">55544</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              27%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>
