@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+Example:
+Input: &#34;babad&#34;
+
+Output: &#34;bab&#34;
+
+Note: &#34;aba&#34; is also a valid answer.
+
+
+Example:
+Input: &#34;cbbd&#34;
+
+Output: &#34;bb&#34;">
+  <meta name="keywords"
+        content="Longest Palindromic Substring, LC 5, leetcode 5, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>5. Longest Palindromic Substring</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given a string <b>s</b>, find the longest palindromic substring in <b>s</b>. You may assume that the maximum length of <b>s</b> is 1000.</p>
+
+<p><b>Example:</b>
+<pre>
+<b>Input:</b> "babad"
+
+<b>Output:</b> "bab"
+
+<b>Note:</b> "aba" is also a valid answer.
+</pre>
+</p>
+
+<p><b>Example:</b>
+<pre>
+<b>Input:</b> "cbbd"
+
+<b>Output:</b> "bb"
+</pre>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-longest-common-substring-accepted">Approach #1 (Longest Common Substring) [Accepted]</a></li>
+<li><a href="#approach-2-brute-force-time-limit-exceeded">Approach #2 (Brute Force) [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-dynamic-programming-accepted">Approach #3 (Dynamic Programming) [Accepted]</a></li>
+<li><a href="#approach-4-expand-around-center-accepted">Approach #4 (Expand Around Center) [Accepted]</a></li>
+<li><a href="#approach-5-manachers-algorithm-accepted">Approach #5 (Manacher's Algorithm) [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>This article is for intermediate readers. It introduces the following ideas:
+Palindrome, Dynamic Programming and String Manipulation. Make sure you understand what a palindrome means. A palindrome is a string which reads the same in both directions. For example, <script type="math/tex; mode=display">\textrm{''aba''}</script> is a palindome, <script type="math/tex; mode=display">\textrm{''abc''}</script> is not.</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-longest-common-substring-accepted">Approach #1 (Longest Common Substring) [Accepted]</h4>
+<p><strong>Common mistake</strong></p>
+<p>Some people will be tempted to come up with a quick solution, which is unfortunately flawed (however can be corrected easily):</p>
+<blockquote>
+<p>Reverse <script type="math/tex; mode=display">S</script> and become <script type="math/tex; mode=display">S'</script>. Find the longest common substring between <script type="math/tex; mode=display">S</script> and <script type="math/tex; mode=display">S'</script>, which must also be the longest palindromic substring.</p>
+</blockquote>
+<p>This seemed to work, let’s see some examples below.</p>
+<p>For example, <script type="math/tex; mode=display">S = \textrm{''caba"}</script>, <script type="math/tex; mode=display">S' = \textrm{''abac''}</script>.</p>
+<p>The longest common substring between <script type="math/tex; mode=display">S</script> and <script type="math/tex; mode=display">S'</script> is <script type="math/tex; mode=display">\textrm{''aba''}</script>, which is the answer.</p>
+<p>Let’s try another example: <script type="math/tex; mode=display">S = \textrm{''abacdfgdcaba''}</script>, <script type="math/tex; mode=display">S' = \textrm{''abacdgfdcaba''}</script>.</p>
+<p>The longest common substring between <script type="math/tex; mode=display">S</script> and <script type="math/tex; mode=display">S'</script> is <script type="math/tex; mode=display">\textrm{''abacd''}</script>. Clearly, this is not a valid palindrome.</p>
+<p><strong>Algorithm</strong></p>
+<p>We could see that the longest common substring method fails when there exists a reversed copy of a non-palindromic substring in some other part of <script type="math/tex; mode=display">S</script>. To rectify this, each time we find a longest common substring candidate, we check if the substring’s indices are the same as the reversed substring’s original indices. If it is, then we attempt to update the longest palindrome found so far; if not, we skip this and find the next candidate.</p>
+<p>This gives us an <script type="math/tex; mode=display">O(n^2)</script> Dynamic Programming solution which uses <script type="math/tex; mode=display">O(n^2)</script> space (could be improved to use <script type="math/tex; mode=display">O(n)</script> space). Please read more about Longest Common Substring <a href="https://en.wikipedia.org/wiki/Longest_common_substring">here</a>.</p>
+<hr/>
+<h4 id="approach-2-brute-force-time-limit-exceeded">Approach #2 (Brute Force) [Time Limit Exceeded]</h4>
+<p>The obvious brute force solution is to pick all possible starting and ending positions for a substring, and verify if it is a palindrome.</p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>.
+Assume that <script type="math/tex; mode=display">n</script> is the length of the input string, there are a total of <script type="math/tex; mode=display">\binom{n}{2} = \frac{n(n-1)}{2}</script> such substrings (excluding the trivial solution where a character itself is a palindrome). Since verifying each substring takes <script type="math/tex; mode=display">O(n)</script> time, the run time complexity is <script type="math/tex; mode=display">O(n^3)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-dynamic-programming-accepted">Approach #3 (Dynamic Programming) [Accepted]</h4>
+<p>To improve over the brute force solution, we first observe how we can avoid unnecessary re-computation while validating palindromes. Consider the case <script type="math/tex; mode=display">\textrm{''ababa''}</script>. If we already knew that <script type="math/tex; mode=display">\textrm{''bab''}</script> is a palindrome, it is obvious that <script type="math/tex; mode=display">\textrm{''ababa''}</script> must be a palindrome since the two left and right end letters are the same.</p>
+<p>We define <script type="math/tex; mode=display">P(i,j)</script> as following:</p>
+<p>
+<script type="math/tex; mode=display">
+P(i,j) =
+     \begin{cases}
+       \text{true,} &\quad\text{if the substring } S_i \dots S_j \text{ is a palindrome}\\
+       \text{false,} &\quad\text{otherwise.} \
+     \end{cases}
+</script>
+</p>
+<p>Therefore,</p>
+<p>
+<script type="math/tex; mode=display">
+P(i, j) = ( P(i+1, j-1) \text{ and } S_i == S_j )
+</script>
+</p>
+<p>The base cases are:</p>
+<p>
+<script type="math/tex; mode=display">
+P(i, i) = true
+</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+P(i, i+1) = ( S_i == S_{i+1} )
+</script>
+</p>
+<p>This yields a straight forward DP solution, which we first initialize the one and two letters palindromes, and work our way up finding all three letters palindromes, and so on...</p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>.
+This gives us a runtime complexity of <script type="math/tex; mode=display">O(n^2)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n^2)</script>.
+It uses <script type="math/tex; mode=display">O(n^2)</script> space to store the table.</p>
+</li>
+</ul>
+<p><strong>Additional Exercise</strong></p>
+<p>Could you improve the above space complexity further and how?</p>
+<hr/>
+<h4 id="approach-4-expand-around-center-accepted">Approach #4 (Expand Around Center) [Accepted]</h4>
+<p>In fact, we could solve it in <script type="math/tex; mode=display">O(n^2)</script> time using only constant space.</p>
+<p>We observe that a palindrome mirrors around its center. Therefore, a palindrome can be expanded from its center, and there are only <script type="math/tex; mode=display">2n - 1</script> such centers.</p>
+<p>You might be asking why there are <script type="math/tex; mode=display">2n - 1</script> but not <script type="math/tex; mode=display">n</script> centers? The reason is the center of a palindrome can be in between two letters. Such palindromes have even number of letters (such as <script type="math/tex; mode=display">\textrm{''abba''}</script>) and its center are between the two <script type="math/tex; mode=display">\textrm{'b'}</script>s.</p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="n">String</span> <span class="nf">longestPalindrome</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">end</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">len1</span> <span class="o">=</span> <span class="n">expandAroundCenter</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">len2</span> <span class="o">=</span> <span class="n">expandAroundCenter</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">len1</span><span class="o">,</span> <span class="n">len2</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="o">(</span><span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">len</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">start</span><span class="o">,</span> <span class="n">end</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">int</span> <span class="nf">expandAroundCenter</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">L</span> <span class="o">=</span> <span class="n">left</span><span class="o">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">right</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">L</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">R</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">L</span><span class="o">)</span> <span class="o">==</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">R</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">L</span><span class="o">--;</span>
+        <span class="n">R</span><span class="o">++;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">R</span> <span class="o">-</span> <span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>.
+Since expanding a palindrome around its center could take <script type="math/tex; mode=display">O(n)</script> time, the overall complexity is <script type="math/tex; mode=display">O(n^2)</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>.</p>
+</li>
+</ul>
+<h4 id="approach-5-manachers-algorithm-accepted">Approach #5 (Manacher's Algorithm) [Accepted]</h4>
+<p>There is even an <script type="math/tex; mode=display">O(n)</script> algorithm called Manacher's algorithm, explained <a href="http://articles.leetcode.com/longest-palindromic-substring-part-ii/">here in detail</a>. However, it is a non-trivial algorithm, and no one expects you to come up with this algorithm in a 45 minutes coding session. But, please go ahead and understand it, I promise it will be a lot of fun.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">264399</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">1048766</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              94%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/microsoft.html">Microsoft</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/amazon.html">Amazon</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/bloomberg.html">Bloomberg</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

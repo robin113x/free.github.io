@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="We define a harmonious array is an array where the difference between its maximum value and its minimum value is exactly 1.
+Now, given an integer array, you need to find the length of its longest harmonious subsequence among all its possible subsequences.
+Example 1:
+Input: [1,3,2,2,5,2,3,7]
+Output: 5
+Explanation: The longest harmonious subsequence is [3,2,2,2,3].
+
+
+Note:
+The length of the input array will not exceed 20,000.">
+  <meta name="keywords"
+        content="Longest Harmonious Subsequence, LC 594, leetcode 594, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>594. Longest Harmonious Subsequence</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>We define a harmonious array is an array where the difference between its maximum value and its minimum value is <b>exactly</b> 1.</p>
+
+<p>Now, given an integer array, you need to find the length of its longest harmonious subsequence among all its possible <a href="https://en.wikipedia.org/wiki/Subsequence">subsequences</a>.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> [1,3,2,2,5,2,3,7]
+<b>Output:</b> 5
+<b>Explanation:</b> The longest harmonious subsequence is [3,2,2,2,3].
+</pre>
+</p>
+
+<p><b>Note:</b>
+The length of the input array will not exceed 20,000.
+</p>
+
+
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-using-sorting-accepted">Approach #3 Using Sorting [Accepted]</a></li>
+<li><a href="#approach-4-using-hashmapaccepted">Approach #4 Using HashMap[Accepted]:</a></li>
+<li><a href="#approach-5-in-single-loop-accepted">Approach #5 In single loop [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>In the brute force solution, we consider every possible subsequence that can be formed using the elements of the given array. For every subsequence, we find the maximum and minimum values in the subsequence. If the difference between the maximum and the minimum values obtained is 1, it means the current subsequence forms a harmonious subsequence. Thus, we can consider the number of elements in this subsequence to be compared with the length of the last longest harmonious subsequence. </p>
+<p>In order to obtain all the subseqeuences possible, we make use of binary number representation of decimal numbers. For a binary number of size <script type="math/tex; mode=display">n</script>, a total of <script type="math/tex; mode=display">2^n</script> different binary numbers can be generated. We generate all these binary numbers from <script type="math/tex; mode=display">0</script> to <script type="math/tex; mode=display">2^n</script>. For every binary number generated, we consider the subsequence to be comprised of only those elements of <script type="math/tex; mode=display">nums</script> which have a 1 at the corresponding position in the current binary number. The following figure shows an example of the way the elements of <script type="math/tex; mode=display">nums</script> are considered in the current subsequence.</p>
+<p><img alt="Harmonic_Subsequence" src="https://leetcode.com/articles/Figures/594_Harmonic_Subsequence_Binary.PNG"/></p>
+<iframe frameborder="0" height="394" name="zbivYJiH" src="https://leetcode.com/playground/zbivYJiH/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(2^n)</script>. Number of subsequences generated will be <script type="math/tex; mode=display">2^n</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space required.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-force-time-limit-exceeded">Approach #2 Better Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the last approach, we created every possible subsequence, and for every such subsequence, we found out if it satisfies the harmonicity condition. Instead of doing this, we can do as follows. We can consider every element of the given <script type="math/tex; mode=display">nums</script> array one by one. For <script type="math/tex; mode=display">nums[i]</script> chosen to be the current element, we determine the <script type="math/tex; mode=display">count</script> of all the elements in the <script type="math/tex; mode=display">nums</script> array, which satisfy the harmonicity condition with <script type="math/tex; mode=display">nums[i]</script>, i.e. the <script type="math/tex; mode=display">count</script> of all such <script type="math/tex; mode=display">nums[j]</script> satisfying <script type="math/tex; mode=display">nums[i] == nums[j]</script> or <script type="math/tex; mode=display">nums[i] == nums[j] + 1</script>. When we reach the end of the array for <script type="math/tex; mode=display">nums[i]</script> being the current element, we compare this <script type="math/tex; mode=display">count</script> obtained with the result obtained from the previous traversals and update the result appropriately. When all the elements of the array have been chosen as the element to be chosen as the base for harmonicity check, we get the required length of the longest harmonic subsequence.</p>
+<p>The following animation illustrates the process:</p>
+<p>!?!../Documents/594_Harmonic_Subsequence_1.json:1000,563!?!</p>
+<iframe frameborder="0" height="428" name="2PtVgy2R" src="https://leetcode.com/playground/2PtVgy2R/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. Two nested loops are there.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space required.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-sorting-accepted">Approach #3 Using Sorting [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Since we are concerned only with the count of elements which are at a difference of 1, we can use sorting to our advantage. If we sort the given <script type="math/tex; mode=display">nums</script> array, the related elements will get arranged close to each other. Thus, we can traverse over the sorted array, and find the count of similar elements and elements one larger than the current ones, which occur consecutively(all the similar elements will be lying consecutively now). Initially, this value is stored in <script type="math/tex; mode=display">prev\_count</script> variable. Then, if we encounter an element which is just 1 larger than the last elements, we count the occurences of such elements as well. This value is stored in <script type="math/tex; mode=display">count</script> variable. </p>
+<p>Thus, now for the harmonic subsequence comprised of only these two elements is a subsequence of length <script type="math/tex; mode=display">count + prev\_count</script>. This result is stored in <script type="math/tex; mode=display">res</script> for each subsequence found. When we move forward to considering the next set of similar consecutive elements, we need to update the <script type="math/tex; mode=display">prev\_count</script> with the <script type="math/tex; mode=display">count</script>'s value, since now <script type="math/tex; mode=display">count</script> will act as the count of the elements 1 lesser than the next elements encountered. The value of <script type="math/tex; mode=display">res</script> is always updated to be the larger of previous <script type="math/tex; mode=display">res</script> and the current <script type="math/tex; mode=display">count + prev\_count</script> value.</p>
+<p>When we are done traversing over the whole array, the value of <script type="math/tex; mode=display">res</script> gives us the required result.</p>
+<iframe frameborder="0" height="462" name="u6hDRMkp" src="https://leetcode.com/playground/u6hDRMkp/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nlogn)</script>. Sorting takes <script type="math/tex; mode=display">O(nlogn)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(logn)</script>. <script type="math/tex; mode=display">logn</script> space is required by sorting in average case.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-hashmapaccepted">Approach #4 Using HashMap[Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, we make use of a hashmap <script type="math/tex; mode=display">map</script> which stores the number of times an element occurs in the array along with the element's value in the form <script type="math/tex; mode=display">(num: count\_num)</script>, where <script type="math/tex; mode=display">num</script> refers to an element in the array and <script type="math/tex; mode=display">count\_num</script> refers to the number of times this <script type="math/tex; mode=display">num</script> occurs in the <script type="math/tex; mode=display">nums</script> array. We traverse over the <script type="math/tex; mode=display">nums</script> array and fill this <script type="math/tex; mode=display">map</script> once.</p>
+<p>After this, we traverse over the keys of the <script type="math/tex; mode=display">map</script> created. For every key of the <script type="math/tex; mode=display">map</script> considered, say <script type="math/tex; mode=display">key</script>, we find out if the map contains the <script type="math/tex; mode=display">key + 1</script>. Such an element is found, since only such elements can be counted for the harmonic subsequence if <script type="math/tex; mode=display">key</script> is considered as one of the element of the harmonic subsequence. We need not care about <script type="math/tex; mode=display">key - 1</script>, because if <script type="math/tex; mode=display">key</script> is present in the harmonic subsequence, at one time either <script type="math/tex; mode=display">key + 1</script> or <script type="math/tex; mode=display">key - 1</script> only could be included in the harmonic subsequence. The case of <script type="math/tex; mode=display">key - 1</script> being in the harmonic subsequence will automatically be considered, when <script type="math/tex; mode=display">key - 1</script> is encountered as the current key. </p>
+<p>Now, whenver we find that <script type="math/tex; mode=display">key + 1</script> exists in the keys of <script type="math/tex; mode=display">map</script>, we determine the count of the current harmonic subsequence as <script type="math/tex; mode=display">count_{key} + count_{key+1}</script>, where <script type="math/tex; mode=display">count_i</script> refers to the value corresponding to the key <script type="math/tex; mode=display">i</script> in <script type="math/tex; mode=display">map</script>, which reprents the number of times <script type="math/tex; mode=display">i</script> occurs in the array <script type="math/tex; mode=display">nums</script>.</p>
+<p>Look at the animation below for a pictorial view of the process:</p>
+<p>!?!../Documents/594_Harmonic_Subsequence_2.json:1000,563!?!</p>
+<iframe frameborder="0" height="292" name="goJjGNub" src="https://leetcode.com/playground/goJjGNub/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. One loop is required to fill <script type="math/tex; mode=display">map</script> and one for traversing the <script type="math/tex; mode=display">map</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. In worst case map size grows upto size <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-in-single-loop-accepted">Approach #5 In single loop [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>Instead of filling the <script type="math/tex; mode=display">map</script> first and then traversing over the <script type="math/tex; mode=display">map</script> to determine the lengths of the harmonic subsequences encountered, we can traverse over the <script type="math/tex; mode=display">nums</script> array, and while doing the traversals, we can determine the lengths of the harmonic subsequences possible till the current index of the <script type="math/tex; mode=display">nums</script> array. </p>
+<p>The method of finding the length of harmonic subsequence remains the same as the last approach. But, this time, we need to consider the existence of both <script type="math/tex; mode=display">key + 1</script> and <script type="math/tex; mode=display">key - 1</script> exclusively and determine the counts corresponding to both the cases. This is needed now because it could be possible that <script type="math/tex; mode=display">key</script> has already been added to the <script type="math/tex; mode=display">map</script> and later on <script type="math/tex; mode=display">key - 1</script> is encountered. In this case, if we consider the presence of <script type="math/tex; mode=display">key + 1</script> only, we'll go in the wrong direction.</p>
+<p>Thus, we consider the <script type="math/tex; mode=display">count</script>s corresponding to both the cases separately for every <script type="math/tex; mode=display">key</script> and determine the maximum out of them. 
+Thus, now the same task can be done only in a single traveral of the <script type="math/tex; mode=display">nums</script> array.</p>
+<p>See the animation below for understanding the process:</p>
+<p>!?!../Documents/594_Harmonic_Subsequence_3.json:1000,563!?!</p>
+<iframe frameborder="0" height="309" name="w3zAS2Rm" src="https://leetcode.com/playground/w3zAS2Rm/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. Only one loop is there.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">map</script> size grows upto size <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">16297</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">39864</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              28%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/liveramp.html">LiveRamp</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

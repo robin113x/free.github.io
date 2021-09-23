@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
+
+
+For example,
+Given [100, 4, 200, 1, 3, 2],
+The longest consecutive elements sequence is [1, 2, 3, 4]. Return its length: 4.
+
+
+Your algorithm should run in O(n) complexity.">
+  <meta name="keywords"
+        content="Longest Consecutive Sequence, LC 128, leetcode 128, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>128. Longest Consecutive Sequence</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
+</p>
+<p>
+For example,<br />
+Given <code>[100, 4, 200, 1, 3, 2]</code>,<br />
+The longest consecutive elements sequence is <code>[1, 2, 3, 4]</code>. Return its length: <code>4</code>.
+</p>
+<p>
+Your algorithm should run in O(<i>n</i>) complexity.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-sorting-accepted">Approach #2 Sorting [Accepted]</a></li>
+<li><a href="#approach-3-hashset-and-intelligent-sequence-building-accepted">Approach #3 HashSet and Intelligent Sequence Building [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p><strong>Intuition</strong></p>
+<p>Because a sequence could start at any number in <code>nums</code>, we can exhaust the
+entire search space by building as long a sequence as possible from every
+number.</p>
+<p><strong>Algorithm</strong></p>
+<p>The brute force algorithm does not do anything clever - it just considers
+each number in <code>nums</code>, attempting to count as high as possible from that
+number using only numbers in <code>nums</code>. After it counts too high (i.e.
+<code>currentNum</code> refers to a number that <code>nums</code> does not contain), it records the
+length of the sequence if it is larger than the current best. The algorithm
+is necessarily optimal because it explores every possibility.</p>
+<iframe frameborder="0" height="500" name="SvATwBnC" src="https://leetcode.com/playground/SvATwBnC/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>.</p>
+<p>The outer loop runs exactly <script type="math/tex; mode=display">n</script> times, and because <code>currentNum</code>
+increments by 1 during each iteration of the <code>while</code> loop, it runs in
+<script type="math/tex; mode=display">O(n)</script> time. Then, on each iteration of the <code>while</code> loop, an <script type="math/tex; mode=display">O(n)</script>
+lookup in the array is performed. Therefore, this brute force algorithm
+is really three nested <script type="math/tex; mode=display">O(n)</script> loops, which compound multiplicatively to a
+cubic runtime.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>.</p>
+<p>The brute force algorithm only allocates a handful of integers, so it uses constant
+additional space.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-sorting-accepted">Approach #2 Sorting [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If we can iterate over the numbers in ascending order, then it will be
+easy to find sequences of consecutive numbers. To do so, we can sort the
+array.</p>
+<p><strong>Algorithm</strong></p>
+<p>Before we do anything, we check for the base case input of the empty array.
+The longest sequence in an empty array is, of course, 0, so we can simply
+return that. For all other cases, we sort <code>nums</code> and consider each number
+after the first (because we need to compare each number to its previous
+number). If the current number and the previous are equal, then our current
+sequence is neither extended nor broken, so we simply move on to the next
+number. If they are unequal, then we must check whether the current number
+extends the sequence (i.e. <code>nums[i] == nums[i-1] + 1</code>). If it does, then we
+add to our current count and continue. Otherwise, the sequence is broken, so
+we record our current sequence and reset it to 1 (to include the number that
+broke the sequence). It is possible that the last element of <code>nums</code> is part
+of the longest sequence, so we return the maximum of the current sequence and
+the longest one.</p>
+<p align="center"><img alt="Sorting Example" src="https://leetcode.com/articles/Figures/128/sorting.png"/></p>
+<p>Here, an example array is sorted before the linear scan identifies all consecutive sequences.
+The longest sequence is colored in red.</p>
+<iframe frameborder="0" height="497" name="Kk6TtMB4" src="https://leetcode.com/playground/Kk6TtMB4/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(nlgn)</script>.</p>
+<p>The main <code>for</code> loop does constant work <script type="math/tex; mode=display">n</script> times, so the algorithm's time
+complexity is dominated by the invocation of <code>sort</code>, which will run in
+<script type="math/tex; mode=display">O(nlgn)</script> time for any sensible implementation.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script> (or <script type="math/tex; mode=display">O(n)</script>).</p>
+<p>For the implementations provided here, the space complexity is constant
+because we sort the input array in place. If we are not allowed to modify
+the input array, we must spend linear space to store a sorted copy.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-hashset-and-intelligent-sequence-building-accepted">Approach #3 HashSet and Intelligent Sequence Building [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>It turns out that our initial brute force solution was on the right track, but missing
+a few optimizations necessary to reach <script type="math/tex; mode=display">O(n)</script> time complexity.</p>
+<p><strong>Algorithm</strong></p>
+<p>This optimized algorithm contains only two changes from the brute force
+approach: the numbers are stored in a <code>HashSet</code> (or <code>Set</code>, in Python) to
+allow <script type="math/tex; mode=display">O(1)</script> lookups, and we only attempt to build sequences from numbers
+that are not already part of a longer sequence. This is accomplished by first
+ensuring that the number that would immediately precede the current number in
+a sequence is not present, as that number would necessarily be part of a
+longer sequence.</p>
+<iframe frameborder="0" height="497" name="b5VsSQVL" src="https://leetcode.com/playground/b5VsSQVL/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>.</p>
+<p>Although the time complexity appears to be quadratic due to the <code>while</code>
+loop nested within the <code>for</code> loop, closer inspection reveals it to be
+linear. Because the <code>while</code> loop is reached only when <code>currentNum</code> marks
+the beginning of a sequence (i.e. <code>currentNum-1</code> is not present in
+<code>nums</code>), the <code>while</code> loop can only run for <script type="math/tex; mode=display">n</script> iterations throughout the
+entire runtime of the algorithm. This means that despite looking like
+<script type="math/tex; mode=display">O(n*n)</script> complexity, the nested loops actually run in <script type="math/tex; mode=display">O(n + n) = O(n)</script>
+time. All other computations occur in constant time, so the overall
+runtime is linear.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>.</p>
+<p>In order to set up <script type="math/tex; mode=display">O(1)</script> containment lookups, we allocate linear space
+for a hash table to store the <script type="math/tex; mode=display">O(n)</script> numbers in <code>nums</code>. Other than that,
+the space complexity is identical to that of the brute force solution.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/emptyset">@emptyset</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">125038</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">331868</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              79%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/facebook.html">Facebook</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Write a function to find the longest common prefix string amongst an array of strings.">
+  <meta name="keywords"
+        content="Longest Common Prefix, LC 14, leetcode 14, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>14. Longest Common Prefix</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Write a function to find the longest common prefix string amongst an array of strings.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-horizontal-scanning">Approach #1 (Horizontal scanning)</a></li>
+<li><a href="#approach-2-vertical-scanning">Approach #2 (Vertical scanning)</a></li>
+<li><a href="#approach-3-divide-and-conquer">Approach #3 (Divide and conquer)</a></li>
+<li><a href="#approach-4-binary-search">Approach #4  (Binary search)</a></li>
+</ul>
+</li>
+<li><a href="#further-thoughts-follow-up">Further Thoughts / Follow up</a></li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-horizontal-scanning">Approach #1 (Horizontal scanning)</h4>
+<p><strong>Intuition</strong></p>
+<p>For a start we will describe a simple way of finding the longest prefix shared by a set of strings <script type="math/tex; mode=display">LCP(S_1  \ldots  S_n)</script>.
+We will use the observation that :</p>
+<p>
+<script type="math/tex; mode=display">LCP(S_1 \ldots S_n) = LCP(LCP(LCP(S_1, S_2),S_3),\ldots S_n)</script>
+</p>
+<p><strong>Algorithm</strong></p>
+<p>To employ this idea, the algorithm iterates through the strings <script type="math/tex; mode=display">[S_1  \ldots  S_n]</script>, finding at each iteration <script type="math/tex; mode=display">i</script> the longest common prefix of strings <script type="math/tex; mode=display">LCP(S_1  \ldots  S_i)</script> When <script type="math/tex; mode=display">LCP(S_1  \ldots  S_i)</script> is an empty string, the algorithm ends. Otherwise after <script type="math/tex; mode=display">n</script> iterations, the algorithm returns <script type="math/tex; mode=display">LCP(S_1  \ldots  S_n)</script>.</p>
+<p align="center"><img alt="Finding the longest common prefix" src="https://leetcode.com/media/original_images/14_basic.png" width="539px"/></p>
+<p align="center"><em>Figure 1. Finding the longest common prefix (Horizontal scanning)</em></p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="n">String</span> <span class="nf">longestCommonPrefix</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">strs</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">strs</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">""</span><span class="o">;</span>
+    <span class="n">String</span> <span class="n">prefix</span> <span class="o">=</span> <span class="n">strs</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">strs</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">indexOf</span><span class="o">(</span><span class="n">prefix</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">prefix</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">prefix</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="k">return</span> <span class="s">""</span><span class="o">;</span>
+        <span class="o">}</span>        
+    <span class="k">return</span> <span class="n">prefix</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(S)</script> , where S is the sum of all characters in all strings.</li>
+</ul>
+<p>In the worst case all <script type="math/tex; mode=display">n</script> strings are the same. The algorithm compares the string <script type="math/tex; mode=display">S1</script> with the other strings <script type="math/tex; mode=display">[S_2 \ldots S_n]</script> There are <script type="math/tex; mode=display">S</script> character comparisons, where <script type="math/tex; mode=display">S</script> is the sum of all characters in the input array.</p>
+<ul>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>.
+We only used constant extra space.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-vertical-scanning">Approach #2 (Vertical scanning)</h4>
+<p><strong>Algorithm</strong></p>
+<p>Imagine a very short string is at the end of the array. The above approach will still do <script type="math/tex; mode=display">S</script> comparisons. One way to optimize this case is to do vertical scanning. We compare characters from top to bottom on the same column (same character index of  the strings) before moving on to the next column.</p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="n">String</span> <span class="nf">longestCommonPrefix</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">strs</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">strs</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">strs</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">""</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">strs</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">()</span> <span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+        <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">strs</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">strs</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span> <span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">strs</span><span class="o">[</span><span class="n">j</span><span class="o">].</span><span class="na">length</span><span class="o">()</span> <span class="o">||</span> <span class="n">strs</span><span class="o">[</span><span class="n">j</span><span class="o">].</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="n">c</span><span class="o">)</span>
+                <span class="k">return</span> <span class="n">strs</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>             
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">strs</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(S)</script> , where S is the sum of all characters in all strings.
+In the worst case there will be <script type="math/tex; mode=display">n</script> equal strings with length <script type="math/tex; mode=display">m</script> and the algorithm performs  <script type="math/tex; mode=display">S = m*n</script> character comparisons.
+Even though the worst case is still the same as Approach #1, in the best case there are at most <script type="math/tex; mode=display">n*minLen</script> comparisons where <script type="math/tex; mode=display">minLen</script> is the length of the shortest string in the array.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>.
+We only used constant extra space.</li>
+</ul>
+<hr/>
+<h4 id="approach-3-divide-and-conquer">Approach #3 (Divide and conquer)</h4>
+<p><strong>Intuition</strong></p>
+<p>The idea of the algorithm comes from the associative property of LCP operation. We notice that :
+<script type="math/tex; mode=display">LCP(S_1 \ldots S_n) = LCP(LCP(S_1 \ldots S_k), LCP (S_{k+1} \ldots S_n))</script>
+, where <script type="math/tex; mode=display">LCP(S_1 \ldots S_n)</script> is the longest common prefix in set of strings <script type="math/tex; mode=display">[S_1 \ldots S_n]</script> , <script type="math/tex; mode=display">1 < k < n</script>
+</p>
+<p><strong>Algorithm</strong></p>
+<p>To apply the observation above, we use divide and conquer technique, where we split the <script type="math/tex; mode=display">LCP(S_i \ldots S_j)</script> problem into two subproblems <script type="math/tex; mode=display">LCP(S_i \ldots S_{mid})</script>   and <script type="math/tex; mode=display">LCP(S_{mid+1} \ldots S_j)</script>, where <code>mid</code> is <script type="math/tex; mode=display">\frac{i + j}{2}</script>. We use their solutions <code>lcpLeft</code> and <code>lcpRight</code> to construct the solution of the main problem <script type="math/tex; mode=display">LCP(S_i \ldots S_j)</script>. To accomplish this we compare one by one the characters of <code>lcpLeft</code> and <code>lcpRight</code> till there is no character match. The found common prefix of <code>lcpLeft</code> and <code>lcpRight</code> is the solution of the  <script type="math/tex; mode=display">LCP(S_i \ldots S_j)</script>.</p>
+<p align="center"><img alt="Finding the longest common prefix" src="https://leetcode.com/media/original_images/14_lcp_diviso_et_lmpera.png" width="539px"/></p>
+<p align="center"><em>Figure 2. Finding the longest common prefix of strings using divide and conquer technique</em></p>
+<p><strong>Java</strong> </p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="n">String</span> <span class="nf">longestCommonPrefix</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">strs</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">strs</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">strs</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="s">""</span><span class="o">;</span>    
+        <span class="k">return</span> <span class="n">longestCommonPrefix</span><span class="o">(</span><span class="n">strs</span><span class="o">,</span> <span class="mi">0</span> <span class="o">,</span> <span class="n">strs</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">String</span> <span class="nf">longestCommonPrefix</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">strs</span><span class="o">,</span> <span class="kt">int</span> <span class="n">l</span><span class="o">,</span> <span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">strs</span><span class="o">[</span><span class="n">l</span><span class="o">];</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
+        <span class="n">String</span> <span class="n">lcpLeft</span> <span class="o">=</span>   <span class="n">longestCommonPrefix</span><span class="o">(</span><span class="n">strs</span><span class="o">,</span> <span class="n">l</span> <span class="o">,</span> <span class="n">mid</span><span class="o">);</span>
+        <span class="n">String</span> <span class="n">lcpRight</span> <span class="o">=</span>  <span class="n">longestCommonPrefix</span><span class="o">(</span><span class="n">strs</span><span class="o">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span><span class="n">r</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">commonPrefix</span><span class="o">(</span><span class="n">lcpLeft</span><span class="o">,</span> <span class="n">lcpRight</span><span class="o">);</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">String</span> <span class="nf">commonPrefix</span><span class="o">(</span><span class="n">String</span> <span class="n">left</span><span class="o">,</span><span class="n">String</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">left</span><span class="o">.</span><span class="na">length</span><span class="o">(),</span> <span class="n">right</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>       
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">min</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">left</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="n">right</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">)</span>
+            <span class="k">return</span> <span class="n">left</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">left</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">min</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<p>In the worst case we have <script type="math/tex; mode=display">n</script> equal strings with length <script type="math/tex; mode=display">m</script>
+</p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(S)</script>, where <script type="math/tex; mode=display">S</script> is the number of all characters in the array, <script type="math/tex; mode=display">S = m*n</script>
+ Time complexity is <script type="math/tex; mode=display">T(n) = 2 T(\frac{n}{2}) + O(m)</script>. Therefore time complexity is <script type="math/tex; mode=display">O(S)</script>.
+  In the best case this algorithm performs  <script type="math/tex; mode=display">O(minLen*n)</script> comparisons, where  <script type="math/tex; mode=display">minLen</script> is the shortest string of the array</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m*log(n))</script>
+</p>
+</li>
+</ul>
+<p>There is a memory overhead since we store recursive calls in the execution stack. There are <script type="math/tex; mode=display">log(n)</script> recursive calls, each store need <script type="math/tex; mode=display">m</script> space to store the result,  so space complexity is <script type="math/tex; mode=display">O(m*log(n))</script>
+</p>
+<hr/>
+<h4 id="approach-4-binary-search">Approach #4  (Binary search)</h4>
+<p>The idea is to apply binary search method to find the string with maximum value <code>L</code>, which is common prefix of all of the strings. The algorithm searches space is the interval <script type="math/tex; mode=display">(0 \ldots minLen)</script>, where <code>minLen</code> is minimum string length and the maximum possible common prefix. Each time search space is divided in two equal parts, one of them is discarded, because it is sure that it doesn't contain the solution. There are two possible cases:
+<em> <code>S[1...mid]</code> is not a common string. This means that for each <code>j &gt; i S[1..j]</code> is not a common string and we discard the second half of the  search space.
+</em> <code>S[1...mid]</code> is common string. This means that for for each <code>i &lt; j S[1..i]</code> is a common string and we discard the first half of the search space, because we try to find longer common prefix.</p>
+<p align="center"><img alt="Finding the longest common prefix" src="https://leetcode.com/media/original_images/14_lcp_binary_search.png" width="539px"/></p>
+<p align="center"><em>Figure 3. Finding the longest common prefix of strings using binary search technique</em></p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="n">String</span> <span class="nf">longestCommonPrefix</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">strs</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">strs</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">strs</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="k">return</span> <span class="s">""</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">minLen</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">str</span> <span class="o">:</span> <span class="n">strs</span><span class="o">)</span>
+        <span class="n">minLen</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">minLen</span><span class="o">,</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+    <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">minLen</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">middle</span> <span class="o">=</span> <span class="o">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">isCommonPrefix</span><span class="o">(</span><span class="n">strs</span><span class="o">,</span> <span class="n">middle</span><span class="o">))</span>
+            <span class="n">low</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="k">else</span>
+            <span class="n">high</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">strs</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="o">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isCommonPrefix</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">strs</span><span class="o">,</span> <span class="kt">int</span> <span class="n">len</span><span class="o">){</span>
+    <span class="n">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="n">strs</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="n">len</span><span class="o">);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">strs</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">startsWith</span><span class="o">(</span><span class="n">str1</span><span class="o">))</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong></p>
+<p>In the worst case we have <script type="math/tex; mode=display">n</script> equal strings with length <script type="math/tex; mode=display">m</script>
+</p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(S*log(n))</script>, where <script type="math/tex; mode=display">S</script> is the sum of all characters in all strings.</li>
+</ul>
+<p>The algorithm makes <script type="math/tex; mode=display">log(n)</script> iterations, for each of them there are <script type="math/tex; mode=display">S =  m*n</script> comparisons, which gives in total <script type="math/tex; mode=display">O(S*log(n))</script> time complexity.</p>
+<ul>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>.</li>
+</ul>
+<p>We only used constant extra space.</p>
+<h2 id="further-thoughts-follow-up">Further Thoughts / Follow up</h2>
+<p>Let's take a look at a slightly different problem:</p>
+<blockquote>
+<p>Given a set of keys S = <script type="math/tex; mode=display">[S_1,S_2 \ldots S_n]</script>, find the longest common prefix among a string <code>q</code> and S. This LCP query will be called frequently.</p>
+</blockquote>
+<p>We could optimize LCP queries by storing the set of keys S in a Trie. For more information about Trie, please see this article <a href="https://leetcode.com/articles/implement-trie-prefix-tree/">Implement a trie (Prefix trie)</a>. In a Trie, each node descending from the root represents a common prefix of some keys. But we need to find the longest common prefix of a string <code>q</code> and all key strings. This means that we have to find the deepest path from the root, which satisfies the following conditions:
+<em> it is prefix of query string <code>q</code>
+</em> each node along the path must contain only one child element. Otherwise the found path will not be a common prefix among all strings.
+* the path doesn't comprise of nodes which are marked as end of key. Otherwise the path couldn't be a prefix a of key which is shorter than itself.</p>
+<p><strong>Algorithm</strong></p>
+<p>The only question left, is how to find the deepest path in the Trie, that fulfills the requirements above. The most effective way is to build a trie from <script type="math/tex; mode=display">[S_1 \ldots   S_n]</script> strings. Then find the prefix of query string <code>q</code> in the Trie. We traverse the Trie from the root, till it is impossible to continue the path in the Trie because one of the conditions above is not satisfied.</p>
+<p align="center"><img alt="Finding the longest common prefix using Trie" src="https://leetcode.com/media/original_images/14_lcp_trie.png" width="539px"/></p>
+<p align="center"><em>Figure 4. Finding the longest common prefix of strings using Trie</em></p>
+<p><strong>Java</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="n">String</span> <span class="nf">longestCommonPrefix</span><span class="o">(</span><span class="n">String</span> <span class="n">q</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">strs</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">strs</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">strs</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
+         <span class="k">return</span> <span class="s">""</span><span class="o">;</span>  
+    <span class="k">if</span> <span class="o">(</span><span class="n">strs</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>
+         <span class="k">return</span> <span class="n">strs</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+    <span class="n">Trie</span> <span class="n">trie</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Trie</span><span class="o">();</span>      
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">strs</span><span class="o">.</span><span class="na">length</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">trie</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">trie</span><span class="o">.</span><span class="na">searchLongestPrefix</span><span class="o">(</span><span class="n">q</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">TrieNode</span> <span class="o">{</span>
+
+    <span class="c1">// R links to node children</span>
+    <span class="kd">private</span> <span class="n">TrieNode</span><span class="o">[]</span> <span class="n">links</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">R</span> <span class="o">=</span> <span class="mi">26</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isEnd</span><span class="o">;</span>
+
+    <span class="c1">// number of children non null links</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span><span class="o">;</span>    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">put</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">,</span> <span class="n">TrieNode</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">links</span><span class="o">[</span><span class="n">ch</span> <span class="o">-</span><span class="sc">'a'</span><span class="o">]</span> <span class="o">=</span> <span class="n">node</span><span class="o">;</span>
+        <span class="n">size</span><span class="o">++;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getLinks</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">size</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">//assume methods containsKey, isEnd, get, put are implemented as it is described</span>
+   <span class="c1">//in  https://leetcode.com/articles/implement-trie-prefix-tree/)</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Trie</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">TrieNode</span> <span class="n">root</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Trie</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TrieNode</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="c1">//assume methods insert, search, searchPrefix are implemented as it is described</span>
+<span class="c1">//in  https://leetcode.com/articles/implement-trie-prefix-tree/)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="nf">searchLongestPrefix</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">TrieNode</span> <span class="n">node</span> <span class="o">=</span> <span class="n">root</span><span class="o">;</span>
+        <span class="n">StringBuilder</span> <span class="n">prefix</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="kt">char</span> <span class="n">curLetter</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">curLetter</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getLinks</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(!</span><span class="n">node</span><span class="o">.</span><span class="na">isEnd</span><span class="o">()))</span> <span class="o">{</span>
+                <span class="n">prefix</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">curLetter</span><span class="o">);</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">curLetter</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="k">else</span>
+                <span class="k">return</span> <span class="n">prefix</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+
+         <span class="o">}</span>
+         <span class="k">return</span> <span class="n">prefix</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p><strong>Complexity Analysis</strong>
+In the worst case query <script type="math/tex; mode=display">q</script> has length <script type="math/tex; mode=display">m</script> and it is equal to all <script type="math/tex; mode=display">n</script> strings of the array.</p>
+<ul>
+<li>Time complexity : preprocessing <script type="math/tex; mode=display">O(S)</script>, where <script type="math/tex; mode=display">S</script> is the number of all characters in the array, LCP query <script type="math/tex; mode=display">O(m)</script>
+</li>
+</ul>
+<p>Trie build has <script type="math/tex; mode=display">O(S)</script> time complexity. To find the common prefix of <script type="math/tex; mode=display">q</script> in the Trie takes in the worst case <script type="math/tex; mode=display">O(m)</script>.</p>
+<ul>
+<li>Space complexity : <script type="math/tex; mode=display">O(S)</script>
+</li>
+</ul>
+<p>We only used additional  <script type="math/tex; mode=display">S</script> extra space for the Trie.</p>
+<p>Analysis written by: @elmirap.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-info disabled">Easy</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">228078</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">722663</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              97%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/yelp.html">Yelp</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

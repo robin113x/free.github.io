@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="There is a garden with N slots. In each slot, there is a flower. The N flowers will bloom one by one in N days. In each day, there will be exactly one flower blooming and it will be in the status of blooming since then.
+
+
+Given an array flowers consists of number from 1 to N. Each number in the array represents the place where the flower will open in that day.
+
+
+For example, flowers[i] = x means that the unique flower that blooms at day i will be at position x, where i and x will be in the range from 1 to N.
+
+
+Also given an integer k, you need to output in which day there exists two flowers in the status of blooming, and also the number of flowers between them is k and these flowers are not blooming.
+
+
+If there isn&#39;t such day, output -1.
+
+Example 1:
+Input: 
+flowers: [1,3,2]
+k: 1
+Output: 2
+Explanation: In the second day, the first and the third flower have become blooming.
+
+
+Example 2:
+Input: 
+flowers: [1,2,3]
+k: 1
+Output: -1
+
+
+Note:
+
+The given array will be in the range [1, 20000].">
+  <meta name="keywords"
+        content="K Empty Slots, LC 683, leetcode 683, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>683. K Empty Slots</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+There is a garden with <code>N</code> slots. In each slot, there is a flower. The <code>N</code> flowers will bloom one by one in <code>N</code> days. In each day, there will be <code>exactly</code> one flower blooming and it will be in the status of blooming since then.
+</p>
+
+<p>
+Given an array <code>flowers</code> consists of number from <code>1</code> to <code>N</code>. Each number in the array represents the place where the flower will open in that day.
+</p>
+
+<p>
+For example, <code>flowers[i] = x</code> means that the unique flower that blooms at day <code>i</code> will be at position <code>x</code>, where <code>i</code> and <code>x</code> will be in the range from <code>1</code> to <code>N</code>.
+</p>
+
+<p>
+Also given an integer <code>k</code>, you need to output in which day there exists two flowers in the status of blooming, and also the number of flowers between them is <code>k</code> and these flowers are not blooming.
+</p>
+
+<p>
+If there isn't such day, output -1.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 
+flowers: [1,3,2]
+k: 1
+<b>Output:</b> 2
+<b>Explanation:</b> In the second day, the first and the third flower have become blooming.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> 
+flowers: [1,2,3]
+k: 1
+<b>Output:</b> -1
+</pre>
+</p>
+
+
+<p><b>Note:</b><br>
+<ol>
+<li>The given array will be in the range [1, 20000].</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<h4 id="approach-1-insert-into-sorted-structure-accepted">Approach #1: Insert Into Sorted Structure [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>Let's add flowers in the order they bloom.  When each flower blooms, we check it's neighbors to see if they can satisfy the condition with the current flower.</p>
+<p><strong>Algorithm</strong></p>
+<p>We'll maintain <code>active</code>, a sorted data structure containing every flower that has currently bloomed.  When we add a flower to <code>active</code>, we should check it's lower and higher neighbors.  If some neighbor satisfies the condition, we know the condition occurred first on this day.</p>
+<iframe frameborder="0" height="326" name="cYMSzwUd" src="https://leetcode.com/playground/cYMSzwUd/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity (Java): <script type="math/tex; mode=display">O(N \log N)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>flowers</code>.  Every insertion and search is <script type="math/tex; mode=display">O(\log N)</script>.</p>
+</li>
+<li>
+<p>Time Complexity (Python): <script type="math/tex; mode=display">O(N^2)</script>.  As above, except <code>list.insert</code> is <script type="math/tex; mode=display">O(N)</script>.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>, the size of <code>active</code>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-min-queue-accepted">Approach #2: Min Queue [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>For each contiguous block ("window") of <code>k</code> positions in the flower bed, we know it satisfies the condition in the problem statement if the minimum blooming date of this window is larger than the blooming date of the left and right neighbors.</p>
+<p>Because these windows overlap, we can calculate these minimum queries more efficiently using a sliding window structure.</p>
+<p><strong>Algorithm</strong></p>
+<p>Let <code>days[x] = i</code> be the time that the flower at position <code>x</code> blooms.  For each window of <code>k</code> days, let's query the minimum of this window in (amortized) constant time using a <code>MinQueue</code>, a data structure built just for this task.  If this minimum is larger than it's two neighbors, then we know this is a place where "<code>k</code> empty slots" occurs, and we record this candidate answer.</p>
+<p>To operate a <code>MinQueue</code>, the key invariant is that <code>mins</code> will be an increasing list of candidate answers to the query <code>MinQueue.min</code>.  </p>
+<p>For example, if our queue is <code>[1, 3, 6, 2, 4, 8]</code>, then <code>mins</code> will be <code>[1, 2, 4, 8]</code>.  As we <code>MinQueue.popleft</code>, <code>mins</code> will become <code>[2, 4, 8]</code>, then after 3 more <code>popleft</code>'s will become <code>[4, 8]</code>, then after 1 more <code>popleft</code> will become <code>[8]</code>.  </p>
+<p>As we <code>MinQueue.append</code>, we should maintain this invariant.  We do it by popping any elements larger than the one we are inserting.  For example, if we appended <code>5</code> to <code>[1, 3, 6, 2, 4, 8]</code>, then <code>mins</code> which was <code>[1, 2, 4, 8]</code> becomes <code>[1, 2, 4, 5]</code>.</p>
+<p>Note that we used a simpler variant of <code>MinQueue</code> that requires every inserted element to be unique to ensure correctness.  Also, the operations are amortized constant time because every element will be inserted and removed exactly once from each queue.</p>
+<iframe frameborder="0" height="515" name="kJxmutAX" src="https://leetcode.com/playground/kJxmutAX/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time Complexity: <script type="math/tex; mode=display">O(N)</script>, where <script type="math/tex; mode=display">N</script> is the length of <code>flowers</code>.  In enumerating through the <script type="math/tex; mode=display">O(N)</script> outer loop, we do constant work as <code>MinQueue.popleft</code> and <code>MinQueue.min</code> operations are (amortized) constant time.</p>
+</li>
+<li>
+<p>Space Complexity: <script type="math/tex; mode=display">O(N)</script>, the size of our <code>window</code>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-sliding-window-accepted">Approach #3: Sliding Window [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>As in <em>Approach #2</em>, we have <code>days[x] = i</code> for the time that the flower at position <code>x</code> blooms.  We wanted to find <em>candidate</em> intervals <code>[left, right]</code> where <code>days[left], days[right]</code> are the two smallest values in <code>[days[left], days[left+1], ..., days[right]]</code>, and <code>right - left = k + 1</code>.</p>
+<p>Notice that these candidate intervals cannot intersect: for example, if the candidate intervals are <code>[left1, right1]</code> and <code>[left2, right2]</code> with <code>left1 &lt; left2 &lt; right1 &lt; right2</code>, then for the first interval to be a candidate, <code>days[left2] &gt; days[right1]</code>; and for the second interval to be a candidate, <code>days[right1] &gt; days[left2]</code>, a contradiction.</p>
+<p>That means whenever whether some interval can be a candidate and it fails first at <code>i</code>, indices <code>j &lt; i</code> can't be the start of a candidate interval.  This motivates a sliding window approach.</p>
+<p><strong>Algorithm</strong></p>
+<p>As in <em>Approach #2</em>, we construct <code>days</code>.</p>
+<p>Then, for each interval <code>[left, right]</code> (starting with the first available one), we'll check whether it is a candidate: whether <code>days[i] &gt; days[left]</code> and <code>days[i] &gt; days[right]</code> for <code>left &lt; i &lt; right</code>.</p>
+<p>If we fail, then we've found some new minimum <code>days[i]</code> and we should check the new interval <code>[i, i+k+1]</code>.  If we succeed, then it's a candidate answer, and we'll check the new interval <code>[right, right+k+1]</code>.</p>
+<iframe frameborder="0" height="497" name="YBwfZARy" src="https://leetcode.com/playground/YBwfZARy/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time and Space Complexity: <script type="math/tex; mode=display">O(N)</script>.  The analysis is the same as in Approach #2.</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/awice">@awice</a>.  Approach #1 inspired by <a href="https://leetcode.com/stefanpochmann">@StefanPochmann</a>.  Approach #3 inspired by <a href="https://discuss.leetcode.com/topic/104771/java-c-simple-o-n-solution">@Vincent Cai</a>.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">7847</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">21563</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              56%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/google.html">Google</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

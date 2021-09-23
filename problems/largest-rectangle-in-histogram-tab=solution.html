@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given n non-negative integers representing the histogram&#39;s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
+
+
+
+Above is a histogram where width of each bar is 1, given height = [2,1,5,6,2,3].
+
+
+
+The largest rectangle is shown in the shaded area, which has area = 10 unit.
+
+
+For example,
+Given heights = [2,1,5,6,2,3],
+return 10.">
+  <meta name="keywords"
+        content="Largest Rectangle in Histogram, LC 84, leetcode 84, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>84. Largest Rectangle in Histogram</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given <i>n</i> non-negative integers representing the histogram's bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
+</p>
+
+<p>
+<img src="https://leetcode.com/static/images/problemset/histogram.png" /><br />
+<p style="font-size: 11px">Above is a histogram where width of each bar is 1, given height = <code>[2,1,5,6,2,3]</code>.</p>
+</p>
+
+<p>
+<img src="https://leetcode.com/static/images/problemset/histogram_area.png" /><br />
+<p style="font-size: 11px">The largest rectangle is shown in the shaded area, which has area = <code>10</code> unit.</p>
+</p>
+
+<p>
+For example,<br />
+Given heights = <code>[2,1,5,6,2,3]</code>,<br />
+return <code>10</code>.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-better-brute-forcetime-limit-exceeded">Approach #2 Better Brute Force[Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-divide-and-conquer-approach-time-limit-exceeded">Approach #3 (Divide and Conquer Approach) [Time Limit Exceeded]</a></li>
+<li><a href="#approach-4-better-divide-and-conquer-accepted">Approach #4 (Better Divide and Conquer) [Accepted]</a></li>
+<li><a href="#approach-5-using-stack-accepted">Approach #5 (Using Stack) [Accepted]</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>We need to find the rectangle of largest area that can be formed by using the given bars of histogram.</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>Firstly, we need to take into account the fact that the height of the rectangle
+formed between any two bars will always be limited by the height of the shortest
+bar lying between them which can be understood by looking at the figure below:</p>
+<p><img alt="Largest Rectangle" src="https://leetcode.com/media/original_images/84_Largest_Rectangle1.PNG"/></p>
+<p>Thus, we can simply start off by considering every possible
+pair of bars and finding the area of the rectangle formed between them using the
+height of the shortest bar lying between them as the height
+ and the spacing between
+them as the width of the rectangle. We can thus, find the required rectangle with the
+ maximum area.</p>
+<iframe frameborder="0" height="292" name="rdXd49MU" src="https://leetcode.com/playground/rdXd49MU/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n^3)</script>. We have to find the minimum height bar <script type="math/tex; mode=display">\big(O(n)\big)</script> lying
+between every pair <script type="math/tex; mode=display">\big(O(n^2)\big)</script>.</li>
+<li>Space complexity : <script type="math/tex; mode=display">O(1)</script>. Constant space is used.</li>
+</ul>
+<hr/>
+<h4 id="approach-2-better-brute-forcetime-limit-exceeded">Approach #2 Better Brute Force[Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can do one slight modification in the previous approach to optimize it to some extent.
+ Instead of taking every possible pair and then finding the bar of minimum height
+ lying between them everytime, we can find the bar of minimum height for
+ current pair by using the minimum height bar of the previous pair.</p>
+<p>In mathematical terms, <script type="math/tex; mode=display">minheight=\min(minheight, heights(j))</script>, where <script type="math/tex; mode=display">heights(j)</script>
+ refers to the height of the <script type="math/tex; mode=display">j</script>th bar.</p>
+<iframe frameborder="0" height="275" name="RPK7YFsC" src="https://leetcode.com/playground/RPK7YFsC/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>. Every possible pair is considered</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. No extra space is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-divide-and-conquer-approach-time-limit-exceeded">Approach #3 (Divide and Conquer Approach) [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>This approach relies on the observation that the rectangle with maximum area will be
+the maximum of:</p>
+<ol>
+<li>
+<p>The widest possible rectangle with height equal to the height of the shortest bar.</p>
+</li>
+<li>
+<p>The largest rectangle confined to the left of the shortest bar(subproblem).</p>
+</li>
+<li>
+<p>The largest rectangle confined to the right of the shortest bar(subproblem).</p>
+</li>
+</ol>
+<p>Let's take an example:</p>
+<div class="codehilite"><pre><span></span>[6, 4, 5, 2, 4, 3, 9]
+</pre></div>
+<p>Here, the shortest bar is of height 2. The area of the widest rectangle using this
+  bar as height is 2x8=16. Now, we need to look for cases 2 and 3 mentioned above.
+  Thus, we repeat the same process to the left and right of 2. In the left of 2, 4
+  is the minimum, forming an area of rectangle 4x3=12. Further, rectangles of area 6x1=6 and
+   5x1=5 exist in its left and right respectively. Similarly we find an area of 3x3=9, 4x1=4 and 9x1=9
+   to the left of 2. Thus, we get 16 as the correct maximum area. See the figure below for further clarification:</p>
+<p><img alt="Divide and Conquer" src="https://leetcode.com/media/original_images/84_Largest_Rectangle2.PNG"/></p>
+<iframe frameborder="0" height="292" name="VC4poxm8" src="https://leetcode.com/playground/VC4poxm8/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity :</p>
+<p>Average Case:<script type="math/tex; mode=display">O\big(n \log(n)\big)</script>.</p>
+<p>Worst Case: <script type="math/tex; mode=display">O(n^2)</script>. If the numbers in the array are sorted,
+  we don't gain the advantage of divide and conquer.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Recursion with worst case depth <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-better-divide-and-conquer-accepted">Approach #4 (Better Divide and Conquer) [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>You can observe that in the Divide and Conquer Approach, we gain the advantage, since
+ the large problem is divided into substantially smaller subproblems. But, we won't gain
+  much advantage with that approach if the array happens to be sorted in either
+  ascending or descending order, since every time we need to find the minimum number in a
+   large subarray <script type="math/tex; mode=display">\big(O(n)\big)</script>. Thus, the overall complexity becomes <script type="math/tex; mode=display">O(n^2)</script> in the worst case.
+   We can reduce the time complexity by using a Segment Tree to find the minimum every time which
+   can be done in <script type="math/tex; mode=display">O\big(\log(n)\big)</script> time.</p>
+<p>For implementation, click <a href="https://discuss.leetcode.com/topic/45822/segment-tree-solution-just-another-idea-o-n-logn-solution">here</a>.</p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(n\log(n)\big)</script>. Segment tree takes <script type="math/tex; mode=display">log(n)</script>
+<script type="math/tex; mode=display">n</script> times.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Space required for Segment Tree.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-using-stack-accepted">Approach #5 (Using Stack) [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In this approach, we maintain a stack. Initially, we push a -1 onto the stack to mark the end.
+We start with the leftmost bar and keep
+pushing the current bar's index onto the stack until we get two successive numbers
+ in descending order, i.e. until we get <script type="math/tex; mode=display">a[i]<a[i-1]</script>. Now, we start popping the
+ numbers from the stack until we hit a number <script type="math/tex; mode=display">stack[j]</script> on the stack such that <script type="math/tex; mode=display">a\big[stack[j]\big] \leq a[i]</script>.
+ Every time we pop, we find out the area of rectangle formed using the current element as the height
+  of the rectangle and the difference between the the current element's index pointed to in the original array and the element <script type="math/tex; mode=display">stack[top-1] -1</script> as the width
+  i.e. if we pop an element <script type="math/tex; mode=display">stack[top]</script> and i is the current index to which we are pointing in the original array, the current area of the rectangle will be considered as <script type="math/tex; mode=display">(i-stack[top-1]-1) \times a\big[stack[top]\big]</script>.</p>
+<p>Further, if we reach the end of the array, we pop all the elements of the
+  stack and at every pop, this time we use the following equation to find the area:
+     <script type="math/tex; mode=display">(stack[top]-stack[top-1]) \times a\big[stack[top]\big]</script>, where <script type="math/tex; mode=display">stack[top]</script> refers to the
+      element just popped. Thus, we can get the area of the
+   of the largest rectangle by comparing the new area found everytime.</p>
+<p>The following example will clarify the process further:
+   <code>[6, 7, 5, 2, 4, 5, 9, 3]</code></p>
+<p>!?!../Documents/84_Largest_Rectangle.json:1000,563!?!</p>
+<iframe frameborder="0" height="309" name="ods7GRkR" src="https://leetcode.com/playground/ods7GRkR/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">n</script> numbers are pushed and popped.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Stack is used.</p>
+</li>
+</ul>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">106262</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">390451</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              60%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

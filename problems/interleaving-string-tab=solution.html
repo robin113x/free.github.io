@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.
+
+
+For example,
+Given:
+s1 = &#34;aabcc&#34;,
+s2 = &#34;dbbca&#34;,
+
+
+When s3 = &#34;aadbbcbcac&#34;, return true.
+When s3 = &#34;aadbbbaccc&#34;, return false.">
+  <meta name="keywords"
+        content="Interleaving String, LC 97, leetcode 97, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>97. Interleaving String</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given <i>s1</i>, <i>s2</i>, <i>s3</i>, find whether <i>s3</i> is formed by the interleaving of <i>s1</i> and <i>s2</i>.
+</p>
+
+<p>
+For example,<br />
+Given:<br />
+<i>s1</i> = <code>"aabcc"</code>,<br />
+<i>s2</i> = <code>"dbbca"</code>,
+</p>
+<p>
+When <i>s3</i> = <code>"aadbbcbcac"</code>, return true.<br />
+When <i>s3</i> = <code>"aadbbbaccc"</code>, return false.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-recursion-with-memoization-accepted">Approach #2 Recursion with memoization [Accepted]</a></li>
+<li><a href="#approach-3-using-2-d-dynamic-programming-accepted">Approach #3 Using 2-d Dynamic Programming [Accepted]</a></li>
+<li><a href="#approach-4-using-1-d-dynamic-programming-accepted">Approach #4 Using 1-d Dynamic Programming [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="summary">Summary</h2>
+<p>We need to determine whether a given string can be formed by interleaving the other two strings.</p>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>The most basic idea is to find every string possible by all interleavings of the two given strings(<script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script>).
+In order to implement this method, we are using recursion. We start by taking the current character of the
+first string(<script type="math/tex; mode=display">s1</script>) and then appending all possible interleavings of the remaining portion of the first string(<script type="math/tex; mode=display">s1</script>) and the second string(<script type="math/tex; mode=display">s2</script>)
+and comparing each result formed with the required interleaved string(<script type="math/tex; mode=display">s3</script>). Similarly, we choose one character from the second
+string(<script type="math/tex; mode=display">s2</script>) and form all the interleavings with the remaining portion of <script type="math/tex; mode=display">s2</script> and <script type="math/tex; mode=display">s1</script> to check if the required string <script type="math/tex; mode=display">s1</script> can be formed.</p>
+<p>For implementing the recursive function, we make the function call recursively as
+<script type="math/tex; mode=display">is_Interleave(s1,i+1,s2,j,res+s1.charAt(i),s3)</script> in which we have chosen the current character from <script type="math/tex; mode=display">s1</script> and then make another function call <script type="math/tex; mode=display">is_Interleave(s1,i,s2,j+1,res+s2.charAt(j),s3)</script>, in which the current character of <script type="math/tex; mode=display">s2</script> is chosen. Here, <script type="math/tex; mode=display">res</script> refers to that portion(interleaved) of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> which has already been processed. If anyone of these calls return the result as <script type="math/tex; mode=display">True</script>, it means that atleast one interleaving gives the required result <script type="math/tex; mode=display">s3</script>. The recursive calls end when both the strings <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> have been fully processed.</p>
+<p>Let's look at a small example to see how the execution proceeds.</p>
+<div class="codehilite"><pre><span></span>s1="abc"
+s2="bcd"
+s3="abcbdc"
+</pre></div>
+<p>Firstly we choose 'a' of s1 as the processed part i.e. res and call the recursive function considering the new strings as s1="bc",
+s2="bcd", s3="abcbdc". When this function returns a result, we again call the recursive function but with the new strings as s1="abc", s2="cd", s3="abcbdc"</p>
+<iframe frameborder="0" height="343" name="26n4CNCb" src="https://leetcode.com/playground/26n4CNCb/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(2^(m+n))</script>. <script type="math/tex; mode=display">m</script> is the length of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">n</script> is the length of <script type="math/tex; mode=display">s2</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m+n)</script>. The size of stack for recursive calls can go upto <script type="math/tex; mode=display">m+n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-recursion-with-memoization-accepted">Approach #2 Recursion with memoization [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>In the recursive approach discussed above, we are considering every possible string formed by interleaving the two given
+strings. But, there will be cases encountered in which, the same portion of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> would have been processed already
+but in different orders(permutations). But irrespective of the order of processing, if the resultant string formed till now
+is matching with the required string(<script type="math/tex; mode=display">s3</script>), the final result is dependent only on the remaining portions of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script>, but
+not on the already processed portion. Thus, the recursive approach leads to redundant computations.</p>
+<p>This redundancy can be removed by making use of memoization along with recursion. For this, we maitain 3 pointers <script type="math/tex; mode=display">i, j, k</script>
+ which correspond to the index of the current character of <script type="math/tex; mode=display">s1, s2, s3</script> respectively. Also, we maintain a 2-d memo array to keep a track of the substrings processed so far. <script type="math/tex; mode=display">memo[i][j]</script> stores a 1/0 or -1 depending on
+ whether the current portion of strings i.e. upto <script type="math/tex; mode=display">i^{th}</script> index for <script type="math/tex; mode=display">s1</script> and upto <script type="math/tex; mode=display">j^{th}</script> index for s2 has already been evaluated. Again, we start by selecting the current character of <script type="math/tex; mode=display">s1</script>(pointed by $$i$). If it matches the current character
+ of <script type="math/tex; mode=display">s3</script>(pointed by <script type="math/tex; mode=display">k</script>), we include it in the processed string and call the same function recurively as:
+ <script type="math/tex; mode=display">is\_Interleave(s1, i+1, s2, j, s3, k+1,memo)</script>
+</p>
+<p>Thus, here we have called the function by incrementing the pointers <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">k</script> since the portion of strings upto those indices
+ has already been processed. Similarly, we choose one character from the second string and continue. The recursive function
+ ends when either of the two strings <script type="math/tex; mode=display">s1</script> or <script type="math/tex; mode=display">s2</script> has been fully processed. If, let's say, the string <script type="math/tex; mode=display">s1</script> has been fully processed,
+ we directly compare the remaining portion of <script type="math/tex; mode=display">s2</script> with the remaining portion of <script type="math/tex; mode=display">s3</script>. When the backtrack occurs from the recursive
+ calls, we store the value returned by the recursive functions in the memoization array memo appropriatelys so that when it is encountered the next time, the recursive function won't be called, but the memoization array itself will return the previous generated result.</p>
+<iframe frameborder="0" height="515" name="STfFmTvN" src="https://leetcode.com/playground/STfFmTvN/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(2^(m+n))</script>. <script type="math/tex; mode=display">m</script> is the length of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">n</script> is the length of <script type="math/tex; mode=display">s2</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m+n)</script>. The size of stack for recursive calls can go upto <script type="math/tex; mode=display">m+n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-using-2-d-dynamic-programming-accepted">Approach #3 Using 2-d Dynamic Programming [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>The recursive approach discussed in above solution included a character from one of the strings <script type="math/tex; mode=display">s1</script> or <script type="math/tex; mode=display">s2</script> in the resultant
+interleaved string and called a recursive function to check whether the remaining portions of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> can be interleaved
+to form the remaining portion of <script type="math/tex; mode=display">s3</script>. In the current approach, we
+ look at the same problem the other way around. Here, we include one character from <script type="math/tex; mode=display">s1</script> or <script type="math/tex; mode=display">s2</script> and check whether the
+ resultant string formed so far by one particular interleaving of the the current prefix of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> form a prefix of <script type="math/tex; mode=display">s3</script>.</p>
+<p>Thus, this approach relies on the fact that the in order to determine whether a substring
+ of <script type="math/tex; mode=display">s3</script>(upto index <script type="math/tex; mode=display">k</script>), can be formed by interleaving strings <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> upto indices <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script> respectively, solely depends
+ on the characters of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> upto indices <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script> only and not on the characters coming afterwards.</p>
+<p>To implement this method, we'll make use of a 2-d boolean array <script type="math/tex; mode=display">dp</script>. In this array <script type="math/tex; mode=display">dp[i][j]</script> implies if it is possible to
+ obtain a substring of length <script type="math/tex; mode=display">(i+j+2)</script> which is a prefix of <script type="math/tex; mode=display">s3</script> by some interleaving of prefixes of strings <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> having
+ lengths <script type="math/tex; mode=display">(i+1)</script> and <script type="math/tex; mode=display">(j+1)</script> respectively. For filling in the entry of <script type="math/tex; mode=display">dp[i][j]</script>, we need to consider two cases:</p>
+<ol>
+<li>
+<p>The character
+ just included i.e. either at <script type="math/tex; mode=display">i^{th}</script> index of <script type="math/tex; mode=display">s1</script> or at <script type="math/tex; mode=display">j^{th}</script> index of <script type="math/tex; mode=display">s2</script> doesn't match the character at <script type="math/tex; mode=display">k^{th}</script> index of <script type="math/tex; mode=display">s3</script>, where <script type="math/tex; mode=display">k=i+j+1</script>.
+ In this case, the resultant string formed using some interleaving of prefixes of <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> can never result in a prefix of length <script type="math/tex; mode=display">k+1</script> in <script type="math/tex; mode=display">s3</script>. Thus, we enter <script type="math/tex; mode=display">False</script> at the character <script type="math/tex; mode=display">dp[i][j]</script>.</p>
+</li>
+<li>
+<p>The character
+ just included i.e. either at <script type="math/tex; mode=display">i^{th}</script> index of <script type="math/tex; mode=display">s1</script> or at <script type="math/tex; mode=display">j^{th}</script> index of <script type="math/tex; mode=display">s2</script>  matches the character at <script type="math/tex; mode=display">k^{th}</script> index of <script type="math/tex; mode=display">s3</script>, where <script type="math/tex; mode=display">k=i+j+1</script>.
+Now, if the character just included(say <script type="math/tex; mode=display">x</script>) which matches the character at <script type="math/tex; mode=display">k^{th}</script> index of <script type="math/tex; mode=display">s3</script>, is the character at <script type="math/tex; mode=display">i^{th}</script> index of <script type="math/tex; mode=display">s1</script>, we need to keep <script type="math/tex; mode=display">x</script> at the last position in the resultant interleaved string formed so far. Thus, in order to use string <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> upto indices <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">j</script> to form a resultant string of length <script type="math/tex; mode=display">(i+j+2)</script> which is a prefix of <script type="math/tex; mode=display">s3</script>, we need to ensure that the strings <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> upto indices <script type="math/tex; mode=display">(i-1)</script> and <script type="math/tex; mode=display">j</script> respectively obey the same property.</p>
+</li>
+</ol>
+<p>Similarly, if we just included the <script type="math/tex; mode=display">j^{th}</script> character of <script type="math/tex; mode=display">s2</script>, which matches with the <script type="math/tex; mode=display">k^{th}</script> character of <script type="math/tex; mode=display">s3</script>, we need to ensure that the strings <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> upto indices <script type="math/tex; mode=display">i</script> and <script type="math/tex; mode=display">(j-1)</script> also obey the same
+property to enter a <script type="math/tex; mode=display">true</script> at <script type="math/tex; mode=display">dp[i][j]</script>.</p>
+<p>This can be made clear with the following example:</p>
+<div class="codehilite"><pre><span></span>s1="aabcc"
+s2="dbbca"
+s3="aadbbcbcac"
+</pre></div>
+<!--![97_Interleaving](https://leetcode.com/articles/Figures/97_Interleaving.gif)-->
+<p>!?!../Documents/97_Interleaving.json:1000,563!?!</p>
+<iframe frameborder="0" height="428" name="irqSFkn8" src="https://leetcode.com/playground/irqSFkn8/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(m*n)</script>. dp array of size <script type="math/tex; mode=display">m*n</script> is filled.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(m*n)</script>. 2-d DP of size <script type="math/tex; mode=display">(m+1)*(n+1)</script> is required. <script type="math/tex; mode=display">m</script> and <script type="math/tex; mode=display">n</script> are the lengths of strings <script type="math/tex; mode=display">s1</script> and <script type="math/tex; mode=display">s2</script> repectively.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-using-1-d-dynamic-programming-accepted">Approach #4 Using 1-d Dynamic Programming [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>This approach is the same as the previous approach except that we have used only 1-d <script type="math/tex; mode=display">dp</script> array to store the results of the
+ prefixes of the strings processed so far. Instead of maintaining a 2-d array, we can maintain a 1-d array only and update the
+ array's element <script type="math/tex; mode=display">dp[i]</script> when needed using <script type="math/tex; mode=display">dp[i-1]</script> and the previous value of <script type="math/tex; mode=display">dp[i]</script>.</p>
+<iframe frameborder="0" height="462" name="rmyFh5nF" src="https://leetcode.com/playground/rmyFh5nF/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(m*n)</script>. dp array of size <script type="math/tex; mode=display">n</script> is filled <script type="math/tex; mode=display">m</script> times.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">n</script> is the length of the string <script type="math/tex; mode=display">s1</script>.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">77853</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">312077</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              57%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

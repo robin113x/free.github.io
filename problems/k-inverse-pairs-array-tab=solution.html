@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given two integers n and k, find how many different arrays consist of numbers from 1 to n such that there are exactly k inverse pairs. 
+
+
+We define an inverse pair as following:
+For ith and jth element in the array, if i &lt; j and a[i] &gt; a[j] then it&#39;s an inverse pair; Otherwise, it&#39;s not.
+
+
+Since the answer may be very large, the answer should be modulo 109 + 7.
+
+Example 1:
+Input: n = 3, k = 0
+Output: 1
+Explanation: 
+Only the array [1,2,3] which consists of numbers from 1 to 3 has exactly 0 inverse pair.
+
+
+Example 2:
+Input: n = 3, k = 1
+Output: 2
+Explanation: 
+The array [1,3,2] and [2,1,3] have exactly 1 inverse pair.
+
+
+Note:
+
+The integer n is in the range [1, 1000] and k is in the range [0, 1000].">
+  <meta name="keywords"
+        content="K Inverse Pairs Array, LC 629, leetcode 629, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>629. K Inverse Pairs Array</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given two integers <code>n</code> and <code>k</code>, find how many different arrays consist of numbers from <code>1</code> to <code>n</code> such that there are exactly <code>k</code> inverse pairs. 
+</p>
+<p>
+We define an inverse pair as following:
+For <code>i<sub>th</sub></code> and <code>j<sub>th</sub></code> element in the array, if <code>i</code> < <code>j</code> and <code>a[i]</code> > <code>a[j]</code> then it's an inverse pair; Otherwise, it's not.
+</p>
+
+<p>
+Since the answer may be very large, the answer should be modulo 10<sup>9</sup> + 7.
+</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> n = 3, k = 0
+<b>Output:</b> 1
+<b>Explanation:</b> 
+Only the array [1,2,3] which consists of numbers from 1 to 3 has exactly 0 inverse pair.
+</pre>
+</p>
+
+<p><b>Example 2:</b><br />
+<pre>
+<b>Input:</b> n = 3, k = 1
+<b>Output:</b> 2
+<b>Explanation:</b> 
+The array [1,3,2] and [2,1,3] have exactly 1 inverse pair.
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The integer <code>n</code> is in the range [1, 1000] and <code>k</code> is in the range [0, 1000].</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-using-recursion-with-memoization-time-limit-exceeded">Approach #2 Using Recursion with memoization [Time Limit Exceeded]</a></li>
+<li><a href="#approach-3-dynamic-programming-time-limit-exceeded">Approach #3 Dynamic Programming [Time Limit Exceeded]</a></li>
+<li><a href="#approach-4-dynamic-programming-with-cumulative-sumaccepted">Approach #4 Dynamic Programming with Cumulative Sum[Accepted]:</a></li>
+<li><a href="#approach-5-another-optimized-dynamic-programming-approachaccepted">Approach #5 Another Optimized Dynamic Programming Approach[Accepted]:</a></li>
+<li><a href="#approach-6-once-again-memoization-accepted">Approach #6 Once Again Memoization [Accepted]:</a></li>
+<li><a href="#approach-7-1-d-dynamic-programmming-accepted">Approach #7 1-D dynamic Programmming [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<h4 id="approach-1-brute-force-time-limit-exceeded">Approach #1 Brute Force [Time Limit Exceeded]</h4>
+<p>The most naive solution is to generate every permutation of the array consisting of numbers from <script type="math/tex; mode=display">1</script> to <script type="math/tex; mode=display">n</script>. Then, we can find out the number of inverse pairs in every array to determine if it is equal to 1. We can find out the count of permutations with the required number of inverse pairs. But, this solution is very terrible in terms of time complexity. Thus, we move on to the better approaches directly.</p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O\big(n!*nlog(n)\big)</script>. A total of <script type="math/tex; mode=display">n!</script> permutations will be generated. We need <script type="math/tex; mode=display">O\big(nlog(n)\big)</script> time to find the number of inverse pairs in every such permutation, by making use of merge sort. Here, <script type="math/tex; mode=display">n</script> refers to the given integer <script type="math/tex; mode=display">n</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Each array generated during the permutations will require <script type="math/tex; mode=display">n</script> space.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-using-recursion-with-memoization-time-limit-exceeded">Approach #2 Using Recursion with memoization [Time Limit Exceeded]</h4>
+<p>Before we discuss the solution, let's look at the idea behind it. Let's say, <script type="math/tex; mode=display">n</script> represents the given number defining the upper limit of the elements in the arrays being considered and <script type="math/tex; mode=display">k</script> represents the number of inverse pairs in the current array.</p>
+<p>Let's start with a simple example with <script type="math/tex; mode=display">n=4</script>, no <script type="math/tex; mode=display">k</script> is defined right now. Now, for <script type="math/tex; mode=display">k=0</script>, the only possible arrangement for the given array <script type="math/tex; mode=display">a_0</script> will be <code>[1,2,3,4]</code>, since all the greater elements lie after the smaller elements. Now, in order to generate an arrangement with any arbitrary <script type="math/tex; mode=display">k</script> value, we need to shift, an arbitrary number of elements(let's say <script type="math/tex; mode=display">x</script> elements) in the array <script type="math/tex; mode=display">a_0</script> towards the left, with each displacement(shift) being <script type="math/tex; mode=display">s_1, s_2, ...., s_x</script>, such that the sum of these shifts equals <script type="math/tex; mode=display">k</script>.</p>
+<p>To see what we mean by the above statement, let's look at the case for <code>[1,2,4,3]</code>. The number of inverse pairs in this array is 1. This array is obtained by shifting the number 4 by one position towards the left. </p>
+<p>Similarly, consider the case for <code>[2,4,1,3]</code>. This array can be obtained from <script type="math/tex; mode=display">a_0</script> by shifting 2 by one position towards the left first and then shifting 4 by 2 positions towards the left. Thus, the total number of displacements is 3, which is equal to the number of inverse pairs in the new array. </p>
+<p>This rule of displacements holds true because, whenever a number is shifted <script type="math/tex; mode=display">y</script> times towards the left starting from the array <script type="math/tex; mode=display">a_0</script>, after the shift, <script type="math/tex; mode=display">y</script> numbers smaller than it lie towards its right, giving a total of <script type="math/tex; mode=display">y</script> inverse pairs. </p>
+<p>Now, let's say, we start with the one of the arrangements <script type="math/tex; mode=display">a_3</script>
+<code>[2,4,1,3]</code>, with <script type="math/tex; mode=display">k=3</script>. Now, if we want to add a new number 5 to this array to consider an array with <script type="math/tex; mode=display">n=5</script>, let's say, initially, we append it to the end of <script type="math/tex; mode=display">a_3</script>. Now, the new array will be <code>[2,4,1,3,5]</code>. Since, the largest number is added at the end, the new number 5 doesn't add any new inverse pair to the total set of inverse pairs relative to the ones in <script type="math/tex; mode=display">a_3</script>(3). </p>
+<p>Now, all the numbers in <script type="math/tex; mode=display">a_3</script> are smaller than 5. Thus, if we add 5 at a position <script type="math/tex; mode=display">y</script> steps from the right, <script type="math/tex; mode=display">y</script> smaller numbers will lie towards its right. Thus, a total of <script type="math/tex; mode=display">y</script> inverse pairs will exist with 5 being one of the elements in these pairs. </p>
+<p>Thus, adding 5 at <script type="math/tex; mode=display">y</script> steps from the right adds a total of <script type="math/tex; mode=display">y</script> inverse pairs to the total set of inverse pairs in <script type="math/tex; mode=display">a_3</script> giving a total of <script type="math/tex; mode=display">3+y</script> inverse pairs now.</p>
+<p>Looking at the same statement from another point of view, we can say that, if we know the number of inverse pairs(say <script type="math/tex; mode=display">x</script>) in any arbitrary array <script type="math/tex; mode=display">b</script> with some <script type="math/tex; mode=display">n</script>, we can add a new element <script type="math/tex; mode=display">n+1</script> to this array <script type="math/tex; mode=display">b</script> at a position <script type="math/tex; mode=display">p</script> steps from the right, such that <script type="math/tex; mode=display">x+p=k</script> to generate an array with a total of <script type="math/tex; mode=display">k</script> inverse pairs. </p>
+<p>Extending this idea further, suppose we know the number of arrangements of an array with <script type="math/tex; mode=display">n-1</script> elements, with the number of inverse pairs being <script type="math/tex; mode=display">0, 1, 2,..., k</script>, let's say being equal to <script type="math/tex; mode=display">count_0, count_1, count_2,.., count_k</script>. Now, we can determine the number of arrangements of an array with <script type="math/tex; mode=display">n</script> elements with exactly <script type="math/tex; mode=display">k</script> inverse pairs easily. </p>
+<p>To generate the arrangements with exactly <script type="math/tex; mode=display">k</script> inverse pairs and <script type="math/tex; mode=display">n</script> elements, we can add the new number <script type="math/tex; mode=display">n</script> to all the arrangements with <script type="math/tex; mode=display">k</script> inverse pairs at the last position. For the arrangements with <script type="math/tex; mode=display">k-1</script> inverse pairs , we can add <script type="math/tex; mode=display">n</script> at a position 1 step from the right. </p>
+<p>Similarly, for an element with <script type="math/tex; mode=display">k-i</script> number of inverse pairs, we can add this new number <script type="math/tex; mode=display">n</script> at a position <script type="math/tex; mode=display">i</script> steps from the right. Each of these updations to the arrays leads to a new arrangement, each with the number of inverse pairs being equal to <script type="math/tex; mode=display">k</script>. </p>
+<p>The following image shows an example of how this is done for n=5 and k=4:</p>
+<p align="center"><img alt="Inversions" src="https://leetcode.com/articles/Figures/629/629_kinverse.PNG"/></p>
+<p>Thus, to obtain the number of arrangements with exactly <script type="math/tex; mode=display">k</script> inverse pairs and <script type="math/tex; mode=display">n</script> numbers will be given by <script type="math/tex; mode=display">count_0 + count_1 + ... + count_k</script>.</p>
+<p>From the above discussion, we can obtain the recursive formula for finding the number of arrangements with exactly <script type="math/tex; mode=display">k</script> inverse pairs as follows. Let's say <script type="math/tex; mode=display">count(i,j)</script> represents the number of arrangements with <script type="math/tex; mode=display">i</script> elements and exactly <script type="math/tex; mode=display">j</script> inverse pairs.</p>
+<ol>
+<li>
+<p>If <script type="math/tex; mode=display">n=0</script>, no inverse pairs exist. Thus, <script type="math/tex; mode=display">count(0,k)=0</script>.</p>
+</li>
+<li>
+<p>If <script type="math/tex; mode=display">k=0</script>, only one arrangement is possible, which is all numbers sorted in ascending order. Thus, <script type="math/tex; mode=display">count(n,0)=1</script>.</p>
+</li>
+<li>
+<p>Otherwise, <script type="math/tex; mode=display">count(n,k) = \sum_{i=0}^{min(k,n-1)} count(n-1, k-i)</script>. </p>
+</li>
+</ol>
+<p>Note that the upper limit on the summation is <script type="math/tex; mode=display">\text{min}(k,n-1)</script>. This is because for <script type="math/tex; mode=display">i>k</script>, <script type="math/tex; mode=display">k-i<0</script>. No arrangement exists with negative number of inverse pairs. The reason for the other factor can be seen as follows. </p>
+<p>To generate a new arrangement adding <script type="math/tex; mode=display">k-i</script> new inverse pairs after adding the <script type="math/tex; mode=display">n^{th}</script> number, we need to add this number at the <script type="math/tex; mode=display">i^{th}</script> position from the right. For an array with size <script type="math/tex; mode=display">n</script>, only <script type="math/tex; mode=display">n-1</script> maximum shifts are possible.</p>
+<p>We need to take the modulus at every step to keep the answer within integral limits.</p>
+<p>We can see that a lot of duplicate function calls are made in the normal recursive solution. We can remove this redundancy by making use of a memoization array which stores the result for any function call <code>kInversePairs(i,j)</code> in <script type="math/tex; mode=display">memo[i][j]</script>. Thus, whenver a duplicate function call is made again, we can return the result directly from this memoization array. This prunes the search space to a great extent.</p>
+<iframe frameborder="0" height="343" name="HrBSsxBN" src="https://leetcode.com/playground/HrBSsxBN/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2*k)</script>. The function <code>kInversePairs</code> is called <script type="math/tex; mode=display">n^2</script> times to fill the <script type="math/tex; mode=display">memo</script> array of size <script type="math/tex; mode=display">n</script>x<script type="math/tex; mode=display">k</script>. Each function call itself takes <script type="math/tex; mode=display">O(n)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">memo</script> array of constant size <script type="math/tex; mode=display">1001</script>x<script type="math/tex; mode=display">1001</script> is used. The depth of recursion tree can go upto <script type="math/tex; mode=display">n</script>. </p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-dynamic-programming-time-limit-exceeded">Approach #3 Dynamic Programming [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>As we've seen in the discussion above, the solution for if we know the solutions for <script type="math/tex; mode=display">count(n-1,0)</script>, <script type="math/tex; mode=display">count(n-1, 1)</script>..., <script type="math/tex; mode=display">count(n-1,k)</script>, we can directly obtain the solution for <script type="math/tex; mode=display">count(n,k)</script> as <script type="math/tex; mode=display">count(n,k)=\sum_{0}^{min(k,n-1)} count(n-1, k-i)</script>.</p>
+<p>From this, we deduce that we can make use of Dynamic Programming to solve the given problem. To solve the given problem, we make use of a 2-D <script type="math/tex; mode=display">dp</script>, where <script type="math/tex; mode=display">dp[i][j]</script> is used to store the number of arrangements with <script type="math/tex; mode=display">i</script> elements and exactly <script type="math/tex; mode=display">j</script> inverse pairs. Based on the discussions above, the <script type="math/tex; mode=display">dp</script> updation equations become:</p>
+<ol>
+<li>
+<p>If <script type="math/tex; mode=display">n=0</script>, no inverse pairs exist. Thus, <script type="math/tex; mode=display">dp[0][k]=0</script>.</p>
+</li>
+<li>
+<p>If <script type="math/tex; mode=display">k=0</script>, only one arrangement is possible, which is all numbers sorted in ascending order. Thus, <script type="math/tex; mode=display">dp[n][0]=1</script>.</p>
+</li>
+<li>
+<p>Otherwise, <script type="math/tex; mode=display">dp[i,j] = \sum_{p=0}^{min(j,i-1)} count(i-1, j-p)</script>.</p>
+</li>
+</ol>
+<p>Again, the limit <script type="math/tex; mode=display">\text{min}(j, i-1)</script> is used to account for the cases where the number of inverse pairs needed becomes negative(<script type="math/tex; mode=display">p>j</script>) or the case where the new inverse pairs needed by adding the <script type="math/tex; mode=display">n^{th}</script> number is more than <script type="math/tex; mode=display">n-1</script> which isn't possible, since the new number can be added at <script type="math/tex; mode=display">(n-1)^{th}</script> position at most from the right.</p>
+<p>We start filling the <script type="math/tex; mode=display">dp</script> in a row-wise order starting from the first row. At the end, the value of <script type="math/tex; mode=display">dp[n][k]</script> gives the required result.</p>
+<p>The following animation shows how the <script type="math/tex; mode=display">dp</script> is filled for n=4 and k=5:</p>
+<p>!?!../Documents/629_dp4.json:1000,563!?!</p>
+<iframe frameborder="0" height="343" name="YaTc4PUF" src="https://leetcode.com/playground/YaTc4PUF/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2*k)</script>. <script type="math/tex; mode=display">dp</script> of size <script type="math/tex; mode=display">n</script>x<script type="math/tex; mode=display">k</script> is filled once. Filling each <script type="math/tex; mode=display">dp</script> entry takes <script type="math/tex; mode=display">O(n)</script> time.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n*k)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n</script>x<script type="math/tex; mode=display">k</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-dynamic-programming-with-cumulative-sumaccepted">Approach #4 Dynamic Programming with Cumulative Sum[Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>From the last approach, we've observed that we need to traverse back to some limit in the previous row of the <script type="math/tex; mode=display">dp</script> array to fill in the current <script type="math/tex; mode=display">dp</script> entry. Instead of doing this traversal to find the sum of the required elements, we can ease the process if we fill the cumulative sum upto the current element in a row in any <script type="math/tex; mode=display">dp</script> entry, instead of the actual value. </p>
+<p>Thus, now, <script type="math/tex; mode=display">dp[i][j]=count(i,j)+\sum_{k=0}^{j-1} dp[i][k]</script>. Here, <script type="math/tex; mode=display">count(i,j)</script> refers to the number of arrangements with <script type="math/tex; mode=display">i</script> elements and exactly <script type="math/tex; mode=display">j</script> inverse pairs. Thus, each entry contains the sum of all the previous elements in the same row along with its own result.</p>
+<p>Now, we need to determine the value of <script type="math/tex; mode=display">count(i,j)</script> to be added to the sum of previous elements in a row, in order to update the <script type="math/tex; mode=display">dp[i][j]</script> entry. But, we need not traverse back in the previous row , since it contains entries representing the cumulative sums now.
+Thus, to obtain the sum of elements from <script type="math/tex; mode=display">dp[i-1][j-i+1]</script>  to <script type="math/tex; mode=display">dp[i-1][j]</script>(including both), we can directly use <script type="math/tex; mode=display">dp[i-1][j] - dp[i-1][j-i]</script>. </p>
+<p>Now, to reflect the condition <script type="math/tex; mode=display">\text{min}(j, i-1)</script> used in the previous approaches, we can note that, we need to take the sum of only <script type="math/tex; mode=display">i</script> elements in the previous row, if <script type="math/tex; mode=display">i</script> elements exist till we reach the end of the array while traversing backwards. Otherwise, we simply take the sum of all the elements. </p>
+<p>Only <script type="math/tex; mode=display">i</script> elements are considered because for generating <script type="math/tex; mode=display">j</script> new inverse pairs, by adding <script type="math/tex; mode=display">i</script> as the new number at the <script type="math/tex; mode=display">j^{th}</script> position, <script type="math/tex; mode=display">j</script> could reach only upto <script type="math/tex; mode=display">i-1</script>, as discussed in the last approaches as well. Thus, we need to consider the sum of elements from <script type="math/tex; mode=display">dp[i-1][j-(i-1)]</script> to  <script type="math/tex; mode=display">dp[i-1][j]</script>(including both) using <script type="math/tex; mode=display">dp[i-1][j] - dp[i-1][j-i]</script> if <script type="math/tex; mode=display">j-i &geq; 0</script>.</p>
+<p>Otherwise, we add all the elements of the previous row upto the current column <script type="math/tex; mode=display">j</script> being considered. In other words, we can use <script type="math/tex; mode=display">dp[i-1][j]</script> directly as the required sum.</p>
+<p>At the end, while returning the result, we need to return <script type="math/tex; mode=display">dp[n][k]-dp[n][k-1]</script> to obtain the required result from the cumulative sums. </p>
+<p>The following animation illustrates the process of filling the <script type="math/tex; mode=display">dp</script> array.</p>
+<p>!?!../Documents/629_dp5.json:1000,563!?!</p>
+<iframe frameborder="0" height="343" name="W8PNnR9j" src="https://leetcode.com/playground/W8PNnR9j/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n*k)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n</script>x<script type="math/tex; mode=display">k</script> is filled once.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n*k)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">n</script>x<script type="math/tex; mode=display">k</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-5-another-optimized-dynamic-programming-approachaccepted">Approach #5 Another Optimized Dynamic Programming Approach[Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>Another way to use the Dynamic Programming Approach could be if we can somehow directly store the required <script type="math/tex; mode=display">count(i,j)</script> in <script type="math/tex; mode=display">dp[i][j]</script> entry, but still we should not need to traverse back in the previous row to find the sum of the required elements. </p>
+<p>To do so, we can note that for the <script type="math/tex; mode=display">i^{th}</script> row, we need to add the elements from <script type="math/tex; mode=display">dp[i-1][j-i+1]</script> to <script type="math/tex; mode=display">dp[i-1][j]</script>(including both) if <script type="math/tex; mode=display">(j-1) > 0</script>. Otherwise, we need to add all the elements from <script type="math/tex; mode=display">dp[i-1][0]</script> to <script type="math/tex; mode=display">dp[i-1][j]</script>. This has already been discussed previously. </p>
+<p>Now, when we go for filling in <script type="math/tex; mode=display">dp[i][j+1]</script> after filling <script type="math/tex; mode=display">dp[i][j]</script>, we know <script type="math/tex; mode=display">dp[i][j]</script> already corresponds to the sum of the elements from <script type="math/tex; mode=display">dp[i-1][j-i+1]</script> to <script type="math/tex; mode=display">dp[i-1][j]</script>. But, for filling <script type="math/tex; mode=display">dp[i][j+1]</script>, we require the sum of the elements from <script type="math/tex; mode=display">dp[i-1][(j-i+1)+1]</script> to <script type="math/tex; mode=display">dp[i-1][j+1]</script>. </p>
+<p>We can observe that this sum only excludes <script type="math/tex; mode=display">dp[i-1][j-i+1]</script> from the previous sum(<script type="math/tex; mode=display">dp[i][j]</script>) and requires addition of only one new element(<script type="math/tex; mode=display">dp[i-1][j+1]</script>) to the to this sum. If the value <script type="math/tex; mode=display">j-i+1<0</script>, we need not remove any value.</p>
+<p>Thus, we can directly obtain <script type="math/tex; mode=display">dp[i][j]</script> value as <script type="math/tex; mode=display">dp[i][j] = dp[i-1][j] - dp[i-1][j-i] + dp[i-1][j]</script>, if <script type="math/tex; mode=display">j-i &geq; 0</script>. Otherwise, we can use:  <script type="math/tex; mode=display">dp[i][j] = dp[i-1][j] + dp[i-1][j]</script>. </p>
+<p>We can also note that, since, here <script type="math/tex; mode=display">j</script> represents the number of inverse pairs that need to be currently considered, we can place another upper limit on <script type="math/tex; mode=display">j</script> as well. The maximum number of inverse pairs for any arbitrary <script type="math/tex; mode=display">n</script> occur only when the array is sorted in descending order leading to <code>[n,n-1,....,3,2,1]</code> as the arrangement. </p>
+<p>This arrangement has a total of <script type="math/tex; mode=display">n*(n-1)/2</script> inverse pairs. Thus, for an array with <script type="math/tex; mode=display">i</script> as the number of elements, the maximum number of inverse pairs possible is <script type="math/tex; mode=display">i*(i-1)/2</script> only. Thus, for fillling in the <script type="math/tex; mode=display">i^{th}</script> row of <script type="math/tex; mode=display">dp</script>, we can place this limit on <script type="math/tex; mode=display">j</script>'s value.</p>
+<p>The following animation shows the <script type="math/tex; mode=display">dp</script> filling process.</p>
+<p>!?!../Documents/629_dp6.json:1000,563!?!</p>
+<iframe frameborder="0" height="394" name="8azxXjrN" src="https://leetcode.com/playground/8azxXjrN/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n*k)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">(n+1)</script>x<script type="math/tex; mode=display">(k+1)</script> is filled once.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n*k)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">(n+1)</script>x<script type="math/tex; mode=display">(k+1)</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-6-once-again-memoization-accepted">Approach #6 Once Again Memoization [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>The Dynamic Programming solution discussed in Approach 5 can also be written down in the form of a recursive solution. But, again, that will include a lot of duplicate function calls. Thus, a better solution would be to use memoization to store the results of the previous function calls.</p>
+<iframe frameborder="0" height="360" name="KhoU86GW" src="https://leetcode.com/playground/KhoU86GW/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n*k)</script>. <script type="math/tex; mode=display">n</script>x<script type="math/tex; mode=display">k</script> entries in the <script type="math/tex; mode=display">memo</script> array are filled once.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>. <script type="math/tex; mode=display">memo</script> array of constant size <script type="math/tex; mode=display">1001</script>x<script type="math/tex; mode=display">1001</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-7-1-d-dynamic-programmming-accepted">Approach #7 1-D dynamic Programmming [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>From the Dynamic Programming solution, we can also note that we only need the values of the previous row in the <script type="math/tex; mode=display">dp</script> array, and not any other row. Thus, instead of storing the whole 2-D <script type="math/tex; mode=display">dp</script> in memory, we can make use of a 1-D <script type="math/tex; mode=display">dp</script> to store the previous row's entries only. The updations can be done in a 1-D <script type="math/tex; mode=display">temp</script> array of the same size as <script type="math/tex; mode=display">dp</script> and <script type="math/tex; mode=display">dp</script> can be updated using this <script type="math/tex; mode=display">temp</script> everytime a row is finished.</p>
+<iframe frameborder="0" height="343" name="4BjBwzaY" src="https://leetcode.com/playground/4BjBwzaY/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n*k)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">k+1</script> is filled <script type="math/tex; mode=display">n+1</script> times.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(k)</script>. <script type="math/tex; mode=display">dp</script> array of size <script type="math/tex; mode=display">(k+1)</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-danger disabled">Hard</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">3989</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">14866</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              21%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/works-applications.html">Works Applications</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given n processes, each process has a unique PID (process id) and its PPID (parent process id). 
+
+Each process only has one parent process, but may have one or more children processes. This is just like a tree structure.  Only one process has PPID that is 0, which means this process has no parent process. All the PIDs will be distinct positive integers.
+We use two list of integers to represent a list of processes, where the first list contains PID for each process and the second list contains the corresponding PPID. 
+Now given the two lists, and a PID representing a process you want to kill, return a list of PIDs of processes that will be killed in the end. You should assume that when a process is killed, all its children processes will be killed. No order is required for the final answer.
+Example 1:
+Input: 
+pid =  [1, 3, 10, 5]
+ppid = [3, 0, 5, 3]
+kill = 5
+Output: [5,10]
+Explanation: 
+           3
+         /   \
+        1     5
+             /
+            10
+Kill 5 will also kill 10.
+
+
+Note:
+
+The given kill id is guaranteed to be one of the given PIDs.
+n &gt;= 1.">
+  <meta name="keywords"
+        content="Kill Process, LC 582, leetcode 582, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>582. Kill Process</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>Given <b>n</b> processes, each process has a unique <b>PID (process id)</b> and its <b>PPID (parent process id)</b>. 
+
+<p>Each process only has one parent process, but may have one or more children processes. This is just like a tree structure.  Only one process has PPID that is 0, which means this process has no parent process. All the PIDs will be distinct positive integers.</p>
+
+<p>We use two list of integers to represent a list of processes, where the first list contains PID for each process and the second list contains the corresponding PPID. </p>
+ 
+<p>Now given the two lists, and a PID representing a process you want to kill, return a list of PIDs of processes that will be killed in the end. You should assume that when a process is killed, all its children processes will be killed. No order is required for the final answer.</p>
+
+<p><b>Example 1:</b><br />
+<pre>
+<b>Input:</b> 
+pid =  [1, 3, 10, 5]
+ppid = [3, 0, 5, 3]
+kill = 5
+<b>Output:</b> [5,10]
+<b>Explanation:</b> 
+           3
+         /   \
+        1     5
+             /
+            10
+Kill 5 will also kill 10.
+</pre>
+</p>
+
+<p><b>Note:</b><br>
+<ol>
+<li>The given kill id is guaranteed to be one of the given PIDs.</li>
+<li>n >= 1.</li>
+</ol>
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-depth-first-search-time-limit-exceeded">Approach #1 Depth First Search [Time Limit Exceeded]</a></li>
+<li><a href="#approach-2-tree-simulation-accepted">Approach #2 Tree Simulation [Accepted]</a></li>
+<li><a href="#approach-3-hashmap-depth-first-search-accepted">Approach #3 HashMap + Depth First Search  [Accepted]</a></li>
+<li><a href="#approach-4-hashmap-breadth-first-search-accepted">Approach #4 HashMap + Breadth First Search [Accepted]:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="solution">Solution</h2>
+<hr/>
+<h4 id="approach-1-depth-first-search-time-limit-exceeded">Approach #1 Depth First Search [Time Limit Exceeded]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Since killing a process leads to killing all its children processes, the simplest solution is to traverse over the <script type="math/tex; mode=display">ppid</script> array and find out all the children of the process to be killed. Further, for every child chosen to be killed we recursively make call to the <code>killProcess</code> function now treating this child as the new parent to be killed. In every such call, we again traverse over the <script type="math/tex; mode=display">ppid</script> array now considering the id of the child process, and continue in the same fashion. Further, at every step, for every process chosen to be killed, it is added to the list <script type="math/tex; mode=display">l</script> that needs to be returned at the end.</p>
+<iframe frameborder="0" height="309" name="aMxgv45H" src="https://leetcode.com/playground/aMxgv45H/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^n)</script>. <script type="math/tex; mode=display">O(n^n)</script> function calls will be made in the worst case</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. The depth of the recursion tree can go upto <script type="math/tex; mode=display">n</script>.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-tree-simulation-accepted">Approach #2 Tree Simulation [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can view the given process relationships in the form of a tree. We can construct the tree in such a way that every node stores information about its own value as well as the list of all its direct children nodes. Thus, now, once the tree has been generated, we can simply start off by killing the required node, and recursively killing the children of each node encountered rather than traversing over the whole <script type="math/tex; mode=display">ppid</script> array for every node as done in the previous approach.</p>
+<p>In order to implement this, we've made use of a <script type="math/tex; mode=display">Node</script> class which represents a node of a tree. Each node represents a process. Thus, every node stores its own value(<script type="math/tex; mode=display">Node.val</script>) and the list of all its direct children(<script type="math/tex; mode=display">Node.children</script>). We traverse over the whole <script type="math/tex; mode=display">pid</script> array and create nodes for all of them. Then, we traverse over the <script type="math/tex; mode=display">ppid</script> array, and make the parent nodes out of them, and at the same time add all their direct children nodes in their <script type="math/tex; mode=display">Node.children</script> list. In this way, we convert the given process structure into a tree structure. </p>
+<p>Now, that we've obtained the tree structure, we can add the node to be killed to the return list <script type="math/tex; mode=display">l</script>. Now, we can directly obtain all the direct children of this node from the tree, and add its direct children to the return list. For every node added to the return list, we repeat the same process of obtaining the children recursively. </p>
+<iframe frameborder="0" height="515" name="3vVYTuvw" src="https://leetcode.com/playground/3vVYTuvw/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We need to traverse over the <script type="math/tex; mode=display">ppid</script> and <script type="math/tex; mode=display">pid</script> array of size <script type="math/tex; mode=display">n</script> once. The <code>getAllChildren</code> function also takes atmost <script type="math/tex; mode=display">n</script> time, since no node can be a child of two nodes.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">map</script> of size <script type="math/tex; mode=display">n</script> is used. </p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-hashmap-depth-first-search-accepted">Approach #3 HashMap + Depth First Search  [Accepted]</h4>
+<p><strong>Algorithm</strong></p>
+<p>Instead of making the tree structure, we can directly make use of a data structure which stores a particular process value and the list of its direct children. For this, in the current implementation, we make use of a hashmap <script type="math/tex; mode=display">map</script>, which stores the data in the form <script type="math/tex; mode=display">{parent: [list of all its direct children]}</script>.</p>
+<p>Thus, now, by traversing just once over the <script type="math/tex; mode=display">ppid</script> array, and adding the corresponding <script type="math/tex; mode=display">pid</script> values to the children list at the same time, we can obtain a better structure storing the parent-children relationship.</p>
+<p>Again, similar to the previous approach, now we can add the process to be killed to the return list, and keep on adding its children to the return list in a recursive manner by obtaining the child information from the structure created previously.</p>
+<p>!?!../Documents/582_Kill_Process.json:1000,563!?!</p>
+<iframe frameborder="0" height="462" name="RqpXvrnt" src="https://leetcode.com/playground/RqpXvrnt/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We need to traverse over the <script type="math/tex; mode=display">ppid</script> array of size <script type="math/tex; mode=display">n</script> once. The <code>getAllChildren</code> function also takes atmost <script type="math/tex; mode=display">n</script> time, since no node can be a child of two nodes.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">map</script> of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-hashmap-breadth-first-search-accepted">Approach #4 HashMap + Breadth First Search [Accepted]:</h4>
+<p><strong>Algorithm</strong></p>
+<p>We can also make use of Breadth First Search to obtain all the children(direct+indirect) of a particular node, once the data structure of the form <script type="math/tex; mode=display">(process: [list of all its direct children]</script> has been obtained. The process of obtaining the data structure is the same as in the previous approach. </p>
+<p>In order to obtain all the child processes to be killed for a particular parent chosen to be killed, we can make use of Breadth First Search. For this, we add the node to be killed to a <script type="math/tex; mode=display">queue</script>. Then, we remove an element from the front of the <script type="math/tex; mode=display">queue</script> and add it to the return list. Further, for every element removed from the front of the queue, we add all its direct children(obtained from the data structure created) to the end of the queue. We keep on doing so till the queue becomes empty.</p>
+<p>!?!../Documents/582_Kill_Process_BFS.json:1000,563!?!</p>
+<iframe frameborder="0" height="462" name="XkRcahEn" src="https://leetcode.com/playground/XkRcahEn/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>. We need to traverse over the <script type="math/tex; mode=display">ppid</script> array of size <script type="math/tex; mode=display">n</script> once. Also, atmost <script type="math/tex; mode=display">n</script> additions/removals are done from the <script type="math/tex; mode=display">queue</script>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. <script type="math/tex; mode=display">map</script> of size <script type="math/tex; mode=display">n</script> is used.</p>
+</li>
+</ul>
+<hr/>
+<p>Analysis written by: <a href="https://leetcode.com/vinod23">@vinod23</a></p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">9710</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">19369</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              21%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/bloomberg.html">Bloomberg</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

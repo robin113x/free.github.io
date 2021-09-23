@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
+
+
+Note: Do not modify the linked list.
+
+Follow up:
+Can you solve it without using extra space?">
+  <meta name="keywords"
+        content="Linked List Cycle II, LC 142, leetcode 142, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>142. Linked List Cycle II</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given a linked list, return the node where the cycle begins. If there is no cycle, return <code>null</code>.
+</p>
+
+<p>
+<b>Note:</b> Do not modify the linked list.</p>
+
+<p>
+<b>Follow up</b>:<br>
+Can you solve it without using extra space?
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#approach-1-hash-table-accepted">Approach #1 Hash Table [Accepted]</a></li>
+<li><a href="#approach-2-floyds-tortoise-and-hare-accepted">Approach #2 Floyd's Tortoise and Hare [Accepted]</a></li>
+</ul>
+</div>
+<h4 id="approach-1-hash-table-accepted">Approach #1 Hash Table [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>If we keep track of the nodes that we've seen already in a <code>Set</code>, we can
+traverse the list and return the first duplicate node.</p>
+<p><strong>Algorithm</strong></p>
+<p>First, we allocate a <code>Set</code> to store <code>ListNode</code> references. Then, we traverse
+the list, checking <code>visited</code> for containment of the current node. If the node
+has already been seen, then it is necessarily the entrance to the cycle. If
+any other node were the entrance to the cycle, then we would have already
+returned that node instead. Otherwise, the <code>if</code> condition will never be
+satisfied, and our function will return <code>null</code>.</p>
+<p>The algorithm necessarily terminates for any list with a finite number of
+nodes, as the domain of input lists can be divided into two categories:
+cyclic and acyclic lists. An acyclic list resembles a <code>null</code>-terminated chain
+of nodes, while a cyclic list can be thought of as an acyclic list with the
+final <code>null</code> replaced by a reference to some previous node. If the <code>while</code>
+loop terminates, we return <code>null</code>, as we have traversed the entire list
+without encountering a duplicate reference. In this case, the list is
+acyclic. For a cyclic list, the <code>while</code> loop will never terminate, but at
+some point the <code>if</code> condition will be satisfied and cause the function to
+return.</p>
+<iframe frameborder="0" height="327" name="d2vcf6vS" src="https://leetcode.com/playground/d2vcf6vS/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>Time complexity : <script type="math/tex; mode=display">O(n)</script>
+</li>
+</ul>
+<p>For both cyclic and acyclic inputs, the algorithm must visit each node
+exactly once. This is transparently obvious for acyclic lists because the
+<script type="math/tex; mode=display">n</script>th node points to <code>null</code>, causing the loop to terminate. For cyclic
+lists, the <code>if</code> condition will cause the function to return after
+visiting the <script type="math/tex; mode=display">n</script>th node, as it points to some node that is already in
+<code>visited</code>. In both cases, the number of nodes visited is exactly <script type="math/tex; mode=display">n</script>,
+so the runtime is linear in the number of nodes.</p>
+<ul>
+<li>Space complexity : <script type="math/tex; mode=display">O(n)</script>
+</li>
+</ul>
+<p>For both cyclic and acyclic inputs, we will need to insert each node into
+the <code>Set</code> once. The only difference between the two cases is whether we
+discover that the "last" node points to <code>null</code> or a previously-visited
+node. Therefore, because the <code>Set</code> will contain <script type="math/tex; mode=display">n</script> distinct nodes, the
+memory footprint is linear in the number of nodes.</p>
+<hr/>
+<h4 id="approach-2-floyds-tortoise-and-hare-accepted">Approach #2 Floyd's Tortoise and Hare [Accepted]</h4>
+<p><strong>Intuition</strong></p>
+<p>What happens when a fast runner (a hare) races a slow runner (a tortoise) on
+a circular track? At some point, the fast runner will catch up to the slow
+runner from behind.</p>
+<p><strong>Algorithm</strong></p>
+<p>Floyd's algorithm is separated into two distinct <em>phases</em>. In the first
+phase, it determines whether a cycle is present in the list. If no cycle is
+present, it returns <code>null</code> immediately, as it is impossible to find the
+entrance to a nonexistant cycle. Otherwise, it uses the located "intersection
+node" to find the entrance to the cycle.</p>
+<p><em>Phase 1</em></p>
+<p>Here, we initialize two pointers - the fast <code>hare</code> and the slow <code>tortoise</code>.
+Then, until <code>hare</code> can no longer advance, we increment <code>tortoise</code> once and
+<code>hare</code> twice.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> If, after advancing them, <code>hare</code> and <code>tortoise</code> point to
+the same node, we return it. Otherwise, we continue. If the <code>while</code> loop
+terminates without returning a node, then the list is acyclic, and we return
+<code>null</code> to indicate as much.</p>
+<p>To see why this works, consider the image below:</p>
+<p><center>
+<img alt="Diagram of cyclic list" src="https://leetcode.com/articles/Figures/142/Slide1.PNG" style="width: 650px;">
+</img></center></p>
+<p>Here, the nodes in the cycle have been labelled from 0 to <script type="math/tex; mode=display">C-1</script>, where
+<script type="math/tex; mode=display">C</script> is the length of the cycle. The noncyclic nodes have been labelled from
+<script type="math/tex; mode=display">-F</script> to -1, where <script type="math/tex; mode=display">F</script> is the number of nodes outside of the cycle. After
+<script type="math/tex; mode=display">F</script> iterations, <code>tortoise</code> points to node 0 and <code>hare</code> points to some node
+<script type="math/tex; mode=display">h</script>, where <script type="math/tex; mode=display">F \equiv h \pmod C</script>. This is because <code>hare</code> traverses <script type="math/tex; mode=display">2F</script>
+nodes over the course of <script type="math/tex; mode=display">F</script> iterations, exactly <script type="math/tex; mode=display">F</script> of which are in the
+cycle. After <script type="math/tex; mode=display">C-h</script> more iterations, <code>tortoise</code> obviously points to node
+<script type="math/tex; mode=display">C-h</script>, but (less obviously) <code>hare</code> also points to the same node. To see why,
+remember that <code>hare</code> traverses <script type="math/tex; mode=display">2(C-h)</script> from its starting position of <script type="math/tex; mode=display">h</script>:</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    h + 2(C-h) &= 2C - h \\ 
+                &\equiv C-h \pmod C
+\end{aligned}
+</script>
+</p>
+<p>Therefore, given that the list is cyclic, <code>hare</code> and <code>tortoise</code> will
+eventually both point to the same node, known henceforce as the
+<em>intersection</em>.</p>
+<p><em>Phase 2</em></p>
+<p>Given that phase 1 finds an intersection, phase 2 proceeds to find the node
+that is the entrance to the cycle. To do so, we initialize two more pointers:
+<code>ptr1</code>, which points to the head of the list, and <code>ptr2</code>, which points to
+the intersection. Then, we advance each of them by 1 until they meet; the
+node where they meet is the entrance to the cycle, so we return it.</p>
+<p>Use the diagram below to help understand the proof of this approach's
+correctness.</p>
+<p><center>
+<img alt="Phase 2 diagram" src="https://leetcode.com/articles/Figures/142/diagram.png" style="width: 650px;"/>
+</center></p>
+<p>We can harness the fact that <code>hare</code> moves twice as quickly as <code>tortoise</code> to
+assert that when <code>hare</code> and <code>tortoise</code> meet at node <script type="math/tex; mode=display">h</script>, <code>hare</code> has
+traversed twice as many nodes. Using this fact, we deduce the following:</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    2 \cdot distance(tortoise) &= distance(hare) \\
+                        2(F+a) &= F+a+b+a \\
+                         2F+2a &= F+2a+b \\
+                             F &= b \\
+\end{aligned}
+</script>
+</p>
+<p>Because <script type="math/tex; mode=display">F=b</script>, pointers starting at nodes <script type="math/tex; mode=display">h</script> and <script type="math/tex; mode=display">0</script> will traverse the
+same number of nodes before meeting.</p>
+<p>To see the entire algorithm in action, check out the animation below:</p>
+<p>!?!../Documents/142_Linked_List_Cycle_II.json:1280,720!?!</p>
+<iframe frameborder="0" height="500" name="Jz68hVCq" src="https://leetcode.com/playground/Jz68hVCq/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>
+</p>
+<p>For cyclic lists, <code>hare</code> and <code>tortoise</code> will point to the same node after
+<script type="math/tex; mode=display">F+C-h</script> iterations, as demonstrated in the proof of correctness.
+<script type="math/tex; mode=display">F+C-h \leq F+C = n</script>, so phase 1 runs in <script type="math/tex; mode=display">O(n)</script> time. Phase 2
+runs for <script type="math/tex; mode=display">F < n</script> iterations, so it also runs in <script type="math/tex; mode=display">O(n)</script> time.</p>
+<p>For acyclic lists, <code>hare</code> will reach the end of the list in roughly
+<script type="math/tex; mode=display">\frac{n}{2}</script> iterations, causing the function to return before phase
+2. Therefore, regardless of which category of list the algorithm
+receives, it runs in time linearly proportional to the number of nodes.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>
+</p>
+<p>Floyd's Tortoise and Hare algorithm allocates only pointers, so it runs
+with constant overall memory usage.</p>
+</li>
+</ul>
+<hr/>
+<p><strong>Footnotes</strong></p>
+<hr/>
+<p>Analysis and solutions written by: <a href="https://leetcode.com/emptyset">@emptyset</a></p>
+<p>Proof of phase 1 inspired by paw88789's answer <a href="https://math.stackexchange.com/questions/913499/proof-of-floyd-cycle-chasing-tortoise-and-hare">here</a>.</p>
+<p>Proof of phase 2 inspired by Old Monk's answer <a href="https://cs.stackexchange.com/questions/10360/floyds-cycle-detection-algorithm-determining-the-starting-point-of-cycle">here</a>.</p>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>It is sufficient to check only <code>hare</code> because it will always be ahead
+of <code>tortoise</code> in an acyclic list. <a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">132236</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">428457</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              76%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>

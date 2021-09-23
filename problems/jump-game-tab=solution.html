@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="Given an array of non-negative integers, you are initially positioned at the first index of the array.
+
+
+Each element in the array represents your maximum jump length at that position. 
+
+
+Determine if you are able to reach the last index.
+
+
+For example:
+A = [2,3,1,1,4], return true.
+
+
+A = [3,2,1,0,4], return false.">
+  <meta name="keywords"
+        content="Jump Game, LC 55, leetcode 55, leaked interview questions, hackerank free, bittiger free"/>
+
+
+
+  <meta name="author" content="">
+  <link rel="icon" href="../favicon.ico">
+
+  <title>LeetFree - Leaked Interview questions from Google Facebook Amazon Microsoft LinkedIn</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <!-- <link href="/css/fontawesome-all.min.css" rel="stylesheet"> -->
+  <!-- <link href="/css/open-iconic-bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- DataTable -->
+  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <!--<link href="/css/codemirror.css" rel="stylesheet">-->
+
+  <style type="text/css">.CodeMirror {
+      border: 1px solid gray;
+      height: 100%;
+    }
+  </style>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="../maincss.css" rel="stylesheet">
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111377072-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'UA-111377072-1');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8728288618103299",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <!-- Baidu Analytics -->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+<div class="blog-masthead">
+  <div class="container">
+    <nav class="blog-nav">
+      <a class="blog-nav-item" href="../index.html">All Questions</a>
+      <a class="blog-nav-item" href="../company/google.html">Google</a>
+      <a class="blog-nav-item" href="../company/facebook.html">Facebook</a>
+      <a class="blog-nav-item" href="../company/microsoft.html">Microsoft</a>
+      <a class="blog-nav-item" href="../company/amazon.html">Amazon</a>
+      <a class="blog-nav-item" href="../company/uber.html">Uber</a>
+      <a class="blog-nav-item" href="../company/linkedin.html">LinkedIn</a>
+      <a class="blog-nav-item" href="../company/twitter.html">Twitter</a>
+      <a class="blog-nav-item" href="../company/airbnb.html">Airbnb</a>
+      <a class="blog-nav-item" href="../company/snapchat.html">Snapchat</a>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  
+
+  <div class="blog-header">
+    <div class="alert alert-info" role="alert">This website contains ALL LeetCode <b>Premium</b> <i
+            class="fas fa-unlock-alt"></i> problems for
+      <b>FREE!!</b>.<br/>
+      All leaked interview problems are collected from Internet.
+    </div>
+
+    <h2>55. Jump Game</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 blog-main">
+      <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+          <li role="presentation" class="active" id="question-li"><a href="#question" aria-controls="question"
+                                                                     role="tab"
+                                                                     data-toggle="tab">Question</a>
+          </li>
+          <li role="presentation" id="solution-li"><a href="#solution" aria-controls="solution" role="tab"
+                                                      data-toggle="tab"><i class="fas fa-unlock-alt"></i> Solution</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="question">
+            <br/>
+            <p>
+Given an array of non-negative integers, you are initially positioned at the first index of the array.
+</p>
+<p>
+Each element in the array represents your maximum jump length at that position. 
+</p>
+<p>
+Determine if you are able to reach the last index.
+</p>
+
+<p>
+For example:<br />
+A = <code>[2,3,1,1,4]</code>, return <code>true</code>.
+</p>
+<p>
+A = <code>[3,2,1,0,4]</code>, return <code>false</code>.
+</p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="solution">
+            <br/>
+            <div class="block-markdown">
+<div class="toc">
+<ul>
+<li><a href="#naming">Naming</a></li>
+<li><a href="#solution">Solution</a><ul>
+<li><a href="#approach-1-backtracking-stack-overflow">Approach #1 (Backtracking) [Stack Overflow]</a></li>
+<li><a href="#approach-2-dynamic-programming-top-down-stack-overflow">Approach #2 (Dynamic Programming Top-down) [Stack Overflow]</a></li>
+<li><a href="#approach-3-dynamic-programming-bottom-up-time-limit-exceeded">Approach #3 (Dynamic Programming Bottom-up) [Time limit exceeded]</a></li>
+<li><a href="#approach-4-greedy-accepted">Approach #4 (Greedy) [Accepted]</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#appendix-a-complexity-analysis-for-approach-1">Appendix A - Complexity Analysis for Approach #1</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+<h2 id="naming">Naming</h2>
+<ul>
+<li>We call a position in the array a <strong>"good index"</strong> if starting at that position, we can reach the last index. Otherwise, that index is called a <strong>"bad index"</strong>. The problem then reduces to whether or not index 0 is a "good index".</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>This is a dynamic programming<sup>[1]</sup> question. Usually, solving and fully understanding a dynamic programming problem is a 4 step process:</p>
+<ol>
+<li>Start with the recursive backtracking solution</li>
+<li>Optimize by using a memoization table (top-down<sup>[3]</sup> dynamic programming)</li>
+<li>Remove the need for recursion (bottom-up dynamic programming)</li>
+<li>Apply final tricks to reduce the time / memory complexity</li>
+</ol>
+<p>All solutions presented below produce the correct result, but they differ in run time and memory requirements.</p>
+<hr/>
+<h4 id="approach-1-backtracking-stack-overflow">Approach #1 (Backtracking) [Stack Overflow]</h4>
+<p>This is the inefficient solution where we try every single jump pattern that takes us from the first position to the last. We start from the first position and jump to every index that is reachable. We repeat the process until last index is reached. When stuck, backtrack.</p>
+<iframe frameborder="0" height="394" name="VQGy6N8P" src="https://leetcode.com/playground/VQGy6N8P/shared" width="100%"></iframe>
+<p>One quick optimization we can do for the code above is to check the <code>nextPosition</code> from right to left. The theoretical worst case performance is the same, but in practice, for silly examples, the code might run faster. Intuitively, this means we always try to make the biggest jump such that we reach the end as soon as possible</p>
+<p>The change required is:</p>
+<iframe frameborder="0" height="122" name="evQvAUZk" src="https://leetcode.com/playground/evQvAUZk/shared" width="100%"></iframe>
+<p>For instance, in the example below, if we start from index <strong>0</strong>, jump as far as possible and reach <strong>1</strong>, jump as far as possible and reach <strong>6</strong>. By doing so, we determine that <strong>0</strong> is a <em>GOOD</em> index in 3 steps.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Index</th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">nums</td>
+<td align="center">1</td>
+<td align="center">5</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<p>To illustrate the worst case, where this optimization has no effect, take the example below. Index <strong>6</strong> cannot be reached from any position, but all combinations will be tried.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Index</th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">nums</td>
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<p>The first few steps of the backtracking algorithm for the example above are: 0 -&gt; 4 -&gt; 5 -&gt; 4 -&gt; 0 -&gt; 3 -&gt; 5 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; etc.</p>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(2^n)</script>. There are <script type="math/tex; mode=display">2^n</script> (upper bound) ways of jumping from the first position to the last, where <script type="math/tex; mode=display">n</script> is the length of array <code>nums</code>. For a complete proof, please refer to Appendix A.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>. Recursion requires additional memory for the stack frames.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-2-dynamic-programming-top-down-stack-overflow">Approach #2 (Dynamic Programming Top-down) [Stack Overflow]</h4>
+<p>Top-down Dynamic Programming can be thought of as optimized backtracking. It relies on the observation that once we determine that a certain index is good / bad, this result will never change. This means that we can store the result and not need to recompute it every time.</p>
+<p>Therefore, for each position in the array, we remember whether the index is good or bad. Let's call this array <code>memo</code> and let its values be either one of: GOOD, BAD, UNKNOWN. This technique is called memoization<sup>[2]</sup>.</p>
+<p>An example of a memoization table for input array <code>nums = [2, 4, 2, 1, 0, 2, 0]</code> can be seen in the diagram below. We write <strong>G</strong> for a <em>GOOD</em> position and <strong>B</strong> for a <em>BAD</em> one. We can see that we cannot start from indices 2, 3 or 4 and eventually reach last index (6), but we can do that from indices 0, 1, 5 and (trivially) 6.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Index</th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">nums</td>
+<td align="center">2</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">memo</td>
+<td align="center">G</td>
+<td align="center">G</td>
+<td align="center">B</td>
+<td align="center">B</td>
+<td align="center">B</td>
+<td align="center">G</td>
+<td align="center">G</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Steps</strong></p>
+<ol>
+<li>Initially, all elements of the <code>memo</code> table are <em>UNKNOWN</em>, except for the last one, which is (trivially) <em>GOOD</em> (it can reach itself)</li>
+<li>Modify the backtracking algorithm such that the recursive step first checks if the index is known (<em>GOOD</em> / <em>BAD</em>)<ol>
+<li>If it is known then return <em>True</em> / <em>False</em></li>
+<li>Otherwise perform the backtracking steps as before</li>
+</ol>
+</li>
+<li>Once we determine the value of the current index, we store it in the <code>memo</code> table</li>
+</ol>
+<iframe frameborder="0" height="515" name="uKMuakkv" src="https://leetcode.com/playground/uKMuakkv/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>.
+For every element in the array, say <code>i</code>, we are looking at the next <code>nums[i]</code> elements to its right aiming to find a <em>GOOD</em> index. <code>nums[i]</code> can be at most <script type="math/tex; mode=display">n</script>, where <script type="math/tex; mode=display">n</script> is the length of array <code>nums</code>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(2n) = O(n)</script>.
+First n originates from recursion. Second n comes from the usage of the memo table.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-3-dynamic-programming-bottom-up-time-limit-exceeded">Approach #3 (Dynamic Programming Bottom-up) [Time limit exceeded]</h4>
+<p>Top-down to bottom-up conversion is done by eliminating recursion. In practice, this achieves better performance as we no longer have the method stack overhead and might even benefit from some caching. More importantly, this step opens up possibilities for future optimization. The recursion is usually eliminated by trying to reverse the order of the steps from the top-down approach.</p>
+<p>The observation to make here is that we only ever jump to the right. This means that if we start from the right of the array, every time we will query a position to our right, that position has already be determined as being <em>GOOD</em> or <em>BAD</em>. This means we don't need to recurse anymore, as we will always hit the <code>memo</code> table.</p>
+<iframe frameborder="0" height="479" name="EhUCY4Fj" src="https://leetcode.com/playground/EhUCY4Fj/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n^2)</script>.
+For every element in the array, say <code>i</code>, we are looking at the next <code>nums[i]</code> elements to its right aiming to find a <em>GOOD</em> index. <code>nums[i]</code> can be at most <script type="math/tex; mode=display">n</script>, where <script type="math/tex; mode=display">n</script> is the length of array <code>nums</code>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(n)</script>.
+This comes from the usage of the memo table.</p>
+</li>
+</ul>
+<hr/>
+<h4 id="approach-4-greedy-accepted">Approach #4 (Greedy) [Accepted]</h4>
+<p>Once we have our code in the bottom-up state, we can make one final, important observation. From a given position, when we try to see if we can jump to a <em>GOOD</em> position, we only ever use one - the first one (see the break statement). In other words, the left-most one. If we keep track of this left-most <em>GOOD</em> position as a separate variable, we can avoid searching for it in the array. Not only that, but we can stop using the array altogether.</p>
+<p>Iterating right-to-left, for each position we check if there is a potential jump that reaches a <em>GOOD</em> index (<code>currPosition + nums[currPosition] &gt;= leftmostGoodIndex</code>). If we can reach a <em>GOOD</em> index, then our position is itself <em>GOOD</em>. Also, this new <em>GOOD</em> position will be the new leftmost <em>GOOD</em> index. Iteration continues until the beginning of the array. If first position is a <em>GOOD</em> index then we can reach the last index from the first position.</p>
+<p>To illustrate this scenario, we will use the diagram below, for input array <code>nums = [9, 4, 2, 1, 0, 2, 0]</code>. We write <strong>G</strong> for <em>GOOD</em>, <strong>B</strong> for <em>BAD</em> and <strong>U</strong> for <em>UNKNOWN</em>. Let's assume we have iterated all the way to position 0 and we need to decide if index 0 is <em>GOOD</em>. Since index 1 was determined to be <em>GOOD</em>, it is enough to jump there and then be sure we can eventually reach index 6. It does not matter that <code>nums[0]</code> is big enough to jump all the way to the last index. All we need is <strong>one</strong> way.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Index</th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">nums</td>
+<td align="center">9</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">memo</td>
+<td align="center">U</td>
+<td align="center">G</td>
+<td align="center">B</td>
+<td align="center">B</td>
+<td align="center">B</td>
+<td align="center">G</td>
+<td align="center">G</td>
+</tr>
+</tbody>
+</table>
+<iframe frameborder="0" height="241" name="kpJ4aQae" src="https://leetcode.com/playground/kpJ4aQae/shared" width="100%"></iframe>
+<p><strong>Complexity Analysis</strong></p>
+<ul>
+<li>
+<p>Time complexity : <script type="math/tex; mode=display">O(n)</script>.
+We are doing a single pass through the <code>nums</code> array, hence <script type="math/tex; mode=display">n</script> steps, where <script type="math/tex; mode=display">n</script> is the length of array <code>nums</code>.</p>
+</li>
+<li>
+<p>Space complexity : <script type="math/tex; mode=display">O(1)</script>.
+We are not using any extra memory.</p>
+</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>The question left unanswered is how should one approach such a question in an interview scenario. I would say "it depends". The perfect solution is cleaner and shorter than all the other versions, but it might not be so straightforward to figure out.</p>
+<p>The (recursive) backtracking is the easiest to figure out, so it is worth mentioning it verbally while warming up for the tougher challenge. It might be that your interviewer actually wants to see that solution, but if not, mention that there might be a dynamic programming solution and try to think how could you use a memoization table. If you figure it out and the interviewer wants you to go for the top-down approach, it will not generally be time to think of the bottom-up version, but I would always mention the advantages of this technique as a final thought in the interview.</p>
+<p>Most people are stuck when converting from top-down Dynamic Programming (expressed naturally in recursion) to bottom-up. Practicing similar problems will help bridge this gap.</p>
+<h2 id="appendix-a-complexity-analysis-for-approach-1">Appendix A - Complexity Analysis for Approach #1</h2>
+<p>There are <script type="math/tex; mode=display">2^n</script> (upper bound) ways of jumping from the first position to the last, where <script type="math/tex; mode=display">n</script> is the length of array <code>nums</code>. We get this recursively. Let <script type="math/tex; mode=display">T(x)</script> be the number of possible ways of jumping from position <strong>x</strong> to position <strong>n</strong>. <script type="math/tex; mode=display">T(n) = 1</script> trivially. <script type="math/tex; mode=display">T(x) = \sum_{i = x + 1}^{n} T(i)</script> because from position <strong>x</strong> we can potentially jump to all following positions <strong>i</strong> and then from there there are <script type="math/tex; mode=display">T(i)</script> ways of continuing. Notice this is an upper bound.</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align*}
+T(x) &= \sum_{i = x + 1}^{n} T(i) \\
+T(x) &= T(x + 1) + \sum_{i = x + 2}^{n} T(i) \\
+T(x) &= T(x + 1) + T(x + 1) \\
+T(x) &= 2 * T(x + 1)
+\end{align*}
+</script>
+</p>
+<p>Now by induction, assume <script type="math/tex; mode=display">T(x) = 2^{n - x - 1}</script> and prove <script type="math/tex; mode=display">T(x - 1) = 2^{n - (x - 1) - 1}</script>
+</p>
+<p>
+<script type="math/tex; mode=display">
+\begin{align*}
+T(x - 1) &= 2 * T(x) \\
+T(x - 1) &= 2 * 2^{n - x - 1} \\
+T(x - 1) &= 2^{n - x - 1 + 1} \\
+T(x - 1) &= 2^{n - (x - 1) - 1}
+\end{align*}
+</script>
+</p>
+<p>Therefore, since we start from position 1, <script type="math/tex; mode=display">T(1) = 2^{n - 2}</script>. Final complexity <script type="math/tex; mode=display">O(2^{n - 2})</script> = <script type="math/tex; mode=display">O(2^n)</script>.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>[1] <a href="https://en.wikipedia.org/wiki/Dynamic_programming">https://en.wikipedia.org/wiki/Dynamic_programming</a></li>
+<li>[2] <a href="https://en.wikipedia.org/wiki/Memoization">https://en.wikipedia.org/wiki/Memoization</a></li>
+<li>[3] <a href="https://en.wikipedia.org/wiki/Top-down_and_bottom-up_design">https://en.wikipedia.org/wiki/Top-down_and_bottom-up_design</a></li>
+</ul>
+<p>Analysis written by: <a href="http://andrei.cioara.me">@aicioara</a></p>
+<p>Thank you <a href="https://discuss.leetcode.com/user/jied333">@jied333</a> for correcting the backtracking complexity analysis.</p>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <aside class="col-md-3  blog-sidebar">
+      <div class="row sidebar-module">
+        <ul class="list-group">
+          <li class="list-group-item"><span>Difficulty:</span><span class="pull-right">
+                              
+                                <button class="btn btn-xs btn-warning disabled">Medium</button>
+                              
+          </span></li>
+          <li class="list-group-item"><span>Total Accepted:</span><span class="pull-right">145368</span>
+          </li>
+          <li class="list-group-item"><span>Total Submissions:</span><span
+                  class="pull-right">491740</span></li>
+
+          <li class="list-group-item" style="background: #eee;"><span><i
+                  class="fas fa-unlock-alt"></i> Frequency:</span>
+            <span class="pull-right">
+              65%
+            </span>
+          </li>
+        </ul>
+        <ul class="list-group">
+
+          <li class="list-group-item">
+            <h4><i class="fas fa-unlock-alt"></i> Companies (leaked): </h4>
+            
+              <a style="margin:2px" class="btn btn-sm btn-success" href="../company/microsoft.html">Microsoft</a>
+            
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="row" >
+    <div class="col-md-2">
+      <select class="js-example-basic-single" name="state" style="width: 100%;" id="language">
+        <option value="cpp">C++</option>
+        <option value="py2">Python 2</option>
+        <option value="py3">Python 3</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 blog-main">
+      <div>
+        
+        <textarea id="code_cpp" name="code_cpp">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py2" name="code_py2">
+          
+            
+        </textarea>
+        
+        <textarea id="code_py3" name="code_py3">
+          
+            
+        </textarea>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <a href="#" class="btn btn-primary" id="submit">Submit Solution</a>
+    </div>
+  </div>
+
+
+
+</div>
+<!-- /.container -->
+
+<footer class="blog-footer">
+  <a href="mailto:leetfree@gmail.com">Email: leetfree@gmail.com</a>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+<!-- DataTable -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+
+<script src="../main.js"></script>
+
+
+
+
+
+</body>
+
+</html>
